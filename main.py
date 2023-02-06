@@ -34,9 +34,14 @@ def scrape(event_id: str):
         release_time = row.find_element(By.XPATH, "./td[2]").text
         timestamp = datetime.datetime.strptime(f"{release_date} {release_time}".strip(), "%b %d, %Y %H:%M")
 
+        if row.find_elements(By.XPATH, "./td[2]/span[@class='smallGrayP']"):
+            prelim = True
+        else:
+            prelim = False
+
         df = df.append({
             'Timestamp': timestamp,
-            'Prelim': "Unknown",  # Add a check for this
+            'Prelim': prelim,
             'Actual': row.find_element(By.XPATH, "./td[3]/span").text,
             'Forecast': row.find_element(By.XPATH, "./td[4]").text,
             'Previous': row.find_element(By.XPATH, "./td[5]").text,
