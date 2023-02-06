@@ -15,7 +15,7 @@ options.add_experimental_option("prefs", {"profile.managed_default_content_setti
 driver = webdriver.Chrome(options=options)
 
 
-def scrape(event_id: str):
+def scrape(event_id: str, start_date: datetime.date):
     url = "https://www.investing.com/economic-calendar/" + event_id
     driver.get(url)
 

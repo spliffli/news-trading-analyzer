@@ -1,6 +1,7 @@
 # News Trading Analyzer
 
-A tool which scrapes economic news data from investing.com and cross-references it with historical tick data to generate news trading trigger recommendations
+A tool which scrapes economic news data from investing.com and cross-references it with historical tick data to generate news trading trigger recommendations.
+This is meant for use with [haawks.com](https://haawks.com) G4A API or news trader tool it comes with.
 
 ## Part 1: Scraping & populating database
 
@@ -8,8 +9,8 @@ A tool which scrapes economic news data from investing.com and cross-references 
 - [X] Make sure entire historic data table is loaded into the DOM. JS or clicking 'show more' required due to the design of the webpage, hence using selenium.
 
   - [ ] Better than this would be to take a specified date and only load as far back as needed
-- [ ] Scrape the table values & add into a pandas DataFrame
-- [ ] Parse given dates & times into datetime object & append to an extra column for each row
+- [X] Scrape the table values & add into a pandas DataFrame
+- [X] Parse given dates & times into datetime object & append to an extra column for each row
 - [ ] For each row in the DF, create a database entry using SQLite in the table 'news_data', making sure to include the following columns:
 
   - investing.com event id
@@ -32,7 +33,7 @@ A tool which scrapes economic news data from investing.com and cross-references 
 
 ## Part 2: Analyzing tick data
 
-- [ ] Using the duka python package, get historical tick data going back eg. 5 years
+- [ ] Using the duka python package, get historical tick data ~~going back eg. 5 years.~~ Actually, because tick data uses up so much storage (~10Gb per symbol per year), it will be more efficient to only download the relevent days as needed instead of the entire history. Then it would be even more efficient to truncate the daily file to just 5 mins before and 15 mins after the news event, or simply delete the tick data after usage.
   - [ ] This can be a basic script at first but ideally it should be a CLI wizard
 - [ ] for a given indicator and symbol:
   - [ ] for each timestamp entry in database:
