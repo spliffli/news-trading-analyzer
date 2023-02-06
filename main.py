@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 import time
+import pandas as pd
 
 options = Options()
 options.headless = False  # hide GUI
@@ -15,12 +16,13 @@ def scrape(event_id: str):
     url = "https://www.investing.com/economic-calendar/" + event_id
     driver.get(url)
 
-    show_more_history_id = "showMoreHistory" + event_id
-    element = driver.find_element(By.ID, show_more_history_id)
+    # while(True):
+    #   driver.execute_script(f"ecEvent.moreHistory({event_id}, this, 0)")
+    #   time.sleep(1)
+    table = driver.find_element(By.ID, f"eventHistoryTable{event_id}")
 
-    while(element.get_attribute("display") != "none"):
-        # element.click()
-        driver.execute_script(f"ecEvent.moreHistory({event_id}, this, 0)")
-        time.sleep(1)
 
-scrape("345")
+
+
+
+scrape("262")
