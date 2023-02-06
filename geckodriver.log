@@ -2592,3 +2592,536 @@ JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch res
 JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
 JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
 JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1675692756851	geckodriver	INFO	Listening on 127.0.0.1:50909
+1675692757618	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "54487" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileRlUzkE"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675692762385	Marionette	INFO	Marionette enabled
+1675692762415	Marionette	INFO	Listening on port 44251
+Read port: 44251
+WebDriver BiDi listening on ws://127.0.0.1:54487
+Read port: 44251
+1675692763891	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileRlUzkE/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:54487/devtools/browser/158c81ff-951f-4e59-b23c-e347e6c7de36
+JavaScript error: https://connect.facebook.net/en_US/fbevents.js, line 27: TypeError: f.queue is undefined
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 336 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1675692831972	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+ExceptionHandler::GenerateDump cloned child 49655
+ExceptionHandler::SendContinueSignalToChild sent continue signal to child
+ExceptionHandler::WaitForContinueSignal waiting for continue signal...
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675692860212	geckodriver	INFO	Listening on 127.0.0.1:43407
+1675692860433	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "44635" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileSJB67F"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675692862124	Marionette	INFO	Marionette enabled
+1675692862140	Marionette	INFO	Listening on port 34681
+Read port: 34681
+WebDriver BiDi listening on ws://127.0.0.1:44635
+1675692862598	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileSJB67F/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:44635/devtools/browser/2d3b2e41-590c-480a-8f72-5a016dbfd21f
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675692894683	geckodriver	INFO	Listening on 127.0.0.1:49365
+1675692894989	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "33651" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile2NTbZj"
+*** You are running in headless mode.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675692896682	Marionette	INFO	Marionette enabled
+1675692896698	Marionette	INFO	Listening on port 45059
+Read port: 45059
+WebDriver BiDi listening on ws://127.0.0.1:33651
+1675692897071	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile2NTbZj/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:33651/devtools/browser/d678f0d1-a865-4adb-8d5b-d979707a47e6
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 2079 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/1ltCRSOx5k-1I0D0UILHPXNozEC50ZuHf8HEjBLxTFM.js line 2 > eval line 3811 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1675692955499	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675692958474	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675692958983	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675692971776	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675692971911	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 6449 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 3603 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675693102296	geckodriver	INFO	Listening on 127.0.0.1:35245
+1675693102343	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "50437" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilevOKq8A"
+*** You are running in headless mode.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675693102776	Marionette	INFO	Marionette enabled
+1675693102780	Marionette	INFO	Listening on port 37919
+Read port: 37919
+WebDriver BiDi listening on ws://127.0.0.1:50437
+1675693102904	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilevOKq8A/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:50437/devtools/browser/e99c49e4-5b70-4b07-8ef6-779f634ff426
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675693126063	geckodriver	INFO	Listening on 127.0.0.1:40449
+1675693126131	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "49345" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile44CZrC"
+*** You are running in headless mode.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675693127470	Marionette	INFO	Marionette enabled
+1675693127474	Marionette	INFO	Listening on port 38299
+Read port: 38299
+WebDriver BiDi listening on ws://127.0.0.1:49345
+1675693127663	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile44CZrC/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:49345/devtools/browser/053f73d7-42fb-482a-8b01-a246c1dbef8c
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 228 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1675693171024	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675693173344	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675693173548	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675693174439	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675693228161	geckodriver	INFO	Listening on 127.0.0.1:41307
+1675693228410	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "52787" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilehtNEx2"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675693230592	Marionette	INFO	Marionette enabled
+1675693230618	Marionette	INFO	Listening on port 41465
+Read port: 41465
+WebDriver BiDi listening on ws://127.0.0.1:52787
+1675693231263	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilehtNEx2/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52787/devtools/browser/bf0e77d6-6912-4cbe-b234-04d4854ab64c
+JavaScript error: https://connect.facebook.net/en_US/fbevents.js, line 27: TypeError: f.queue is undefined
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 7079 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 1037 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1675693290023	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675693291568	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+ExceptionHandler::GenerateDump cloned child 53574
+ExceptionHandler::SendContinueSignalToChild sent continue signal to child
+ExceptionHandler::WaitForContinueSignal waiting for continue signal...
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675693430450	geckodriver	INFO	Listening on 127.0.0.1:59567
+1675693430636	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "48459" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile3sblVL"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675693432669	Marionette	INFO	Marionette enabled
+1675693432688	Marionette	INFO	Listening on port 39353
+Read port: 39353
+WebDriver BiDi listening on ws://127.0.0.1:48459
+1675693433244	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile3sblVL/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:48459/devtools/browser/faa901d6-db9d-4f83-b158-9a7d29506bdc
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 4370 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 2426 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1675693494135	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675693495410	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+[GFX1-]: Managed to allocate after flush.
+ExceptionHandler::GenerateDump cloned child 54916
+ExceptionHandler::SendContinueSignalToChild sent continue signal to child
+ExceptionHandler::WaitForContinueSignal waiting for continue signal...
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675693534020	geckodriver::marionette	ERROR	Failed to close browser connection: Socket not connected (os error 107)
+1675693542933	geckodriver	INFO	Listening on 127.0.0.1:53799
+1675693543170	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "36379" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileHs17ns"
+*** You are running in headless mode.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675693544736	Marionette	INFO	Marionette enabled
+1675693544753	Marionette	INFO	Listening on port 43263
+Read port: 43263
+WebDriver BiDi listening on ws://127.0.0.1:36379
+1675693545210	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileHs17ns/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:36379/devtools/browser/71f37189-615b-4be1-94e5-d22ed5092694
+JavaScript error: https://tpc.googlesyndication.com/sodar/Enqz_20U.html, line 11: uncaught exception: 7
+1675693589816	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675693591542	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675693620373	geckodriver	INFO	Listening on 127.0.0.1:58267
+1675693620529	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "36699" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileJ2Xwx1"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675693621892	Marionette	INFO	Marionette enabled
+1675693621909	Marionette	INFO	Listening on port 40315
+Read port: 40315
+WebDriver BiDi listening on ws://127.0.0.1:36699
+1675693622084	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileJ2Xwx1/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:36699/devtools/browser/b52313f2-7322-4134-9b93-ee7352228e04
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675693642618	geckodriver	INFO	Listening on 127.0.0.1:56285
+1675693642724	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "54575" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileIhQv7O"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675693643875	Marionette	INFO	Marionette enabled
+1675693643879	Marionette	INFO	Listening on port 46067
+Read port: 46067
+WebDriver BiDi listening on ws://127.0.0.1:54575
+1675693644212	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileIhQv7O/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:54575/devtools/browser/8d6a5e65-b235-4008-8df9-3ce11d98baa8
+JavaScript error: https://connect.facebook.net/en_US/fbevents.js, line 27: TypeError: f.queue is undefined
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 1537 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 961 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1675693694436	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 6679 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 7016 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 5114 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675694685051	geckodriver	INFO	Listening on 127.0.0.1:58647
+1675694685098	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "35637" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileznleU0"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675694685761	Marionette	INFO	Marionette enabled
+1675694685765	Marionette	INFO	Listening on port 43135
+Read port: 43135
+WebDriver BiDi listening on ws://127.0.0.1:35637
+1675694685900	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileznleU0/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:35637/devtools/browser/4da83fba-e817-4914-bad2-a99c3ff4ef1e
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 6535 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1675694705960	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/1ltCRSOx5k-1I0D0UILHPXNozEC50ZuHf8HEjBLxTFM.js line 2 > eval line 244 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675694787271	geckodriver	INFO	Listening on 127.0.0.1:40225
+1675694787371	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "50563" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileZezUN8"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675694788200	Marionette	INFO	Marionette enabled
+1675694788208	Marionette	INFO	Listening on port 33923
+Read port: 33923
+WebDriver BiDi listening on ws://127.0.0.1:50563
+1675694788407	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileZezUN8/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:50563/devtools/browser/db326cb0-a808-433f-ae36-9580c6e3ef39
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675694829584	geckodriver	INFO	Listening on 127.0.0.1:43353
+1675694829648	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "33575" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilelkC29o"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675694830251	Marionette	INFO	Marionette enabled
+1675694830255	Marionette	INFO	Listening on port 36215
+Read port: 36215
+WebDriver BiDi listening on ws://127.0.0.1:33575
+1675694830406	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilelkC29o/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:33575/devtools/browser/f9c58226-e1d6-4680-bf1b-db9ad2cadf37
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 6792 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1675694863473	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 605 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 7750 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675694942712	geckodriver	INFO	Listening on 127.0.0.1:46881
+1675694942941	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "43215" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilecy3sFr"
+1675694943633	geckodriver	INFO	Listening on 127.0.0.1:45825
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675694944234	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1920,1080" "start-maximized" "--remote-debugging-port" "42129" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileQRhaPb"
+1675694944269	Marionette	INFO	Marionette enabled
+1675694944276	Marionette	INFO	Listening on port 37253
+Read port: 37253
+WebDriver BiDi listening on ws://127.0.0.1:43215
+1675694944558	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675694945569	Marionette	INFO	Marionette enabled
+1675694945580	Marionette	INFO	Listening on port 42639
+Read port: 42639
+WebDriver BiDi listening on ws://127.0.0.1:42129
+1675694946002	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilecy3sFr/search.json.mozlz4", (void 0)))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileQRhaPb/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:43215/devtools/browser/4068d6b7-3fae-426c-ad1a-22d81876e153
+DevTools listening on ws://127.0.0.1:42129/devtools/browser/fdc0ba15-ecb6-4f73-8cd2-78226000b805
+JavaScript error: https://connect.facebook.net/en_US/fbevents.js, line 27: TypeError: f.queue is undefined
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 695 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/enP75FOAOR6Dv0_xbsOpJb6_RhPRjbOZFZcWOHt7fp4.js line 2 > eval line 1464 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1675694975415	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1675694975824	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.

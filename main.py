@@ -21,7 +21,20 @@ def scrape(event_id: str):
     #   time.sleep(1)
     table = driver.find_element(By.ID, f"eventHistoryTable{event_id}")
 
+    df = pd.DataFrame(columns=['Release Date', 'Time', 'Prelim', 'Actual', 'Forecast', 'Previous'])
+    for row in table.find_elements(By.XPATH, ".//tbody/tr"):
+        # print(row.find_element(By.XPATH, "./td[1]").text)
+        df = df.append({
+            'Release Date': row.find_element(By.XPATH, "./td[1]").text,
+            'Time': row.find_element(By.XPATH, "./td[2]").text,
+            'Prelim': "Unknown",  # Add a check for this
+            'Actual': row.find_element(By.XPATH, "./td[3]/span").text,
+            'Forecast': row.find_element(By.XPATH, "./td[4]").text,
+            'Previous': row.find_element(By.XPATH, "./td[5]").text,
 
+        }, ignore_index=True)
+
+    print(df)
 
 
 
