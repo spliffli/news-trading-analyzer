@@ -21,13 +21,14 @@ This is meant for use with [haawks.com](https://haawks.com) G4A API or news trad
   - actual
   - previous
   - deviation
-- [ ] Make a second database table called 'indicators' with the following columns:
+- [X] Make a second database table called 'indicators' with the following columns:
 
   - investing.com event id (if available, otherwise null)
   - haawks indicator id
   - higher_dev (ie. whether a higher deviation from the forecast is bullish or bearish. This info is usually available on investing.com Lower deviation can be inferred as the opposite)
   - impact_level (according to investing.com)
   - tradable symbols
+  - for now I'm just storing this in an xlsx file, but it might be useful later to use sqlite
 - [ ] For each haawks indicator which has available data on investing.com, scrape data & add to the database
 - [ ] Later, modify the script to update the database as new data comes into investing.com without repopulating the db from scratch
 

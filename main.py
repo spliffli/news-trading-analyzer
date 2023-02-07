@@ -6,12 +6,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 import time
 import pandas as pd
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 
 options = Options()
-options.headless = True  # hide GUI
+options.headless = False  # hide GUI
 options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
 options.add_argument("start-maximized")  # ensure window is full-screen
-options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2}) # Load without images
+options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})  # Load without images
 
 driver = webdriver.Chrome(options=options)
 
@@ -25,7 +28,7 @@ def get_datetime(release_date: str, release_time: str):
 
 
 def expand_table(table: WebElement, start_date: datetime.date, event_id):
-    start_datetime = datetime.datetime.combine(start_date, datetime.time(0,0))
+    start_datetime = datetime.datetime.combine(start_date, datetime.time(0, 0))
     while True:
         rows_count = len(table.find_elements(By.XPATH, ".//tbody/tr"))
         last_row = table.find_element(By.XPATH, f"//tbody/tr[{rows_count}]")
@@ -34,9 +37,10 @@ def expand_table(table: WebElement, start_date: datetime.date, event_id):
         last_row_datetime = get_datetime(last_row_date, last_row_time)
 
         if last_row_datetime > start_datetime:  # if last row is still newer than given start date
-            driver.execute_script(f"ecEvent.moreHistory({event_id}, this, 0)") # JavaScript to expand the table
-            time.sleep(1)
-            if rows_count == len(table.find_elements(By.XPATH, ".//tbody/tr")): # if the table doesn't expand after the script, it's the end of the data
+            driver.execute_script(f"ecEvent.moreHistory({event_id}, this, 0)")  # JavaScript to expand the table
+            time.sleep(2)
+            if rows_count == len(table.find_elements(By.XPATH,
+                                                     ".//tbody/tr")):  # if the table doesn't expand after the script, it's the end of the data
                 print("The data on investing.com doesn't go as far back as your start date."
                       f"\nThe data is only available as far back as: {last_row_datetime}")
                 return 1
@@ -46,17 +50,24 @@ def expand_table(table: WebElement, start_date: datetime.date, event_id):
 
 def scrape(event_id: str, start_date: datetime.date):
     url = "https://www.investing.com/economic-calendar/" + event_id
+    print("Loading webpage...")
     driver.get(url)
+    start_datetime = datetime.datetime.combine(start_date, datetime.time(0, 0))
 
     # while(True):
     #   driver.execute_script(f"ecEvent.moreHistory({event_id}, this, 0)")
     #   time.sleep(1)
     table = driver.find_element(By.ID, f"eventHistoryTable{event_id}")
+    print("Expanding table...")
     expand_table(table, start_date, event_id)
 
     df = pd.DataFrame(columns=['Timestamp', 'Prelim', 'Actual', 'Forecast', 'Previous'])
+    row_count = len(table.find_elements(By.XPATH, ".//tbody/tr"))
+    current_row = 0
     for row in table.find_elements(By.XPATH, ".//tbody/tr"):
         # print(row.find_element(By.XPATH, "./td[1]").text)
+        current_row += 1
+        print(f"scraping row {current_row}/{row_count}")
         release_date = row.find_element(By.XPATH, "./td[1]").text
         release_time = row.find_element(By.XPATH, "./td[2]").text
         timestamp = get_datetime(release_date, release_time)
@@ -66,16 +77,38 @@ def scrape(event_id: str, start_date: datetime.date):
         else:
             prelim = False
 
-        df = df.append({
-            'Timestamp': timestamp,
-            'Prelim': prelim,
-            'Actual': row.find_element(By.XPATH, "./td[3]/span").text,
-            'Forecast': row.find_element(By.XPATH, "./td[4]").text,
-            'Previous': row.find_element(By.XPATH, "./td[5]").text,
+        if start_datetime < timestamp:
+            df = df.append({
+                'Timestamp': timestamp,
+                'Prelim': prelim,
+                'Actual': row.find_element(By.XPATH, "./td[3]/span").text,
+                'Forecast': row.find_element(By.XPATH, "./td[4]").text,
+                'Previous': row.find_element(By.XPATH, "./td[5]").text,
 
-        }, ignore_index=True)
+            }, ignore_index=True)
 
+    if df['Actual'].iloc[0].strip() == "": # if actual is missing from first row then the event hasn't happened yet
+        df = df.drop(index=0).reset_index(drop=True)
     return df
 
 
-df = scrape("130", datetime.date(2020, 7, 4))
+def scrape_all_indicator_history(start_date: datetime.date):
+    df = pd.read_excel("haawks-indicator-shortlist.xlsx")
+    df = df.iloc[11:]  # shortens the df for testing. remove this line when the script works
+    df = df.reset_index()
+    df_row_count = df.shape[0]
+
+    for index, row in df.iterrows():
+        event_id = str(row['inv_id'])
+        name_formatted = row['inv_title'].replace(" ", "_").replace(".", "")
+        haawks_id = row['Id']
+        print(f"Scraping {index+1}/{df_row_count}: {row['inv_title']}")
+        news_data = scrape(event_id, start_date)
+
+        news_data.to_csv(f"news_data/{haawks_id}_{event_id}_{name_formatted}.csv", index=False)
+        print(f"Saving to news_data/{haawks_id}_{event_id}_{name_formatted}.csv")
+
+
+scrape_all_indicator_history(datetime.date(2017, 1, 1))
+
+# df = scrape("130", datetime.date(2020, 7, 4))

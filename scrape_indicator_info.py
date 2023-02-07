@@ -29,7 +29,7 @@ def scrape_indicator(event_id):
             importance += 1
 
     currency = overview_right.find_element(By.XPATH, "//div[3]/span[2]").text
-    source = overview_right.find_element(By.XPATH, "//div[4]/span[2]/a").text
+    source = overview_right.find_element(By.XPATH, "//div[4]/span[2]/a").get_attribute('title')
 
     if 'noDesc' in overview_right.get_attribute('class'):
         description = "No description available"
@@ -45,6 +45,7 @@ def scrape_indicator(event_id):
     }
 
 # scrape_indicator("375")
+
 
 df = pd.read_excel("haawks-g4a-indicator-list-20190806.xls")
 # print(df)
