@@ -64,9 +64,10 @@ for index, row in df.iterrows():
     info = scrape_indicator(event_id)
     df.at[index, 'inv_title'] = info['title']
     df.at[index, 'inv_importance'] = info['importance']
+    df.at[index, 'inv_currency'] = info['currency']
     df.at[index, 'inv_source'] = info['source']
     df.at[index, 'inv_description'] = info['description']
 
 
-print("Finished scraping. Saving to csv file")
+print("Finished scraping. Saving to excel file")
 df.to_excel("haawks-indicator-shortlist.xlsx")
