@@ -8,7 +8,7 @@ This is meant for use with [haawks.com](https://haawks.com) G4A API or news trad
 - [X] Navigate to `investing.com/economic-calendar/{event_id}` with selenium webdriver
 - [X] Make sure entire historic data table is loaded into the DOM. JS or clicking 'show more' required due to the design of the webpage, hence using selenium.
 
-  - [ ] Better than this would be to take a specified date and only load as far back as needed
+  - [x] Better than this would be to take a specified date and only load as far back as needed
 - [X] Scrape the table values & add into a pandas DataFrame
 - [X] Parse given dates & times into datetime object & append to an extra column for each row
 - [ ] For each row in the DF, create a database entry using SQLite in the table 'news_data', making sure to include the following columns:

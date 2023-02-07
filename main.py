@@ -33,7 +33,7 @@ def expand_table(table: WebElement, start_date: datetime.date, event_id):
         last_row_time = last_row.find_element(By.XPATH, "./td[2]").text
         last_row_datetime = get_datetime(last_row_date, last_row_time)
 
-        if last_row_datetime > start_datetime: # if last row is still newer than given start date
+        if last_row_datetime > start_datetime:  # if last row is still newer than given start date
             driver.execute_script(f"ecEvent.moreHistory({event_id}, this, 0)") # JavaScript to expand the table
             time.sleep(1)
             if rows_count == len(table.find_elements(By.XPATH, ".//tbody/tr")): # if the table doesn't expand after the script, it's the end of the data
@@ -75,7 +75,7 @@ def scrape(event_id: str, start_date: datetime.date):
 
         }, ignore_index=True)
 
-    print(df)
+    return df
 
 
-scrape("130", datetime.date(2020, 7, 4))
+df = scrape("130", datetime.date(2020, 7, 4))
