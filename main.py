@@ -4,14 +4,16 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+from import_ticks import import_ticks
+import os
 import time
 import pandas as pd
 import warnings
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-
 options = Options()
-options.headless = False  # hide GUI
+options.headless = True  # hide GUI
 options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
 options.add_argument("start-maximized")  # ensure window is full-screen
 options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})  # Load without images
@@ -87,7 +89,7 @@ def scrape(event_id: str, start_date: datetime.date):
 
             }, ignore_index=True)
 
-    if df['Actual'].iloc[0].strip() == "": # if actual is missing from first row then the event hasn't happened yet
+    if df['Actual'].iloc[0].strip() == "":  # if actual is missing from first row then the event hasn't happened yet
         df = df.drop(index=0).reset_index(drop=True)
     return df
 
@@ -102,13 +104,55 @@ def scrape_all_indicator_history(start_date: datetime.date):
         event_id = str(row['inv_id'])
         name_formatted = row['inv_title'].replace(" ", "_").replace(".", "")
         haawks_id = row['Id']
-        print(f"Scraping {index+1}/{df_row_count}: {row['inv_title']}")
+        print(f"Scraping {index + 1}/{df_row_count}: {row['inv_title']}")
         news_data = scrape(event_id, start_date)
 
         news_data.to_csv(f"news_data/{haawks_id}_{event_id}_{name_formatted}.csv", index=False)
         print(f"Saving to news_data/{haawks_id}_{event_id}_{name_formatted}.csv")
 
 
-scrape_all_indicator_history(datetime.date(2017, 1, 1))
-
+# scrape_all_indicator_history(datetime.date(2017, 1, 1))
 # df = scrape("130", datetime.date(2020, 7, 4))
+
+
+def import_ticks_for_indicator(haawks_id, symbol):
+    for filename in os.listdir("./news_data"):
+        if filename.startswith(haawks_id):
+            print(f"Reading news data: {filename}")
+            news_data = pd.read_csv(f"./news_data/{filename}")
+
+            for index, row in news_data.iterrows():
+                release_datetime = datetime.datetime.strptime((row['Timestamp']), "%Y-%m-%d %H:%M:%S")
+                release_date = release_datetime.date()
+                release_date_underscore = release_datetime.strftime("%Y_%m_%d")
+                import_ticks(symbol, release_date)
+                tick_data_filename = f"{symbol}-{release_date_underscore}-{release_date_underscore}.csv"
+
+                tick_df = pd.read_csv(f"./tick_data/{tick_data_filename}")
+                # ticks_start = tick_day_df.loc[datetime.datetime.strptime((tick_df['time']), "%Y-%m-%d %H:%M:%S.%f") > release_datetime]
+                tick_start_index = 0
+                tick_end_index = 0
+                tick_start_datetime = release_datetime - datetime.timedelta(minutes=5)
+                tick_end_datetime = release_datetime + datetime.timedelta(minutes=15)
+                tick_start_index_found = False
+                for index, value in tick_df['time'].items():
+                    try:
+                        timestamp = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S.%f")
+                    except:
+                        timestamp = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+                    if timestamp > tick_start_datetime:
+                        if not tick_start_index_found:
+                            tick_start_index = index
+                            tick_start_index_found = True
+                    if timestamp > tick_end_datetime:
+                        tick_end_index = index-1
+                        break
+                tick_df = tick_df.loc[tick_start_index:tick_end_index]
+                os.remove(f"./tick_data/{tick_data_filename}")
+                new_filename = f"{symbol}-{release_date_underscore}__{tick_start_datetime.strftime('%H-%M-%S')}_{tick_end_datetime.strftime('%H-%M-%S')}.csv"
+                tick_df.to_csv(f"./tick_data/{new_filename}", index=False)
+                print(tick_df)
+
+
+
+import_ticks_for_indicator("30000", 'EURUSD')
