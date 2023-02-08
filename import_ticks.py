@@ -11,3 +11,5 @@ assets = ["EURUSD"]
 
 def import_ticks(asset: str, date: datetime.date): # Wrapper function with fewer params. It imports ticks for one day
     duka_import([asset], date, date, 1, TimeFrame.TICK, "tick_data/", True)
+
+# duka_import(['EURUSD'], datetime.date(2017, 1, 6), datetime.date(2017, 1, 6), 1, TimeFrame.TICK, ".", True)

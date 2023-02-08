@@ -1,5 +1,6 @@
 import pandas as pd
 from datetime import datetime, timedelta
+import os
 
 DEFAULT_TIME_DELTAS = {
     "1s": timedelta(seconds=1),
@@ -105,17 +106,12 @@ def get_relative_price_movements(prices_per_time_delta, release_time_price, deci
         ask = float(prices_per_time_delta[price][0])
         bid = float(prices_per_time_delta[price][1])
 
-        if ask > release_ask:
-            difference = round(ask - release_ask, decimal_places)
-            price_movements[price] = difference
-        elif bid < release_bid:
-            difference = round(bid - release_bid, decimal_places)
-            price_movements[price] = difference
-        else:
-            raise ValueError("Something went wrong")
+        difference_ask = round(ask - release_ask, decimal_places)
+        difference_bid = round(bid - release_ask, decimal_places)
+        price_movements[price] = (difference_ask, difference_bid)
 
     for time in price_movements:
-        print(f"{time}: {price_movements[time]:.5f}")
+        print(f"{time}:- Ask: {price_movements[time][0]:.5f} Bid: {price_movements[time][1]:.5f}")
 
     return price_movements
 
@@ -124,19 +120,52 @@ def get_pip_movements(price_movements, decimal_places):
     pip_movements = {}
 
     for price_movement in price_movements:
-        pip_movements[price_movement] = price_movement_to_pips(price_movements[price_movement], decimal_places)
+        pm_ask = price_movement_to_pips(price_movements[price_movement][0], decimal_places)
+        pm_bid = price_movement_to_pips(price_movements[price_movement][1], decimal_places)
+        pip_movements[price_movement] = (pm_ask, pm_bid)
 
     return pip_movements
 
 
-tick_data = pd.read_csv("tick_data/EURUSD__2017-01-06__08-25-00_08-45-00.csv")
-release_datetime = datetime(2017, 1, 6, 8, 30, 0)
-prices = get_prices_at_time_deltas(release_datetime, tick_data)
-release_price = get_release_time_price(release_datetime, tick_data)
-decimal_places = get_decimal_places_from_tick_data(tick_data)
+# tick_data = pd.read_csv("tick_data/EURUSD__2017-01-06__08-25-00_08-45-00.csv")
+# release_datetime = datetime(2017, 1, 6, 8, 30, 0)
+# prices = get_prices_at_time_deltas(release_datetime, tick_data)
+# release_price = get_release_time_price(release_datetime, tick_data)
+# decimal_places = get_decimal_places_from_tick_data(tick_data)
 
-relative_price_movements = get_relative_price_movements(prices, release_price, decimal_places)
+# relative_price_movements = get_relative_price_movements(prices, release_price, decimal_places)
 
-pip_movements = get_pip_movements(relative_price_movements, decimal_places)
+# pip_movements = get_pip_movements(relative_price_movements, decimal_places)
 
-breakpoint()
+def get_pip_movements_for_indicator(haawks_id, symbol):
+    for filename in os.listdir('./news_data'):
+        if filename.startswith(haawks_id):
+            news_data = pd.read_csv(f"./news_data/{filename}")
+            break
+
+    pip_data = {}
+    row_count = news_data.shape[0]
+
+    for index, row in news_data.iterrows():
+        release_datetime = datetime.strptime((row['Timestamp']), "%Y-%m-%d %H:%M:%S")
+        release_date_hyphenated = release_datetime.strftime("%Y-%m-%d")
+        start_time_hyphenated = (release_datetime - timedelta(minutes=5)).strftime('%H-%M-%S')
+        end_time_hyphenated = (release_datetime + timedelta(minutes=15)).strftime('%H-%M-%S')
+
+        for filename in os.listdir("./tick_data"):
+            if filename == f"{symbol}__{release_date_hyphenated}__{start_time_hyphenated}_{end_time_hyphenated}.csv":
+                tick_data = pd.read_csv(f"./tick_data/{filename}")
+                break
+
+        print(f"Mining tick data from {release_date_hyphenated} ({str(int(index)+1)}/{row_count}):")
+        prices = get_prices_at_time_deltas(release_datetime, tick_data)
+        release_price = get_release_time_price(release_datetime, tick_data)
+        decimal_places = get_decimal_places_from_tick_data(tick_data)
+        relative_price_movements = get_relative_price_movements(prices, release_price, decimal_places)
+        pip_movements = get_pip_movements(relative_price_movements, decimal_places)
+
+        pip_data[release_datetime.strftime("%Y-%m-%d %H:%M:%S")] = relative_price_movements # pip_movements
+    breakpoint()
+
+
+get_pip_movements_for_indicator("10000", "EURUSD")

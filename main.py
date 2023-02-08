@@ -74,16 +74,17 @@ def scrape(event_id: str, start_date: datetime.date):
         print(f"scraping row {current_row}/{row_count}")
         release_date = row.find_element(By.XPATH, "./td[1]").text
         release_time = row.find_element(By.XPATH, "./td[2]").text
-        timestamp = get_datetime(release_date, release_time)
+        timestamp_et = get_datetime(release_date, release_time)
+        timestamp_gmt = timestamp_et + datetime.timedelta(hours=5)
 
         if row.find_elements(By.XPATH, "./td[2]/span[@class='smallGrayP']"):
             prelim = True
         else:
             prelim = False
 
-        if start_datetime < timestamp:
+        if start_datetime < timestamp_et:
             df = df.append({
-                'Timestamp': timestamp,
+                'Timestamp': timestamp_gmt,
                 'Prelim': prelim,
                 'Actual': row.find_element(By.XPATH, "./td[3]/span").text,
                 'Forecast': row.find_element(By.XPATH, "./td[4]").text,
@@ -164,4 +165,5 @@ def import_ticks_for_indicator(haawks_id, symbol):
                 # print(tick_df)
 
 
-import_ticks_for_indicator("10000", 'EURUSD')
+
+# import_ticks_for_indicator("10000", 'EURUSD')
