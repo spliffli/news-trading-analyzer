@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from import_ticks import import_ticks
+import chromedriver_autoinstaller
 import os
 import time
 import pandas as pd
@@ -12,6 +13,7 @@ import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
+chromedriver_autoinstaller.install()
 options = Options()
 options.headless = True  # hide GUI
 options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
@@ -114,45 +116,52 @@ def scrape_all_indicator_history(start_date: datetime.date):
 # scrape_all_indicator_history(datetime.date(2017, 1, 1))
 # df = scrape("130", datetime.date(2020, 7, 4))
 
+def truncate_tick_data(tick_df, start_datetime, end_datetime):
+    tick_start_index = 0
+    tick_end_index = 0
+    tick_start_index_found = False
+    for index, value in tick_df['time'].items():
+        try:
+            timestamp = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S.%f")
+        except:
+            timestamp = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+        if timestamp > start_datetime:
+            if not tick_start_index_found:
+                tick_start_index = index
+                tick_start_index_found = True
+        if timestamp > end_datetime:
+            tick_end_index = index
+            break
+            
+    tick_df = tick_df.loc[tick_start_index:tick_end_index]
+    return tick_df
+
 
 def import_ticks_for_indicator(haawks_id, symbol):
     for filename in os.listdir("./news_data"):
         if filename.startswith(haawks_id):
             print(f"Reading news data: {filename}")
             news_data = pd.read_csv(f"./news_data/{filename}")
-
+            row_count = news_data.shape[0]
             for index, row in news_data.iterrows():
+                print(f"Downloading {symbol} tick data for: {datetime.datetime.strptime(row['Timestamp'], '%Y-%m-%d %H:%M:%S').date()} ({int(index)+1}/{row_count})")
                 release_datetime = datetime.datetime.strptime((row['Timestamp']), "%Y-%m-%d %H:%M:%S")
                 release_date = release_datetime.date()
-                release_date_underscore = release_datetime.strftime("%Y_%m_%d")
+                release_date_hyphenated = release_datetime.strftime("%Y-%m-%d")
+                release_date_underscored = release_datetime.strftime("%Y_%m_%d")
                 import_ticks(symbol, release_date)
-                tick_data_filename = f"{symbol}-{release_date_underscore}-{release_date_underscore}.csv"
+                downloaded_tick_data_filename = f"{symbol}-{release_date_underscored}-{release_date_underscored}.csv"
 
-                tick_df = pd.read_csv(f"./tick_data/{tick_data_filename}")
-                # ticks_start = tick_day_df.loc[datetime.datetime.strptime((tick_df['time']), "%Y-%m-%d %H:%M:%S.%f") > release_datetime]
-                tick_start_index = 0
-                tick_end_index = 0
-                tick_start_datetime = release_datetime - datetime.timedelta(minutes=5)
-                tick_end_datetime = release_datetime + datetime.timedelta(minutes=15)
-                tick_start_index_found = False
-                for index, value in tick_df['time'].items():
-                    try:
-                        timestamp = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S.%f")
-                    except:
-                        timestamp = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
-                    if timestamp > tick_start_datetime:
-                        if not tick_start_index_found:
-                            tick_start_index = index
-                            tick_start_index_found = True
-                    if timestamp > tick_end_datetime:
-                        tick_end_index = index-1
-                        break
-                tick_df = tick_df.loc[tick_start_index:tick_end_index]
-                os.remove(f"./tick_data/{tick_data_filename}")
-                new_filename = f"{symbol}-{release_date_underscore}__{tick_start_datetime.strftime('%H-%M-%S')}_{tick_end_datetime.strftime('%H-%M-%S')}.csv"
+                tick_df = pd.read_csv(f"./tick_data/{downloaded_tick_data_filename}")
+                tick_start_dt = release_datetime - datetime.timedelta(minutes=5)
+                tick_end_dt = release_datetime + datetime.timedelta(minutes=15)
+
+                print("Truncating tick data")
+                tick_df = truncate_tick_data(tick_df, tick_start_dt, tick_end_dt)
+                os.remove(f"./tick_data/{downloaded_tick_data_filename}")
+                new_filename = f"{symbol}__{release_date_hyphenated}__{tick_start_dt.strftime('%H-%M-%S')}_{tick_end_dt.strftime('%H-%M-%S')}.csv"
                 tick_df.to_csv(f"./tick_data/{new_filename}", index=False)
-                print(tick_df)
+                # print(tick_df)
 
 
-
-import_ticks_for_indicator("30000", 'EURUSD')
+import_ticks_for_indicator("10000", 'EURUSD')
