@@ -209,7 +209,7 @@ def calc_deviations_for_indicator(haawks_id):
     print(news_data)
     for filename in os.listdir('./news_data'):
         if filename.startswith(haawks_id):
-            news_data.to_csv(f"./news_data/{filename}")
+            news_data.to_csv(f"./news_data/{filename}", index=False)
 
 
 def calc_mean_deviation(news_data):
@@ -236,8 +236,8 @@ def calc_median_deviations(news_data):
             pos_deviations.append(value)
             neg_deviations.append(value)
 
-    pos_middle_index = math.floor(len(pos_deviations) / 2) # rounds down in case of an odd length
-    neg_middle_index = math.floor(len(neg_deviations) / 2) # rounds down in case of an odd length
+    pos_middle_index = math.floor(len(pos_deviations) / 2)  # rounds down in case of an odd length
+    neg_middle_index = math.floor(len(neg_deviations) / 2)  # rounds down in case of an odd length
 
     pos_mean = pos_deviations[pos_middle_index]
     neg_mean = neg_deviations[neg_middle_index]
@@ -287,7 +287,6 @@ def calc_deviation_quantiles(news_data, quantile_count=5):
             pos_deviations.append(value)
             neg_deviations.append(value)
             all_deviations.append(value)
-
 
     pos_quantiles = calc_quantiles(pos_deviations, quantile_count)
     neg_quantiles = calc_quantiles(neg_deviations, quantile_count)

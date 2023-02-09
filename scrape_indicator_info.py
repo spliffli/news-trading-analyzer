@@ -8,7 +8,7 @@ import time
 import pandas as pd
 
 options = Options()
-options.headless = False  # hide GUI
+options.headless = True  # hide GUI
 options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
 options.add_argument("start-maximized")  # ensure window is full-screen
 options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})  # Load without images

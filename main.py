@@ -133,7 +133,7 @@ def truncate_tick_data(tick_df, start_datetime, end_datetime):
         if timestamp > end_datetime:
             tick_end_index = index
             break
-            
+
     tick_df = tick_df.loc[tick_start_index:tick_end_index]
     return tick_df
 
@@ -145,7 +145,8 @@ def import_ticks_for_indicator(haawks_id, symbol):
             news_data = pd.read_csv(f"./news_data/{filename}")
             row_count = news_data.shape[0]
             for index, row in news_data.iterrows():
-                print(f"Downloading {symbol} tick data for: {datetime.datetime.strptime(row['Timestamp'], '%Y-%m-%d %H:%M:%S').date()} ({int(index)+1}/{row_count})")
+                print(
+                    f"Downloading {symbol} tick data for: {datetime.datetime.strptime(row['Timestamp'], '%Y-%m-%d %H:%M:%S').date()} ({int(index) + 1}/{row_count})")
                 release_datetime = datetime.datetime.strptime((row['Timestamp']), "%Y-%m-%d %H:%M:%S")
                 release_date = release_datetime.date()
                 release_date_hyphenated = release_datetime.strftime("%Y-%m-%d")
@@ -165,5 +166,47 @@ def import_ticks_for_indicator(haawks_id, symbol):
                 # print(tick_df)
 
 
+def scrape_bullish_or_bearish():
+    indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
 
-import_ticks_for_indicator("10000", 'EURUSD')
+    for index, row in indicators.iterrows():
+        description = row['inv_description']
+        if "higher than expected reading should be taken as positive" in description:
+            indicators.loc[index, "higher_dev"] = "bullish"
+        elif "higher than expected reading should be taken as negative" in description:
+            indicators.loc[index, "higher_dev"] = "bearish"
+        else:
+            indicators.loc[index, "higher_dev"] = "unknown"
+
+    print(indicators)
+    indicators.to_excel("haawks-indicator-shortlist.xlsx", index=False)
+
+def scrape_suffixes():
+    indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
+
+    for index, row in indicators.iterrows():
+        haawks_id = str(row['Id'])
+
+        for filename in os.listdir('./news_data'):
+            if filename.startswith(haawks_id):
+                news_data = pd.read_csv(f"./news_data/{filename}")
+
+        sample_figure = str(news_data.loc[1]['Actual'])
+        str_length = len(sample_figure)
+
+        for i in range(str_length):
+            try:
+                float(sample_figure[0:str_length-i])
+                suffix = sample_figure[str_length-i:]
+                break
+            except ValueError:
+                pass
+        indicators.loc[index, "suffix"] = suffix
+
+    print(indicators)
+    indicators.to_excel("haawks-indicator-shortlist.xlsx", index=False)
+
+
+scrape_suffixes()
+# scrape_bullish_or_bearish()
+# import_ticks_for_indicator("10000", 'EURUSD')
