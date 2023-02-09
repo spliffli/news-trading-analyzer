@@ -99,7 +99,7 @@ def scrape(event_id: str, start_date: datetime.date):
 
 def scrape_all_indicator_history(start_date: datetime.date):
     df = pd.read_excel("haawks-indicator-shortlist.xlsx")
-    df = df.iloc[11:]  # shortens the df for testing. remove this line when the script works
+    # df = df.iloc[11:]  # shortens the df for testing. remove this line when the script works
     df = df.reset_index()
     df_row_count = df.shape[0]
 
@@ -166,4 +166,4 @@ def import_ticks_for_indicator(haawks_id, symbol):
 
 
 
-# import_ticks_for_indicator("10000", 'EURUSD')
+import_ticks_for_indicator("10000", 'EURUSD')
