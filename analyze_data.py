@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 import os
 import math
+import sys
 
 DEFAULT_TIME_DELTAS = {
     "1s": timedelta(seconds=1),
@@ -175,11 +176,14 @@ def get_indicator_suffix(haawks_id):
     for index, row in indicators.iterrows():
         if row['Id'] == int(haawks_id):
             suffix = row['suffix']
+            if type(suffix) == float and math.isnan(suffix):
+                suffix = ""
             return suffix
 
 
 def convert_news_data_to_float(haawks_id: str, data_str: str):
     suffix = get_indicator_suffix(haawks_id)
+    data_str = str(data_str)
     data = float(data_str.replace(suffix, "").replace(",", ""))
     return data
 
@@ -199,18 +203,35 @@ def cross_reference_pips_with_news_data(haawks_id, pip_data):
 
 def calc_deviations_for_indicator(haawks_id):
     news_data = read_news_data(haawks_id)
+    row_count = news_data.shape[0]
+    news_data = news_data.loc[:, ~news_data.columns.str.contains('Unnamed')] # Remove unnamed column
 
     for index, row in news_data.iterrows():
-        actual = convert_news_data_to_float(haawks_id, row['Actual'])
-        forecast = convert_news_data_to_float(haawks_id, row['Forecast'])
-        deviation = get_deviation(actual, forecast)
-        news_data.loc[index, "Deviation"] = deviation
+        print(f"\rCalculating deviation for: {row['Timestamp']} ({str(index+1)}/{row_count})", end="", flush=True)
+        try:
+            actual = convert_news_data_to_float(haawks_id, row['Actual'])
+            forecast = convert_news_data_to_float(haawks_id, row['Forecast'])
+            deviation = round(get_deviation(actual, forecast), 4)
+            news_data.loc[index, "Deviation"] = deviation
+        except ValueError:
+            print(f"\nForecast data missing from {row['Timestamp']}... Skipping")
 
     print(news_data)
     for filename in os.listdir('./news_data'):
         if filename.startswith(haawks_id):
+            print(f"saving to: news_data/{filename}")
             news_data.to_csv(f"./news_data/{filename}", index=False)
 
+def calc_all_indicator_deviations():
+    indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
+    indicators = indicators.iloc[17:].reset_index()
+
+    row_count = indicators.shape[0]
+
+    for index, row in indicators.iterrows():
+        print(f"Calculating deviations for: {row['inv_title']} ({str(index+1)}/{row_count})")
+        haawks_id = str(row['Id'])
+        calc_deviations_for_indicator(haawks_id)
 
 def calc_mean_deviation(news_data):
     deviations = []
@@ -305,6 +326,7 @@ def calc_deviation_quantiles(news_data, quantile_count=5):
 news_data = read_news_data("10000")
 # mean_deviations = calc_median_deviations(news_data)
 # calc_deviations_for_indicator("10000")
-quantiles = calc_deviation_quantiles(news_data)
+# quantiles = calc_deviation_quantiles(news_data)
+calc_all_indicator_deviations()
 pip_data = get_pip_movements_for_indicator("10000", "EURUSD")
 news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)
