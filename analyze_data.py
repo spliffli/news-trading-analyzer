@@ -4,6 +4,7 @@ import os
 import math
 import json
 import warnings
+from utils import str_to_datetime, datetime_to_str
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -31,19 +32,6 @@ DEFAULT_TIME_DELTAS = {
     "10m": timedelta(minutes=10),
     "15m": timedelta(minutes=15),
 }
-
-def datetime_to_str(dt: datetime, microseconds=False):
-    if not microseconds:
-        return dt.strftime("%Y-%m-%d %H:%M:%S")
-    elif microseconds:
-        return dt.strftime("%Y-%m-%d %H:%M:%S:%f")
-
-
-def str_to_datetime(dt_str: str):
-    try:
-        return datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S")
-    except:
-        return datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S:%f")
 
 
 def read_news_data(haawks_id):
@@ -529,14 +517,73 @@ def read_triggers(haawks_id):
     return triggers
 
 
-def calc_news_pip_stats(news_pip_data, triggers):
-    news_pip_stats = {}
+def calc_news_pip_metrics(news_pip_data, triggers):
+    news_pip_metrics = {}
+
+
+    for trigger in triggers:
+        news_pip_metrics[trigger] = {}
+
 
     for timestamp in news_pip_data:
-        for trigger in triggers:
 
-            for time_delta in news_pip_data[timestamp]['pips']:
-                pass
+        deviation = news_pip_data[timestamp]['deviation']
+        negative_dev = False
+
+        if deviation < 0:
+            deviation = deviation * -1
+            negative_dev = True
+
+        for index, trigger in enumerate(list(triggers.items())):
+
+            if index == len(triggers) -1:
+                if deviation >= triggers[trigger[0]]:
+                    break  # Keeps trigger at current value before continuing
+            else:
+                if triggers[trigger[0]] <= deviation < list(triggers.items())[index+1][1]:
+                    break  # Keeps trigger at current value before continuing
+
+        for time_delta in news_pip_data[timestamp]['pips']:
+
+            ask = news_pip_data[timestamp]['pips'][time_delta][0]
+            bid = news_pip_data[timestamp]['pips'][time_delta][1]
+
+            if negative_dev:
+                ask = ask * -1
+                bid = bid * -1
+
+            if ask < 0 and bid < 0:  # ask/bid both negative
+                pips = bid
+            elif ask > 0 and bid > 0:  # ask/bid both positive
+                pips = ask
+            elif ask < 0 and bid > 0:  # ask negative and bid positive (This should never happen)
+                if bid > ask * -1:
+                    pips = bid
+                else:
+                    pips = ask
+            elif ask > 0 and bid < 0:  # ask positive and bid negative
+                if ask > bid * -1:
+                    pips = ask
+                else:
+                    pips = bid
+
+            # news_pip_metrics[trigger[0]].append(pips)
+            news_pip_metrics[trigger[0]].setdefault(time_delta, []).append(pips)
+
+    for trigger in news_pip_metrics:
+        for time_delta, values in news_pip_metrics[trigger].items():
+            values.sort()
+            median = values[math.floor((len(values)-1)/2)]
+            mean = round(sum(values) / len(values), 1)
+            range = (min(values), max(values))
+            news_pip_metrics[trigger][time_delta] = {
+                "median": median,
+                "mean": mean,
+                "range": range,
+                "values": values
+            }
+            # breakpoint()
+    breakpoint()
 
 
 news_data = read_news_data("10000")
@@ -547,6 +594,6 @@ triggers = read_triggers("10000")
 # calc_and_save_all_trigger_levels()
 # read_news_pip_data("10000", "EURUSD")
 news_pip_data = load_news_pip_data("10000", news_data, "EURUSD")
-# calc_news_pip_stats(news_pip_data, triggers)
+calc_news_pip_metrics(news_pip_data, triggers)
 
 # news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)

@@ -5,6 +5,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from import_ticks import import_ticks
+from utils import str_to_datetime, datetime_to_str
+
 import chromedriver_autoinstaller
 import os
 import time
@@ -143,11 +145,13 @@ def import_ticks_for_indicator(haawks_id, symbol):
         if filename.startswith(haawks_id):
             print(f"Reading news data: {filename}")
             news_data = pd.read_csv(f"./news_data/{filename}")
+            # news_data = news_data.iloc[70:]
+
             row_count = news_data.shape[0]
             for index, row in news_data.iterrows():
                 print(
-                    f"Downloading {symbol} tick data for: {datetime.datetime.strptime(row['Timestamp'], '%Y-%m-%d %H:%M:%S').date()} ({int(index) + 1}/{row_count})")
-                release_datetime = datetime.datetime.strptime((row['Timestamp']), "%Y-%m-%d %H:%M:%S")
+                    f"Downloading {symbol} tick data for: {str_to_datetime((row['Timestamp'])).date()} ({int(index) + 1}/{row_count})")
+                release_datetime = str_to_datetime((row['Timestamp']))
                 release_date = release_datetime.date()
                 release_date_hyphenated = release_datetime.strftime("%Y-%m-%d")
                 release_date_underscored = release_datetime.strftime("%Y_%m_%d")
@@ -159,7 +163,10 @@ def import_ticks_for_indicator(haawks_id, symbol):
                 tick_end_dt = release_datetime + datetime.timedelta(minutes=15)
 
                 print("Truncating tick data")
-                tick_df = truncate_tick_data(tick_df, tick_start_dt, tick_end_dt)
+                try:
+                    tick_df = truncate_tick_data(tick_df, tick_start_dt, tick_end_dt)
+                except TypeError:
+                    print(f"tick data for {str_to_datetime((row['Timestamp']))} invalid")
                 os.remove(f"./tick_data/{downloaded_tick_data_filename}")
                 new_filename = f"{symbol}__{release_date_hyphenated}__{tick_start_dt.strftime('%H-%M-%S')}_{tick_end_dt.strftime('%H-%M-%S')}.csv"
                 tick_df.to_csv(f"./tick_data/{new_filename}", index=False)
@@ -207,6 +214,6 @@ def scrape_suffixes():
     indicators.to_excel("haawks-indicator-shortlist.xlsx", index=False)
 
 
-scrape_suffixes()
+# scrape_suffixes()
 # scrape_bullish_or_bearish()
-# import_ticks_for_indicator("10000", 'EURUSD')
+import_ticks_for_indicator("10000", 'XAUUSD')
