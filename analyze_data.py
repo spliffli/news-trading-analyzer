@@ -227,7 +227,7 @@ def read_news_pip_data(haawks_id, symbol):
                         "start": start_datetime,
                         "end": end_datetime,
                     }
-                break
+
     return {
         "data_exists": False
     }
@@ -520,10 +520,8 @@ def read_triggers(haawks_id):
 def calc_news_pip_metrics(news_pip_data, triggers):
     news_pip_metrics = {}
 
-
     for trigger in triggers:
         news_pip_metrics[trigger] = {}
-
 
     for timestamp in news_pip_data:
 
@@ -585,15 +583,14 @@ def calc_news_pip_metrics(news_pip_data, triggers):
             # breakpoint()
     breakpoint()
 
-
-news_data = read_news_data("10000")
-triggers = read_triggers("10000")
+news_data = read_news_data("30000")
+triggers = read_triggers("30000")
 # mean_deviations = calc_median_deviations(news_data)
 # calc_deviations_for_indicator("10000")
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
 # read_news_pip_data("10000", "EURUSD")
-news_pip_data = load_news_pip_data("10000", news_data, "EURUSD")
+news_pip_data = load_news_pip_data("30000", news_data, "USDJPY")
 calc_news_pip_metrics(news_pip_data, triggers)
 
 # news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)

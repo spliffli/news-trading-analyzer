@@ -145,7 +145,8 @@ def import_ticks_for_indicator(haawks_id, symbol):
         if filename.startswith(haawks_id):
             print(f"Reading news data: {filename}")
             news_data = pd.read_csv(f"./news_data/{filename}")
-            # news_data = news_data.iloc[70:]
+            news_data = news_data.iloc[296:]
+            news_data = news_data.reset_index()
 
             row_count = news_data.shape[0]
             for index, row in news_data.iterrows():
@@ -216,4 +217,4 @@ def scrape_suffixes():
 
 # scrape_suffixes()
 # scrape_bullish_or_bearish()
-import_ticks_for_indicator("10000", 'XAUUSD')
+import_ticks_for_indicator("30000", 'EURUSD')
