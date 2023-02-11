@@ -165,7 +165,8 @@ def read_tick_data(symbol, release_datetime):
             tick_data = pd.read_csv(f"./tick_data/{filename}")
             return tick_data
 
-    raise ValueError(f"File {symbol}__{release_date_hyphenated}__{start_time_hyphenated}_{end_time_hyphenated}.csv doesn't exist")
+    raise ValueError(
+        f"File {symbol}__{release_date_hyphenated}__{start_time_hyphenated}_{end_time_hyphenated}.csv doesn't exist")
 
 
 def get_indicator_info(haawks_id):
@@ -200,7 +201,7 @@ def save_news_pip_data(haawks_id, symbol, pip_data: dict):
     for existing_filename in os.listdir(f"./analysis_data/{dir_name}/pip_data/"):
         if existing_filename.startswith(symbol):
             os.remove(f"./analysis_data/{dir_name}/pip_data/{existing_filename}")
-            
+
     file = open(f"./analysis_data/{dir_name}/pip_data/{new_filename}", "w")
     json.dump(pip_data, file, indent=4)
     file.close()
@@ -232,8 +233,8 @@ def read_news_pip_data(haawks_id, symbol):
         "data_exists": False
     }
 
-def mine_pip_data_from_ticks(news_data, symbol, release_datetime):
 
+def mine_pip_data_from_ticks(news_data, symbol, release_datetime):
     row_count = news_data.shape[0]
     pip_data = {}
 
@@ -249,7 +250,6 @@ def mine_pip_data_from_ticks(news_data, symbol, release_datetime):
 
 
 def sort_news_pip_data_by_timestamp(news_pip_data):
-
     keys = list(news_pip_data.keys())
     keys.sort(reverse=True)
     sorted_dict = {i: news_pip_data[i] for i in keys}
@@ -258,13 +258,12 @@ def sort_news_pip_data_by_timestamp(news_pip_data):
 
 
 def load_news_pip_data(haawks_id, news_data, symbol):
-
     # news_data = news_data.iloc[:7]  # FOR TESTING, shortens the dataframe to be quicker
     indicator_info = get_indicator_info(haawks_id)
 
     news_pip_data = {}
     row_count = news_data.shape[0]
-    start_datetime = str_to_datetime(news_data.loc[row_count-1]['Timestamp'])
+    start_datetime = str_to_datetime(news_data.loc[row_count - 1]['Timestamp'])
     end_datetime = str_to_datetime(news_data.loc[0]['Timestamp'])
     timestamps_to_mine = []
 
@@ -285,15 +284,17 @@ def load_news_pip_data(haawks_id, news_data, symbol):
 
         news_pip_data = local_data['data']
         if len(timestamps_to_mine) == 0:
-            print(f"Local data exists for {len(local_data['data'].keys())}/{row_count} releases. Reading data from file...")
+            print(
+                f"Local data exists for {len(local_data['data'].keys())}/{row_count} releases. Reading data from file...")
             return news_pip_data
         else:
-            print(f"Local data exists for {len(local_data['data'].keys())}/{row_count} releases. The remaining {row_count - len(local_data['data'])} will be mined from raw tick data")
+            print(
+                f"Local data exists for {len(local_data['data'].keys())}/{row_count} releases. The remaining {row_count - len(local_data['data'])} will be mined from raw tick data")
     else:
         print("No local data exists, so it will be mined...")
 
     for index, timestamp in enumerate(timestamps_to_mine):
-        print(f"\rMining pip data from {timestamp} ({index+1}/{len(timestamps_to_mine)})", end="", flush=True)
+        print(f"\rMining pip data from {timestamp} ({index + 1}/{len(timestamps_to_mine)})", end="", flush=True)
         data = mine_pip_data_from_ticks(news_data, symbol, timestamp)
         timestamp_str = datetime_to_str(timestamp)
         news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', data)
@@ -534,11 +535,11 @@ def calc_news_pip_metrics(news_pip_data, triggers):
 
         for index, trigger in enumerate(list(triggers.items())):
 
-            if index == len(triggers) -1:
+            if index == len(triggers) - 1:
                 if deviation >= triggers[trigger[0]]:
                     break  # Keeps trigger at current value before continuing
             else:
-                if triggers[trigger[0]] <= deviation < list(triggers.items())[index+1][1]:
+                if triggers[trigger[0]] <= deviation < list(triggers.items())[index + 1][1]:
                     break  # Keeps trigger at current value before continuing
 
         for time_delta in news_pip_data[timestamp]['pips']:
@@ -571,7 +572,7 @@ def calc_news_pip_metrics(news_pip_data, triggers):
     for trigger in news_pip_metrics:
         for time_delta, values in news_pip_metrics[trigger].items():
             values.sort()
-            median = values[math.floor((len(values)-1)/2)]
+            median = values[math.floor((len(values) - 1) / 2)]
             mean = round(sum(values) / len(values), 1)
             range = (min(values), max(values))
             news_pip_metrics[trigger][time_delta] = {
@@ -581,7 +582,19 @@ def calc_news_pip_metrics(news_pip_data, triggers):
                 "values": values
             }
             # breakpoint()
-    breakpoint()
+    return news_pip_metrics
+
+def calc_pip_averages(values: list):
+    values.sort()
+    median = values[math.floor((len(values) - 1) / 2)]
+    mean = round(sum(values) / len(values), 1)
+    range = (min(values), max(values))
+    return {
+        "median": median,
+        "mean": mean,
+        "range": range,
+        "values": values
+    }
 
 
 def calc_news_pip_metrics_2(news_pip_data, triggers):
@@ -674,14 +687,42 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
             # breakpoint()
     breakpoint()
 
-news_data = read_news_data("30000")
-triggers = read_triggers("30000")
+
+def calc_news_pip_metrics_for_multiple_indicators(indicators_and_symbols: list[tuple[str, str]]):
+
+    result = {}
+
+    for indicator_and_symbol in indicators_and_symbols:
+        indicator = indicator_and_symbol[0]
+        title = get_indicator_info(indicator)['inv_title']
+        symbol = indicator_and_symbol[1]
+        news_data = read_news_data(indicator)
+        triggers = read_triggers(indicator)
+        news_pip_data = load_news_pip_data(indicator, news_data, symbol)
+        news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers)
+        result.setdefault(f"{indicator}_{symbol} {title}", news_pip_metrics)
+
+    return result
+
+# news_data = read_news_data("10270")
+# triggers = read_triggers("10270")
 # mean_deviations = calc_median_deviations(news_data)
 # calc_deviations_for_indicator("10000")
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
 # read_news_pip_data("10000", "EURUSD")
-news_pip_data = load_news_pip_data("30000", news_data, "USDJPY")
-calc_news_pip_metrics(news_pip_data, triggers)
+# news_pip_data = load_news_pip_data("10270", news_data, "USDCAD")
+# calc_news_pip_metrics(news_pip_data, triggers)
 
 # news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)
+news_pip_metrics = calc_news_pip_metrics_for_multiple_indicators([
+    ("10000", "EURUSD"),
+    ("10010", "USDJPY"),
+    ("10030", "USDJPY"),
+    ("10060", "EURUSD"),
+    ("10260", "USDCAD"),
+    ("10270", "USDCAD"),
+    ("10290", "USDCAD"),
+    ("30000", "BRENTCMDUSD")
+])
+breakpoint()
