@@ -149,12 +149,14 @@ def import_ticks_for_indicator(haawks_id, symbol):
             # news_data = news_data.reset_index()
 
             row_count = news_data.shape[0]
-            timestamps_to_download = []
+            release_timestamps = []
 
             for index, timestamp in news_data['Timestamp'].items():
-                timestamps_to_download.append(str_to_datetime(timestamp))
+                release_timestamps.append(str_to_datetime(timestamp))
 
-            for timestamp in timestamps_to_download:
+            timestamps_to_download = list(release_timestamps)
+
+            for timestamp in release_timestamps:
                 for tick_data_filename in os.listdir(f"./tick_data"):
                     date_hyphenated = timestamp.strftime('%Y-%m-%d')
                     start_time_hyphenated = (timestamp - datetime.timedelta(minutes=5)).strftime('%H-%M-%S')
@@ -168,19 +170,18 @@ def import_ticks_for_indicator(haawks_id, symbol):
                 print(f"Local {symbol} tick data exists for {row_count - len(timestamps_to_download)}/{row_count} releases. The remaining {len(timestamps_to_download)} will be downloaded.")
 
 
-            for index, timestamp in news_data['Timestamp'].items():
+            for index, timestamp in enumerate(timestamps_to_download):
                 print(
                     f"Downloading {symbol} tick data for: {timestamp} ({int(index) + 1}/{len(timestamps_to_download)})")
-                release_datetime = str_to_datetime(timestamp)
-                release_date = release_datetime.date()
-                release_date_hyphenated = release_datetime.strftime("%Y-%m-%d")
-                release_date_underscored = release_datetime.strftime("%Y_%m_%d")
+                release_date = timestamp.date()
+                release_date_hyphenated = timestamp.strftime("%Y-%m-%d")
+                release_date_underscored = timestamp.strftime("%Y_%m_%d")
                 import_ticks(symbol, release_date)
                 downloaded_tick_data_filename = f"{symbol}-{release_date_underscored}-{release_date_underscored}.csv"
 
                 tick_df = pd.read_csv(f"./tick_data/{downloaded_tick_data_filename}")
-                tick_start_dt = release_datetime - datetime.timedelta(minutes=5)
-                tick_end_dt = release_datetime + datetime.timedelta(minutes=15)
+                tick_start_dt = timestamp - datetime.timedelta(minutes=5)
+                tick_end_dt = timestamp + datetime.timedelta(minutes=15)
 
                 print("Truncating tick data")
                 try:
