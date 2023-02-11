@@ -583,6 +583,97 @@ def calc_news_pip_metrics(news_pip_data, triggers):
             # breakpoint()
     breakpoint()
 
+
+def calc_news_pip_metrics_2(news_pip_data, triggers):
+    news_pip_metrics = {}
+
+    for trigger in triggers:
+        news_pip_metrics[trigger] = {}
+
+    for timestamp in news_pip_data:
+
+        deviation = news_pip_data[timestamp]['deviation']
+
+        negative_dev = False
+
+        if deviation < 0:
+            # deviation = deviation * -1
+            negative_dev = True
+
+        for index, trigger in enumerate(list(triggers.items())):
+
+            if index == len(triggers) - 1:
+                if deviation >= triggers[trigger[0]]:
+                    break  # Keeps trigger at current value before continuing
+            else:
+                if triggers[trigger[0]] <= deviation < list(triggers.items())[index + 1][1]:
+                    break  # Keeps trigger at current value before continuing
+
+        for time_delta in news_pip_data[timestamp]['pips']:
+
+            ask = news_pip_data[timestamp]['pips'][time_delta][0]
+            bid = news_pip_data[timestamp]['pips'][time_delta][1]
+
+            # if negative_dev:
+            #     ask = ask * -1
+            #     bid = bid * -1
+
+            if ask < 0 and bid < 0:  # ask/bid both negative
+                pips = bid
+            elif ask > 0 and bid > 0:  # ask/bid both positive
+                pips = ask
+            elif ask < 0 and bid > 0:  # ask negative and bid positive (This should never happen)
+                if bid > ask * -1:
+                    pips = bid
+                else:
+                    pips = ask
+            elif ask > 0 and bid < 0:  # ask positive and bid negative
+                if ask > bid * -1:
+                    pips = ask
+                else:
+                    pips = bid
+
+            # news_pip_metrics[trigger[0]].append(pips)
+            if not negative_dev:
+                news_pip_metrics[trigger[0]].setdefault(time_delta, {}).setdefault("positive_dev", []).append(pips)
+            elif negative_dev:
+                news_pip_metrics[trigger[0]].setdefault(time_delta, {}).setdefault("negative_dev", []).append(pips)
+    breakpoint()
+
+    for trigger in news_pip_metrics:
+
+        for time_delta in news_pip_metrics[trigger]:
+
+            try:
+                pos_dev_values = news_pip_metrics[trigger][time_delta]['positive_dev']
+                positive_dev_averages = calc_pip_averages(pos_dev_values)
+            except KeyError:
+                print(f"No positive deviations for {trigger}")
+            try:
+                neg_dev_values = news_pip_metrics[trigger][time_delta]['negative_dev']
+                negative_dev_averages = calc_pip_averages(neg_dev_values)
+            except KeyError:
+                print(f"No negative deviations for {trigger}")
+
+            try:
+                for index, value in enumerate(neg_dev_values):
+                    neg_dev_values[index] = value * -1
+
+                combined_values = pos_dev_values + neg_dev_values
+
+                combined_dev_averages = calc_pip_averages(combined_values)
+
+                news_pip_metrics[trigger][time_delta]['positive_dev'] = positive_dev_averages
+                news_pip_metrics[trigger][time_delta]['negative_dev'] = negative_dev_averages
+                news_pip_metrics[trigger][time_delta]['combined'] = combined_dev_averages
+            except UnboundLocalError:
+                try:
+                    news_pip_metrics[trigger][time_delta]['positive_dev'] = positive_dev_averages
+                except UnboundLocalError:
+                    news_pip_metrics[trigger][time_delta]['negative_dev'] = negative_dev_averages
+            # breakpoint()
+    breakpoint()
+
 news_data = read_news_data("30000")
 triggers = read_triggers("30000")
 # mean_deviations = calc_median_deviations(news_data)
