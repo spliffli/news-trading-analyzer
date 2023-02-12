@@ -720,6 +720,7 @@ news_pip_metrics = calc_news_pip_metrics_for_multiple_indicators([
     ("10010", "USDJPY"),
     ("10030", "USDJPY"),
     ("10060", "EURUSD"),
+    ("10230", "EURUSD"),
     ("10260", "USDCAD"),
     ("10270", "USDCAD"),
     ("10290", "USDCAD"),
