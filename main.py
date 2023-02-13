@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from import_ticks import import_ticks
-from utils import str_to_datetime, datetime_to_str
+from utils import str_to_datetime, datetime_to_str, haawks_id_to_str
 
 import chromedriver_autoinstaller
 import os
@@ -108,12 +108,12 @@ def scrape_all_indicator_history(start_date: datetime.date):
     for index, row in df.iterrows():
         event_id = str(row['inv_id'])
         name_formatted = row['inv_title'].replace(" ", "_").replace(".", "")
-        haawks_id = row['Id']
+        haawks_id_str = haawks_id_to_str(row['Id'])
         print(f"Scraping {index + 1}/{df_row_count}: {row['inv_title']}")
         news_data = scrape(event_id, start_date)
 
-        news_data.to_csv(f"news_data/{haawks_id}_{event_id}_{name_formatted}.csv", index=False)
-        print(f"Saving to news_data/{haawks_id}_{event_id}_{name_formatted}.csv")
+        news_data.to_csv(f"news_data/{haawks_id_str}_{event_id}_{name_formatted}.csv", index=False)
+        print(f"Saving to news_data/{haawks_id_str}_{event_id}_{name_formatted}.csv")
 
 
 # scrape_all_indicator_history(datetime.date(2017, 1, 1))
@@ -141,8 +141,9 @@ def truncate_tick_data(tick_df, start_datetime, end_datetime):
 
 
 def import_ticks_for_indicator(haawks_id, symbol):
+    haawks_id_str = haawks_id_to_str(haawks_id)
     for filename in os.listdir("./news_data"):
-        if filename.startswith(haawks_id):
+        if filename.startswith(haawks_id_str):
             print(f"Reading news data: {filename}")
             news_data = pd.read_csv(f"./news_data/{filename}")
             # news_data = news_data.iloc[296:]
@@ -209,32 +210,35 @@ def scrape_bullish_or_bearish():
     print(indicators)
     indicators.to_excel("haawks-indicator-shortlist.xlsx", index=False)
 
+
 def scrape_suffixes():
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
 
     for index, row in indicators.iterrows():
-        haawks_id = str(row['Id'])
+        haawks_id_str = haawks_id_to_str(row['Id'])
 
         for filename in os.listdir('./news_data'):
-            if filename.startswith(haawks_id):
+            if filename.startswith(haawks_id_str):
                 news_data = pd.read_csv(f"./news_data/{filename}")
 
-        sample_figure = str(news_data.loc[1]['Actual'])
-        str_length = len(sample_figure)
+                sample_figure = str(news_data.loc[1]['Actual'])
+                str_length = len(sample_figure)
 
-        for i in range(str_length):
-            try:
-                float(sample_figure[0:str_length-i])
-                suffix = sample_figure[str_length-i:]
+                for i in range(str_length):
+                    try:
+                        float(sample_figure[0:str_length-i])
+                        suffix = sample_figure[str_length-i:]
+                        break
+                    except ValueError:
+                        pass
+                indicators.loc[index, "suffix"] = suffix
                 break
-            except ValueError:
-                pass
-        indicators.loc[index, "suffix"] = suffix
 
     print(indicators)
     indicators.to_excel("haawks-indicator-shortlist.xlsx", index=False)
 
 
-# scrape_suffixes()
 # scrape_bullish_or_bearish()
-import_ticks_for_indicator("10230", 'EURUSD')
+# scrape_bullish_or_bearish()
+# scrape_all_indicator_history(datetime.date(2017, 1, 1))
+import_ticks_for_indicator("00091", "USDNOK")

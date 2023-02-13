@@ -4,7 +4,7 @@ import os
 import math
 import json
 import warnings
-from utils import str_to_datetime, datetime_to_str
+from utils import str_to_datetime, datetime_to_str, haawks_id_to_str
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -169,10 +169,10 @@ def read_tick_data(symbol, release_datetime):
         f"File {symbol}__{release_date_hyphenated}__{start_time_hyphenated}_{end_time_hyphenated}.csv doesn't exist")
 
 
-def get_indicator_info(haawks_id):
+def get_indicator_info(haawks_id_str):
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
     for index, row in indicators.iterrows():
-        if str(row['Id']) == haawks_id:
+        if haawks_id_to_str(row['Id']) == haawks_id_str:
             cols = indicators.columns
             indicator_info = {}
             for index, value in enumerate(row.values):
@@ -357,14 +357,14 @@ def calc_all_deviations_for_indicator(haawks_id):
 
 def calc_all_indicator_deviations():
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
-    indicators = indicators.iloc[17:].reset_index()
+    # indicators = indicators.iloc[17:].reset_index()
 
     row_count = indicators.shape[0]
 
     for index, row in indicators.iterrows():
         print(f"Calculating deviations for: {row['inv_title']} ({str(index + 1)}/{row_count})")
-        haawks_id = str(row['Id'])
-        calc_all_deviations_for_indicator(haawks_id)
+        haawks_id_str = haawks_id_to_str(row['Id'])
+        calc_all_deviations_for_indicator(haawks_id_str)
 
 
 def calc_mean_deviation(news_data):
@@ -461,13 +461,13 @@ def calc_deviation_quantiles(news_data, quantile_count=5):
         pass
 
 
-def calc_and_save_trigger_levels(haawks_id):
+def calc_and_save_trigger_levels(haawks_id_str):
     """This just gets the quantiles for the deviations and populates the news data with it.
     The levels it outputs will be adjusted manually to be more round numbers"""
-    news_data = read_news_data(haawks_id)
+    news_data = read_news_data(haawks_id_str)
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
     for index, row in indicators.iterrows():
-        if str(row['Id']) == haawks_id:
+        if haawks_id_to_str(row['Id']) == haawks_id_str:
             title = row['inv_title']
     if 'Deviation' in news_data.columns:
 
@@ -480,12 +480,13 @@ def calc_and_save_trigger_levels(haawks_id):
                 triggers[str(f"trigger_{count + 1}")] = quantiles['combined'][value]
 
             for index, row in indicators.iterrows():
-                if str(row['Id']) == haawks_id:
+                if haawks_id_to_str(row['Id']) == haawks_id_str:
                     for trigger in triggers:
                         indicators.loc[index, trigger] = triggers[trigger]
 
                     # print(indicators.loc[index])
                     break
+
             indicators.to_excel("haawks-indicator-shortlist.xlsx", index=False)
             return triggers
     else:
@@ -499,13 +500,13 @@ def calc_and_save_all_trigger_levels():
     for index, row in indicators.iterrows():
         print(f"\rCalculating triggers for indicator {str(index + 1)}/{row_count}: {row['inv_title']}")
 
-        calc_and_save_trigger_levels(str(row['Id']))
+        calc_and_save_trigger_levels(haawks_id_to_str(row['Id']))
 
 
-def read_triggers(haawks_id):
+def read_triggers(haawks_id_str):
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
     for index, row in indicators.iterrows():
-        if str(row['Id']) == haawks_id:
+        if haawks_id_to_str(row['Id']) == haawks_id_str:
             triggers = {}
             i = 1
             while True:
@@ -715,7 +716,11 @@ def calc_news_pip_metrics_for_multiple_indicators(indicators_and_symbols: list[t
 # calc_news_pip_metrics(news_pip_data, triggers)
 
 # news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)
+
+# calc_all_indicator_deviations()
+# calc_and_save_all_trigger_levels()
 news_pip_metrics = calc_news_pip_metrics_for_multiple_indicators([
+    ("00091", "USDNOK"),
     ("10000", "EURUSD"),
     ("10010", "USDJPY"),
     ("10030", "USDJPY"),

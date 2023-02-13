@@ -6,9 +6,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 import time
 import pandas as pd
+import chromedriver_autoinstaller
 
+chromedriver_autoinstaller.install()
 options = Options()
-options.headless = True  # hide GUI
+options.headless = False  # hide GUI
 options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
 options.add_argument("start-maximized")  # ensure window is full-screen
 options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})  # Load without images
@@ -47,7 +49,7 @@ def scrape_indicator(event_id):
 # scrape_indicator("375")
 
 
-df = pd.read_excel("haawks-g4a-indicator-list-20190806.xls")
+df = pd.read_excel("haawks-indicator-shortlist.xlsx")
 # print(df)
 
 for index, row in df.iterrows():
