@@ -106,7 +106,6 @@ def get_prices_at_time_deltas(release_datetime, tick_df, time_deltas=DEFAULT_TIM
     for td in time_deltas:
         td_timestamps[td] = release_datetime + time_deltas[td]
 
-
     for td in time_deltas:
         for index, value in tick_df['time'].items():
             try:
@@ -557,9 +556,9 @@ def calc_correlation_1_score(values: list, expected_direction="positive"):
             neg_values.append(value)
 
     if expected_direction == "positive":
-        correlation_1_score = (len(pos_values) / len(values)) * 100
+        correlation_1_score = round((len(pos_values) / len(values)) * 100, 1)
     elif expected_direction == "negative":
-        correlation_1_score = (len(neg_values) / len(values)) * 100
+        correlation_1_score = round((len(neg_values) / len(values)) * 100, 1)
     else:
         raise ValueError("Expected direction must be positive or negative")
 
@@ -575,12 +574,11 @@ def calc_correlation_2_score(values: list, expected_direction="positive"):
         else:
             neg_values.append(value * -1)
     if expected_direction == "positive":
-        correlation_2_score = (sum(pos_values) / (sum(pos_values) + sum(neg_values))) * 100
+        correlation_2_score = round((sum(pos_values) / (sum(pos_values) + sum(neg_values))) * 100, 1)
     elif expected_direction == "negative":
-        correlation_2_score = (sum(neg_values) / (sum(pos_values) + sum(neg_values))) * 100
+        correlation_2_score = round((sum(neg_values) / (sum(pos_values) + sum(neg_values))) * 100, 1)
     else:
         raise ValueError("Expected direction must be positive or negative")
-
 
     return correlation_2_score
 
@@ -652,7 +650,7 @@ def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
             else:
                 raise ValueError("higher_dev must be 'bearish' or 'bullish'")
 
-            correlation_3_score = (correlation_1_score + correlation_2_score) / 2
+            correlation_3_score = round((correlation_1_score + correlation_2_score) / 2, 1)
             news_pip_metrics[trigger][time_delta] = {
                 "median": median,
                 "mean": mean,
@@ -664,6 +662,7 @@ def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
             }
             # breakpoint()
     return news_pip_metrics
+
 
 def calc_pip_averages_and_correlation(values: list):
     values.sort()
@@ -781,7 +780,6 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
 
 
 def calc_news_pip_metrics_for_multiple_indicators(indicators_and_symbols: list[tuple[str, str]]):
-
     result = {}
 
     for indicator_and_symbol in indicators_and_symbols:
@@ -796,15 +794,68 @@ def calc_news_pip_metrics_for_multiple_indicators(indicators_and_symbols: list[t
 
     return result
 
-news_data = read_news_data("10270")
-triggers = read_triggers("10270")
+def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame):
+    total_range = [0, 0]
+    means = []
+    medians = []
+    c1_scores = []
+    c2_scores = []
+    c3_scores = []
+    for index, row in pip_metrics_df.iterrows():
+        if row['range'][0] < total_range[0]:
+            total_range[0] = row['range'][0]
+        if row['range'][1] > total_range[1]:
+            total_range[1] = row['range'][1]
+
+        means.append(row['mean'])
+        medians.append(row['median'])
+        c1_scores.append(row['correlation_1'])
+        c2_scores.append(row['correlation_2'])
+        c3_scores.append(row['correlation_3'])
+
+    total_range = tuple(total_range)
+    mean_mean = round(sum(means) / len(means), 1)
+    mean_median = round(sum(medians) / len(medians), 1)
+    mean_c1 = round(sum(c1_scores) / len(c1_scores), 1)
+    mean_c2 = round(sum(c2_scores) / len(c2_scores), 1)
+    mean_c3 = round(sum(c3_scores) / len(c3_scores), 1)
+
+    return ['Total/Averages', total_range, mean_mean, mean_median, mean_c1, mean_c2, mean_c3]
+
+
+def news_pip_trigger_data_to_df(trigger_data):
+    df = pd.DataFrame(
+        columns=['time_delta', 'range', 'mean', 'median', 'correlation_1', 'correlation_2', 'correlation_3'])
+    for time_delta in trigger_data:
+        range = trigger_data[time_delta]['range']
+        mean = trigger_data[time_delta]['mean']
+        median = trigger_data[time_delta]['median']
+        correlation_1 = trigger_data[time_delta]['correlation_1']
+        correlation_2 = trigger_data[time_delta]['correlation_2']
+        correlation_3 = trigger_data[time_delta]['correlation_3']
+        df.loc[len(df.index)] = [time_delta, range, mean, median, correlation_1, correlation_2, correlation_3]
+
+    total_averages = calc_pip_metrics_df_total_averages(df)
+    df.loc[len(df.index)] = total_averages
+    return df
+
+
+def news_pip_metrics_to_dfs(news_pip_metrics):
+    dfs = {}
+    for trigger in news_pip_metrics:
+        dfs[trigger] = news_pip_trigger_data_to_df(news_pip_metrics[trigger])
+
+
+news_data = read_news_data("10000")
+triggers = read_triggers("10000")
 # mean_deviations = calc_median_deviations(news_data)
 # calc_deviations_for_indicator("10000")
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
 # read_news_pip_data("10000", "EURUSD")
-news_pip_data = load_news_pip_data("10270", news_data, "USDCAD")
+news_pip_data = load_news_pip_data("10000", news_data, "EURUSD")
 news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bearish")
+news_pip_metrics_df = news_pip_metrics_to_dfs(news_pip_metrics)
 
 # news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)
 
