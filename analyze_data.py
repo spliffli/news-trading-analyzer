@@ -547,7 +547,45 @@ def read_triggers(haawks_id_str):
     return triggers
 
 
-def calc_news_pip_metrics(news_pip_data, triggers):
+def calc_correlation_1_score(values: list, expected_direction="positive"):
+    pos_values = []
+    neg_values = []
+    for value in values:
+        if value > 0:
+            pos_values.append(value)
+        else:
+            neg_values.append(value)
+
+    if expected_direction == "positive":
+        correlation_1_score = (len(pos_values) / len(values)) * 100
+    elif expected_direction == "negative":
+        correlation_1_score = (len(neg_values) / len(values)) * 100
+    else:
+        raise ValueError("Expected direction must be positive or negative")
+
+    return correlation_1_score
+
+
+def calc_correlation_2_score(values: list, expected_direction="positive"):
+    pos_values = []
+    neg_values = []
+    for value in values:
+        if value > 0:
+            pos_values.append(value)
+        else:
+            neg_values.append(value * -1)
+    if expected_direction == "positive":
+        correlation_2_score = (sum(pos_values) / (sum(pos_values) + sum(neg_values))) * 100
+    elif expected_direction == "negative":
+        correlation_2_score = (sum(neg_values) / (sum(pos_values) + sum(neg_values))) * 100
+    else:
+        raise ValueError("Expected direction must be positive or negative")
+
+
+    return correlation_2_score
+
+
+def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
     news_pip_metrics = {}
 
     for trigger in triggers:
@@ -604,24 +642,44 @@ def calc_news_pip_metrics(news_pip_data, triggers):
             median = values[math.floor((len(values) - 1) / 2)]
             mean = round(sum(values) / len(values), 1)
             range = (min(values), max(values))
+
+            if higher_dev == "bullish":
+                correlation_1_score = calc_correlation_1_score(values, expected_direction="positive")
+                correlation_2_score = calc_correlation_2_score(values, expected_direction="positive")
+            elif higher_dev == "bearish":
+                correlation_1_score = calc_correlation_1_score(values, expected_direction="negative")
+                correlation_2_score = calc_correlation_2_score(values, expected_direction="negative")
+            else:
+                raise ValueError("higher_dev must be 'bearish' or 'bullish'")
+
+            correlation_3_score = (correlation_1_score + correlation_2_score) / 2
             news_pip_metrics[trigger][time_delta] = {
                 "median": median,
                 "mean": mean,
                 "range": range,
+                "correlation_1": correlation_1_score,
+                "correlation_2": correlation_2_score,
+                "correlation_3": correlation_3_score,
                 "values": values
             }
             # breakpoint()
     return news_pip_metrics
 
-def calc_pip_averages(values: list):
+def calc_pip_averages_and_correlation(values: list):
     values.sort()
     median = values[math.floor((len(values) - 1) / 2)]
     mean = round(sum(values) / len(values), 1)
     range = (min(values), max(values))
+    correlation_1_score = calc_correlation_1_score(values)
+    correlation_2_score = calc_correlation_2_score(values)
+    correlation_3_score = (correlation_1_score + correlation_2_score) / 2
     return {
         "median": median,
         "mean": mean,
         "range": range,
+        "correlation_1": correlation_1_score,
+        "correlation_2": correlation_2_score,
+        "correlation_3": correlation_3_score,
         "values": values
     }
 
@@ -635,8 +693,6 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
     for timestamp in news_pip_data:
 
         deviation = news_pip_data[timestamp]['deviation']
-        if deviation == -91:
-            breakpoint()
 
         if deviation < 0:
             negative_dev = True
@@ -695,12 +751,12 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
 
             try:
                 pos_dev_values = news_pip_metrics[trigger][time_delta]['positive_dev']
-                positive_dev_averages = calc_pip_averages(pos_dev_values)
+                positive_dev_averages = calc_pip_averages_and_correlation(pos_dev_values)
             except KeyError:
                 print(f"No positive deviations for {trigger}")
             try:
                 neg_dev_values = news_pip_metrics[trigger][time_delta]['negative_dev']
-                negative_dev_averages = calc_pip_averages(neg_dev_values)
+                negative_dev_averages = calc_pip_averages_and_correlation(neg_dev_values)
             except KeyError:
                 print(f"No negative deviations for {trigger}")
 
@@ -710,7 +766,7 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
 
                 combined_values = pos_dev_values + neg_dev_values
 
-                combined_dev_averages = calc_pip_averages(combined_values)
+                combined_dev_averages = calc_pip_averages_and_correlation(combined_values)
 
                 news_pip_metrics[trigger][time_delta]['positive_dev'] = positive_dev_averages
                 news_pip_metrics[trigger][time_delta]['negative_dev'] = negative_dev_averages
@@ -740,20 +796,21 @@ def calc_news_pip_metrics_for_multiple_indicators(indicators_and_symbols: list[t
 
     return result
 
-news_data = read_news_data("10000")
-triggers = read_triggers("10000")
+news_data = read_news_data("10270")
+triggers = read_triggers("10270")
 # mean_deviations = calc_median_deviations(news_data)
 # calc_deviations_for_indicator("10000")
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
 # read_news_pip_data("10000", "EURUSD")
-news_pip_data = load_news_pip_data("10000", news_data, "EURUSD")
-calc_news_pip_metrics_2(news_pip_data, triggers)
+news_pip_data = load_news_pip_data("10270", news_data, "USDCAD")
+news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bearish")
 
 # news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)
 
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
+"""
 news_pip_metrics = calc_news_pip_metrics_for_multiple_indicators([
     ("00051", "USDSEK"),
     ("00091", "USDNOK"),
@@ -767,4 +824,5 @@ news_pip_metrics = calc_news_pip_metrics_for_multiple_indicators([
     ("10290", "USDCAD"),
     ("30000", "BRENTCMDUSD")
 ])
+"""
 breakpoint()
