@@ -241,4 +241,4 @@ def scrape_suffixes():
 # scrape_bullish_or_bearish()
 # scrape_bullish_or_bearish()
 # scrape_all_indicator_history(datetime.date(2017, 1, 1))
-import_ticks_for_indicator("00091", "USDNOK")
+import_ticks_for_indicator("00051", "USDSEK")

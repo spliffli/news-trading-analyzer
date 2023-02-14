@@ -101,16 +101,44 @@ def get_release_time_price(release_datetime, tick_df):
 
 def get_prices_at_time_deltas(release_datetime, tick_df, time_deltas=DEFAULT_TIME_DELTAS):
     prices = {}
+    td_timestamps = {}
 
     for td in time_deltas:
-        for index, row in tick_df.iterrows():
-            try:
-                timestamp = datetime.strptime(row['time'], "%Y-%m-%d %H:%M:%S.%f")
-            except:
-                timestamp = datetime.strptime(row['time'], "%Y-%m-%d %H:%M:%S")
+        td_timestamps[td] = release_datetime + time_deltas[td]
 
-            if timestamp > (release_datetime + time_deltas[td]):
-                prices[td] = (row['ask'], row['bid'])
+
+    for td in time_deltas:
+        for index, value in tick_df['time'].items():
+            try:
+                timestamp = datetime.strptime(value, "%Y-%m-%d %H:%M:%S.%f")
+            except:
+                timestamp = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+
+            if timestamp > (td_timestamps[td]):
+                prices[td] = (tick_df.loc[index]['ask'], tick_df.loc[index]['bid'])
+                break
+
+    return prices
+
+
+def get_prices_at_time_deltas_2(release_datetime, tick_df, time_deltas=DEFAULT_TIME_DELTAS):
+    """
+    This is meant to be an optimized version of get_prices_at_time_deltas which converts
+    the time delta timestamps to strings at the beginning and searches for those instead
+    of converting every timestamp in the tick datas into a datetime.
+    It should speed things up (I hope).
+    Update. This is faster but the results are wrong
+    """
+    prices = {}
+    td_timestamps_strs = {}
+
+    for td in time_deltas:
+        td_timestamps_strs[td] = datetime.strftime(release_datetime + time_deltas[td], "%Y-%m-%d %H:%M:%S")
+
+    for td in td_timestamps_strs:
+        for index, value in tick_df['time'].items():
+            if value.startswith(td_timestamps_strs[td]):
+                prices[td] = (tick_df.loc[index]['ask'], tick_df.loc[index]['bid'])
                 break
 
     return prices
@@ -607,21 +635,29 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
     for timestamp in news_pip_data:
 
         deviation = news_pip_data[timestamp]['deviation']
-
-        negative_dev = False
+        if deviation == -91:
+            breakpoint()
 
         if deviation < 0:
-            # deviation = deviation * -1
             negative_dev = True
+            for index, trigger in enumerate(list(triggers.items())):  # Identifies appropriate trigger level
 
-        for index, trigger in enumerate(list(triggers.items())):
+                if index == len(triggers) - 1:  # If it's the last trigger
+                    if deviation <= (triggers[trigger[0]] * -1):
+                        break  # Keeps trigger at current value before continuing
+                else:
+                    if (triggers[trigger[0]] * -1) >= deviation > (list(triggers.items())[index + 1][1] * -1):
+                        break  # Keeps trigger at current value before continuing
+        else:
+            negative_dev = False
+            for index, trigger in enumerate(list(triggers.items())):  # Identifies appropriate trigger level
 
-            if index == len(triggers) - 1:
-                if deviation >= triggers[trigger[0]]:
-                    break  # Keeps trigger at current value before continuing
-            else:
-                if triggers[trigger[0]] <= deviation < list(triggers.items())[index + 1][1]:
-                    break  # Keeps trigger at current value before continuing
+                if index == len(triggers) - 1:  # If it's the last trigger
+                    if deviation >= triggers[trigger[0]]:
+                        break  # Keeps trigger at current value before continuing
+                else:
+                    if triggers[trigger[0]] <= deviation < list(triggers.items())[index + 1][1]:
+                        break  # Keeps trigger at current value before continuing
 
         for time_delta in news_pip_data[timestamp]['pips']:
 
@@ -652,7 +688,6 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
                 news_pip_metrics[trigger[0]].setdefault(time_delta, {}).setdefault("positive_dev", []).append(pips)
             elif negative_dev:
                 news_pip_metrics[trigger[0]].setdefault(time_delta, {}).setdefault("negative_dev", []).append(pips)
-    breakpoint()
 
     for trigger in news_pip_metrics:
 
@@ -686,7 +721,7 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
                 except UnboundLocalError:
                     news_pip_metrics[trigger][time_delta]['negative_dev'] = negative_dev_averages
             # breakpoint()
-    breakpoint()
+    return news_pip_metrics
 
 
 def calc_news_pip_metrics_for_multiple_indicators(indicators_and_symbols: list[tuple[str, str]]):
@@ -705,21 +740,22 @@ def calc_news_pip_metrics_for_multiple_indicators(indicators_and_symbols: list[t
 
     return result
 
-# news_data = read_news_data("10270")
-# triggers = read_triggers("10270")
+news_data = read_news_data("10000")
+triggers = read_triggers("10000")
 # mean_deviations = calc_median_deviations(news_data)
 # calc_deviations_for_indicator("10000")
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
 # read_news_pip_data("10000", "EURUSD")
-# news_pip_data = load_news_pip_data("10270", news_data, "USDCAD")
-# calc_news_pip_metrics(news_pip_data, triggers)
+news_pip_data = load_news_pip_data("10000", news_data, "EURUSD")
+calc_news_pip_metrics_2(news_pip_data, triggers)
 
 # news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)
 
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
 news_pip_metrics = calc_news_pip_metrics_for_multiple_indicators([
+    ("00051", "USDSEK"),
     ("00091", "USDNOK"),
     ("10000", "EURUSD"),
     ("10010", "USDJPY"),
