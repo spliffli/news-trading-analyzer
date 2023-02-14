@@ -809,9 +809,9 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame):
 
         means.append(row['mean'])
         medians.append(row['median'])
-        c1_scores.append(row['correlation_1'])
-        c2_scores.append(row['correlation_2'])
-        c3_scores.append(row['correlation_3'])
+        c1_scores.append(row['c_1'])
+        c2_scores.append(row['c_2'])
+        c3_scores.append(row['c_3'])
 
     total_range = tuple(total_range)
     mean_mean = round(sum(means) / len(means), 1)
@@ -825,7 +825,7 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame):
 
 def news_pip_trigger_data_to_df(trigger_data):
     df = pd.DataFrame(
-        columns=['time_delta', 'range', 'mean', 'median', 'correlation_1', 'correlation_2', 'correlation_3'])
+        columns=['time_delta', 'range', 'mean', 'median', 'c_1', 'c_2', 'c_3'])
     for time_delta in trigger_data:
         range = trigger_data[time_delta]['range']
         mean = trigger_data[time_delta]['mean']
@@ -844,19 +844,22 @@ def news_pip_metrics_to_dfs(news_pip_metrics):
     dfs = {}
     for trigger in news_pip_metrics:
         dfs[trigger] = news_pip_trigger_data_to_df(news_pip_metrics[trigger])
+        print(f"{trigger}\n{dfs[trigger]}")
 
+    return dfs
 
-news_data = read_news_data("10000")
-triggers = read_triggers("10000")
+"""
+news_data = read_news_data("10290")
+triggers = read_triggers("10290")
 # mean_deviations = calc_median_deviations(news_data)
 # calc_deviations_for_indicator("10000")
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
 # read_news_pip_data("10000", "EURUSD")
-news_pip_data = load_news_pip_data("10000", news_data, "EURUSD")
+news_pip_data = load_news_pip_data("10290", news_data, "USDCAD")
 news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bearish")
-news_pip_metrics_df = news_pip_metrics_to_dfs(news_pip_metrics)
-
+news_pip_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
+"""
 # news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)
 
 # calc_all_indicator_deviations()
@@ -876,4 +879,3 @@ news_pip_metrics = calc_news_pip_metrics_for_multiple_indicators([
     ("30000", "BRENTCMDUSD")
 ])
 """
-breakpoint()
