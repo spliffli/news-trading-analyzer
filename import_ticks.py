@@ -3,7 +3,11 @@ from duka.core.utils import TimeFrame
 import datetime
 import os
 import pandas as pd
+import warnings
 from utils import haawks_id_to_str, str_to_datetime
+
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 
 start_date = datetime.date(2023, 2, 3)
 end_date = datetime.date(2023, 2, 3)

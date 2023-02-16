@@ -9,7 +9,9 @@ import time
 import pandas as pd
 import chromedriver_autoinstaller
 import os
+import warnings
 
+warnings.simplefilter(action='ignore', category=FutureWarning)
 chromedriver_autoinstaller.install()
 options = Options()
 options.headless = False  # hide GUI
