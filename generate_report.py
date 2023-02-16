@@ -26,7 +26,10 @@ A higher than expected reading should be taken as positive/bullish for the CAD, 
     "no_of_releases": "73",
     "start_date": "2017-01-06",
     "end_date": "2023-01-06",
-    "data": news_pip_metrics_dfs['trigger_1'].to_html(index=False)
+    "trigger_1_data": news_pip_metrics_dfs['trigger_1'].to_html(index=False),
+    "trigger_2_data": news_pip_metrics_dfs['trigger_2'].to_html(index=False),
+    "trigger_3_data": news_pip_metrics_dfs['trigger_3'].to_html(index=False),
+    "trigger_4_data": news_pip_metrics_dfs['trigger_4'].to_html(index=False),
 }
 
 html_out = template.render(template_vars)
