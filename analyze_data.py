@@ -31,33 +31,55 @@ DEFAULT_TIME_DELTAS = {
 
 
 def read_news_data(haawks_id):
+    # loop through all the files in the news_data directory
     for filename in os.listdir('./news_data'):
+        # check if the filename starts with the haawks_id provided
         if filename.startswith(haawks_id):
+            # if the filename matches, read the CSV file into a Pandas dataframe
             news_data = pd.read_csv(f"./news_data/{filename}")
+            # return the dataframe
             return news_data
 
 
-def save_news_data(haawks_id, news_data):
+def save_news_data(haawks_id_str, news_data):
+    # loop through all files in the news_data directory
     for filename in os.listdir('./news_data'):
-        if filename.startswith(haawks_id):
+        # if the file name starts with haawks_id_str, it means we've found the correct file
+        if filename.startswith(haawks_id_str):
+            # print a message indicating that we are saving to this file
             print(f"saving to: news_data/{filename}")
+            # save the news data to the file
             news_data.to_csv(f"./news_data/{filename}", index=False)
 
 
 def get_decimal_places(num: float):
-    decimal_places = len(str(num).split(".")[1])
+    # Convert the input number to a string, split it at the decimal point,
+    # and retrieve the second part of the resulting list
+    # (which represents the digits after the decimal point).
+    decimal_digits = str(num).split(".")[1]
+
+    # Calculate the length of the decimal digits string to determine
+    # how many decimal places the original number has.
+    decimal_places = len(decimal_digits)
+
+    # Return the number of decimal places.
     return decimal_places
 
 
 def get_decimal_places_from_tick_data(tick_data):
-    """ Necessary to loop through a few items and find the largest since sometimes rows in the tick data are rounded to lower decimal places"""
+    # To avoid rounding issues, we take the first 20 rows of tick data as a sample
     df = tick_data.loc[1:20]
     decimal_places_list = []
 
+    # Loop through each item in the `ask` column of the sample
     for index, value in df['ask'].items():
+        # Call the `get_decimal_places` function to get the number of decimal places in the current value
         decimal_places = get_decimal_places(value)
+
+        # Append the number of decimal places to the `decimal_places_list`
         decimal_places_list.append(decimal_places)
 
+    # The number of decimal places we want to use is the maximum value in `decimal_places_list`
     decimal_places = max(decimal_places_list)
     return decimal_places
 
@@ -96,12 +118,27 @@ def get_release_time_price(release_datetime, tick_df):
 
 
 def get_prices_at_time_deltas(release_datetime, tick_df, time_deltas=DEFAULT_TIME_DELTAS):
+    """
+    Get the prices at specific time intervals after the release_datetime.
+
+    Args:
+        release_datetime (datetime): The datetime of a release.
+        tick_df (DataFrame): A DataFrame of tick data.
+        time_deltas (dict): A dictionary of time deltas to extract prices from.
+
+    Returns:
+        dict: A dictionary of prices at specific time intervals after the release datetime.
+
+    """
+
     prices = {}
     td_timestamps = {}
 
+    # Calculate the timestamps for each time delta
     for td in time_deltas:
         td_timestamps[td] = release_datetime + time_deltas[td]
 
+    # Extract the prices at each time delta
     for td in time_deltas:
         for index, value in tick_df['time'].items():
             try:
@@ -110,10 +147,12 @@ def get_prices_at_time_deltas(release_datetime, tick_df, time_deltas=DEFAULT_TIM
                 timestamp = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
 
             if timestamp > (td_timestamps[td]):
+                # Extract the ask and bid prices and store them in the prices dictionary
                 prices[td] = (tick_df.loc[index]['ask'], tick_df.loc[index]['bid'])
                 break
 
     return prices
+
 
 
 def get_prices_at_time_deltas_2(release_datetime, tick_df, time_deltas=DEFAULT_TIME_DELTAS):
@@ -140,6 +179,17 @@ def get_prices_at_time_deltas_2(release_datetime, tick_df, time_deltas=DEFAULT_T
 
 
 def get_relative_price_movements(prices_per_time_delta, release_time_price, decimal_places):
+    """
+    Calculates the relative price movements based on the release time price and the prices at different time deltas.
+
+    Args:
+        prices_per_time_delta (dict): A dictionary containing the prices at different time deltas.
+        release_time_price (tuple): A tuple containing the release time ask and bid prices.
+        decimal_places (int): The number of decimal places to round the price movements to.
+
+    Returns:
+        price_movements (dict): A dictionary containing the relative price movements rounded to the specified decimal places.
+    """
     release_ask = float(release_time_price[0])
     release_bid = float(release_time_price[1])
 
@@ -150,13 +200,24 @@ def get_relative_price_movements(prices_per_time_delta, release_time_price, deci
         bid = float(prices_per_time_delta[price][1])
 
         difference_ask = round(ask - release_ask, decimal_places)
-        difference_bid = round(bid - release_ask, decimal_places)
+        difference_bid = round(bid - release_bid, decimal_places)
         price_movements[price] = (difference_ask, difference_bid)
 
     return price_movements
 
 
+
 def cross_reference_pips_with_news_data(news_data, pip_data):
+    """
+    Cross-references pip data with news data and stores the deviation and pips data for matching timestamps.
+
+    Args:
+    - news_data: pandas DataFrame containing news data with Timestamp and Deviation columns.
+    - pip_data: dictionary containing pip data with timestamps as keys and pip movements as values.
+
+    Returns:
+    - news_pip_data: dictionary containing matched news and pip data with timestamps as keys, and deviation and pip movements as values.
+    """
     news_pip_data = {}
 
     for timestamp in pip_data:
@@ -168,7 +229,21 @@ def cross_reference_pips_with_news_data(news_data, pip_data):
     return news_pip_data
 
 
+
 def get_pip_movements(price_movements, decimal_places):
+    """
+    Calculates the pip movements for each of the provided price movements based on the decimal places
+    and returns a dictionary of the calculated pip movements.
+
+    Args:
+    - price_movements (dict): A dictionary containing the price movements for each time delta, with the keys being the
+    time delta and the values being a tuple of the difference in ask and bid prices.
+    - decimal_places (int): The number of decimal places for the given currency pair.
+
+    Returns:
+    - pip_movements (dict): A dictionary containing the pip movements for each time delta, with the keys being the
+    time delta and the values being a tuple of the difference in ask and bid prices, expressed in pips.
+    """
     pip_movements = {}
 
     for price_movement in price_movements:
@@ -177,6 +252,7 @@ def get_pip_movements(price_movements, decimal_places):
         pip_movements[price_movement] = (pm_ask, pm_bid)
 
     return pip_movements
+
 
 
 def read_tick_data(symbol, release_datetime):

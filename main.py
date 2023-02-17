@@ -1,13 +1,17 @@
 import time
+import os
+
+from import_ticks import import_ticks_for_indicator
 
 try:
     import curses  # Try to import the curses module
 except ImportError:
-    import os
+
     if os.name == 'nt':
         import windows_curses as curses  # If curses isn't available, try to import the Windows-specific version
     else:
         raise  # If neither curses nor windows_curses are available, raise an ImportError
+
 
 class MyApp:
     def __init__(self):
@@ -95,30 +99,28 @@ class MyApp:
         self.stdscr.addstr(0, 0, f"Analyzing indicator {haawks_id_str}...")
         self.stdscr.refresh()
 
+        # End the curses environment to allow normal printing
+        curses.endwin()
+
+        # Determine the name of the operating system we're running on,
+        # and then execute the appropriate command to clear the screen.
+        os.system('cls' if os.name == 'nt' else 'clear')
+
         # Prompt the user to enter a trading symbol
-        self.stdscr.addstr(2, 0, "Please enter a trading symbol e.g. 'EURUSD': ")
+        print("Please enter a trading symbol e.g. 'EURUSD': ")
 
-        # Enable echoing and immediate key response to capture the user's input
-        curses.echo()
-        curses.cbreak()
+        # Get the user's input as a string (up to 20 characters long)
+        trading_symbol = input()[:20]
 
-        # Get the user's input as a string (up to 20 characters long) and disable echoing and immediate key response
-        trading_symbol = self.stdscr.getstr(3, 0, 20).decode(encoding="utf-8")
-        curses.noecho()
-        curses.nocbreak()
+        # Perform analysis on the selected indicator and trading symbol
 
-        # Clear the screen and display the selected indicator and trading symbol
-        self.stdscr.clear()
-        self.stdscr.addstr(0, 0, f"Indicator: {haawks_id_str}")
-        self.stdscr.addstr(1, 0, f"Trading Symbol: {trading_symbol}")
+        import_ticks_for_indicator(haawks_id_str, trading_symbol)
 
-        # Perform analysis on the selected indicator and trading symbol (simulated with a sleep)
-        print("Hello World")
-        self.stdscr.refresh()
-        time.sleep(2)  # Sleep for 2 seconds to simulate analysis
 
-        # Redraw the menu to return to the main screen
-        self.render()
+        # Reinitialize the curses environment
+        # self.stdscr = curses.initscr()
+        # self.render()
+
 
     def __del__(self):
         # End curses window when program terminates
