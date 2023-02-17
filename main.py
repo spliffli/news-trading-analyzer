@@ -2,6 +2,7 @@ import time
 import os
 
 from import_ticks import import_ticks_for_indicator
+from analyze_data import read_news_data, read_triggers, load_news_pip_data, calc_news_pip_metrics, news_pip_metrics_to_dfs
 
 try:
     import curses  # Try to import the curses module
@@ -27,14 +28,14 @@ class MyApp:
         # Define a list of items to display and analyze
         self.header = "Please select an indicator to analyze:"
         self.items = [
-            "30000 U.S. Crude Oil Inventories",
-            "30001 U.S. Gasoline Inventories",
-            "30002 U.S. Distillate Fuel Production",
-            "30008 U.S. Cushing Crude Oil Inventories",
-            "30010 U.S. Natural Gas Storage",
-            "10000 U.S. Nonfarm Payrolls",
-            "10005 U.S. Unemployment Rate",
-            "10010 U.S. Producer Price Index (PPI) MoM",
+            "30000  U.S. Crude Oil Inventories",
+            "30001  U.S. Gasoline Inventories",
+            "30002  U.S. Distillate Fuel Production",
+            "30008  U.S. Cushing Crude Oil Inventories",
+            "30010  U.S. Natural Gas Storage",
+            "10000  U.S. Nonfarm Payrolls",
+            "10005  U.S. Unemployment Rate",
+            "10010  U.S. Producer Price Index (PPI) MoM",
         ]
 
         # Keep track of the currently selected item and the first visible item
@@ -115,7 +116,11 @@ class MyApp:
         # Perform analysis on the selected indicator and trading symbol
 
         import_ticks_for_indicator(haawks_id_str, trading_symbol)
-
+        news_data = read_news_data(haawks_id_str)
+        triggers = read_triggers(haawks_id_str)
+        news_pip_data = load_news_pip_data(haawks_id_str, news_data, trading_symbol)
+        news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bearish")
+        news_pip_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
 
         # Reinitialize the curses environment
         # self.stdscr = curses.initscr()
