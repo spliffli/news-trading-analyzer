@@ -68,8 +68,8 @@ class MyApp:
             # Handle enter key
             elif key == curses.KEY_ENTER or key in [10, 13]:
                 selected_item = self.items[self.selected_item_index]
-                indicator = selected_item.split()[0]
-                self.analyze_indicator(indicator)
+                haawks_id_str = selected_item.split()[0]
+                self.analyze_indicator(haawks_id_str)
 
     def render(self):
         # Clear the screen
@@ -89,36 +89,42 @@ class MyApp:
 
         self.stdscr.refresh()
 
-    def analyze_indicator(self, indicator):
+    def analyze_indicator(self, haawks_id_str):
+        # Clear the screen and display a message indicating which indicator is being analyzed
         self.stdscr.clear()
-        self.stdscr.addstr(0, 0, f"Analyzing indicator {indicator}...")
+        self.stdscr.addstr(0, 0, f"Analyzing indicator {haawks_id_str}...")
         self.stdscr.refresh()
 
-        # Prompt user to enter a trading symbol
+        # Prompt the user to enter a trading symbol
         self.stdscr.addstr(2, 0, "Please enter a trading symbol e.g. 'EURUSD': ")
+
+        # Enable echoing and immediate key response to capture the user's input
         curses.echo()
         curses.cbreak()
+
+        # Get the user's input as a string (up to 20 characters long) and disable echoing and immediate key response
         trading_symbol = self.stdscr.getstr(3, 0, 20).decode(encoding="utf-8")
         curses.noecho()
         curses.nocbreak()
 
-        # Display selected indicator and trading symbol
+        # Clear the screen and display the selected indicator and trading symbol
         self.stdscr.clear()
-        self.stdscr.addstr(0, 0, f"Indicator: {indicator}")
+        self.stdscr.addstr(0, 0, f"Indicator: {haawks_id_str}")
         self.stdscr.addstr(1, 0, f"Trading Symbol: {trading_symbol}")
 
-        # Perform analysis (simulated with a sleep)
+        # Perform analysis on the selected indicator and trading symbol (simulated with a sleep)
         print("Hello World")
         self.stdscr.refresh()
         time.sleep(2)  # Sleep for 2 seconds to simulate analysis
 
-        # Redraw menu
+        # Redraw the menu to return to the main screen
         self.render()
 
     def __del__(self):
         # End curses window when program terminates
         if hasattr(self, 'stdscr'):
             curses.endwin()
+
 
 if __name__ == "__main__":
     # Create and run the application
