@@ -4,7 +4,7 @@ import os
 import math
 import json
 import warnings
-from utils import str_to_datetime, datetime_to_str, haawks_id_to_str
+from utils import str_to_datetime, datetime_to_str, haawks_id_to_str, read_news_data, save_news_data, get_indicator_info
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -28,28 +28,6 @@ DEFAULT_TIME_DELTAS = {
     "10m": timedelta(minutes=10),
     "15m": timedelta(minutes=15),
 }
-
-
-def read_news_data(haawks_id):
-    # loop through all the files in the news_data directory
-    for filename in os.listdir('./news_data'):
-        # check if the filename starts with the haawks_id provided
-        if filename.startswith(haawks_id):
-            # if the filename matches, read the CSV file into a Pandas dataframe
-            news_data = pd.read_csv(f"./news_data/{filename}")
-            # return the dataframe
-            return news_data
-
-
-def save_news_data(haawks_id_str, news_data):
-    # loop through all files in the news_data directory
-    for filename in os.listdir('./news_data'):
-        # if the file name starts with haawks_id_str, it means we've found the correct file
-        if filename.startswith(haawks_id_str):
-            # print a message indicating that we are saving to this file
-            print(f"saving to: news_data/{filename}")
-            # save the news data to the file
-            news_data.to_csv(f"./news_data/{filename}", index=False)
 
 
 def get_decimal_places(num: float):
@@ -268,17 +246,6 @@ def read_tick_data(symbol, release_datetime):
         f"File {symbol}__{release_date_hyphenated}__{start_time_hyphenated}_{end_time_hyphenated}.csv doesn't exist")
 
 
-def get_indicator_info(haawks_id_str):
-    indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
-    for index, row in indicators.iterrows():
-        if haawks_id_to_str(row['Id']) == haawks_id_str:
-            cols = indicators.columns
-            indicator_info = {}
-            for index, value in enumerate(row.values):
-                indicator_info[cols[index]] = value
-            return indicator_info
-    raise ValueError("Invalid haawks_id")
-
 
 def save_news_pip_data(haawks_id, symbol, pip_data: dict):
     # pip_data.to_csv(f"{symbol}")
@@ -411,28 +378,6 @@ def load_news_pip_data(haawks_id, news_data, symbol):
     save_news_pip_data(haawks_id, symbol, news_pip_data)
 
     return news_pip_data
-
-
-def get_deviation(actual, forecast):
-    return actual - forecast
-
-
-def get_indicator_suffix(haawks_id):
-    indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
-
-    for index, row in indicators.iterrows():
-        if row['Id'] == int(haawks_id):
-            suffix = row['suffix']
-            if type(suffix) == float and math.isnan(suffix):
-                suffix = ""
-            return suffix
-
-
-def convert_news_data_to_float(haawks_id: str, data_str: str):
-    suffix = get_indicator_suffix(haawks_id)
-    data_str = str(data_str)
-    data = float(data_str.replace(suffix, "").replace(",", ""))
-    return data
 
 
 def calc_all_deviations_for_indicator(haawks_id):
@@ -656,22 +601,33 @@ def calc_correlation_2_score(values: list, expected_direction="positive"):
 
 
 def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
+    """
+    Calculate news pip metrics for each trigger.
+
+    Args:
+        news_pip_data (dict): A dictionary containing news pip data.
+        triggers (dict): A dictionary containing trigger names and corresponding deviation values.
+        higher_dev (str): The expected direction of higher deviations. Can be "bullish" or "bearish".
+
+    Returns:
+        news_pip_metrics (dict): A dictionary containing news pip metrics for each trigger.
+
+    """
     news_pip_metrics = {}
 
     for trigger in triggers:
         news_pip_metrics[trigger] = {}
 
     for timestamp in news_pip_data:
-
+        # Retrieve deviation value and check if it is negative
         deviation = news_pip_data[timestamp]['deviation']
         negative_dev = False
-
         if deviation < 0:
             deviation = deviation * -1
             negative_dev = True
 
         for index, trigger in enumerate(list(triggers.items())):
-
+            # Check if deviation falls within the range of the current trigger
             if index == len(triggers) - 1:
                 if deviation >= triggers[trigger[0]]:
                     break  # Keeps trigger at current value before continuing
@@ -680,7 +636,7 @@ def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
                     break  # Keeps trigger at current value before continuing
 
         for time_delta in news_pip_data[timestamp]['pips']:
-
+            # Retrieve ask and bid values for the given time delta
             ask = news_pip_data[timestamp]['pips'][time_delta][0]
             bid = news_pip_data[timestamp]['pips'][time_delta][1]
 
@@ -688,6 +644,7 @@ def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
                 ask = ask * -1
                 bid = bid * -1
 
+            # Determine the direction of the pips (positive or negative)
             if ask < 0 and bid < 0:  # ask/bid both negative
                 pips = bid
             elif ask > 0 and bid > 0:  # ask/bid both positive
@@ -703,26 +660,38 @@ def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
                 else:
                     pips = bid
 
-            # news_pip_metrics[trigger[0]].append(pips)
+            # Add pips to the corresponding trigger and time delta
             news_pip_metrics[trigger[0]].setdefault(time_delta, []).append(pips)
 
     for trigger in news_pip_metrics:
         for time_delta, values in news_pip_metrics[trigger].items():
+            # Sort the list of pips values in ascending order
             values.sort()
+            # Calculate the median value of the pips values
             median = values[math.floor((len(values) - 1) / 2)]
+            # Calculate the mean value of the pips values, rounded to 1 decimal place
             mean = round(sum(values) / len(values), 1)
+            # Calculate the range of the pips values as a tuple of the minimum and maximum values
             range = (min(values), max(values))
 
             if higher_dev == "bullish":
+                # Calculate the correlation 1 score for positive expected direction
                 correlation_1_score = calc_correlation_1_score(values, expected_direction="positive")
+                # Calculate the correlation 2 score for positive expected direction
                 correlation_2_score = calc_correlation_2_score(values, expected_direction="positive")
             elif higher_dev == "bearish":
+                # Calculate the correlation 1 score for negative expected direction
                 correlation_1_score = calc_correlation_1_score(values, expected_direction="negative")
+                # Calculate the correlation 2 score for negative expected direction
                 correlation_2_score = calc_correlation_2_score(values, expected_direction="negative")
             else:
+                # Raise an exception if higher_dev is not "bullish" or "bearish"
                 raise ValueError("higher_dev must be 'bearish' or 'bullish'")
 
+            # Calculate the average of the two correlation scores, rounded to 1 decimal place
             correlation_3_score = round((correlation_1_score + correlation_2_score) / 2, 1)
+
+            # Add the calculated metrics to the news_pip_metrics dictionary
             news_pip_metrics[trigger][time_delta] = {
                 "median": median,
                 "mean": mean,
@@ -732,7 +701,8 @@ def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
                 "correlation_3": correlation_3_score,
                 "values": values
             }
-            # breakpoint()
+
+    # Return the dictionary of news_pip_metrics
     return news_pip_metrics
 
 

@@ -3,7 +3,7 @@ import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from utils import haawks_id_to_str
+from utils import haawks_id_to_str, str_to_datetime, get_indicator_info, save_news_data, read_news_data, convert_news_data_to_float, get_deviation
 from selenium.webdriver.remote.webelement import WebElement
 import time
 import pandas as pd
@@ -209,3 +209,73 @@ def scrape_all_indicator_history(start_date: datetime.date):
 
         news_data.to_csv(f"news_data/{haawks_id_str}_{event_id}_{name_formatted}.csv", index=False)
         print(f"Saving to news_data/{haawks_id_str}_{event_id}_{name_formatted}.csv")
+
+
+def update_indicator_history(haawks_id_str):
+    indicator_info =  get_indicator_info(haawks_id_str)
+    event_id = str(indicator_info['inv_id'])
+
+    url = "https://www.investing.com/economic-calendar/" + event_id
+    print("Scraping investing.com for any newer releases...")
+    print("Loading webpage...")
+    driver.get(url)
+
+    for filename in os.listdir("./news_data"):
+        if filename.startswith(haawks_id_str):
+            print(f"Reading local news data: {filename}")
+            local_news_data = pd.read_csv(f"./news_data/{filename}")
+            newest_local_release = str_to_datetime(local_news_data.loc[0]['Timestamp'])
+            oldest_local_release = str_to_datetime(local_news_data.loc[local_news_data.shape[0] - 1]['Timestamp'])
+            table = driver.find_element(By.ID, f"eventHistoryTable{event_id}")
+
+            scraped_news_data = pd.DataFrame(columns=['Timestamp', 'Prelim', 'Actual', 'Forecast', 'Previous'])
+            row_count = len(table.find_elements(By.XPATH, ".//tbody/tr"))
+            print(f"\r{scraped_news_data.shape[0]} new releases found. Updating local data", flush=True)
+            current_row = 0
+            for row in table.find_elements(By.XPATH, ".//tbody/tr"):
+
+                current_row += 1
+                release_date = row.find_element(By.XPATH, "./td[1]").text
+                release_time = row.find_element(By.XPATH, "./td[2]").text
+                timestamp_et = get_datetime(release_date, release_time)
+                timestamp_gmt = timestamp_et + datetime.timedelta(hours=5)
+
+                if row.find_elements(By.XPATH, "./td[2]/span[@class='smallGrayP']"):
+                    prelim = True
+                else:
+                    prelim = False
+
+                if newest_local_release < timestamp_et:
+                    scraped_news_data = scraped_news_data.append({
+                        'Timestamp': timestamp_gmt,
+                        'Prelim': prelim,
+                        'Actual': row.find_element(By.XPATH, "./td[3]/span").text,
+                        'Forecast': row.find_element(By.XPATH, "./td[4]").text,
+                        'Previous': row.find_element(By.XPATH, "./td[5]").text,
+
+                    }, ignore_index=True)
+
+            if scraped_news_data['Actual'].iloc[0].strip() == "":  # if actual is missing from first row then the event hasn't happened yet
+                scraped_news_data = scraped_news_data.drop(index=0).reset_index(drop=True)
+
+                for index, row in scraped_news_data.iterrows():
+
+                    print(f"\rCalculating deviation for: {row['Timestamp']} ({str(index + 1)}/{scraped_news_data.shape[0]})", end="",
+                          flush=True)
+                    try:
+                        actual = convert_news_data_to_float(haawks_id_str, row['Actual'])
+                        forecast = convert_news_data_to_float(haawks_id_str, row['Forecast'])
+                        deviation = round(get_deviation(actual, forecast), 4)
+                        scraped_news_data.loc[index, "Deviation"] = deviation
+                    except ValueError:
+                        print(f"\nForecast data missing from {row['Timestamp']}... Skipping")
+                # print(f"{scraped_news_data.shape[0]} new releases found on investing.com. Updating local data...")
+
+                updated_news_data = scraped_news_data.append(local_news_data)
+                save_news_data(haawks_id_str, updated_news_data)
+                breakpoint()
+
+
+
+
+update_indicator_history("30000")
