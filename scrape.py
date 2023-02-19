@@ -226,7 +226,10 @@ def update_indicator_history(haawks_id_str):
             local_news_data = pd.read_csv(f"./news_data/{filename}")
             newest_local_release = str_to_datetime(local_news_data.loc[0]['Timestamp'])
             oldest_local_release = str_to_datetime(local_news_data.loc[local_news_data.shape[0] - 1]['Timestamp'])
+            print(f"Most recent local data: {newest_local_release}")
+
             table = driver.find_element(By.ID, f"eventHistoryTable{event_id}")
+            expand_table(table, newest_local_release.date(), event_id)
 
             scraped_news_data = pd.DataFrame(columns=['Timestamp', 'Prelim', 'Actual', 'Forecast', 'Previous'])
             row_count = len(table.find_elements(By.XPATH, ".//tbody/tr"))
@@ -258,22 +261,24 @@ def update_indicator_history(haawks_id_str):
             if scraped_news_data['Actual'].iloc[0].strip() == "":  # if actual is missing from first row then the event hasn't happened yet
                 scraped_news_data = scraped_news_data.drop(index=0).reset_index(drop=True)
 
-                for index, row in scraped_news_data.iterrows():
+            print(f"Found {scraped_news_data.shape[0]} more recent releases.")
+            print(scraped_news_data)
 
-                    print(f"\rCalculating deviation for: {row['Timestamp']} ({str(index + 1)}/{scraped_news_data.shape[0]})", end="",
-                          flush=True)
-                    try:
-                        actual = convert_news_data_to_float(haawks_id_str, row['Actual'])
-                        forecast = convert_news_data_to_float(haawks_id_str, row['Forecast'])
-                        deviation = round(get_deviation(actual, forecast), 4)
-                        scraped_news_data.loc[index, "Deviation"] = deviation
-                    except ValueError:
-                        print(f"\nForecast data missing from {row['Timestamp']}... Skipping")
-                # print(f"{scraped_news_data.shape[0]} new releases found on investing.com. Updating local data...")
+            for index, row in scraped_news_data.iterrows():
 
-                updated_news_data = scraped_news_data.append(local_news_data)
-                save_news_data(haawks_id_str, updated_news_data)
-                breakpoint()
+                print(f"\rCalculating deviation for: {row['Timestamp']} ({str(index + 1)}/{scraped_news_data.shape[0]})", end="",
+                      flush=True)
+                try:
+                    actual = convert_news_data_to_float(haawks_id_str, row['Actual'])
+                    forecast = convert_news_data_to_float(haawks_id_str, row['Forecast'])
+                    deviation = round(get_deviation(actual, forecast), 4)
+                    scraped_news_data.loc[index, "Deviation"] = deviation
+                except ValueError:
+                    print(f"\nForecast data missing from {row['Timestamp']}... Skipping")
+            # print(f"{scraped_news_data.shape[0]} new releases found on investing.com. Updating local data...")
+
+            updated_news_data = scraped_news_data.append(local_news_data)
+            save_news_data(haawks_id_str, updated_news_data)
 
 
 
