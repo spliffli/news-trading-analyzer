@@ -212,7 +212,7 @@ def scrape_all_indicator_history(start_date: datetime.date):
 
 
 def update_indicator_history(haawks_id_str):
-    indicator_info =  get_indicator_info(haawks_id_str)
+    indicator_info = get_indicator_info(haawks_id_str)
     event_id = str(indicator_info['inv_id'])
 
     url = "https://www.investing.com/economic-calendar/" + event_id
@@ -280,7 +280,4 @@ def update_indicator_history(haawks_id_str):
             updated_news_data = scraped_news_data.append(local_news_data)
             save_news_data(haawks_id_str, updated_news_data)
 
-
-
-
-update_indicator_history("30000")
+            return updated_news_data

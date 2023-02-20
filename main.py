@@ -3,6 +3,7 @@ import os
 
 from import_ticks import import_ticks_for_indicator
 from analyze_data import read_news_data, read_triggers, load_news_pip_data, calc_news_pip_metrics, news_pip_metrics_to_dfs
+from scrape import update_indicator_history
 
 try:
     import curses  # Try to import the curses module
@@ -213,9 +214,8 @@ class MyApp:
         trading_symbol = input()[:20]
 
         # Perform analysis on the selected indicator and trading symbol
-
+        news_data = update_indicator_history(haawks_id_str)
         import_ticks_for_indicator(haawks_id_str, trading_symbol)
-        news_data = read_news_data(haawks_id_str)
         triggers = read_triggers(haawks_id_str)
         news_pip_data = load_news_pip_data(haawks_id_str, news_data, trading_symbol)
         news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bearish")
