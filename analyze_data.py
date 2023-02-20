@@ -4,7 +4,7 @@ import os
 import math
 import json
 import warnings
-from utils import str_to_datetime, datetime_to_str, haawks_id_to_str, read_news_data, save_news_data, get_indicator_info
+from utils import str_to_datetime, datetime_to_str, haawks_id_to_str, read_news_data, save_news_data, get_indicator_info, convert_news_data_to_float, get_deviation
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -600,20 +600,22 @@ def calc_correlation_2_score(values: list, expected_direction="positive"):
     return correlation_2_score
 
 
-def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
+def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, underlying_currency_higher_dev):
     """
     Calculate news pip metrics for each trigger.
 
     Args:
         news_pip_data (dict): A dictionary containing news pip data.
         triggers (dict): A dictionary containing trigger names and corresponding deviation values.
-        higher_dev (str): The expected direction of higher deviations. Can be "bullish" or "bearish".
+        underlying_currency_higher_dev (str): The expected direction of higher deviations. Can be "bullish" or "bearish".
 
     Returns:
         news_pip_metrics (dict): A dictionary containing news pip metrics for each trigger.
 
     """
     news_pip_metrics = {}
+    indicator_info = get_indicator_info(haawks_id_str)
+    inv_currency = indicator_info['inv_currency']
 
     for trigger in triggers:
         news_pip_metrics[trigger] = {}
@@ -674,19 +676,19 @@ def calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bullish"):
             # Calculate the range of the pips values as a tuple of the minimum and maximum values
             range = (min(values), max(values))
 
-            if higher_dev == "bullish":
+            if underlying_currency_higher_dev == "positive":
                 # Calculate the correlation 1 score for positive expected direction
                 correlation_1_score = calc_correlation_1_score(values, expected_direction="positive")
                 # Calculate the correlation 2 score for positive expected direction
                 correlation_2_score = calc_correlation_2_score(values, expected_direction="positive")
-            elif higher_dev == "bearish":
+            elif underlying_currency_higher_dev == "negative":
                 # Calculate the correlation 1 score for negative expected direction
                 correlation_1_score = calc_correlation_1_score(values, expected_direction="negative")
                 # Calculate the correlation 2 score for negative expected direction
                 correlation_2_score = calc_correlation_2_score(values, expected_direction="negative")
             else:
                 # Raise an exception if higher_dev is not "bullish" or "bearish"
-                raise ValueError("higher_dev must be 'bearish' or 'bullish'")
+                raise ValueError("higher_dev must be 'positive' or 'negative'")
 
             # Calculate the average of the two correlation scores, rounded to 1 decimal place
             correlation_3_score = round((correlation_1_score + correlation_2_score) / 2, 1)
@@ -821,18 +823,18 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
     return news_pip_metrics
 
 
-def calc_news_pip_metrics_for_multiple_indicators(indicators_and_symbols: list[tuple[str, str]]):
+def calc_news_pip_metrics_for_multiple_indicators(haawks_id_strs_and_symbols: list[tuple[str, str]]):
     result = {}
 
-    for indicator_and_symbol in indicators_and_symbols:
-        indicator = indicator_and_symbol[0]
-        title = get_indicator_info(indicator)['inv_title']
-        symbol = indicator_and_symbol[1]
-        news_data = read_news_data(indicator)
-        triggers = read_triggers(indicator)
-        news_pip_data = load_news_pip_data(indicator, news_data, symbol)
-        news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers)
-        result.setdefault(f"{indicator}_{symbol} {title}", news_pip_metrics)
+    for haawks_id_str_and_symbol in haawks_id_strs_and_symbols:
+        haawks_id_str = haawks_id_str_and_symbol[0]
+        title = get_indicator_info(haawks_id_str)['inv_title']
+        symbol = haawks_id_str_and_symbol[1]
+        news_data = read_news_data(haawks_id_str)
+        triggers = read_triggers(haawks_id_str)
+        news_pip_data = load_news_pip_data(haawks_id_str, news_data, symbol)
+        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, symbol, news_pip_data, triggers)
+        result.setdefault(f"{haawks_id_str}_{symbol} {title}", news_pip_metrics)
 
     return result
 

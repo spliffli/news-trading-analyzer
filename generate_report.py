@@ -9,7 +9,7 @@ template = env.get_template('reports/template/report-template.html')
 news_data = read_news_data("10290")
 triggers = read_triggers("10290")
 news_pip_data = load_news_pip_data("10290", news_data, "USDCAD")
-news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bearish")
+news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers, underlying_currency_higher_dev="bearish")
 news_pip_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
 
 template_vars = {
