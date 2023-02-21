@@ -4,12 +4,12 @@
 <h1>{{ title }}</h1>
 <body>
   <div>
-    <h3>Haawks ID: {{ haawks_id }} | Symbol: {{ symbol }} | Importance: {{ importance }} | Positive Deviation: {{ bullish_or_bearish }}
+    <h3>Haawks ID: {{ haawks_id }} | Symbol: {{ symbol }} | Importance: {{ importance }} | Positive Deviation: {{ bullish_or_bearish }}</h3>
     <h3>Description: </h3>
       <p>{{ description }}</p>
     <h3>Note:</h3>
     <p>The data below was calculated using historic news & tick data of {{ no_of_releases }} releases from {{ start_date }} to {{ end_date }}.</p>
-    <p>It combines the data from releases with positive deviations and releases with negative deviations. For the releases with negative deviations, the pip movements were multiplied by -1 to conform with the data from positive deviations. Therefore, a positive number signifies movement in the expected direction and a negative number signifies movement in the opposite direction. Later I will change this template to show the seperate data for positive and negative deviations</p>
+    <p>It combines the data from releases with positive deviations and releases with negative deviations. For the releases with negative deviations, the pip movements were multiplied by -1 to conform with the data from positive deviations. If a higher deviation is bullish for the trading symbol, a positive number signifies movement in the expected direction and a negative number signifies movement in the opposite direction. If a higher deviation is bearish then the opposite is true.</p>
   </div>
   <div class="key">
     <h3>Key:</h3>
@@ -27,26 +27,26 @@
         </tr>
         <tr>
           <td>Range</td>
-          <td>The range of the pip movements (positive number means it moved in the expected direction, negative number means it moved in the opposite direction)</td>
+          <td>The range of the pip movements</td>
         </tr>
         <tr>
           <td>Mean</td>
-          <td>The mean average of the pip movements for all releases calculated by adding them all up and dividing by the number of releases in the data set.</td>
+          <td>The mean average of the pip movements for all releases for each trigger</td>
         </tr>
         <tr>
           <td>Median</td>
-          <td>The median average of the pip movements of all releases which is the middle value of the data set</td>
+          <td>The median average of the pip movements of all releases for each trigger</td>
         </tr>
         <tr>
-          <td>Correlation 1 Score</td>
-          <td>Calculated as a percentage of how many times the asset moved in the expected direction vs. the opposite direction</td>
+          <td>Correlation 1 Score (c_1)</td>
+          <td>Percentage of how many times the asset moved in the expected direction</td>
         </tr>
         <tr>
-          <td>Correlation 2 Score</td>
-          <td>Calculated based on the amount of pips which moved in the expected direction vs. the opposite direction</td>
+          <td>Correlation 2 Score (c_2)</td>
+          <td>Percentage of pips which moved in the expected direction vs. the opposite direction</td>
         </tr>
         <tr>
-          <td>Correlation 3 Score</td>
+          <td>Correlation 3 Score (c_3)</td>
           <td>The mean average of the Correlation 1 & 2 scores</td>
         </tr>
       </tbody>
@@ -54,19 +54,19 @@
   </div>
   <br>
   <div>
-    <h3>Trigger 1</h3>
+    <h3>Trigger 1: +-{{ trigger_1 }}{{ suffix }}</h3>
   {{ trigger_1_data }}
   </div>
 <div>
-  <h3>Trigger 2</h3>
+  <h3>Trigger 2: +-{{ trigger_2 }}{{ suffix }}</h3>
   {{ trigger_2_data }}
   </div>
 <div>
-  <h3>Trigger 3</h3>
+  <h3>Trigger 3: +-{{ trigger_3 }}{{ suffix }}</h3>
   {{ trigger_3_data }}
   </div>
 <div>
-  <h3>Trigger 4</h3>
+  <h3>Trigger 4: +-{{ trigger_4 }}{{ suffix }}</h3>
   {{ trigger_4_data }}
   </div>
 </body>
