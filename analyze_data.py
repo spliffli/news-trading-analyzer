@@ -623,10 +623,11 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, underlying_cur
     for timestamp in news_pip_data:
         # Retrieve deviation value and check if it is negative
         deviation = news_pip_data[timestamp]['deviation']
-        negative_dev = False
         if deviation < 0:
             deviation = deviation * -1
             negative_dev = True
+        else:
+            negative_dev = False
 
         for index, trigger in enumerate(list(triggers.items())):
             # Check if deviation falls within the range of the current trigger

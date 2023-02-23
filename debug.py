@@ -9,7 +9,7 @@ from generate_report import generate_report
 trading_symbol = "USDCAD"
 
 # Perform analysis on the selected indicator and trading symbol
-haawks_id_str = "10270"
+haawks_id_str = "10290"
 indicator_info = get_indicator_info(haawks_id_str)
 underlying_currency = indicator_info['inv_currency']
 underlying_currency_higher_dev = indicator_info['higher_dev']

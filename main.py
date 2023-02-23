@@ -28,7 +28,7 @@ class MyApp:
         curses.cbreak()  # React to key presses immediately
         self.stdscr.keypad(True)  # Enable special keys like the function keys and arrow keys
 
-        # Define a list of items to display and analyze
+        # Define a list of items to display for analysis
         self.header = "Please select an indicator to analyze:"
         self.items = [
             "30000  U.S. Crude Oil Inventories",
