@@ -306,6 +306,9 @@ def mine_pip_data_from_ticks(news_data, symbol, release_datetime):
 
     tick_data = read_tick_data(symbol, release_datetime)
 
+    if tick_data.shape[0] == 0:
+        raise ValueError("Tick data is empty")
+
     prices = get_prices_at_time_deltas(release_datetime, tick_data)
     release_price = get_release_time_price(release_datetime, tick_data)
     decimal_places = get_decimal_places_from_tick_data(tick_data)
@@ -361,17 +364,23 @@ def load_news_pip_data(haawks_id, news_data, symbol):
 
     for index, timestamp in enumerate(timestamps_to_mine):
         print(f"\rMining pip data from {timestamp} ({index + 1}/{len(timestamps_to_mine)})", end="", flush=True)
-        data = mine_pip_data_from_ticks(news_data, symbol, timestamp)
         timestamp_str = datetime_to_str(timestamp)
-        news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', data)
 
-        for index, row in news_data.iterrows():
-            if row['Timestamp'] == timestamp_str:
-                try:
-                    news_pip_data[timestamp_str]['deviation'] = row['Deviation']
-                    break
-                except KeyError:
-                    news_pip_data[timestamp_str]['deviation'] = None
+        try:
+            data = mine_pip_data_from_ticks(news_data, symbol, timestamp)
+
+            news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', data)
+
+            for index, row in news_data.iterrows():
+                if row['Timestamp'] == timestamp_str:
+                    try:
+                        news_pip_data[timestamp_str]['deviation'] = row['Deviation']
+                        break
+                    except KeyError:
+                        news_pip_data[timestamp_str]['deviation'] = None
+        except ValueError:
+            # This should only happen if the tick data is empty which occasionally happens
+            continue
 
     news_pip_data = sort_news_pip_data_by_timestamp(news_pip_data)
     print("\nsaving mined data to file")
@@ -631,11 +640,13 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, underlying_cur
 
         for index, trigger in enumerate(list(triggers.items())):
             # Check if deviation falls within the range of the current trigger
+            if trigger[1] == 0:
+                continue
             if index == len(triggers) - 1:
-                if deviation >= triggers[trigger[0]]:
+                if deviation >= trigger[1]:
                     break  # Keeps trigger at current value before continuing
             else:
-                if triggers[trigger[0]] <= deviation < list(triggers.items())[index + 1][1]:
+                if trigger[1] <= deviation < list(triggers.items())[index + 1][1]:
                     break  # Keeps trigger at current value before continuing
 
         for time_delta in news_pip_data[timestamp]['pips']:
@@ -664,7 +675,8 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, underlying_cur
                     pips = bid
 
             # Add pips to the corresponding trigger and time delta
-            news_pip_metrics[trigger[0]].setdefault(time_delta, []).append(pips)
+            if trigger[1] != 0:
+                news_pip_metrics[trigger[0]].setdefault(time_delta, []).append(pips)
 
     for trigger in news_pip_metrics:
         for time_delta, values in news_pip_metrics[trigger].items():
@@ -888,8 +900,11 @@ def news_pip_trigger_data_to_df(trigger_data):
 def news_pip_metrics_to_dfs(news_pip_metrics):
     dfs = {}
     for trigger in news_pip_metrics:
-        dfs[trigger] = news_pip_trigger_data_to_df(news_pip_metrics[trigger])
-        print(f"{trigger}\n{dfs[trigger]}")
+        if len(news_pip_metrics[trigger]) > 0:
+            dfs[trigger] = news_pip_trigger_data_to_df(news_pip_metrics[trigger])
+            print(f"{trigger}\n{dfs[trigger]}")
+        else:
+            continue
 
     return dfs
 

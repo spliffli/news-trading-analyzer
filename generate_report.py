@@ -55,15 +55,12 @@ def generate_report(haawks_id_str, symbol, news_data, news_pip_metrics_dfs, trig
         "start_date": start_date,
         "end_date": end_date,
         "suffix": indicator_info['suffix'],
-        "trigger_1": triggers['trigger_1'],
-        "trigger_2": triggers['trigger_2'],
-        "trigger_3": triggers['trigger_3'],
-        "trigger_4": triggers['trigger_4'],
-        "trigger_1_data": news_pip_metrics_dfs['trigger_1'].to_html(index=False),
-        "trigger_2_data": news_pip_metrics_dfs['trigger_2'].to_html(index=False),
-        "trigger_3_data": news_pip_metrics_dfs['trigger_3'].to_html(index=False),
-        "trigger_4_data": news_pip_metrics_dfs['trigger_4'].to_html(index=False)
     }
+
+    for trigger in news_pip_metrics_dfs:
+        template_vars[trigger] = triggers[trigger]
+        template_vars[f"{trigger}_data"] = news_pip_metrics_dfs[trigger].to_html(index=False)
+
     print("Generating report...")
     html_out = template.render(template_vars)
     filename = f"{haawks_id_str}_{symbol}__{start_date}_{end_date}.pdf"
