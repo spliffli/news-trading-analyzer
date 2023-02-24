@@ -63,6 +63,7 @@ def generate_report(haawks_id_str, symbol, news_data, news_pip_metrics_dfs, trig
 
     print("Generating report...")
     html_out = template.render(template_vars)
-    filename = f"{haawks_id_str}_{symbol}__{start_date}_{end_date}.pdf"
-    HTML(string=html_out).write_pdf(filename, stylesheets=["reports/template/report-style.css"])
-    print(f"Report saved to {filename}")
+    title_underscored = indicator_info['inv_title'].replace(" ", "_").replace(".", "").replace(",", "")
+    filepath = f"reports/{haawks_id_str}_{symbol}_{title_underscored}__{start_date}_{end_date}.pdf"
+    HTML(string=html_out).write_pdf(filepath, stylesheets=["reports/template/report-style.css"])
+    print(f"Report saved to {filepath}")

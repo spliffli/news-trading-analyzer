@@ -609,14 +609,14 @@ def calc_correlation_2_score(values: list, expected_direction="positive"):
     return correlation_2_score
 
 
-def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, underlying_currency_higher_dev):
+def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_dev):
     """
     Calculate news pip metrics for each trigger.
 
     Args:
         news_pip_data (dict): A dictionary containing news pip data.
         triggers (dict): A dictionary containing trigger names and corresponding deviation values.
-        underlying_currency_higher_dev (str): The expected direction of higher deviations. Can be "bullish" or "bearish".
+        symbol_higher_dev (str): The expected direction of higher deviations. Can be "bullish" or "bearish".
 
     Returns:
         news_pip_metrics (dict): A dictionary containing news pip metrics for each trigger.
@@ -689,19 +689,19 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, underlying_cur
             # Calculate the range of the pips values as a tuple of the minimum and maximum values
             range = (min(values), max(values))
 
-            if underlying_currency_higher_dev == "positive":
+            if symbol_higher_dev == "bullish":
                 # Calculate the correlation 1 score for positive expected direction
                 correlation_1_score = calc_correlation_1_score(values, expected_direction="positive")
                 # Calculate the correlation 2 score for positive expected direction
                 correlation_2_score = calc_correlation_2_score(values, expected_direction="positive")
-            elif underlying_currency_higher_dev == "negative":
+            elif symbol_higher_dev == "bearish":
                 # Calculate the correlation 1 score for negative expected direction
                 correlation_1_score = calc_correlation_1_score(values, expected_direction="negative")
                 # Calculate the correlation 2 score for negative expected direction
                 correlation_2_score = calc_correlation_2_score(values, expected_direction="negative")
             else:
                 # Raise an exception if higher_dev is not "bullish" or "bearish"
-                raise ValueError("higher_dev must be 'positive' or 'negative'")
+                raise ValueError("higher_dev must be 'bullish' or 'bearish'")
 
             # Calculate the average of the two correlation scores, rounded to 1 decimal place
             correlation_3_score = round((correlation_1_score + correlation_2_score) / 2, 1)

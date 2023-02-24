@@ -33,7 +33,6 @@ class MyApp:
         self.items = [
             "30000  U.S. Crude Oil Inventories",
             "30001  U.S. Gasoline Inventories",
-            "30002  U.S. Distillate Fuel Production",
             "30008  U.S. Cushing Crude Oil Inventories",
             "30010  U.S. Natural Gas Storage",
             "10000  U.S. Nonfarm Payrolls",
@@ -107,7 +106,6 @@ class MyApp:
             "10370  Canada Raw Materials Price Index (RMPI) MoM",
             "10380  Canada Labor Productivity QoQ",
             "10390  Canada Gross Domestic Product (GDP) Annualized QoQ",
-            "00003  Russia Interest Rate Decision",
             "00013  Turkey One-Week Repo Rate",
             "00017  Norway Interest Rate Decision",
             "00021  Eurozone Interest Rate Decision",

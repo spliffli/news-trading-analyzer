@@ -83,10 +83,7 @@ def get_higher_dev_expected_direction(symbol, inv_currency, higher_dev):
         while input_str not in ['bullish', 'bearish']:
             input_str = input("Type either 'bullish' or 'bearish': ")
 
-        if input_str == "bullish":
-            return "positive"
-        elif input_str == "bearish":
-            return "negative"
+        return input_str
 
     if inv_currency in symbol:
         if symbol.startswith(inv_currency):
@@ -98,17 +95,17 @@ def get_higher_dev_expected_direction(symbol, inv_currency, higher_dev):
 
         if underlying_currency_position == 'base' and higher_dev == 'bullish':
             print(f"A positive news deviation is bullish for {inv_currency} which is the base currency in {symbol}, so a positive deviation is also bullish for {symbol}.")
-            return 'positive'
+            return 'bullish'
         elif underlying_currency_position == 'base' and higher_dev == 'bearish':
             print(
                 f"A positive news deviation is bearish for {inv_currency} which is the base currency in {symbol}, so a positive deviation is also bearish for {symbol}.")
-            return 'negative'
+            return 'bearish'
         elif underlying_currency_position == 'quote' and higher_dev == 'bullish':
             print(f"A positive news deviation is bullish for {inv_currency} which is the quote currency in {symbol}, so a positive deviation is bearish for {symbol}.")
-            return 'negative'
+            return 'bearish'
         elif underlying_currency_position == 'quote' and higher_dev == 'bearish':
             print(f"A positive news deviation is bearish for {inv_currency} which is the quote currency in {symbol}, so a positive deviation is bullish for {symbol}.")
-            return 'positive'
+            return 'bullish'
     else:
         print(f"The underlying currency for this indicator according to investing.com ({inv_currency}) is not in {symbol}. Please manually input whether a higher deviation is bullish or bearish for {symbol}. (This affects the calculation of the correlation scores).")
         input_str = ""
