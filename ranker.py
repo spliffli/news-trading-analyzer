@@ -8,7 +8,7 @@ from collections import Counter
 import os
 
 indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
-indicators = indicators.loc[:5]
+# indicators = indicators.loc[:5]
 
 
 def get_best_trigger(news_pip_metrics_dfs):

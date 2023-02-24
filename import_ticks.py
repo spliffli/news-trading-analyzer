@@ -87,7 +87,7 @@ def import_ticks_for_indicator(haawks_id, symbol):
                 print("Truncating tick data")
                 try:
                     tick_df = truncate_tick_data(tick_df, tick_start_dt, tick_end_dt)
-                except TypeError:
+                except:
                     print(f"tick data for {timestamp} invalid")
                 os.remove(f"./tick_data/{downloaded_tick_data_filename}")
                 new_filename = f"{symbol}__{release_date_hyphenated}__{tick_start_dt.strftime('%H-%M-%S')}_{tick_end_dt.strftime('%H-%M-%S')}.csv"
