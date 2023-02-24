@@ -2,7 +2,7 @@ from import_ticks import import_ticks_for_indicator
 from analyze_data import read_triggers, load_news_pip_data, calc_news_pip_metrics, news_pip_metrics_to_dfs, read_news_data
 from utils import get_indicator_info, get_higher_dev_expected_direction, haawks_id_to_str
 from scrape import update_indicator_history
-# from generate_report import generate_report
+from generate_report import generate_report
 import pandas as pd
 from collections import Counter
 import os
@@ -41,7 +41,7 @@ for index, row in indicators.iterrows():
     news_pip_data = load_news_pip_data(haawks_id_str, news_data, trading_symbol)
     news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_dev)
     news_pip_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
-    # generate_report(haawks_id_str, trading_symbol, news_data, news_pip_metrics_dfs, triggers, symbol_higher_dev, indicator_info)
+    generate_report(haawks_id_str, trading_symbol, news_data, news_pip_metrics_dfs, triggers, symbol_higher_dev, indicator_info)
 
     best_trigger = get_best_trigger(news_pip_metrics_dfs)
 
