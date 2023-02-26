@@ -66,7 +66,7 @@ def get_indicator_suffix(haawks_id):
             return suffix
 
 def convert_news_data_to_float(haawks_id_str: str, data_str: str):
-    suffix = get_indicator_info(haawks_id_str)['suffix']
+    suffix = get_indicator_suffix(haawks_id_str)
     data_str = str(data_str)
     data = float(data_str.replace(suffix, "").replace(",", ""))
     return data

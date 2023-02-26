@@ -1,7 +1,7 @@
 from import_ticks import import_ticks_for_indicator
 from analyze_data import read_triggers, load_news_pip_data, calc_news_pip_metrics, news_pip_metrics_to_dfs, read_news_data
 from utils import get_indicator_info, get_higher_dev_expected_direction, haawks_id_to_str
-from scrape import update_indicator_history
+# from scrape import update_indicator_history
 from generate_report import generate_report
 import pandas as pd
 from collections import Counter
@@ -37,9 +37,9 @@ for index, row in indicators.iterrows():
     symbol_higher_dev = get_higher_dev_expected_direction(trading_symbol, underlying_currency,
                                                           underlying_currency_higher_dev)
 
-    news_data = update_indicator_history(haawks_id_str)
+    # news_data = update_indicator_history(haawks_id_str)
 
-    # news_data = read_news_data(haawks_id_str)
+    news_data = read_news_data(haawks_id_str)
     import_ticks_for_indicator(haawks_id_str, trading_symbol)
     triggers = read_triggers(haawks_id_str)
     news_pip_data = load_news_pip_data(haawks_id_str, news_data, trading_symbol)
