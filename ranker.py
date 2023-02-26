@@ -8,7 +8,7 @@ from collections import Counter
 import os
 
 indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
-# indicators = indicators.loc[:5]
+indicators = indicators.loc[3:].reset_index()
 
 
 def get_best_trigger(news_pip_metrics_dfs):
@@ -30,11 +30,15 @@ for index, row in indicators.iterrows():
     underlying_currency = indicator_info['inv_currency']
     underlying_currency_higher_dev = indicator_info['higher_dev']
     trading_symbol = indicator_info['default_symbol']
-    symbol_higher_dev = get_higher_dev_expected_direction(trading_symbol, underlying_currency, underlying_currency_higher_dev)
 
-    print(f"Indicator {int(index) + 1}/{indicators.shape[0]}: {indicator_info['inv_title']} ({trading_symbol})")
+    print("\n----------------------------------------\n"
+          f"Indicator {int(index) + 1}/{indicators.shape[0]}: {indicator_info['inv_title']} ({trading_symbol})")
+
+    symbol_higher_dev = get_higher_dev_expected_direction(trading_symbol, underlying_currency,
+                                                          underlying_currency_higher_dev)
 
     news_data = update_indicator_history(haawks_id_str)
+
     # news_data = read_news_data(haawks_id_str)
     import_ticks_for_indicator(haawks_id_str, trading_symbol)
     triggers = read_triggers(haawks_id_str)

@@ -15,10 +15,14 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 chromedriver_autoinstaller.install()
 options = Options()
 options.headless = True  # hide GUI
-options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
+# options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
 options.add_argument("start-maximized")  # ensure window is full-screen
 options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})  # Load without images
-
+options.add_argument("start-maximized")
+options.add_argument("disable-infobars")
+options.add_argument("--disable-extensions")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(options=options)
 
 
@@ -233,7 +237,7 @@ def update_indicator_history(haawks_id_str):
 
             scraped_news_data = pd.DataFrame(columns=['Timestamp', 'Prelim', 'Actual', 'Forecast', 'Previous'])
             row_count = len(table.find_elements(By.XPATH, ".//tbody/tr"))
-            print(f"\r{scraped_news_data.shape[0]} new releases found. Updating local data", flush=True)
+            # print(f"\r{scraped_news_data.shape[0]} new releases found. Updating local data", flush=True)
             current_row = 0
             for row in table.find_elements(By.XPATH, ".//tbody/tr"):
 
@@ -248,7 +252,7 @@ def update_indicator_history(haawks_id_str):
                 else:
                     prelim = False
 
-                if newest_local_release < timestamp_et:
+                if newest_local_release < timestamp_gmt < datetime.datetime.now():
                     scraped_news_data = scraped_news_data.append({
                         'Timestamp': timestamp_gmt,
                         'Prelim': prelim,
