@@ -11,7 +11,7 @@ template = env.get_template('reports/template/report-template.html')
 """
 template_vars = {
     "title": "Canada Employment Change",
-    "haawks_id": "10290",
+    "haawks_id_str": "10290",
     "symbol": "USDCAD",
     "importance": "***",
     "bullish_or_bearish": "bearish",
@@ -46,7 +46,7 @@ def generate_report(haawks_id_str, symbol, news_data, news_pip_metrics_dfs, trig
 
     template_vars = {
         "title": indicator_info['inv_title'],
-        "haawks_id": haawks_id_str,
+        "haawks_id_str": haawks_id_str,
         "symbol": symbol,
         "importance": importance,
         "bullish_or_bearish": symbol_higher_dev,

@@ -326,9 +326,9 @@ def sort_news_pip_data_by_timestamp(news_pip_data):
     return sorted_dict
 
 
-def load_news_pip_data(haawks_id, news_data, symbol):
+def load_news_pip_data(haawks_id_str, news_data, symbol):
     # news_data = news_data.iloc[:7]  # FOR TESTING, shortens the dataframe to be quicker
-    indicator_info = get_indicator_info(haawks_id)
+    indicator_info = get_indicator_info(haawks_id_str)
 
     news_pip_data = {}
     row_count = news_data.shape[0]
@@ -341,7 +341,7 @@ def load_news_pip_data(haawks_id, news_data, symbol):
 
     print(f"Loading news pip data for {indicator_info['inv_title']}: {start_datetime} - {end_datetime}")
 
-    local_data = read_news_pip_data(haawks_id, symbol)
+    local_data = read_news_pip_data(haawks_id_str, symbol)
     if local_data['data_exists']:
         local_data_start = local_data['start']
         local_data_end = local_data['end']
@@ -384,7 +384,7 @@ def load_news_pip_data(haawks_id, news_data, symbol):
 
     news_pip_data = sort_news_pip_data_by_timestamp(news_pip_data)
     print("\nsaving mined data to file")
-    save_news_pip_data(haawks_id, symbol, news_pip_data)
+    save_news_pip_data(haawks_id_str, symbol, news_pip_data)
 
     return news_pip_data
 

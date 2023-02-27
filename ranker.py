@@ -7,8 +7,13 @@ import pandas as pd
 from collections import Counter
 import os
 
+results_file = pd.read_excel('./reports/ranker_results.xls')
+results_length = results_file.shape[0]
+
 indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
-indicators = indicators.loc[3:].reset_index()
+indicators = indicators.loc[results_length:].reset_index()
+
+
 
 
 def get_best_trigger(news_pip_metrics_dfs):
@@ -58,7 +63,7 @@ for index, row in indicators.iterrows():
             break
 
     if not results_file_exists:
-        results = pd.DataFrame(columns=['haawks_id', 'haawks_title', 'inv_title', 'symbol', 'higher_dev', 'best_trigger', 'range (pips)', 'mean (pips)', 'median (pips)', 'c_1', 'c_2', 'c_3'])
+        results = pd.DataFrame(columns=['haawks_id_str', 'haawks_title', 'inv_title', 'symbol', 'higher_dev', 'best_trigger', 'range (pips)', 'mean (pips)', 'median (pips)', 'c_1', 'c_2', 'c_3'])
 
     results = results.append({
         'haawks_id': haawks_id_str,

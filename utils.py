@@ -31,12 +31,12 @@ def get_indicator_info(haawks_id_str):
             for index, value in enumerate(row.values):
                 indicator_info[cols[index]] = value
             return indicator_info
-    raise ValueError("Invalid haawks_id")
+    raise ValueError("Invalid haawks_id_str")
 
 def read_news_data(haawks_id_str):
     # loop through all the files in the news_data directory
     for filename in os.listdir('./news_data'):
-        # check if the filename starts with the haawks_id provided
+        # check if the filename starts with the haawks_id_str provided
         if filename.startswith(haawks_id_str):
             # if the filename matches, read the CSV file into a Pandas dataframe
             news_data = pd.read_csv(f"./news_data/{filename}")
