@@ -646,8 +646,12 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                 if deviation >= trigger[1]:
                     break  # Keeps trigger at current value before continuing
             else:
-                if trigger[1] <= deviation < list(triggers.items())[index + 1][1]:
-                    break  # Keeps trigger at current value before continuing
+                if list(triggers.items())[index + 1][1] > 0:
+                    if trigger[1] <= deviation < list(triggers.items())[index + 1][1]:
+                        break  # Keeps trigger at current value before continuing
+                else:
+                    if trigger[1] <= deviation:
+                        break  # Keeps trigger at current value before continuing
 
         for time_delta in news_pip_data[timestamp]['pips']:
             # Retrieve ask and bid values for the given time delta
@@ -661,14 +665,14 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
             # Determine the direction of the pips (positive or negative)
             if ask < 0 and bid < 0:  # ask/bid both negative
                 pips = bid
-            elif ask > 0 and bid > 0:  # ask/bid both positive
+            elif ask >= 0 and bid >= 0:  # ask/bid both positive
                 pips = ask
             elif ask < 0 and bid > 0:  # ask negative and bid positive (This should never happen)
                 if bid > ask * -1:
                     pips = bid
                 else:
                     pips = ask
-            elif ask > 0 and bid < 0:  # ask positive and bid negative
+            elif ask >= 0 and bid < 0:  # ask positive and bid negative
                 if ask > bid * -1:
                     pips = ask
                 else:
