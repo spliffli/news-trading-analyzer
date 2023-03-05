@@ -63,3 +63,74 @@ This is meant for use with [haawks.com](https://haawks.com) G4A API or news trad
   - [ ] recommended news triggers derived from the above data. Not exactly sure what formula this will use, and maybe it will offer several different recommendations depending on how long you intend to keep the trade open, and/or how many pips you want to capture.
   - [ ] recommended stoploss & takeprofit, estimated slippage can be an input
 - [ ] Once all that data is mined, it would be nice to generate a pdf report
+
+## Part 4: Generating a schedule pdf
+
+### Outline:
+
+- [ ] For indicators with a c_3 score of 80+, scrape the investing.com economic calendar for the next week to see if any of those indicators are scheduled to be released
+- [ ] If an indicator is scheduled to be released, make an entry in the local schedule and include as much useful information as possible such as:
+  - [ ] Recommended triggers:
+    - The trigger with the highest c_3 score
+    - Any triggers below the best trigger to set with a lower amount of money
+
+### Steps:
+
+1. Scrape economic calendar from investing.com
+  - Open `https://www.investing.com/economic-calendar/` in selenium
+  - Find filters section on the dom
+  - clear all countries
+  - select countries:
+    - USA (USD)
+    - Canada (CAD)
+    - Norway (NOK)
+    - Sweden (SEK)
+    - Poland (PLN)
+    - Turkey (TRY)
+    - European Union (EUR)
+  - Select all categories
+  - Select all importance levels
+  - Apply filter
+  - if weekday:
+    - Show results for current week
+  - if weekend:
+    - show results for the upcoming monday-friday
+1. Open ranker results file as df
+2. Loop through each row of ranker results:
+  - Get the indicator's investing.com id
+  - if there are any events which match the investing.com id:
+    - get event datetime
+    - add indicator to upcoming indicators df
+    
+3. For each upcoming indicator:
+  - fill in vars to html template div- Date:
+    - Event title
+    - Event time
+  - if c_3 > 80:
+    - get news_pips_metrics_dfs for current indicator
+    - get best trigger and any triggers below it which have c_3 above 80 (up to 3 triggers)
+    - for each valid trigger:
+      - if c_3 < 85:
+        - lot size = 0.5/$1000
+      - if 85 < c_3 < 90:
+        - lot size = 0.75/$1000
+      - if 95 >  c_3 > 90:
+        - lot size = 1/$1000
+      - if c3 > 95:
+        - lot size = 1.5/$1000
+      - for each trigger append variables to html template div
+        - Trigger name ie. 
+          - -LT3
+          - -LT2
+          - -LT1
+          - +UT1
+          - +UT2
+          - +UT3
+        - Trigger deviation
+        - c_1
+        - c_2
+        - c_3
+        - lot size
+      - append html to trigger recommendations html
+5. render trigger recommendations as a variable in an html template 
+4. Convert output html into a pdf file
