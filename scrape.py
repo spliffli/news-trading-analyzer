@@ -1,8 +1,13 @@
 import datetime
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+
+from dateutil.tz import tzoffset
+
 from utils import haawks_id_to_str, str_to_datetime, get_indicator_info, save_news_data, read_news_data, convert_news_data_to_float, get_deviation
 from selenium.webdriver.remote.webelement import WebElement
 import time
@@ -15,7 +20,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 chromedriver_autoinstaller.install()
 options = Options()
 options.add_argument("--no-sandbox")
-options.add_argument("--headless")  # hide GUI
+# options.add_argument("--headless")  # hide GUI
 # options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
 options.add_argument("start-maximized")  # ensure window is full-screen
 options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})  # Load without images
@@ -288,3 +293,65 @@ def update_indicator_history(haawks_id_str):
             else:
                 print("No new releases found. No need to update local data.")
                 return local_news_data
+
+def check_if_saturday():
+    tzinfo = tzoffset(None, -5.0 * 3600) # EST
+    today = datetime.datetime.now(tzinfo).today().strftime('%A')
+
+    if today == 'Saturday':
+        return True
+    else:
+        return False
+
+def prepare_calendar():
+    driver.get("https://www.investing.com/economic-calendar/")
+    time.sleep(1)
+    driver.execute_script("clearAll('country[]');")
+
+    # Click country checkboxes for USD, CAD, NOK, SEK, PLN, TRY & EUR
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country5"))  # USA (USD)
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country6"))  # Canada (CAD)
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country60"))  # Norway (NOK)
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country9"))  # Sweden (SEK)
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country53"))  # Poland (PLN)
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country63"))  # Turkey (TRY)
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country72"))  # Europe (EUR)
+
+    # Display time only instead of remaining time until announcement
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timetimeOnly"))
+
+    # Select all categories
+    driver.execute_script("selectAll('category[]');")
+
+    # Select all importance levels
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "importance1"))
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "importance2"))
+    driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "importance3"))
+
+    # Apply filters
+    driver.execute_script("calendarFilters.innerFiltersSubmit();")
+
+    if check_if_saturday():
+        driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_nextWeek"))
+    else:
+        driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_thisWeek"))
+
+
+def scrape_economic_calendar(inv_ids: list):
+    prepare_calendar()
+
+    table = driver.find_element(By.ID, "economicCalendarData")
+
+    relevent_events = []
+
+    for row in table.find_elements(By.TAG_NAME, 'tr'):
+        class_name = row.get_attribute("class")
+
+        if class_name == "js-event-item":
+            inv_id = row.get_attribute("event_attr_id")
+
+            if inv_id in inv_ids:
+                dt = datetime.datetime.strptime(row.get_attribute("data-event-datetime"), "%Y/%m/%d %H:%M:%S")
+                relevent_events.append((inv_id, dt))
+
+    breakpoint()
