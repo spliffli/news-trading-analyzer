@@ -479,7 +479,7 @@ def calc_quantiles(data_list: list, quantile_count=5):
 
 
 def calc_deviation_quantiles(news_data, quantile_count=5):
-    """This should be useful in deciding which triggers to screen for.
+    """This should be useful in deciding which triggers_vars to screen for.
     the default of 5 quantiles are technically called 'quintiles'
     https://www.thoughtco.com/what-is-a-quantile-3126239
     https://www.statisticshowto.com/quantile-definition-find-easy-steps/"""
@@ -551,7 +551,7 @@ def calc_and_save_all_trigger_levels():
     # indicators = indicators.loc[28:]
     row_count = indicators.shape[0]
     for index, row in indicators.iterrows():
-        print(f"\rCalculating triggers for indicator {str(index + 1)}/{row_count}: {row['inv_title']}")
+        print(f"\rCalculating triggers_vars for indicator {str(index + 1)}/{row_count}: {row['inv_title']}")
 
         calc_and_save_trigger_levels(haawks_id_to_str(row['Id']))
 
@@ -914,14 +914,14 @@ def news_pip_metrics_to_dfs(news_pip_metrics):
 
 """
 news_data = read_news_data("10290")
-triggers = read_triggers("10290")
+triggers_vars = read_triggers("10290")
 # mean_deviations = calc_median_deviations(news_data)
 # calc_deviations_for_indicator("10000")
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
 # read_news_pip_data("10000", "EURUSD")
 news_pip_data = load_news_pip_data("10290", news_data, "USDCAD")
-news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers, higher_dev="bearish")
+news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers_vars, higher_dev="bearish")
 news_pip_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
 """
 # news_pip_data = cross_reference_pips_with_news_data("10000", pip_data)

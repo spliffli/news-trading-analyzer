@@ -1,0 +1,67 @@
+body {
+      font-family: 'Roboto', sans-serif;
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.card p {
+  display: inline-block;
+  font-size: 16px;
+  margin: 0px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+.triggers {
+  margin-top: 20px;
+}
+
+.triggers h4 {
+  font-size: 14px;
+  margin: 0;
+}
+
+
+.triggers h5 {
+  display: inline-block;
+  margin: 0;
+}
+
+.triggers h5 {
+  display: block;
+  font-weight: normal;
+}
+
+.triggers h4 span {
+  font-weight: normal
+}
+
+.trigger {
+  text-align: right;
+  display: inline-block;
+  margin-right: 10px;
+}
