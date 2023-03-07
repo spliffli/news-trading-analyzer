@@ -77,7 +77,7 @@ This is meant for use with [haawks.com](https://haawks.com) G4A API or news trad
 
 ### Steps:
 
-1. - [ ] Scrape economic calendar from investing.com
+1. - [X] Scrape economic calendar from investing.com
 
 - Open `https://www.investing.com/economic-calendar/` in selenium
 - Find filters section on the dom

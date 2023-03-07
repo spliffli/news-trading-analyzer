@@ -73,7 +73,7 @@ def generate_report(haawks_id_str, symbol, news_data, news_pip_metrics_dfs, trig
 
 def render_trigger_html(trigger):
     output_html = (f"            <h5>dev: <span>{trigger['dev']}</span></h5>\n"
-                   + f"            <h5>lots/$1000: <span>{trigger['lots_per_1000']}</span></h5>\n"
+                   + f"            <h5>lots/$1k: <span>{trigger['lots_per_1000']}</span></h5>\n"
                    + f"            <h5>lots: <span>{trigger['lots']}</span></h5>\n")
     return output_html
 
@@ -135,27 +135,30 @@ def render_event_html(title, time, symbol, triggers):
     return output_html
 
 
-def generate_weekly_schedule():
-    pass
+def generate_weekly_schedule(template_vars):
+    template = env.get_template('reports/template/weekly-schedule.html')
+    output_html = template.render(template_vars)
+    HTML(string=output_html).write_pdf("reports/weekly-schedules/test.pdf",
+                                       stylesheets=["reports/template/weekly-schedule-style.css"])
 
 triggers_vars = {
     "lta": "Buy",
     "uta": "Sell",
     "lower_triggers": {
-        "lt1": {
-            "dev": "-1",
-            "lots_per_1000": "1",
-            "lots": "1"
+        "lt3": {
+            "dev": "-3",
+            "lots_per_1000": "3",
+            "lots": "3"
         },
         "lt2": {
             "dev": "-2",
             "lots_per_1000": "2",
             "lots": "2"
         },
-        "lt3": {
-            "dev": "-3",
-            "lots_per_1000": "3",
-            "lots": "3"
+        "lt1": {
+            "dev": "-1",
+            "lots_per_1000": "1",
+            "lots": "1"
         }
     },
     "upper_triggers": {
@@ -206,4 +209,289 @@ triggers_vars_2 = {
     }
 }
 
-output_html = render_event_html("Canada Employment Change MoM", datetime.time(15, 30), "USDCAD", triggers_vars_2)
+output_html = """
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+    <h1>2023 Week 2023 Schedule</h1>
+    <p> events to trade from 2023/03/09 to 2023/03/09</p>
+    <hr>
+    <div>
+        
+    </div>
+    <div>
+        
+    </div>
+    <div>
+        
+    </div>
+    <div>
+        
+    </div>
+    <div>
+        <h3>Thursday, March 9, 2023</h3>
+  <div class="card-wrapper">
+    <div class="card">
+      <h3>U.S. Initial Jobless Claims</h3>
+      <h3>13:30</h3>
+      <h3>USDJPY</h3>
+      <hr>
+      <div class="triggers">
+        <h4>LTA: <span>Buy</span></h4>
+        <h4>UTA: <span>Sell</span></h4>
+        <br>
+          <div class="lower-triggers">
+          <div class="trigger">
+            <h4>-LT1:</h4>
+            <h5>dev: <span>-12.0</span></h5>
+            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots: <span>0.5</span></h5>
+          </div>
+        </div>
+        <br>
+        <div class="upper-triggers">
+          <div class="trigger">
+          <h4>+UT1:</h4>
+            <h5>dev: <span>12.0</span></h5>
+            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots: <span>0.5</span></h5>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+    </div>
+    <div>
+        <h3>Friday, March 10, 2023</h3>
+  <div class="card-wrapper">
+    <div class="card">
+      <h3>Norway Consumer Price Index (CPI) YoY</h3>
+      <h3>07:00</h3>
+      <h3>USDNOK</h3>
+      <hr>
+      <div class="triggers">
+        <h4>LTA: <span>Buy</span></h4>
+        <h4>UTA: <span>Sell</span></h4>
+        <br>
+          <div class="lower-triggers">
+          <div class="trigger">
+            <h4>-LT1:</h4>
+            <h5>dev: <span>-0.2</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+          <div class="trigger">
+            <h4>-LT2:</h4>
+            <h5>dev: <span>-0.3</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+        </div>
+        <br>
+        <div class="upper-triggers">
+          <div class="trigger">
+          <h4>+UT1:</h4>
+            <h5>dev: <span>0.2</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+          <div class="trigger">
+          <h4>+UT2:</h4>
+            <h5>dev: <span>0.3</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>  <div class="card-wrapper">
+    <div class="card">
+      <h3>Norway Consumer Price Index (CPI) MoM</h3>
+      <h3>07:00</h3>
+      <h3>USDNOK</h3>
+      <hr>
+      <div class="triggers">
+        <h4>LTA: <span>Buy</span></h4>
+        <h4>UTA: <span>Sell</span></h4>
+        <br>
+          <div class="lower-triggers">
+          <div class="trigger">
+            <h4>-LT1:</h4>
+            <h5>dev: <span>-0.1</span></h5>
+            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots: <span>0.5</span></h5>
+          </div>
+          <div class="trigger">
+            <h4>-LT2:</h4>
+            <h5>dev: <span>-0.2</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+          <div class="trigger">
+            <h4>-LT3:</h4>
+            <h5>dev: <span>-0.3</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>1.0</span></h5>
+          </div>
+        </div>
+        <br>
+        <div class="upper-triggers">
+          <div class="trigger">
+          <h4>+UT1:</h4>
+            <h5>dev: <span>0.1</span></h5>
+            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots: <span>0.5</span></h5>
+          </div>
+          <div class="trigger">
+          <h4>+UT2:</h4>
+            <h5>dev: <span>0.2</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+          <div class="trigger">
+          <h4>+UT3:</h4>
+            <h5>dev: <span>0.3</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>1.0</span></h5>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>  <div class="card-wrapper">
+    <div class="card">
+      <h3>U.S. Nonfarm Payrolls</h3>
+      <h3>13:30</h3>
+      <h3>USDJPY</h3>
+      <hr>
+      <div class="triggers">
+        <h4>LTA: <span>Sell</span></h4>
+        <h4>UTA: <span>Buy</span></h4>
+        <br>
+          <div class="lower-triggers">
+          <div class="trigger">
+            <h4>-LT1:</h4>
+            <h5>dev: <span>-25.0</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+          <div class="trigger">
+            <h4>-LT2:</h4>
+            <h5>dev: <span>-50.0</span></h5>
+            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots: <span>0.5</span></h5>
+          </div>
+          <div class="trigger">
+            <h4>-LT3:</h4>
+            <h5>dev: <span>-90.0</span></h5>
+            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots: <span>0.5</span></h5>
+          </div>
+        </div>
+        <br>
+        <div class="upper-triggers">
+          <div class="trigger">
+          <h4>+UT1:</h4>
+            <h5>dev: <span>25.0</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+          <div class="trigger">
+          <h4>+UT2:</h4>
+            <h5>dev: <span>50.0</span></h5>
+            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots: <span>0.5</span></h5>
+          </div>
+          <div class="trigger">
+          <h4>+UT3:</h4>
+            <h5>dev: <span>90.0</span></h5>
+            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots: <span>0.5</span></h5>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>  <div class="card-wrapper">
+    <div class="card">
+      <h3>Canada Employment Change</h3>
+      <h3>13:30</h3>
+      <h3>USDCAD</h3>
+      <hr>
+      <div class="triggers">
+        <h4>LTA: <span>Buy</span></h4>
+        <h4>UTA: <span>Sell</span></h4>
+        <br>
+          <div class="lower-triggers">
+          <div class="trigger">
+            <h4>-LT1:</h4>
+            <h5>dev: <span>-10.0</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>1.0</span></h5>
+          </div>
+          <div class="trigger">
+            <h4>-LT2:</h4>
+            <h5>dev: <span>-50.0</span></h5>
+            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots: <span>1.5</span></h5>
+          </div>
+        </div>
+        <br>
+        <div class="upper-triggers">
+          <div class="trigger">
+          <h4>+UT1:</h4>
+            <h5>dev: <span>10.0</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>1.0</span></h5>
+          </div>
+          <div class="trigger">
+          <h4>+UT2:</h4>
+            <h5>dev: <span>50.0</span></h5>
+            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots: <span>1.5</span></h5>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>  <div class="card-wrapper">
+    <div class="card">
+      <h3>Canada Unemployment Rate</h3>
+      <h3>13:30</h3>
+      <h3>USDCAD</h3>
+      <hr>
+      <div class="triggers">
+        <h4>LTA: <span>Sell</span></h4>
+        <h4>UTA: <span>Buy</span></h4>
+        <br>
+          <div class="lower-triggers">
+          <div class="trigger">
+            <h4>-LT1:</h4>
+            <h5>dev: <span>-0.3</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+        </div>
+        <br>
+        <div class="upper-triggers">
+          <div class="trigger">
+          <h4>+UT1:</h4>
+            <h5>dev: <span>0.3</span></h5>
+            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots: <span>0.75</span></h5>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+    </div>
+</body>
+"""
+
+HTML(string=output_html).write_pdf("reports/weekly-schedules/test.pdf",
+                                       stylesheets=["reports/template/weekly-schedule-style.css"])

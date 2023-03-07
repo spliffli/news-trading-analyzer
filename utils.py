@@ -2,6 +2,7 @@ from datetime import datetime
 import pandas as pd
 import os
 import math
+from dateutil.tz import tzoffset
 
 def datetime_to_str(dt: datetime, microseconds=False):
     if not microseconds:
@@ -116,3 +117,21 @@ def get_higher_dev_expected_direction(symbol, inv_currency, higher_dev):
             return "positive"
         elif input_str == "bearish":
             return "negative"
+
+
+def get_day(tzinfo = tzoffset(None, 0), dt = None):
+    if dt is None:
+        day = datetime.now(tzinfo).today().strftime('%A')
+    elif type(dt) == datetime:
+        day = dt.strftime('%A')
+    else:
+        raise ValueError("dt must be a datetime")
+    return day
+
+
+def check_if_saturday():
+
+    if get_day(tzoffset(None, -5.0 * 3600)) == 'Saturday':
+        return True
+    else:
+        return False

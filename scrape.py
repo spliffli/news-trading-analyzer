@@ -5,8 +5,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from utils import check_if_saturday
+from bs4 import BeautifulSoup
 
-from dateutil.tz import tzoffset
 
 from utils import haawks_id_to_str, str_to_datetime, get_indicator_info, save_news_data, read_news_data, convert_news_data_to_float, get_deviation
 from selenium.webdriver.remote.webelement import WebElement
@@ -20,7 +21,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 chromedriver_autoinstaller.install()
 options = Options()
 options.add_argument("--no-sandbox")
-# options.add_argument("--headless")  # hide GUI
+options.add_argument("--headless")  # hide GUI
 # options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
 options.add_argument("start-maximized")  # ensure window is full-screen
 options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})  # Load without images
@@ -294,21 +295,14 @@ def update_indicator_history(haawks_id_str):
                 print("No new releases found. No need to update local data.")
                 return local_news_data
 
-def check_if_saturday():
-    tzinfo = tzoffset(None, -5.0 * 3600) # EST
-    today = datetime.datetime.now(tzinfo).today().strftime('%A')
-
-    if today == 'Saturday':
-        return True
-    else:
-        return False
-
 def prepare_calendar():
     driver.get("https://www.investing.com/economic-calendar/")
     time.sleep(1)
+    print("Setting filters:\nClearing all countries")
     driver.execute_script("clearAll('country[]');")
 
     # Click country checkboxes for USD, CAD, NOK, SEK, PLN, TRY & EUR
+    print("Clicking checkboxes for USD, CAD, NOK, SEK, PLN, TRY & EUR")
     driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country5"))  # USA (USD)
     driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country6"))  # Canada (CAD)
     driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country60"))  # Norway (NOK)
@@ -318,40 +312,76 @@ def prepare_calendar():
     driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "country72"))  # Europe (EUR)
 
     # Display time only instead of remaining time until announcement
+    print("Showing time only instead of remaining time until announcements")
     driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timetimeOnly"))
 
     # Select all categories
+    print("Selecting all categories")
     driver.execute_script("selectAll('category[]');")
 
     # Select all importance levels
+    print("Selecting all importance levels")
     driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "importance1"))
     driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "importance2"))
     driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "importance3"))
 
     # Apply filters
+    print("Applying filters")
     driver.execute_script("calendarFilters.innerFiltersSubmit();")
 
+    print("Checking if Saturday")
     if check_if_saturday():
+        print("Today is Saturday. Showing next week's events")
         driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_nextWeek"))
     else:
+        print("Today is not Saturday. Showing this week's events")
         driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_thisWeek"))
 
+    # Close popup
+    popup = None
+    while popup is None:
+        try:
+            print("Waiting for popup...")
+            popup = WebDriverWait(driver, 1,).until(EC.presence_of_element_located((By.CLASS_NAME, "signupWrap")))
+        except TimeoutException:
+            continue
+    print("Closing popup")
+    driver.execute_script("arguments[0].click();", driver.find_element(By.CLASS_NAME, "popupCloseIcon"))
+    # driver.execute_script("return window.stop")
 
-def scrape_economic_calendar(inv_ids: list):
-    prepare_calendar()
 
-    table = driver.find_element(By.ID, "economicCalendarData")
-
+def scrape_economic_calendar(indicators: list):
     relevent_events = []
 
-    for row in table.find_elements(By.TAG_NAME, 'tr'):
-        class_name = row.get_attribute("class")
+    while len(relevent_events) == 0:
+        print("Loading economic calendar")
+        prepare_calendar()
+        print("Getting table's HTML")
+        table = driver.find_element(By.ID, "economicCalendarData").get_attribute("outerHTML")
+        print("Parsing HTML")
+        soup = BeautifulSoup(table, 'html.parser')
+        rows = soup.find_all("tr")
 
-        if class_name == "js-event-item":
-            inv_id = row.get_attribute("event_attr_id")
+        print("Scraping table rows:")
+        for index, row in enumerate(rows):
+            print(f"\rrow {int(index) + 1}/{len(rows)}", end="", flush=True)
+            try:
+                class_name = row['class']
+            except KeyError:
+                class_name = ""
 
-            if inv_id in inv_ids:
-                dt = datetime.datetime.strptime(row.get_attribute("data-event-datetime"), "%Y/%m/%d %H:%M:%S")
-                relevent_events.append((inv_id, dt))
+            if type(class_name) == list:
+                class_name = class_name[0]
 
-    breakpoint()
+            if class_name.startswith("js-event-item"):
+                inv_id = row['event_attr_id']
+
+                for indicator in indicators:
+                    if indicator[0] == inv_id:
+                        dt = datetime.datetime.strptime(row['data-event-datetime'], "%Y/%m/%d %H:%M:%S")
+                        relevent_events.append((inv_id, indicator[1], indicator[2], indicator[3], indicator[4], dt))
+        print("\n")
+        if len(relevent_events) == 0:
+            print("Scraping failed. Trying Again...")
+
+    return relevent_events
