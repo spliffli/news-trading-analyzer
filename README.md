@@ -106,7 +106,7 @@ This is meant for use with [haawks.com](https://haawks.com) G4A API or news trad
   - get event datetime
   - add indicator to upcoming indicators df
 
-3. - [ ] For each upcoming indicator:
+3. - [X] For each upcoming indicator:
 
 - fill in vars to html template div- Date:
   - Event title
@@ -138,5 +138,5 @@ This is meant for use with [haawks.com](https://haawks.com) G4A API or news trad
       - lot size
     - append html to trigger recommendations html
 
-5. - [ ] render trigger recommendations as a variable in an html template
-6. - [ ] Convert output html into a pdf file
+5. - [X] render trigger recommendations as a variable in an html template
+6. - [X] Convert output html into a pdf file

@@ -21,7 +21,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 chromedriver_autoinstaller.install()
 options = Options()
 options.add_argument("--no-sandbox")
-options.add_argument("--headless")  # hide GUI
+# options.add_argument("--headless")  # hide GUI
 # options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
 options.add_argument("start-maximized")  # ensure window is full-screen
 options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})  # Load without images
@@ -295,7 +295,7 @@ def update_indicator_history(haawks_id_str):
                 print("No new releases found. No need to update local data.")
                 return local_news_data
 
-def prepare_calendar():
+def prepare_calendar(next_week=False):
     driver.get("https://www.investing.com/economic-calendar/")
     time.sleep(1)
     print("Setting filters:\nClearing all countries")
@@ -330,7 +330,10 @@ def prepare_calendar():
     driver.execute_script("calendarFilters.innerFiltersSubmit();")
 
     print("Checking if Saturday")
-    if check_if_saturday():
+    if next_week:
+        print("Showing next week's events")
+        driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_nextWeek"))
+    elif check_if_saturday():
         print("Today is Saturday. Showing next week's events")
         driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_nextWeek"))
     else:
@@ -350,12 +353,12 @@ def prepare_calendar():
     # driver.execute_script("return window.stop")
 
 
-def scrape_economic_calendar(indicators: list):
+def scrape_economic_calendar(indicators: list, next_week=False):
     relevent_events = []
 
     while len(relevent_events) == 0:
         print("Loading economic calendar")
-        prepare_calendar()
+        prepare_calendar(next_week)
         print("Getting table's HTML")
         table = driver.find_element(By.ID, "economicCalendarData").get_attribute("outerHTML")
         print("Parsing HTML")
@@ -381,7 +384,11 @@ def scrape_economic_calendar(indicators: list):
                         dt = datetime.datetime.strptime(row['data-event-datetime'], "%Y/%m/%d %H:%M:%S")
                         relevent_events.append((inv_id, indicator[1], indicator[2], indicator[3], indicator[4], dt))
         print("\n")
-        if len(relevent_events) == 0:
+        if len(relevent_events) == 0:   # or 'Friday' not in soup or table
             print("Scraping failed. Trying Again...")
+        # else:
+        #     for index, event in enumerate(relevent_events):
+        #         if event[1] == "10150":
+        #             relevent_events.insert(0, relevent_events.pop(index))
 
     return relevent_events
