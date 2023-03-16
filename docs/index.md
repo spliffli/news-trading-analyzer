@@ -59,11 +59,11 @@ The base currency is the first one, which is USD in USD/CAD, and the quote curre
 
 In the forex market, the current price of a currency pair is determined by the intersection of the bids and asks in the order book. The order book is a real-time display of all buy and sell orders for a particular currency pair at various price levels.
 
-When a trader places a buy limit order, they create a bid, which represents the highest price they are willing to pay for the currency pair. When a trader places a sell limit order, they create an ask, which represents the lowest price they are willing to accept for the currency pair.
+When a trader places a buy limit order, they create a bid in the orderbook, which represents the highest price they are willing to pay for the currency pair. When a trader places a sell limit order, they create an ask in the orderbook, which represents the lowest price they are willing to accept for the currency pair.
 
 The order book contains all bids and asks in real-time, arranged by price level. The best bid is the highest price at which a buyer is willing to purchase the currency pair, while the best ask is the lowest price at which a seller is willing to sell the currency pair.
 
-The current price of the currency pair is determined by the price at which the best bid and best ask intersect. This is known as the mid-price or the current market price. The best bid represents the highest price at which someone is willing to buy the currency pair, while the best ask represents the lowest price at which someone is willing to sell the currency pair. Therefore, the current market price is the highest price someone is willing to pay (best bid) and the lowest price someone is willing to sell (best ask) at a given moment in time.
+The current price of the currency pair is always based on two prices: the best ask and the best bid. The current market price displayed on a price-ticker is usually the mid-point between the best ask and the best bid. However, this is not the price your orders will be filled at. The best bid represents the highest price at which someone is willing to buy the currency pair, while the best ask represents the lowest price at which someone is willing to sell the currency pair. Therefore, the current market price for actually executing a trade is the highest price someone is willing to pay (best bid) and the lowest price someone is willing to sell (best ask) at a given moment in time. There is usually a gap between the best ask and best bid known as the 'spread'.
 
 ### Order types
 
@@ -261,7 +261,7 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
 - 5 minutes
 - 10 minutes
 - 15 minutes
-  the program gets the ask & bid prices at those times, then calculates the pip movements relative to the price at the time of release.
+  the program gets the ask & bid prices at those times after each release, then calculates the pip movements relative to the price at the time of the release.
 
 4. For each release, check which trigger level it matches.
 
@@ -270,35 +270,60 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
 
 5. For each time delta (e.g. 1s, 2s, 3s, etc) calculate:
 
-  - The **range** of all pip movements at that time (e.g. from -5 pips to +45 pips)
-  - The **mean** average of all pip movements at that time (e.g. 15 pips). Calculated by adding up all of pip movements for each release in the current trigger, then dividing by the amount of them.
-  - The **median** average. Calculated by sorting all the pip movements from lowest to highest, then finding the one exactly in the middle.
-  - **Correlation 1 Score (c_1)**
-    - The percentage of times the price moved in the expected direction.
-    - `positive_count` = How many times the price (pip) movement is more than or equal to zero.
-    - `negative_count` = How many times the price movement is less than zero
-    - Every indicator has an expected direction based on whether there's bullish (positive) or bearish (negative) news. This information was saved earlier from investing.com.
-      - If the price is expected to be **positive** then:
-        `c_1 = positive_count ÷ (positive_count + negative_count)`
-      - If the price is expected to be **negative** then:
-        `c_1 = negative_count ÷ (positive_count + negative_count)`
-  - **Correlation 2 Score (c_2)**
-    - The percentage of pips which moved in the expected direction.
-    - `positive_sum` = All pips which moved in a positive direction added up
-    - `negative_sum` = All pips which moved in a negative direction added up. Because this number is negative, it is multiplied by -1 to become a positive number so that it works with the equation below.
+- The **range** of all pip movements at that time (e.g. from -5 pips to +45 pips)
+- The **mean** average of all pip movements at that time (e.g. 15 pips). Calculated by adding up all of pip movements for each release in the current trigger, then dividing by the amount of them.
+- The **median** average. Calculated by sorting all the pip movements from lowest to highest, then finding the one exactly in the middle.
+- **Correlation 1 Score (c_1)**
+  - The percentage of times the price moved in the expected direction.
+  - `positive_count` = How many times the price (pip) movement is more than or equal to zero.
+  - `negative_count` = How many times the price movement is less than zero
+  - Every indicator has an expected direction based on whether there's bullish (positive) or bearish (negative) news. This information was saved earlier from investing.com.
     - If the price is expected to be **positive** then:
-      `c_2 = positive_sum ÷ (positive_sum + negative_sum )
+      `c_1 = positive_count ÷ (positive_count + negative_count)`
     - If the price is expected to be **negative** then:
-      `c_2 = negative_sum ÷ (positive_sum + negative_sum)
-  - **Correlation 3 Score (c_3)**
-    - This is the mean average of c_1 & c_2
-    - `c_3 = (c_1 + c_2) ÷ 2`
+      `c_1 = negative_count ÷ (positive_count + negative_count)`
+- **Correlation 2 Score (c_2)**
+  - The percentage of pips which moved in the expected direction.
+  - `positive_sum` = All pips which moved in a positive direction added up
+  - `negative_sum` = All pips which moved in a negative direction added up. Because this number is negative, it is multiplied by -1 to become a positive number so that it works with the equation below.
+  - If the price is expected to be **positive** then:
+    `c_2 = positive_sum ÷ (positive_sum + negative_sum )`
+  - If the price is expected to be **negative** then:
+    `c_2 = negative_sum ÷ (positive_sum + negative_sum)`
+- **Correlation 3 Score (c_3)**
+  - This is the mean average of c_1 & c_2
+  - `c_3 = (c_1 + c_2) ÷ 2`
+
 6. Calculate the total/averages for each trigger:
-  - **range:** the lowest number for any of the time deltas to the highest number for any of the time deltas
-  - **mean:** Add up the mean values for every time delta then divide by the number of time deltas (18)
-  - **median:** Add up the median values for every time delta then divide by 18
-  - **c_1:** Add up the c_1 values for every time delta then divide by 18
-  - **c_2:** Add up the c_2 values for every time delta then divide by 18
-  - **c_3:** Add up the c_3 values for every time delta then divide by 18
+
+- **range:** the lowest number for any of the time deltas to the highest number for any of the time deltas
+- **mean:** Add up the mean values for every time delta then divide by the number of time deltas (18)
+- **median:** Add up the median values for every time delta then divide by 18
+- **c_1:** Add up the c_1 values for every time delta then divide by 18
+- **c_2:** Add up the c_2 values for every time delta then divide by 18
+- **c_3:** Add up the c_3 Aftvalues for every time delta then divide by 18
 
 ## Ranking every indicator
+
+Once I was able to create this analysis for individual indicators, then I decided to run the it on every indicator from haawks which has news data on investing.com and tick data from dukascopy available. That totals to 95 indicators which isn't all of them but it's still quite a lot.
+
+I wrote a script in python called `ranker.py` which runs the analysis on each indicator and then finds the best trigger for each of them i.e. the trigger with the highest total/average c_3 score, then adds that to a list and outputs the results to an excel file called `ranker_results.xlsx`.
+
+Then, I ordered them from highest c_3 to lowest c_3. There are:
+- 15 indicators with a c_3 above 90
+- 23 indicators with a c_3 between 80-90
+- 23 indicators with a c_3 between 70-80
+- 30 indicators with a c_3 below 70
+
+The correlation (c_3) score can be thought of as a representation of how predictable each indicator has been historically (Based on data from January 2017 to February 2023). This implies that the indicator has a higher probability of moving in the expected direction when the c_3 score is higher. That is the hypothesis anyway, but this can only be confirmed by testing the strategy.
+
+![](images/ranker-results-1.png)
+![](images/ranker-results-2.png)
+![](images/ranker-results-3.png)
+
+## Generating trading plans
+Since the c_3 score is like a predictablity score, it makes sense to place larger trades when which uses larger lot sizes when the c_3 score is higher. I came up with the following lot sizes for each c_3 score:
+- between **80** and **85**: **0.5** lots per $1000 account balance
+- between **85** and **90**: **0.75** lots per $1000
+- between **90** and **95**: **1** lot per $1000
+- above **90**: **1.5** lots per $1000
