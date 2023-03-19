@@ -12,32 +12,31 @@ Es ist erwähnenswert, dass die große Mehrheit der Handelsstrategien die techni
 
 Wenn Sie auf youtube oder google nach Videos über algorithmische Handelsempfehlungen suchen, geht es praktisch immer um die technische Analyse. Nicht nur das, sondern der allgemeine Ratschlag lautet, den Handelsalgorithmus während Nachrichtenereignissen abzuschalten, weil er "unvorhersehbare" Kursbewegungen verursacht. Unvorhersehbar sind sie jedoch nur durch das Paradigma der technischen Analyse. Nachdem ich das schon oft gesehen habe, hat mich das zum Nachdenken gebracht:
 
-### Warum bewegt sich der Kurs immer noch, wenn alle sagen, dass sie während dieser Nachrichtenereignisse den Handel ausschalten sollen?
+### Warum bewegt sich der Kurs/Preis immer noch, wenn alle sagen, dass sie während dieser Nachrichtenereignisse den Handel ausschalten sollen?
 
 Der Kurs kann sich nur bewegen, wenn gehandelt wird, also gibt es eindeutig einige, die mit den Nachrichten handeln. Aber wer? Wenn Sie versuchen, dies herauszufinden, werden Sie im Internet nicht viele Informationen finden. Daraus lässt sich ableiten, dass es sich bei den Personen, die während der Nachrichten handeln und somit die Kursbewegungen verursachen, höchstwahrscheinlich um institutionelle Händler und nicht um Kleinanleger (retail traders) handelt.
 
 ## Welche Art von Nachrichten bewegt den Markt?
 
-Unter `investing.com/economic-calendar/` finden Sie eine umfangreiche Liste von Ereignissen, die sich auf den Markt auswirken:
+Unter `investing.com/economic-calendar/` finden Sie eine umfangreiche Liste von Ereignissen, die sich auf den Markt auswirken. Diese werden auch als 'Wirtschaftsnachrichtenindikatoren' (Economic news indicators) bezeichnet:
 
 ![](images/economic-calendar.png)
 
-For most events, there are three figures: Actual, Forecast & Previous
-Für die meisten Ereignisse gibt es drei Zahlen: Actual (Ist), Forecast (Prognose) und Previous (Vorherige).
+Für die meisten Ereignisse/Events gibt es drei Zahlen: Actual (Tatsächlich), Forecast (Prognose) und Previous (Vorhersage).
 
 - **Actual**
   Dies ist die Zahl, die zur geplanten Freigabezeit freigegeben wird.
 - **Forecast**
   Diese Zahl stellt den Durchschnitt/Konsens der Vorhersagen dar, die Wirtschaftswissenschaftler in aller Welt gemacht haben.
 - **Previous**
-  Dies ist die Zahl aus der vorherigen Version
+  Dies ist die Zahl aus der vorherigen Veröffentlichung/Release
 
 Die wichtigsten sind die Forecast und die Actual Zahl. Was den Markt tatsächlich in Bewegung bringt, ist, wenn die Actual Zahl von der Forecast abweicht. Betrachten wir als Beispiel das monatliche BIP Kanadas (Canada GDP MoM):
 ![](images/canada-gdp-mom.png)
 
 Jedes Mal, wenn die Actual/tatsächliche Zahl höher als die Forecast/Vorhersage war, wird die Zahl in grün angezeigt. Jedes Mal, wenn sie niedriger war als die Vorhersage, wird sie in rot angezeigt.
 
-Beim BIP (GDP) ist eine höher als erwartete Zahl positiv, d.h. "bullish" für die zugrunde liegende Währung, in diesem Fall den Kanadischen Dollar (CAD). Daher sollte eine höhere Abweichung den CAD-Kurs steigen lassen, und eine niedriger als erwartete Zahl ist negativ, d. h. "bärisch", was den Kurs fallen lassen sollte. Wenn es keine Abweichung gibt, d.h. wenn die tatsächliche Zahl mit der Prognose übereinstimmt, dann gibt es keinen Handelsaufbau.
+Beim BIP (GDP) ist eine höher als erwartete Zahl positiv, d.h. "bullish" für die zugrunde liegende Währung, in diesem Fall den Kanadischen Dollar (CAD). Daher sollte eine höhere Abweichung den CAD-Kurs steigen lassen, und eine niedriger als erwartete Zahl ist negativ, d. h. "bearish", was den Kurs fallen lassen sollte. Wenn es keine Abweichung gibt, d.h. wenn die tatsächliche Zahl mit der Prognose übereinstimmt, dann gibt es keinen Handelsaufbau.
 
 Wenn Sie tatsächlich mit diesem Ereignis handeln wollten, wäre das zu verwendende Symbol/Währungspaar (Currency Pair) USDCAD. In jedem Währungspaar gibt es zwei Währungen: die Basiswährung (Base Currency) und die Kurswährung (Quote currency). Manchmal wird zwischen den Währungen ein "/" geschrieben, z. B. USD/CAD.
 
@@ -45,20 +44,21 @@ Die Basiswährung (base currency) ist die erste, die USD in USD/CAD ist, und die
 
 * Der Wechselkurs (exchange rate) kann von verschiedenen Faktoren beeinflusst werden, z. B. von Änderungen der Zinssätze, Wirtschaftsindikatoren, geopolitischen Ereignissen und der Marktstimmung. Diese Faktoren können die Nachfrage und das Angebot der Währungen des Paares beeinflussen und sich somit auf ihren relativen Wert und den Wechselkurs auswirken.
 * Beim Währungspaar USD/JPY ist der USD die Basiswährung (base currency), so dass der Wechselkurs angibt, wie viele JPY Sie benötigen, um 1 USD zu kaufen. Wenn der Wechselkurs 110.00 beträgt, müssen Sie 110 JPY ausgeben, um 1 USD zu kaufen. Positive Nachrichten für den USD können den Wechselkurs steigen lassen, während negative Nachrichten ihn sinken lassen können. Sie können mit USDJPY handeln, indem Sie je nach Ihrer Einschätzung des Marktes long (kaufen/buy) oder short (verkaufen/sell) gehen.
-* Beim Währungspaar USD/CAD ist der USD die Basiswährung (base currency) und der CAD die Kurswährung (quote currency). Der Wechselkurs gibt also an, wie viel CAD Sie benötigen, um 1 USD zu kaufen. Wenn der Wechselkurs zum Beispiel 1.25 beträgt, müssen Sie 1.25 CAD ausgeben, um 1 USD zu kaufen. Wenn Sie also 100 CAD haben, können Sie nur 80 USD kaufen, wenn der Wechselkurs 0.80 beträgt. Positive Nachrichten für den CAD können den Wechselkurs sinken lassen, während negative Nachrichten ihn steigen lassen können. Wie beim USDJPY können Sie auch beim USDCAD je nach Ihrer Markteinschätzung long oder short gehen.
-* Wenn die zugrunde liegende Währung die **Basiswährung (base currency)** des Paares ist (z.B. **USD** in **USD**JPY) und es gibt:
-  * **positive Nachrichten:** der Preis steigt
-  * **negative Nachrichten:** der Preis sinkt
-* Wenn die zugrunde liegende Währung die **Kurswährung (quote currency)** des Paares ist (z.B. **CAD** in USD**CAD**) und es gibt:
-  * **positive Nachrichten:** der Preis sinkt
-  * **negative Nachrichten:** der Preis steigt
+* Beim Währungspaar USD/CAD ist der USD auch die Basiswährung (base currency) und der CAD die Kurswährung (quote currency). Der Wechselkurs gibt also an, wie viel CAD Sie benötigen, um 1 USD zu kaufen. Wenn der Wechselkurs zum Beispiel 1.25 beträgt, müssen Sie 1.25 CAD ausgeben, um 1 USD zu kaufen. Wenn Sie also 100 CAD haben, können Sie nur 80 USD kaufen, wenn der Wechselkurs 0.80 beträgt. Positive Nachrichten für den CAD können den Wechselkurs sinken lassen, während negative Nachrichten ihn steigen lassen können. Wie beim USDJPY können Sie auch beim USDCAD je nach Ihrer Markteinschätzung long oder short gehen.
+* Wenn die zugrunde liegende Währung die **Basiswährung (base currency)** des Paares ist (z.B. **USD** in **USD**/JPY) und es gibt:
+  - **positive Nachrichten:** der Preis steigt
+  - **negative Nachrichten:** der Preis sinkt
+* Wenn die zugrunde liegende Währung die **Kurswährung (quote currency)** des Paares ist (z.B. **CAD** in USD/**CAD**) und es gibt:
+  - **positive Nachrichten:** der Preis sinkt
+  - **negative Nachrichten:** der Preis steigt
 * Wenn Sie mit einem Währungspaar handeln, spekulieren Sie auf die Entwicklung des Wechselkurses. Wenn Sie glauben, dass die Basiswährung (base currency) gegenüber der Kurswährung (quote currency) aufwerten wird, können Sie das Paar kaufen (long gehen). Wenn Sie glauben, dass die Basiswährung (base currency) gegenüber der Kurswährung (quote currency) an Wert verlieren wird, können Sie das Paar verkaufen (short gehen). Der Gewinn (profit) oder Verlust (loss), den Sie erzielen, hängt von der Differenz zwischen dem Einstiegs- und dem Ausstiegskurs (Entry & Exit price) (auch bekannt als open & close price) des Handels und dem Umfang Ihrer Position ab (Position bedeutet nur einen offenen Handel/Trade).
 
 ## Was der Preis ist und warum er sich bewegt
 
-Auf dem Forex-Markt wird der aktuelle Kurs eines Währungspaares durch die Schnittmenge der Geld- und Briefkurse im Orderbuch bestimmt. Das Orderbuch ist eine Echtzeit-Anzeige aller Kauf- und Verkaufsaufträge für ein bestimmtes Währungspaar zu verschiedenen Kursniveaus.
+Auf dem Forex-Markt wird der aktuelle Kurs eines Währungspaares durch die Bids (Gebote) und Asks (Anfragen) im Orderbuch bestimmt. Das Orderbuch ist eine Echtzeit-Anzeige aller Kauf- und Verkaufsaufträge für ein bestimmtes Währungspaar zu verschiedenen Kursniveaus.
 
-Wenn ein Händler einen buy limit order (Kauf-Limit-Order) erteilt, erstellt er ein 'bid' (Gebot) im Orderbuch (orderbook), das den höchsten Preis darstellt, den er für das Währungspaar zu zahlen bereit ist. Wenn ein Händler eine sell limit order (Verkauf-Limit-Order) platziert, erstellt er eine 'ask' (Nachfrage) im Orderbuch, die den niedrigsten Preis darstellt, den er für das Währungspaar zu akzeptieren bereit ist.
+- Wenn ein Händler eine **sell** limit order (Verkauf-Limit-Order) platziert, erstellt er eine **'ask' (Nachfrage)** im Orderbuch, die den niedrigsten Preis darstellt, den er für das Währungspaar zu akzeptieren bereit ist.
+- Wenn ein Händler einen **buy** limit order (Kauf-Limit-Order) erteilt, erstellt er ein **'bid' (Gebot)** im Orderbuch (orderbook), das den höchsten Preis darstellt, den er für das Währungspaar zu zahlen bereit ist.
 
 Das Orderbuch enthält alle 'bids' und 'asks' in Echtzeit, geordnet nach Preisniveau. Das beste bid ist der höchste Preis, zu dem ein Käufer bereit ist, das Währungspaar zu kaufen, während die beste ask der niedrigste Preis ist, zu dem ein Verkäufer bereit ist, das Währungspaar zu verkaufen.
 
@@ -66,14 +66,14 @@ Der aktuelle Kurs des Währungspaares basiert immer auf zwei Kursen: dem besten 
 
 ### Auftragsarten (Order Types)
 
-- **Market Orders (Marktaufträge)** werden sofort zum besten verfügbaren Preis ausgeführt, entweder zum besten ask für einen Market Buy Order (Marktkaufauftrag) oder zum besten bid für einen Market Sell Order (Marktverkaufsauftrag). 
-  - Wenn ein Händler einen Marktauftrag zum **Buy (Kauf)** des Währungspaares erteilt (Market Buy Order), wird sein Auftrag zum aktuell besten **ask** preis ausgeführt.
-  - Bei einem market **sell** order (Marktauftrag **Verkauf**) wird der Auftrag zum aktuell besten **bid** preis ausgeführt.
+- **Market Orders (Marktaufträge)** werden sofort zum besten verfügbaren Preis ausgeführt, entweder zum besten ask für einen Market Buy Order (Marktkaufauftrag) oder zum besten bid für einen Market Sell Order (Marktverkaufsauftrag).
+  - Wenn ein Händler einen Marktauftrag zum **Kauf/Buy** des Währungspaares erteilt (Market Buy Order), wird sein Auftrag zum aktuell besten **ask** preis ausgeführt.
+  - Bei einem market **sell** order (Marktauftrag **Verkauf/Sell**) wird der Auftrag zum aktuell besten **bid** preis ausgeführt.
 - **Limit Orders (Limitaufträge)** werden ausgeführt, wenn der Marktpreis ein bestimmtes Preisniveau erreicht.
 
 Wenn es auf einem bestimmten Kursniveau mehr Käufer als Verkäufer gibt, kann der Kurs des Währungspaares steigen, da die Käufer um den Kauf der Währung konkurrieren. Umgekehrt kann der Preis des Währungspaares fallen, wenn es auf einem bestimmten Preisniveau mehr Verkäufer als Käufer gibt, da die Verkäufer um den Verkauf der Währung konkurrieren.
 
-Zusammenfassend lässt sich sagen, dass der aktuelle Kurs eines Forex Paar/Symbol durch die Schnittmenge der bids und der asks im Orderbuch bestimmt wird. Im Orderbuch werden alle Kauf- und Verkaufsaufträge (Buy & Sell orders) für das Währungspaar zu verschiedenen Kursniveaus angezeigt, und das beste bid und die beste ask bestimmen den aktuellen Marktpreis, d. h. den höchsten Preis, den jemand zu zahlen bereit ist (bestes bid), und den niedrigsten Preis, den jemand zu einem bestimmten Zeitpunkt zu verkaufen bereit ist (beste ask).
+Zusammenfassend lässt sich sagen, dass der aktuelle Kurs/Preis eines Forex Paar/Symbol durch die bids und der asks im Orderbuch bestimmt wird. Im Orderbuch werden alle Kauf- und Verkaufsaufträge (Buy & Sell orders) für das Währungspaar zu verschiedenen Kursniveaus angezeigt, und das beste bid und die beste ask bestimmen den aktuellen Marktpreis, d. h. den höchsten Preis, den jemand zu zahlen bereit ist (bestes bid), und den niedrigsten Preis, den jemand zu einem bestimmten Zeitpunkt zu verkaufen bereit ist (beste ask).
 
 ### Wie der Preis gemessen wird
 
@@ -108,8 +108,6 @@ Bei Wirtschaftsnachrichten weitet sich die Bid-Ask-Spread häufig aus und die ve
 Der Rückgang der Liquidität bei Wirtschaftsnachrichten kann zu erhöhter Volatilität und Slippage führen, da sich die Bid-Ask-Spread ausweitet und es schwieriger wird, Trades zum gewünschten Kursniveau auszuführen. Dies kann es für Händler schwieriger machen, schnell und effizient in Positionen ein- oder auszusteigen, was das Risiko von Verlusten erhöhen kann.
 
 Aus diesem Grund wird bei dieser Strategie ein Trailing-Stoploss von 5 Pips verwendet, d. h. der Kurs muss sich nur um 5 Pips bewegen, um die Gewinnschwelle (break even) zu erreichen, und alles, was darüber liegt, ist Gewinn.
-
-
 
 ### Liquidity (Liquidität)
 
@@ -179,15 +177,18 @@ Insgesamt sind Forex Brokers für Händler notwendig, um Zugang zum Forexmarkt z
 Es gibt drei Haupttypen von Gewinnmodellen für Forex-Broker: STP, ECN und Market Maker.
 
 1. Straight Through Processing (STP):
-  - Ein STP-Broker ist eine Art von Forex-Broker, der seinen Kunden direkten Marktzugang (Direct Market Access or DMA) bietet. Das bedeutet, dass der Broker nicht als Market Maker fungiert, sondern die Kundenaufträge direkt an Liquiditätsanbieter weiterleitet. Ein Liquiditätsanbieter ist in der Regel ein großes Finanzinstitut, z. B. eine Bank oder ein anderer Broker, der Preise und Liquidität auf dem Forexmarkt bereitstellt.
 
-  - Wenn ein Kunde einen Auftrag an einen STP-Broker erteilt, leitet dieser den Auftrag an einen Liquiditätsanbieter weiter, der zu diesem Zeitpunkt den besten verfügbaren Preis bietet. Dies ermöglicht dem Kunden eine wettbewerbsfähige Preisgestaltung und Ausführung, da er Zugang zum realen Markt hat. Der Broker verdient seinen Gewinn, indem er eine Provision oder einen Aufschlag auf den Spread erhebt.
-  - Liegt der Bidpreis für EUR/USD beispielsweise bei 1.1000 und der Askpreis bei 1.1001, beträgt der Spread 1 Pip. Wenn ein Kunde einen Auftrag an einen STP-Broker erteilt, schlägt der Broker in der Regel einen kleinen Aufschlag auf die Spanne auf, um einen Gewinn zu erzielen. Der Aufschlag ist in der Regel transparent und wird dem Kunden vor der Ausführung des Geschäfts mitgeteilt.
+- Ein STP-Broker ist eine Art von Forex-Broker, der seinen Kunden direkten Marktzugang (Direct Market Access or DMA) bietet. Das bedeutet, dass der Broker nicht als Market Maker fungiert, sondern die Kundenaufträge direkt an Liquiditätsanbieter weiterleitet. Ein Liquiditätsanbieter ist in der Regel ein großes Finanzinstitut, z. B. eine Bank oder ein anderer Broker, der Preise und Liquidität auf dem Forexmarkt bereitstellt.
+- Wenn ein Kunde einen Auftrag an einen STP-Broker erteilt, leitet dieser den Auftrag an einen Liquiditätsanbieter weiter, der zu diesem Zeitpunkt den besten verfügbaren Preis bietet. Dies ermöglicht dem Kunden eine wettbewerbsfähige Preisgestaltung und Ausführung, da er Zugang zum realen Markt hat. Der Broker verdient seinen Gewinn, indem er eine Provision oder einen Aufschlag auf den Spread erhebt.
+- Liegt der Bidpreis für EUR/USD beispielsweise bei 1.1000 und der Askpreis bei 1.1001, beträgt der Spread 1 Pip. Wenn ein Kunde einen Auftrag an einen STP-Broker erteilt, schlägt der Broker in der Regel einen kleinen Aufschlag auf die Spread (Spanne) auf, um einen Gewinn zu erzielen. Der Aufschlag ist in der Regel transparent und wird dem Kunden vor der Ausführung des Geschäfts mitgeteilt.
 
 2. Electronic Communication Network (ECN):
-  - Ein ECN-Broker ist einem STP-Broker insofern ähnlich, als er seinen Kunden direkten Marktzugang bietet. Allerdings erlaubt ein ECN-Broker seinen Kunden auch, miteinander zu handeln. Das bedeutet, dass die Kunden sowohl als Käufer als auch als Verkäufer auf dem Markt auftreten können und der Broker nicht als Gegenpartei bei ihren Geschäften auftritt. Der Broker erwirtschaftet seinen Gewinn, indem er für jeden Handel eine Provision erhebt.
+
+- Ein ECN-Broker ist einem STP-Broker insofern ähnlich, als er seinen Kunden direkten Marktzugang bietet. Allerdings erlaubt ein ECN-Broker seinen Kunden auch, miteinander zu handeln. Das bedeutet, dass die Kunden sowohl als Käufer als auch als Verkäufer auf dem Markt auftreten können und der Broker nicht als Gegenpartei bei ihren Geschäften auftritt. Wie beim STP verdient der Broker auch hier seinen Gewinn, indem er für jeden Handel eine Provision verlangt.
+
 3. Market Maker:
-  - Ein Market Maker ist eine Art von Broker, der für seine Kunden einen Markt schafft, indem er die Gegenseite ihrer Geschäfte übernimmt. Das heißt, wenn ein Kunde ein Währungspaar kauft, verkauft der Broker dasselbe Währungspaar an den Kunden und umgekehrt. Der Broker erzielt seinen Gewinn, indem er die Differenz zwischen dem Bid und dem Ask, auch bekannt als Spread, in die Tasche steckt. Market Maker können auch andere Handelspraktiken anwenden, um ihr Risiko zu steuern, wie z. B. die Absicherung ihrer Positionen auf dem Interbankenmarkt.
+
+- Ein Market Maker ist eine Art von Broker, der für seine Kunden einen Markt schafft, indem er die Gegenseite ihrer Geschäfte übernimmt. Das heißt, wenn ein Kunde ein Währungspaar kauft, verkauft der Broker dasselbe Währungspaar an den Kunden und umgekehrt. Der Broker erzielt seinen Gewinn, indem er die Differenz zwischen dem Bid und dem Ask, auch bekannt als Spread, in die Tasche steckt. Market Maker können auch andere Handelspraktiken anwenden, um ihr Risiko zu steuern, wie z. B. die Absicherung ihrer Positionen auf dem Interbankenmarkt.
 
 Zusammenfassend bieten STP- und ECN-Broker Kunden direkten Marktzugang und ihre Gewinne, indem sie eine Provision oder einen Aufschlag auf den Spread erheben. Market Maker hingegen schaffen einen Markt für ihre Kunden, indem sie die Gegenseite ihrer Trades aufnehmen und ihre Gewinne erzielen, indem sie den Spread einstecken.
 
@@ -229,42 +230,42 @@ Für jedes Ereignis gibt es 6 Triggerpegel, die konfiguriert werden können:
 - +UT2
 - +UT3
 - 'LT' steht für 'Lower Trigger' und wird ausgelöst, wenn die tatsächliche (Actual) Zahl niedriger ist als die prognostizierte (Forecast) Zahl.
-- 'UT' stands for 'Upper Trigger' and is triggered when the actual number is higher than the forecast number.
-- There is also 'LTA' & 'UTA' which stands for Lower Trigger Action & Upper Trigger Action. These can be set to either 'Buy' or 'Sell' depending on whether a higher deviation is bullish or bearish.
+- 'UT' steht für 'Upper Trigger' und wird ausgelöst, wenn die tatsächliche (Actual) Zahl höher ist als die prognostizierte (Forecast) Zahl.
+- Es gibt auch 'LTA' und 'UTA', was für 'Lower Trigger Action' und 'Upper Trigger Action' steht. Diese können entweder auf 'Buy' oder 'Sell' eingestellt werden, je nachdem, ob eine höhere Abweichung bullish oder bearish ist.
 
-  - For example, for US Nonfarm Payrolls, a higher news deviation is bullish (positive) for USDJPY and a lower news deviation is bearish (negative) for USDJPY. Therefore, you would set 'LTA' to 'Sell' and 'UTA' to 'Buy'
-  - For Canada GDP, a higher news deviation is bearish (negative) for USDCAD and a lower news deviation is bullish (positive) for USDCAD. Therefore you would set 'LTA' to 'Buy' and 'UTA' to Sell
-- '-LT1', '-LT2', '-LT3', '+UT1', '+UT2' & '+UT3' each have their own deviation levels and lot sizes which can be set. This means that when the actual price comes out, the haawks news trader will calculate the deviation by subtracting the forecast number from the actual number. Then, it checks all of your triggers to see which one it matches. If it matches one of your triggers, it will open a new trade in MetaTrader 4 in the direction specified by 'LTA' & 'UTA', using the lot size specified for that trigger.
+  - Beispielsweise ist für US Nonfarm Payrolls eine höhere Nachrichtenabweichung (news deviation) bullish (positiv) für USDJPY und eine niedrigere Nachrichtenabweichung bearish (negativ) für USDJPY. Daher würden Sie 'LTA' auf 'Sell' und 'UTA' auf 'Buy' setzen.
+  - Für das Canadian GDP (kanadische BIP) ist eine höhere Nachrichtenabweichung für USDCAD rückläufig (negativ) und eine niedrigere Nachrichtenabweichung für USDCAD zinsbullisch (positiv). Daher würden Sie 'LTA' auf 'Buy' und 'UTA' auf 'Sell' setzen.
+- '-LT1', '-LT2', '-LT3', '+UT1', '+UT2' & '+UT3' haben jeweils ihre eigenen Abweichungsstufen (Deviation levels) und Lot Sizes, die eingestellt werden können. Das bedeutet, dass der Haawks-News-Trader die Abweichung berechnet, wenn der tatsächliche Preis bekannt wird, indem er die prognostizierte (Forecast) Zahl von der tatsächlichen (Actual) Zahl subtrahiert. Dann überprüft es alle Ihre Trigger, um zu sehen, mit welchem es übereinstimmt. Wenn es mit einem Ihrer Auslöser übereinstimmt, wird ein neuer Trade in MetaTrader 4 in der durch 'LTA' und 'UTA' angegebenen Richtung eröffnet, wobei die für diesen Auslöser angegebene Lot Size verwendet wird.
 
-  - For example, for trading Canada GDP MoM, the triggers could be set like this:
+  - Für den Handel mit Canada GDP MoM (kanadische BIP monatlich) könnten die Trigger beispielsweise wie folgt festgelegt werden:
     - -LT1: -0.1  |  0.5 lots
     - -LT2: -0.2  |  1 lot
     - -LT3: -0.3  |  1.5 lots
     - +UT1: +0.1  |  0.5 lots
     - +UT2: +0.2  |  1 lot
     - +UT3: +0.3  |  1.5 lots
-      Then, let's say the forecast is 0.1 and the actual number is -0.1. This would make a deviation of -0.2 so '-LT2' would be triggered and it would open a trade of 1 lot in the buy direction because 'LTA' is set to 'Buy' for Canada GDP
-  - In another example for trading US Nonfarm Payrolls,the triggers could be set like this:
-    - -LT1: -25  |  0.5 lots
-    - -LT2: -50  |  1 lot
-    - -LT3: -90  |  1.5 lots
-    - +UT1: +25  |  0.5 lots
-    - +UT2: +50  |  1 lot
-    - +UT3: +90  |  1.5 lots
-      Then, let's say the forecast is 205 and the actual number is 311. That would make a deviation of +106 so '+UT3' would be triggered and it would open a trade of 1.5 lots in the buy direction because 'UTA' is set to 'Buy' for US Nonfarm Payrolls.
+      Nehmen wir dann an, die Prognose ist 0.1 und die tatsächliche Zahl ist -0.1. Dies würde zu einer Abweichung von -0.2 führen, sodass '-LT2' ausgelöst und ein Handel von 1 Lot in Kaufrichtung eröffnet würde, da 'LTA' für das  Canadian GDP auf 'Buy' eingestellt ist
+  - In einem anderen Beispiel für den Handel mit US Nonfarm Payrolls könnten die Trigger wie folgt gesetzt werden:
+  - -LT1: -25  |  0.5 lots
+  - -LT2: -50  |  1 lot
+  - -LT3: -90  |  1.5 lots
+  - +UT1: +25  |  0.5 lots
+  - +UT2: +50  |  1 lot
+  - +UT3: +90  |  1.5 lots
+    Nehmen wir dann an, die Prognose ist 205 und die tatsächliche Zahl ist 311. Das würde eine Abweichung von +106 ergeben, also würde '+UT3' ausgelöst und es würde einen Handel von 1,5 Lots in Kaufrichtung eröffnen, weil 'UTA' gesetzt ist zum 'Buy' für US Nonfarm Payrolls.
 
-## Historic Data Analysis
+## Historic Data Analysis (Historische Datenanalyse)
 
-In order to have a more informed and robust trading plan, I created a data analysis program which gets the historic news figures from investing.com, then gets the historic price (tick) data for the relevent trading pair at the exact time of each news release up to 15 minutes after each release, then generates metrics/statistics such as:
+Um einen fundierteren und robusteren Handelsplan zu haben, habe ich ein Datenanalyseprogramm erstellt, das die historischen Nachrichtenzahlen von investing.com erhält und dann die historischen Preisdaten (Ticks) für das relevante Handelspaar zum genauen Zeitpunkt jeder Nachricht erhält Veröffentlichung bis zu 15 Minuten nach jeder Veröffentlichung und generiert dann Metriken/Statistiken wie:
 
-- the mean average pip movements
-- the median pip movements
-- the range of pip movements
-- Three correlation scores (c_1, c_2 & c_3)
+- die mittleren durchschnittlichen (mean average) Pip-Bewegungen
+- die Median durchschnittlichen (median average) Pip-Bewegungen
+- der Bereich (range) der Pip-Bewegungen
+- Drei Korrelationswerte (Correlation scores: c_1, c_2 & c_3)
 
-It then generates a pdf report for that indicator (e.g. Nonfarm Payrolls or Canada GDP)cand trading symbol (e.g. USDJPY or USDCAD).
+Es generiert dann einen PDF-Bericht für diesen Indikator (z. B. Nonfarm Payrolls oder Canada GDP) und das Handelssymbol (z. B. USDJPY oder USDCAD).
 
-Here are screenshots of the pdf report generated for Canada GDP MoM (Month over month):
+Hier sind Screenshots des PDF-Berichts, der für das kanadische BIP MoM (Monat über Monat / Month over Month) erstellt wurde:
 ![](images/canada-gdp-page1.png)
 
 ![](images/canada-gdp-trigger1.png)
@@ -275,136 +276,143 @@ Here are screenshots of the pdf report generated for Canada GDP MoM (Month over 
 
 ![](images/canada-gdp-trigger4.png)
 
-Normally the correlation score gets higher as the deviation gets higher. The calculations for each trigger works like this:
+Normalerweise wird der Korrelationswert (Correlation Score) höher, wenn die Abweichung (Deviation) größer wird. Die Berechnungen für jeden Trigger funktionieren wie folgt:
 
-1. Get the historic news data from investing.com for January 2017 and after
-2. For each release date & time, download historic price data (tick data) from 5 minutes before release time until 15 minutes after release time. It shows the ask and bid prices at timestamps for every time the price moved which is usually many times per second. This comes as a .csv file which is a table:
+1. Das Programm erhält die historischen Nachrichtendaten von investing.com ab Januar 2017 und danach
+2. Für jedes Veröffentlichungsdatum und jede Veröffentlichungszeit (Release date & time) lädt es dann historische Preisdaten (Tick-Daten) von 5 Minuten vor der Veröffentlichung bis 15 Minuten nach der Veröffentlichung herunter. Tick-Daten kosten normalerweise Geld, aber es gibt einen Forex-Broker namens Dukascopy, der sie kostenlos zur Verfügung stellt, woher dieses Programm die Daten bezieht. Es zeigt die Ask- und Bid-Preise zu Zeitstempeln für jede Preisbewegung an, die normalerweise mehrmals pro Sekunde erfolgt. Dies kommt als .csv-Datei, die eine Tabelle ist:
    ![](images/usdcad-tick-data.png)
-3. For specified times after each release (time deltas) i.e.
+3. Für bestimmte Zeiten nach jeder Freigabe (Zeitdeltas/time deltas), d. h.
 
-- 1 second
-- 2 seconds
-- 3 seconds
-- 4 seconds
-- 5 seconds
-- 10 seconds
-- 15 seconds
-- 20 seconds
-- 25 seconds
-- 30 seconds
-- 45 seconds
-- 1 minute
-- 2 minutes
-- 3 minutes
-- 4 minutes
-- 5 minutes
-- 10 minutes
-- 15 minutes
-  the program gets the ask & bid prices at those times after each release, then calculates the pip movements relative to the price at the time of the release.
+- 1 Sekunde
+- 2 Sekunden
+- 3 Sekunden
+- 4 Sekunden
+- 5 Sekunden
+- 10 Sekunden
+- 15 Sekunden
+- 20 Sekunden
+- 25 Sekunden
+- 30 Sekunden
+- 45 Sekunden
+- 1 Minute
+- 2 Minuten
+- 3 Minuten
+- 4 Minuten
+- 5 Minuten
+- 10 Minuten
+- 15 Minuten
+  Das Programm ruft die Ask & Bid-Preise zu diesen Zeiten nach jeder Veröffentlichung ab und berechnet dann die Pip-Bewegungen relativ zum Preis zum Zeitpunkt der Veröffentlichung.
 
-4. For each release, check which trigger level it matches.
+4. Für jede Freigabe (Release) prüft es, zu welchem Triggerlevel es passt.
 
-- If the deviation is above a pre-defined level (e.g. trigger_1: +-0.1%) and below the trigger above it (e.g. trigger_2: +-0.2%) then it is added to the input data for that trigger (trigger_1).
-- If it the last trigger e.g. trigger_4, then any data above that is added to the input data for that trigger
+- Wenn die Abweichung (Deviation) über einem vordefinierten Wert liegt (z. B. trigger_1: +-0,1 %) und unter dem darüber liegenden Trigger (z. B. trigger_2: +-0,2 %), wird sie zu den Eingabedaten für diesen Trigger (trigger_1) hinzugefügt.
+- Wenn es der letzte Trigger z.B. trigger_4, dann werden alle darüber liegenden Daten zu den Eingabedaten für diesen Trigger hinzugefügt
 
-5. For each time delta (e.g. 1s, 2s, 3s, etc) calculate:
+5. Für jedes Zeitdelta/time_delta (z. B. 1s, 2s, 3s usw.) wird Folgendes berechnet:
 
-- The **range** of all pip movements at that time (e.g. from -5 pips to +45 pips)
-- The **mean** average of all pip movements at that time (e.g. 15 pips). Calculated by adding up all of pip movements for each release in the current trigger, then dividing by the amount of them.
-- The **median** average. Calculated by sorting all the pip movements from lowest to highest, then finding the one exactly in the middle.
-- **Correlation 1 Score (c_1)**
-  - The percentage of times the price moved in the expected direction.
-  - `positive_count` = How many times the price (pip) movement is more than or equal to zero.
-  - `negative_count` = How many times the price movement is less than zero
-  - Every indicator has an expected direction based on whether there's bullish (positive) or bearish (negative) news. This information was saved earlier from investing.com.
-    - If the price is expected to be **positive** then:
-      `c_1 = positive_count ÷ (positive_count + negative_count)`
-    - If the price is expected to be **negative** then:
-      `c_1 = negative_count ÷ (positive_count + negative_count)`
-- **Correlation 2 Score (c_2)**
-  - The percentage of pips which moved in the expected direction.
-  - `positive_sum` = All pips which moved in a positive direction added up
-  - `negative_sum` = All pips which moved in a negative direction added up. Because this number is negative, it is multiplied by -1 to become a positive number so that it works with the equation below.
-  - If the price is expected to be **positive** then:
-    `c_2 = positive_sum ÷ (positive_sum + negative_sum )`
-  - If the price is expected to be **negative** then:
-    `c_2 = negative_sum ÷ (positive_sum + negative_sum)`
-- **Correlation 3 Score (c_3)**
-  - This is the mean average of c_1 & c_2
+- Der **Bereich (Range)** aller Pip-Bewegungen zu diesem Zeitpunkt (z. B. von -5 Pips bis +45 Pips)
+- Der **mittlere (Mean)** Durchschnitt aller Pip-Bewegungen zu diesem Zeitpunkt (z. B. 15 Pips). Berechnet, indem alle Pip-Bewegungen für jede Freigabe im aktuellen Trigger addiert und dann durch deren Anzahl dividiert werden.
+- Der **Median**-Durchschnitt. Berechnet, indem alle Pip-Bewegungen von der niedrigsten zur höchsten sortiert werden und dann genau diejenige in der Mitte gefunden wird.
+  **Korrelation 1 Score (c_1)**
+  - Der Prozentsatz der Male, in denen sich der Preis in die erwartete Richtung bewegt hat.
+  - `Positiv_Zählung` = Wie oft die Preisbewegung (Pip) größer oder gleich Null ist.
+  - `Negativ_Zählung` = Wie oft die Preisbewegung kleiner als Null ist
+  - Jeder Indikator hat eine erwartete Richtung basierend darauf, ob es bullische (positive) oder bearishe (negative) Nachrichten gibt. Diese Informationen wurden zuvor von investing.com gespeichert.
+    - Wenn erwartet wird, dass die Preisbewegung **positiv** ist, dann:
+      `c_1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)`
+    - Wenn die Preisbewegung voraussichtlich **negativ** sein wird:
+      `c_1 = negative_Zählung ÷ (positive_Zählung + negative_Zählung)
+- **Korrelation 2 Score (c_2)**
+  - Der Prozentsatz der Pips, die sich in die erwartete Richtung bewegt haben.
+  - `Positive_Summe` = Alle Pips, die sich in eine positive Richtung bewegen, werden zusammengezählt
+  - `Negative_Summe` = Alle Pips, die sich in eine negative Richtung bewegt haben, werden zusammengezählt. Da diese Zahl negativ ist, wird sie mit -1 multipliziert, um eine positive Zahl zu werden, sodass sie mit der folgenden Gleichung funktioniert.
+  - Wenn der Preis voraussichtlich **positiv** ist, dann:
+    `c_2 = Positive_Summe ÷ (Positive_Summe + Negative_Summe )`
+  - Wenn der Preis voraussichtlich **negativ** sein wird:
+    `c_2 = Negative_Summe ÷ (Positive_Summe + Negative_Summe)`
+- **Korrelation 3 Score (c_3)**
+  - - Dies ist der mittlere Durchschnitt (mean average) von c_1 & c_2
   - `c_3 = (c_1 + c_2) ÷ 2`
 
-6. Calculate the total/averages for each trigger:
+6. Die Summe/Durchschnittswerte werden dann für jeden Trigger berechnet:
 
-- **range:** the lowest number for any of the time deltas to the highest number for any of the time deltas
-- **mean:** Add up the mean values for every time delta then divide by the number of time deltas (18)
-- **median:** Add up the median values for every time delta then divide by 18
-- **c_1:** Add up the c_1 values for every time delta then divide by 18
-- **c_2:** Add up the c_2 values for every time delta then divide by 18
-- **c_3:** Add up the c_3 Aftvalues for every time delta then divide by 18
+- - **Bereich (Range):** die niedrigste Zahl für eines der Zeitdeltas bis zur höchsten Zahl für eines der Zeitdeltas
+- **Mittelwert (Mean):** Addiere die Mittelwerte für jedes Zeitdelta und dividiere dann durch die Anzahl der Zeitdeltas (18)
+- **Median:** Addiere die Medianwerte für jedes Zeitdelta und dividiere dann durch 18
+- **c_1:** Addiere die c_1-Werte für jedes Zeitdelta und dividiere dann durch 18
+- **c_2:** Addieren Sie die c_2-Werte für jedes Zeitdelta und dividieren Sie sie dann durch 18
+- **c_3:** Addiere die c_3-Werte für jedes Zeitdelta und dividiere dann durch 18
 
-## Ranking every indicator
+## Ordnen Sie jeden Indikator ein (Ranking every indicator)
 
-Once I was able to create this analysis for individual indicators, then I decided to run the it on every indicator from haawks which has news data on investing.com and tick data from dukascopy available. That totals to 95 indicators which isn't all of them but it's still quite a lot.
+Nachdem ich in der Lage war, diese Analyse für einzelne Indikatoren zu erstellen, entschied ich mich, sie für jeden Indikator von Haawks auszuführen, der Nachrichtendaten auf investing.com und Tick-Daten von Dukascopy zur Verfügung stellt. Das sind insgesamt 95 Indikatoren, was nicht alle sind, aber immer noch eine ganze Menge.
 
-I wrote a script in python called `ranker.py` which runs the analysis on each indicator and then finds the best trigger for each of them i.e. the trigger with the highest total/average c_3 score, then adds that to a list and outputs the results to an excel file called `ranker_results.xlsx`.
+Ich habe ein Skript/Programm in Python namens `ranker.py` geschrieben, das die Analyse für jeden Indikator durchführt und dann den besten Trigger für jeden von ihnen findet, d Ergebnisse in eine Excel-Datei namens `ranker_results.xlsx`.
 
-Then, I ordered them from highest c_3 to lowest c_3. There are:
+Dann habe ich sie vom höchsten c_3 zum niedrigsten c_3 geordnet. Es gibt:
 
-- 15 indicators with a c_3 above 90
-- 23 indicators with a c_3 between 80-90
-- 23 indicators with a c_3 between 70-80
-- 30 indicators with a c_3 below 70
+- 15 Indikatoren mit einem c_3 über 90
+- 23 Indikatoren mit einem c_3 zwischen 80-90
+- 23 Indikatoren mit einem c_3 zwischen 70-80
+- 30 Indikatoren mit einem c_3 unter 70
 
-The correlation (c_3) score can be thought of as a representation of how predictable each indicator has been historically (Based on data from January 2017 to February 2023). This implies that the indicator has a higher probability of moving in the expected direction when the c_3 score is higher. That is the hypothesis anyway, but this can only be confirmed by testing the strategy.
+Die Korrelationswerte (c_3) können als Darstellungen dafür angesehen werden, wie vorhersagbar jede Abweichung für jeden Indikator historisch war (basierend auf Daten von Januar 2017 bis Februar 2023). Dies impliziert, dass der Indikator eine höhere Wahrscheinlichkeit hat, sich in die erwartete Richtung zu bewegen, wenn der c_3-Wert höher ist. Das ist sowieso die Hypothese, die aber nur durch das Testen der Strategie bestätigt werden kann.
 
 ![](images/ranker-results-1.png)
 ![](images/ranker-results-2.png)
 ![](images/ranker-results-3.png)
 
-## Generating trading plans
+## Handelspläne erstellen (Generating trading plans)
 
-Since the c_3 score is like a predictablity score, it makes sense to place larger trades when which uses larger lot sizes when the c_3 score is higher. I came up with the following lot sizes for each c_3 score:
+Da der c_3-Wert wie ein Vorhersagbarkeitswert ist, ist es sinnvoll, größere Trades zu platzieren, wenn größere Lot Sizes verwendet werden, wenn der c_3-Wert höher ist. Ich habe die folgenden Lot Sizes für jede c_3-Punktzahl ermittelt:
 
-- between **80** and **85**: **0.5** lots per $1000 account balance
-- between **85** and **90**: **0.75** lots per $1000
-- between **90** and **95**: **1** lot per $1000
-- above **90**: **1.5** lots per $1000
+- zwischen **80** und **85**: **0,5** Lots pro $1000 Kontostand
+- zwischen **85** und **90**: **0,75** Lots pro $1000
+- zwischen **90** und **95**: **1** Lot pro $1000
+- über **90**: **1,5** Lots pro $1000
 
-I wrote another script which looks at the ranker results for any indicators with a c_3 score above 80, then checks the investing.com economic calendar to see if any of those are scheduled to be released in the next week.
+Ich habe ein weiteres Skript geschrieben, das die Ranking-Ergebnisse für alle Indikatoren mit einem c_3-Wert über 80 betrachtet und dann den Wirtschaftskalender von investing.com überprüft, um zu sehen, ob einer davon in der nächsten Woche veröffentlicht werden soll.
 
-Then, for each indicator which will be released in the next week, it generates recommended trigger deviations and lot sizes as inputs for the haawks news trader program like this:
+Dann generiert es für jeden Indikator, der in der nächsten Woche veröffentlicht wird, empfohlene Triggerabweichungen und Lot Sizes als Eingaben für das Haawks-News-Trader-Programm wie folgt:
 ![](images/us-core-ppi-mom-triggers.png)
 
-So the weekly schedule will be a bunch of trigger recommendations like the one above:
+Der Wochenplan besteht also aus einer Reihe von Trigger-Empfehlungen wie der obigen:
 ![](images/triggers-output.png)
 
-In the above example, 'lots/$1k' and 'lots' are the same because it assumed an account balance of $1000. If the account balance was $2000, then the 'lots' would be double the amount of 'lots/$1k'
+Im obigen Beispiel sind 'lots/$1k' und 'lots' identisch, da ein Kontostand von $1000 angenommen wurde. Wenn der Kontostand $2000 beträgt, sind die 'lots' doppelt so hoch wie 'lots/$1k'.
 
-# Conclusion
-That is essentially where I'm at with this project. I believe that trading these events with lot sizes proportional to the correlation score should make profit.
+# Abschluss
 
-However, there are still some things which can be improved. For example, I have been emailing the creator of the haawks news trader program who has been trading the news for years. He was interested in my work, but one thing he said is that the reliability/predictability of indicators can change over time. The example he gave was Sweden's CPI, which according to him was good to trade about 3 years ago but now it's unreliable.
+Da bin ich mit der Entwicklung dieses Projektes im Wesentlichen (Stand 19.03.2023). Ich glaube, dass der Handel mit diesen Ereignissen mit Lot Sizes proportional zum Korrelationsergebnis Gewinn bringen sollte.
 
-To solve this problem, I am planning to create another correlation score which is weighted more towards recent events instead of how it is now with all the events from 2017-2023 equally weighted. That would mean that if the all-time correlation score (what I currently have) is high, but for more recent events, the correlation score is lower, then it would use a smaller lot size.
+Es gibt jedoch noch einige Dinge, die verbessert werden können. Zum Beispiel habe ich dem Schöpfer des Haawks-News-Trader-Programms, der seit Jahren mit Nachrichten handelt, eine E-Mail geschickt. Er war an meiner Arbeit interessiert, sagte aber, dass sich die Zuverlässigkeit/Vorhersagbarkeit (Reliability/Predictability) von Indikatoren im Laufe der Zeit ändern kann. Das Beispiel, das er gab, war der schwedische CPI, der seiner Meinung nach vor etwa 3 Jahren gut zu handeln war, aber jetzt unzuverlässig ist.
 
-This can be achieved by using an EMA (exponential moving average). Moving averages are used in technical analysis by applying them to price data.
+Um dieses Problem zu lösen, plane ich, eine andere Score-Korrelation zu erstellen, die stärker auf die jüngsten Ereignisse ausgerichtet ist, anstatt wie jetzt alle Ereignisse von 2017 bis 2023 gleich gewichtet. Das würde bedeuten, dass, wenn der Korrelationswert aller Zeiten (was ich derzeit habe) hoch ist, der Korrelationswert für neuere Ereignisse jedoch niedriger ist, eine kleinere Lot Size verwendet werden würde.
 
-There are different types of moving averages:
-- SMA (Simple Moving Average) is a commonly used technical indicator in forex trading that calculates the average price of an asset over a specific period of time. It is called "simple" because it gives equal weight to each data point in the calculation. Traders use SMAs to identify trends and potential entry and exit points for trades.
-- EMA (Exponential Moving Average) is also a commonly used technical indicator in forex trading that calculates the average price of an asset over a specific period of time. However, unlike the SMA, the EMA gives more weight to recent price data points, making it more sensitive to recent price changes. This means that the EMA may respond more quickly to changes in the market compared to the SMA. As a result, traders often use EMAs for shorter-term trading strategies, while SMAs are typically used for longer-term analysis.
+Dies kann durch die Verwendung eines EMA (exponentieller gleitender Durchschnitt oder exponential moving average) erreicht werden. Gleitende Durchschnitte werden in der technischen Analyse verwendet, indem sie auf Preisdaten angewendet werden.
 
-Although EMAs are commonly used for price analysis, I will instead be applying it to the correlation scores for each trigger. This will make the correlation score more sensitive to recent events and should better reflect how the indicator has performed recently.
+Es gibt verschiedene Arten von gleitenden Durchschnitten (Moving Averages):
 
-Beyond that, the creator of the haawks news trader program also told me he can modify his program to accept triggers from a database. That would mean this can be fully automated. The current workflow is to generate a weekly pdf report with the recommended triggers, and then manually input them into his program. However, with a database this could be done automatically.
+- SMA (Simple Moving Average) ist ein häufig verwendeter technischer Indikator im Devisenhandel, der den Durchschnittspreis eines Vermögenswerts über einen bestimmten Zeitraum berechnet. Es wird "simple" (einfach) genannt, weil es jedem Datenpunkt in der Berechnung das gleiche Gewicht gibt. Händler verwenden SMAs, um Trends und potenzielle Einstiegs- und Ausstiegspunkte für Trades zu identifizieren.
+- EMA (Exponential Moving Average) ist auch ein häufig verwendeter technischer Indikator im Forexhandel, der den Durchschnittspreis eines Vermögenswerts über einen bestimmten Zeitraum berechnet. Im Gegensatz zum SMA misst der EMA jedoch den jüngsten Preisdatenpunkten mehr Gewicht bei, wodurch er empfindlicher auf jüngste Preisänderungen reagiert. Dies bedeutet, dass der EMA im Vergleich zum SMA möglicherweise schneller auf Veränderungen am Markt reagiert. Infolgedessen verwenden Händler häufig EMAs für kurzfristigere Handelsstrategien, während SMAs normalerweise für längerfristige Analysen verwendet werden.
+- Beide Typen haben eine Eingabe, die "Periode" genannt wird und angibt, wie viele vorherige Datenpunkte in die Berechnung einfließen. Ein SMA oder EMA mit einer Periode von 10 würde zum Beispiel die letzten 10 Datenpunkte betrachten (z. B. die letzten 10 Preisniveaus für die technische Analyse oder in unserem Fall die c_3-Bewertungen für die letzten 10 Veröffentlichungen/Releases für jeden Auslöser/Trigger).
 
-Another thing to change is how the recommended triggers sometimes have higher deviations with lower correlation scores:
+Hier ist ein Video, das den Unterschied zwischen SMAs und EMAs zeigt (auf Englisch, aber Sie können deutsche Untertitel einfügen):
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ijheqz9OHZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+Obwohl EMAs häufig für Preisanalysen, d. h. technische Analysen (Wie in dem Video oben), verwendet werden, werde ich sie stattdessen auf die Korrelationen der Ergebnisse für jeden Auslöser anwenden. Dadurch wird der Korrelationswert empfindlicher gegenüber jüngsten Ereignissen und sollte besser widerspiegeln, wie sich der Indikator in letzter Zeit entwickelt hat.
+
+Darüber hinaus sagte mir der Schöpfer des Haawks-News-Trader-Programms, dass er sein Programm so modifizieren kann, dass es Trigger aus einer Datenbank akzeptiert. Das würde bedeuten, dass dies vollständig automatisiert werden kann. Der aktuelle Arbeitsablauf besteht darin, einen wöchentlichen PDF-Bericht mit den empfohlenen Auslösern/Triggers zu erstellen und diese dann manuell in sein Programm einzugeben. Mit einer Datenbank könnte dies jedoch automatisch erfolgen.
+
+Eine andere Sache, die geändert werden muss, ist, dass die empfohlenen Auslöser (Triggers) manchmal höhere Abweichungen (Deviations) mit niedrigeren Korrelationswerten aufweisen:
 ![](images/us-cpi-index-nsa-triggers.png)
-In the above example, you can see that -LT3 & +UT3 have a lower lot size than the triggers with lower deviations (-LT2 & +UT2). This is because despite the deviation being bigger, the correlation scores were actually lower for those triggers.
+Im obigen Beispiel sehen Sie, dass -LT3 & +UT3 eine geringere Lot Size haben als die Trigger mit geringeren Abweichungen (-LT2 & +UT2). Dies liegt daran, dass die Korrelationswerte für diese Auslöser/Trigger trotz größerer Abweichung/Deviation tatsächlich niedriger waren.
 
-When this happens, it should ommit those triggers, so in this example it would only show -LT1, -LT2, +UT1 & +UT2.
+In diesem Fall sollten diese Trigger weggelassen werden, sodass in diesem Beispiel nur -LT1, -LT2, +UT1 und +UT2 angezeigt werden.
 
-To account for this weird behaviour of bigger deviations sometimes having lower correlation scores (common sense would say that this shouldn't happen but it does), I might also pay the creator of the haawks news trader program to modify his program so that the deviation has to be between two values instead of just above or below one value.
+Um diesem komischen Verhalten Rechnung zu tragen, dass größere Abweichungen (Deviations) manchmal zu niedrigeren Korrelationswerten führen (der gesunde Menschenverstand würde sagen, dass dies nicht passieren sollte, aber es passiert doch), könnte ich auch den Ersteller des Haawks News Trader-Programms dafür bezahlen, sein Programm so zu ändern, dass die Abweichung zwischen zwei Werten liegen muss und nicht nur über oder unter einem Wert.
 
-If his program could accept those parameters, then it would be possible to only make a trade when the deviation is between -0.2 and -0.4 for -LT2 instead of anything below 0.4. For +UT2 it would be anything between +0.2 and +0.4.
+Wenn sein Programm diese Parameter akzeptieren könnte, dann wäre es möglich, nur dann einen Handel zu tätigen, wenn die Abweichung zwischen -0.2 und -0.4 für -LT2 liegt, anstatt alles unter 0.4. Für +UT2 wäre es alles zwischen +0.2 und +0.4.
 
-That pretty much covers everything I could think of which relates to this trading strategy. I think once I apply the EMA to the correlation scores, it will be ready to start trading with. Things may evolve over time and it will be important to observe how it performs and adjust as needed
+Das deckt so ziemlich alles ab, was mir zu dieser Handelsstrategie einfiel (aber vielleicht habe ich auch etwas vergessen, also fragen Sie mich ruhig). Ich denke, sie ist bereit, mit dem Handel zu beginnen, aber sobald ich den EMA auf die Korrelationswerte anwende, wird sie noch besser sein. Die Dinge können sich im Laufe der Zeit weiterentwickeln, und es wird wichtig sein, zu beobachten, wie sie sich entwickelt, und sie bei Bedarf anzupassen.

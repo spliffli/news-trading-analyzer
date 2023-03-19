@@ -18,7 +18,7 @@ It's only possible for the price to move when people trade, so clearly there are
 
 ## What kind of news moves the market?
 
-If you go to `investing.com/economic-calendar/` you will find a big list of news events which have an impact on the market:
+If you go to `investing.com/economic-calendar/` you will find a big list of news events which have an impact on the market. These are also known as 'economic news indicators':
 
 ![](images/economic-calendar.png)
 
@@ -45,19 +45,17 @@ The base currency is the first one, which is USD in USD/CAD, and the quote curre
 * The exchange rate can be affected by various factors, such as changes in interest rates, economic indicators, geopolitical events, and market sentiment. These factors can influence the demand and supply of the currencies in the pair, and therefore affect their relative value and the exchange rate.
 * In the USDJPY pair, USD is the base currency so the exchange rate tells you how many JPY you need to buy 1 USD. If the exchange rate is 110.00, you need to spend 110 JPY to buy 1 USD. Positive news for USD can make the exchange rate go up, while negative news can make it go down. You can trade USDJPY by going long (buying) or short (selling), depending on your view of the market
 * In the USDCAD pair, USD is also the base currency and CAD is the quote currency, so the exchange rate tells you how much CAD you need to buy 1 USD. For example, if the exchange rate is 1.25, you need to spend 1.25 CAD to buy 1 USD. This means that if you have 100 CAD, you can only buy 80 USD if the exchange rate is 0.80. Positive news for CAD can make the exchange rate go down, while negative news can make it go up. As with USDJPY, you can trade USDCAD by going long or short, depending on your view of the market
-* When the underlying currency is the **base currency** in the pair (e.g. **USD** in **USD**JPY) and there is:
-
-  * **positive news:** the price goes up
-  * **negative news:** the price goes down
-* When the underlying currency is the **quote currency** in the pair (e.g. **CAD** in USD**CAD**) and there is:
-
-  * **positive news:** the price goes down
-  * **negative news:** the price goes up
+* When the underlying currency is the **base currency** in the pair (e.g. **USD** in **USD**/JPY) and there is:
+  - **positive news:** the price goes up
+  - **negative news:** the price goes down
+* When the underlying currency is the **quote currency** in the pair (e.g. **CAD** in USD/**CAD**) and there is:
+  - **positive news:** the price goes down
+  - **negative news:** the price goes up
 * When you trade a currency pair, you are speculating on the direction of the exchange rate. If you think that the base currency will appreciate against the quote currency, you can buy the pair (go long). If you think that the base currency will depreciate against the quote currency, you can sell the pair (go short). The profit or loss you make depends on the difference between the entry and exit (a.k.a. open and close) price of the trade, and the size of your position (Position just means an open trade).
 
 ## What the price is and why it moves
 
-In the forex market, the current price of a currency pair is determined by the intersection of the bids and asks in the order book. The order book is a real-time display of all buy and sell orders for a particular currency pair at various price levels.
+In the forex market, the current price of a currency pair is determined by the bids and asks in the order book. The order book is a real-time display of all buy and sell orders for a particular currency pair at various price levels.
 
 When a trader places a buy limit order, they create a bid in the orderbook, which represents the highest price they are willing to pay for the currency pair. When a trader places a sell limit order, they create an ask in the orderbook, which represents the lowest price they are willing to accept for the currency pair.
 
@@ -179,15 +177,18 @@ Overall, forex brokers are necessary for traders to access the forex market and 
 There are three main types of forex broker profit models: STP, ECN, and Market Maker.
 
 1. Straight Through Processing (STP):
-  - Ein STP-Broker ist eine Art von Forex-Broker, der seinen Kunden direkten Marktzugang (Direct Market Access or DMA) bietet. Das bedeutet, dass der Broker nicht als Market Maker fungiert, sondern die Kundenaufträge direkt an Liquiditätsanbieter weiterleitet. Ein Liquiditätsanbieter ist in der Regel ein großes Finanzinstitut, z. B. eine Bank oder ein anderer Broker, der Preise und Liquidität auf dem Forexmarkt bereitstellt.
 
-  - When a client places an order with an STP broker, the broker will route the order to a liquidity provider that offers the best available price at that moment. This allows the client to receive competitive pricing and execution, as they are accessing the real market. The broker earns its profit by charging a commission or markup on the spread.
-  - For example, if the bid price for EUR/USD is 1.1000 and the ask price is 1.1001, the spread is 1 pip. When a client places an order with an STP broker, the broker will typically add a small markup to the spread in order to earn a profit. The markup is typically transparent and disclosed to the client before the trade is executed.
+- Ein STP-Broker ist eine Art von Forex-Broker, der seinen Kunden direkten Marktzugang (Direct Market Access or DMA) bietet. Das bedeutet, dass der Broker nicht als Market Maker fungiert, sondern die Kundenaufträge direkt an Liquiditätsanbieter weiterleitet. Ein Liquiditätsanbieter ist in der Regel ein großes Finanzinstitut, z. B. eine Bank oder ein anderer Broker, der Preise und Liquidität auf dem Forexmarkt bereitstellt.
+- When a client places an order with an STP broker, the broker will route the order to a liquidity provider that offers the best available price at that moment. This allows the client to receive competitive pricing and execution, as they are accessing the real market. The broker earns its profit by charging a commission or markup on the spread.
+- For example, if the bid price for EUR/USD is 1.1000 and the ask price is 1.1001, the spread is 1 pip. When a client places an order with an STP broker, the broker will typically add a small markup to the spread in order to earn a profit. The markup is typically transparent and disclosed to the client before the trade is executed.
 
 2. Electronic Communication Network (ECN):
-  - An ECN broker is similar to an STP broker in that it provides direct market access to its clients. However, an ECN broker also allows clients to trade with each other. This means that clients can act as both buyers and sellers in the market, and the broker does not act as a counterparty to their trades. The broker earns its profit by charging a commission on each trade.
+
+- An ECN broker is similar to an STP broker in that it provides direct market access to its clients. However, an ECN broker also allows clients to trade with each other. This means that clients can act as both buyers and sellers in the market, and the broker does not act as a counterparty to their trades. Like with STP, the also broker earns its profit by charging a commission on each trade.
+
 3. Market Maker:
-  - A market maker is a type of forex broker that creates a market for its clients by taking the opposite side of their trades. This means that when a client buys a currency pair, the broker sells that same currency pair to the client, and vice versa. The broker earns its profit by pocketing the difference between the bid and ask price, also known as the spread. Market makers may also engage in other trading practices to manage their risk, such as hedging their positions in the interbank market.
+
+- A market maker is a type of forex broker that creates a market for its clients by taking the opposite side of their trades. This means that when a client buys a currency pair, the broker sells that same currency pair to the client, and vice versa. The broker earns its profit by pocketing the difference between the bid and ask price, also known as the spread. Market makers may also engage in other trading practices to manage their risk, such as hedging their positions in the interbank market.
 
 In summary, STP and ECN brokers provide direct market access to their clients and earn their profits by charging a commission or markup on the spread. Market makers, on the other hand, create a market for their clients by taking the opposite side of their trades and earn their profits by pocketing the spread.
 
@@ -262,7 +263,7 @@ In order to have a more informed and robust trading plan, I created a data analy
 - the range of pip movements
 - Three correlation scores (c_1, c_2 & c_3)
 
-It then generates a pdf report for that indicator (e.g. Nonfarm Payrolls or Canada GDP)cand trading symbol (e.g. USDJPY or USDCAD).
+It then generates a pdf report for that indicator (e.g. Nonfarm Payrolls or Canada GDP) and trading symbol (e.g. USDJPY or USDCAD).
 
 Here are screenshots of the pdf report generated for Canada GDP MoM (Month over month):
 ![](images/canada-gdp-page1.png)
@@ -277,8 +278,8 @@ Here are screenshots of the pdf report generated for Canada GDP MoM (Month over 
 
 Normally the correlation score gets higher as the deviation gets higher. The calculations for each trigger works like this:
 
-1. Get the historic news data from investing.com for January 2017 and after
-2. For each release date & time, download historic price data (tick data) from 5 minutes before release time until 15 minutes after release time. It shows the ask and bid prices at timestamps for every time the price moved which is usually many times per second. This comes as a .csv file which is a table:
+1. The program gets the historic news data from investing.com from January 2017 and after
+2. For each release date & time, it then downloads historic price data (tick data) from 5 minutes before release time until 15 minutes after release time. Tick data usually costs money but there is a forex broker called Dukascopy who provide it for free which is where this program gets the data from. It shows the ask and bid prices at timestamps for every time the price moved which is usually multiple times per second. This comes as a .csv file which is a table:
    ![](images/usdcad-tick-data.png)
 3. For specified times after each release (time deltas) i.e.
 
@@ -302,12 +303,12 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
 - 15 minutes
   the program gets the ask & bid prices at those times after each release, then calculates the pip movements relative to the price at the time of the release.
 
-4. For each release, check which trigger level it matches.
+4. For each release, it checks which trigger level it matches.
 
 - If the deviation is above a pre-defined level (e.g. trigger_1: +-0.1%) and below the trigger above it (e.g. trigger_2: +-0.2%) then it is added to the input data for that trigger (trigger_1).
 - If it the last trigger e.g. trigger_4, then any data above that is added to the input data for that trigger
 
-5. For each time delta (e.g. 1s, 2s, 3s, etc) calculate:
+5. For each time delta (e.g. 1s, 2s, 3s, etc) it calculates:
 
 - The **range** of all pip movements at that time (e.g. from -5 pips to +45 pips)
 - The **mean** average of all pip movements at that time (e.g. 15 pips). Calculated by adding up all of pip movements for each release in the current trigger, then dividing by the amount of them.
@@ -317,9 +318,9 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
   - `positive_count` = How many times the price (pip) movement is more than or equal to zero.
   - `negative_count` = How many times the price movement is less than zero
   - Every indicator has an expected direction based on whether there's bullish (positive) or bearish (negative) news. This information was saved earlier from investing.com.
-    - If the price is expected to be **positive** then:
+    - If the price movement is expected to be **positive** then:
       `c_1 = positive_count ÷ (positive_count + negative_count)`
-    - If the price is expected to be **negative** then:
+    - If the price movement is expected to be **negative** then:
       `c_1 = negative_count ÷ (positive_count + negative_count)`
 - **Correlation 2 Score (c_2)**
   - The percentage of pips which moved in the expected direction.
@@ -333,14 +334,14 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
   - This is the mean average of c_1 & c_2
   - `c_3 = (c_1 + c_2) ÷ 2`
 
-6. Calculate the total/averages for each trigger:
+6. The total/averages are then calculated for each trigger:
 
 - **range:** the lowest number for any of the time deltas to the highest number for any of the time deltas
 - **mean:** Add up the mean values for every time delta then divide by the number of time deltas (18)
 - **median:** Add up the median values for every time delta then divide by 18
 - **c_1:** Add up the c_1 values for every time delta then divide by 18
 - **c_2:** Add up the c_2 values for every time delta then divide by 18
-- **c_3:** Add up the c_3 Aftvalues for every time delta then divide by 18
+- **c_3:** Add up the c_3 values for every time delta then divide by 18
 
 ## Ranking every indicator
 
@@ -381,7 +382,8 @@ So the weekly schedule will be a bunch of trigger recommendations like the one a
 In the above example, 'lots/$1k' and 'lots' are the same because it assumed an account balance of $1000. If the account balance was $2000, then the 'lots' would be double the amount of 'lots/$1k'
 
 # Conclusion
-That is essentially where I'm at with this project. I believe that trading these events with lot sizes proportional to the correlation score should make profit.
+
+That is essentially where I'm at with the development of this project (as of 19/03/2023). I believe that trading these events with lot sizes proportional to the correlation score should make profit.
 
 However, there are still some things which can be improved. For example, I have been emailing the creator of the haawks news trader program who has been trading the news for years. He was interested in my work, but one thing he said is that the reliability/predictability of indicators can change over time. The example he gave was Sweden's CPI, which according to him was good to trade about 3 years ago but now it's unreliable.
 
@@ -390,10 +392,16 @@ To solve this problem, I am planning to create another correlation score which i
 This can be achieved by using an EMA (exponential moving average). Moving averages are used in technical analysis by applying them to price data.
 
 There are different types of moving averages:
+
 - SMA (Simple Moving Average) is a commonly used technical indicator in forex trading that calculates the average price of an asset over a specific period of time. It is called "simple" because it gives equal weight to each data point in the calculation. Traders use SMAs to identify trends and potential entry and exit points for trades.
 - EMA (Exponential Moving Average) is also a commonly used technical indicator in forex trading that calculates the average price of an asset over a specific period of time. However, unlike the SMA, the EMA gives more weight to recent price data points, making it more sensitive to recent price changes. This means that the EMA may respond more quickly to changes in the market compared to the SMA. As a result, traders often use EMAs for shorter-term trading strategies, while SMAs are typically used for longer-term analysis.
+- Both types have an input called the 'period' which specifies how many previous data points back it uses in its calculation. For example, an SMA or EMA with a period of 10 would look at the past 10 data points (e.g. the last 10 price levels for technical analysis, or in our case the c_3 scores for the last 10 releases for each trigger)
 
-Although EMAs are commonly used for price analysis, I will instead be applying it to the correlation scores for each trigger. This will make the correlation score more sensitive to recent events and should better reflect how the indicator has performed recently.
+Here is a video which shows the difference between SMAs & EMAs:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ijheqz9OHZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+Although EMAs are commonly used for price analysis (Like in the video above), I will instead be applying it to the correlation scores for each trigger. This will make the correlation score more sensitive to recent events and should better reflect how the indicator has performed recently.
 
 Beyond that, the creator of the haawks news trader program also told me he can modify his program to accept triggers from a database. That would mean this can be fully automated. The current workflow is to generate a weekly pdf report with the recommended triggers, and then manually input them into his program. However, with a database this could be done automatically.
 
@@ -401,10 +409,10 @@ Another thing to change is how the recommended triggers sometimes have higher de
 ![](images/us-cpi-index-nsa-triggers.png)
 In the above example, you can see that -LT3 & +UT3 have a lower lot size than the triggers with lower deviations (-LT2 & +UT2). This is because despite the deviation being bigger, the correlation scores were actually lower for those triggers.
 
-When this happens, it should ommit those triggers, so in this example it would only show -LT1, -LT2, +UT1 & +UT2.
+When this happens, it should omit those triggers, so in this example it would only show -LT1, -LT2, +UT1 & +UT2.
 
 To account for this weird behaviour of bigger deviations sometimes having lower correlation scores (common sense would say that this shouldn't happen but it does), I might also pay the creator of the haawks news trader program to modify his program so that the deviation has to be between two values instead of just above or below one value.
 
 If his program could accept those parameters, then it would be possible to only make a trade when the deviation is between -0.2 and -0.4 for -LT2 instead of anything below 0.4. For +UT2 it would be anything between +0.2 and +0.4.
 
-That pretty much covers everything I could think of which relates to this trading strategy. I think once I apply the EMA to the correlation scores, it will be ready to start trading with. Things may evolve over time and it will be important to observe how it performs and adjust as needed
+That pretty much covers everything I could think of which relates to this trading strategy (but I may have forgotten some things so feel free to ask me). I think it's ready to start trading, but once I apply the EMA to the correlation scores, it will be even better. Things may evolve over time and it will be important to observe how it performs and adjust as needed.
