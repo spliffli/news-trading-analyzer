@@ -411,7 +411,7 @@ In the above example, you can see that -LT3 & +UT3 have a lower lot size than th
 
 When this happens, it should omit those triggers, so in this example it would only show -LT1, -LT2, +UT1 & +UT2.
 
-To account for this weird behaviour of bigger deviations sometimes having lower correlation scores (common sense would say that this shouldn't happen but it does), I might also pay the creator of the haawks news trader program to modify his program so that the deviation has to be between two values instead of just above or below one value.
+To account for this weird behaviour of bigger deviations sometimes having lower correlation scores (common sense would say that this shouldn't happen but it does), I might also pay the creator of the haawks news trader program to modify his program so that the deviation can be between two values instead of just above or below one value.
 
 If his program could accept those parameters, then it would be possible to only make a trade when the deviation is between -0.2 and -0.4 for -LT2 instead of anything below 0.4. For +UT2 it would be anything between +0.2 and +0.4.
 

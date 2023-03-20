@@ -409,7 +409,7 @@ Im obigen Beispiel sehen Sie, dass -LT3 & +UT3 eine geringere Lot Size haben als
 
 In diesem Fall sollten diese Trigger weggelassen werden, sodass in diesem Beispiel nur -LT1, -LT2, +UT1 und +UT2 angezeigt werden.
 
-Um diesem komischen Verhalten Rechnung zu tragen, dass größere Abweichungen (Deviations) manchmal zu niedrigeren Korrelationswerten führen (der gesunde Menschenverstand würde sagen, dass dies nicht passieren sollte, aber es passiert doch), könnte ich auch den Ersteller des Haawks News Trader-Programms dafür bezahlen, sein Programm so zu ändern, dass die Abweichung zwischen zwei Werten liegen muss und nicht nur über oder unter einem Wert.
+Um diesem komischen Verhalten Rechnung zu tragen, dass größere Abweichungen (Deviations) manchmal zu niedrigeren Korrelationswerten führen (der gesunde Menschenverstand würde sagen, dass dies nicht passieren sollte, aber es passiert doch), könnte ich auch den Ersteller des Haawks News Trader-Programms dafür bezahlen, sein Programm so zu ändern, dass die Abweichung zwischen zwei Werten liegen kann und nicht nur über oder unter einem Wert.
 
 Wenn sein Programm diese Parameter akzeptieren könnte, dann wäre es möglich, nur dann einen Handel zu tätigen, wenn die Abweichung zwischen -0.2 und -0.4 für -LT2 liegt, anstatt alles unter 0.4. Für +UT2 wäre es alles zwischen +0.2 und +0.4.
 
