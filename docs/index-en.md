@@ -177,16 +177,16 @@ Overall, forex brokers are necessary for traders to access the forex market and 
 There are three main types of forex broker profit models: STP, ECN, and Market Maker.
 
 1. **Straight Through Processing (STP):**
-
-   - An STP broker is a type of Forex broker that provides its clients with Direct Market Access or DMA. This means that the broker does not act as a market maker, but forwards client orders directly to liquidity providers. A liquidity provider is usually a large financial institution, e.g. a bank or another broker, which provides pricing and liquidity on the Forex market.
-   - When a client places an order with an STP broker, the broker will route the order to a liquidity provider that offers the best available price at that moment. This allows the client to receive competitive pricing and execution, as they are accessing the real market. The broker earns its profit by charging a commission or markup on the spread.
-   - For example, if the bid price for EUR/USD is 1.1000 and the ask price is 1.1001, the spread is 1 pip. When a client places an order with an STP broker, the broker will typically add a small markup to the spread in order to earn a profit. The markup is typically transparent and disclosed to the client before the trade is executed.
+    - An STP broker is a type of Forex broker that provides its clients with Direct Market Access or DMA. This means that the broker does not act as a market maker, but forwards client orders directly to liquidity providers. A liquidity provider is usually a large financial institution, e.g. a bank or another broker, which provides pricing and liquidity on the Forex market.
+    - When a client places an order with an STP broker, the broker will route the order to a liquidity provider that offers the best available price at that moment. This allows the client to receive competitive pricing and execution, as they are accessing the real market. The broker earns its profit by charging a commission or markup on the spread.
+    - For example, if the bid price for EUR/USD is 1.1000 and the ask price is 1.1001, the spread is 1 pip. When a client places an order with an STP broker, the broker will typically add a small markup to the spread in order to earn a profit. The markup is typically transparent and disclosed to the client before the trade is executed.
 2. **Electronic Communication Network (ECN):**
 
-   - An ECN broker is similar to an STP broker in that it provides direct market access to its clients. However, an ECN broker also allows clients to trade with each other. This means that clients can act as both buyers and sellers in the market, and the broker does not act as a counterparty to their trades. Like with STP, the also broker earns its profit by charging a commission on each trade.
+    - An ECN broker is similar to an STP broker in that it provides direct market access to its clients. However, an ECN broker also allows clients to trade with each other. This means that clients can act as both buyers and sellers in the market, and the broker does not act as a counterparty to their trades. Like with STP, the also broker earns its profit by charging a commission on each trade.
+
 3. **Market Maker:**
 
-   - A market maker is a type of forex broker that creates a market for its clients by taking the opposite side of their trades. This means that when a client buys a currency pair, the broker sells that same currency pair to the client, and vice versa. The broker earns its profit by pocketing the difference between the bid and ask price, also known as the spread. Market makers may also engage in other trading practices to manage their risk, such as hedging their positions in the interbank market.
+    - A market maker is a type of forex broker that creates a market for its clients by taking the opposite side of their trades. This means that when a client buys a currency pair, the broker sells that same currency pair to the client, and vice versa. The broker earns its profit by pocketing the difference between the bid and ask price, also known as the spread. Market makers may also engage in other trading practices to manage their risk, such as hedging their positions in the interbank market.
 
 In summary, STP and ECN brokers provide direct market access to their clients and earn their profits by charging a commission or markup on the spread. Market makers, on the other hand, create a market for their clients by taking the opposite side of their trades and earn their profits by pocketing the spread.
 
