@@ -316,7 +316,7 @@ Normalerweise wird der Korrelationswert (Correlation Score) höher, wenn die Abw
           - Wenn erwartet wird, dass die Preisbewegung **positiv** ist, dann:
             `c_1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)`
           - Wenn die Preisbewegung voraussichtlich **negativ** sein wird:
-            `c_1 = negative_Zählung ÷ (positive_Zählung + negative_Zählung)`
+            `c_1 = Negative_Zählung ÷ (Nositive_Zählung + Negative_Zählung)`
     - **Korrelation 2 Score (c_2)**
         - Der Prozentsatz der Pips, die sich in die erwartete Richtung bewegt haben.
         - `Positive_Summe` = Alle Pips, die sich in eine positive Richtung bewegen, werden zusammengezählt
