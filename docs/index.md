@@ -226,8 +226,8 @@ Für jedes Ereignis gibt es 6 Triggerpegel, die konfiguriert werden können:
 - **+UT1**
 - **+UT2**
 - **+UT3**
-- '**LT**' steht für 'Lower Trigger' und wird ausgelöst, wenn die tatsächliche (Actual) Zahl niedriger ist als die prognostizierte (Forecast) Zahl.
-- '**UT**' steht für 'Upper Trigger' und wird ausgelöst, wenn die tatsächliche (Actual) Zahl höher ist als die prognostizierte (Forecast) Zahl.
+- '**LT**' steht für '**Lower Trigger**' und wird ausgelöst, wenn die tatsächliche (Actual) Zahl niedriger ist als die prognostizierte (Forecast) Zahl.
+- '**UT**' steht für '**Upper Trigger**' und wird ausgelöst, wenn die tatsächliche (Actual) Zahl höher ist als die prognostizierte (Forecast) Zahl.
 - Es gibt auch '**LTA**' und '**UTA**', was für '**Lower Trigger Action**' und '**Upper Trigger Action**' steht. Diese können entweder auf '**Buy**' oder '**Sell**' eingestellt werden, je nachdem, ob eine höhere Abweichung bullish oder bearish ist.
 
   - Beispielsweise ist für US Nonfarm Payrolls eine höhere Nachrichtenabweichung (news deviation) bullish (positiv) für USDJPY und eine niedrigere Nachrichtenabweichung bearish (negativ) für USDJPY. Daher würden Sie 'LTA' auf 'Sell' und 'UTA' auf 'Buy' setzen.
