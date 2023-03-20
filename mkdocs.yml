@@ -6,8 +6,8 @@ theme:
   custom_dir: "docs/n2_custom_theme"
   logo: "img/logo-96px.png"
   palette:
-    primary: 'black'
-    accent: 'dark blue'
+    primary: 'blue'
+    accent: 'blue'
   icon:
     admonition:
       note: octicons/tag-16
@@ -40,8 +40,8 @@ plugins:
 - mkdocstrings
 
 nav:
-  - Intro: index.md
-  - What kind of news moves the market?: what-news.md
+  - (DE) News Trading System erklärt: index.md
+  - (EN) News Trading System Explained: index-en.md
 
 
 edit_uri: '#docs/'
