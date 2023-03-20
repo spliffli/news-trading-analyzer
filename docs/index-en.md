@@ -282,25 +282,25 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
    ![](images/usdcad-tick-data.png)
 3. For specified times after each release (time deltas) i.e.
 
-   - 1 second
-   - 2 seconds
-   - 3 seconds
-   - 4 seconds
-   - 5 seconds
-   - 10 seconds
-   - 15 seconds
-   - 20 seconds
-   - 25 seconds
-   - 30 seconds
-   - 45 seconds
-   - 1 minute
-   - 2 minutes
-   - 3 minutes
-   - 4 minutes
-   - 5 minutes
-   - 10 minutes
-   - 15 minutes
-   - the program gets the ask & bid prices at those times after each release, then calculates the pip movements relative to the price at the time of the release.
+    - 1 second
+    - 2 seconds
+    - 3 seconds
+    - 4 seconds
+    - 5 seconds
+    - 10 seconds
+    - 15 seconds
+    - 20 seconds
+    - 25 seconds
+    - 30 seconds
+    - 45 seconds
+    - 1 minute
+    - 2 minutes
+    - 3 minutes
+    - 4 minutes
+    - 5 minutes
+    - 10 minutes
+    - 15 minutes
+    - the program gets the ask & bid prices at those times after each release, then calculates the pip movements relative to the price at the time of the release.
 4. For each release, it checks which trigger level it matches.
 
    - If the deviation is above a pre-defined level (e.g. trigger_1: +-0.1%) and below the trigger above it (e.g. trigger_2: +-0.2%) then it is added to the input data for that trigger (trigger_1).
