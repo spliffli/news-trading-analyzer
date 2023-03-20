@@ -278,8 +278,10 @@ Here are screenshots of the pdf report generated for Canada GDP MoM (Month over 
 Normally the correlation score gets higher as the deviation gets higher. The calculations for each trigger works like this:
 
 1. The program gets the historic news data from investing.com from January 2017 and after
+
 2. For each release date & time, it then downloads historic price data (tick data) from 5 minutes before release time until 15 minutes after release time. Tick data usually costs money but there is a forex broker called Dukascopy who provide it for free which is where this program gets the data from. It shows the ask and bid prices at timestamps for every time the price moved which is usually multiple times per second. This comes as a .csv file which is a table:
    ![](images/usdcad-tick-data.png)
+
 3. For specified times after each release (time deltas) i.e.
 
     - 1 second
@@ -301,43 +303,46 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
     - 10 minutes
     - 15 minutes
     - the program gets the ask & bid prices at those times after each release, then calculates the pip movements relative to the price at the time of the release.
+
 4. For each release, it checks which trigger level it matches.
 
-   - If the deviation is above a pre-defined level (e.g. trigger_1: +-0.1%) and below the trigger above it (e.g. trigger_2: +-0.2%) then it is added to the input data for that trigger (trigger_1).
-   - If it the last trigger e.g. trigger_4, then any data above that is added to the input data for that trigger
+    - If the deviation is above a pre-defined level (e.g. trigger_1: +-0.1%) and below the trigger above it (e.g. trigger_2: +-0.2%) then it is added to the input data for that trigger (trigger_1).
+    - If it the last trigger e.g. trigger_4, then any data above that is added to the input data for that trigger
+
 5. For each time delta (e.g. 1s, 2s, 3s, etc) it calculates:
 
-   - The **range** of all pip movements at that time (e.g. from -5 pips to +45 pips)
-   - The **mean** average of all pip movements at that time (e.g. 15 pips). Calculated by adding up all of pip movements for each release in the current trigger, then dividing by the amount of them.
-   - The **median** average. Calculated by sorting all the pip movements from lowest to highest, then finding the one exactly in the middle.
-   - **Correlation 1 Score (c_1)**
-     - The percentage of times the price moved in the expected direction.
-     - `positive_count` = How many times the price (pip) movement is more than or equal to zero.
-     - `negative_count` = How many times the price movement is less than zero
-     - Every indicator has an expected direction based on whether there's bullish (positive) or bearish (negative) news. This information was saved earlier from investing.com.
-       - If the price movement is expected to be **positive** then:
-         `c_1 = positive_count ÷ (positive_count + negative_count)`
-       - If the price movement is expected to be **negative** then:
-         `c_1 = negative_count ÷ (positive_count + negative_count)`
-   - **Correlation 2 Score (c_2)**
-     - The percentage of pips which moved in the expected direction.
-     - `positive_sum` = All pips which moved in a positive direction added up
-     - `negative_sum` = All pips which moved in a negative direction added up. Because this number is negative, it is multiplied by -1 to become a positive number so that it works with the equation below.
-     - If the price is expected to be **positive** then:
-       `c_2 = positive_sum ÷ (positive_sum + negative_sum )`
-     - If the price is expected to be **negative** then:
-       `c_2 = negative_sum ÷ (positive_sum + negative_sum)`
-   - **Correlation 3 Score (c_3)**
-     - This is the mean average of c_1 & c_2
-     - `c_3 = (c_1 + c_2) ÷ 2`
+    - The **range** of all pip movements at that time (e.g. from -5 pips to +45 pips)
+    - The **mean** average of all pip movements at that time (e.g. 15 pips). Calculated by adding up all of pip movements for each release in the current trigger, then dividing by the amount of them.
+    - The **median** average. Calculated by sorting all the pip movements from lowest to highest, then finding the one exactly in the middle.
+    - **Correlation 1 Score (c_1)**
+        - The percentage of times the price moved in the expected direction.
+        - `positive_count` = How many times the price (pip) movement is more than or equal to zero.
+        - `negative_count` = How many times the price movement is less than zero
+        - Every indicator has an expected direction based on whether there's bullish (positive) or bearish (negative) news. This information was saved earlier from investing.com.
+            - If the price movement is expected to be **positive** then:
+              `c_1 = positive_count ÷ (positive_count + negative_count)`
+            - If the price movement is expected to be **negative** then:
+              `c_1 = negative_count ÷ (positive_count + negative_count)`
+    - **Correlation 2 Score (c_2)**
+        - The percentage of pips which moved in the expected direction.
+        - `positive_sum` = All pips which moved in a positive direction added up
+        - `negative_sum` = All pips which moved in a negative direction added up. Because this number is negative, it is multiplied by -1 to become a positive number so that it works with the equation below.
+            - If the price is expected to be **positive** then:
+            `c_2 = positive_sum ÷ (positive_sum + negative_sum )`
+            - If the price is expected to be **negative** then:
+            `c_2 = negative_sum ÷ (positive_sum + negative_sum)`
+    - **Correlation 3 Score (c_3)**
+        - This is the mean average of c_1 & c_2
+        - `c_3 = (c_1 + c_2) ÷ 2`
+        
 6. The total/averages are then calculated for each trigger:
 
-   - **range:** the lowest number for any of the time deltas to the highest number for any of the time deltas
-   - **mean:** Add up the mean values for every time delta then divide by the number of time deltas (18)
-   - **median:** Add up the median values for every time delta then divide by 18
-   - **c_1:** Add up the c_1 values for every time delta then divide by 18
-   - **c_2:** Add up the c_2 values for every time delta then divide by 18
-   - **c_3:** Add up the c_3 values for every time delta then divide by 18
+      - **range:** the lowest number for any of the time deltas to the highest number for any of the time deltas
+      - **mean:** Add up the mean values for every time delta then divide by the number of time deltas (18)
+      - **median:** Add up the median values for every time delta then divide by 18
+      - **c_1:** Add up the c_1 values for every time delta then divide by 18
+      - **c_2:** Add up the c_2 values for every time delta then divide by 18
+      - **c_3:** Add up the c_3 values for every time delta then divide by 18
 
 ## **18. Ranking every indicator**
 

@@ -313,18 +313,18 @@ Normalerweise wird der Korrelationswert (Correlation Score) höher, wenn die Abw
         - `Positiv_Zählung` = Wie oft die Preisbewegung (Pip) größer oder gleich Null ist.
         - `Negativ_Zählung` = Wie oft die Preisbewegung kleiner als Null ist
         - Jeder Indikator hat eine erwartete Richtung basierend darauf, ob es bullische (positive) oder bearishe (negative) Nachrichten gibt. Diese Informationen wurden zuvor von investing.com gespeichert.
-          - Wenn erwartet wird, dass die Preisbewegung **positiv** ist, dann:
-            `c_1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)`
-          - Wenn die Preisbewegung voraussichtlich **negativ** sein wird:
-            `c_1 = Negativ_Zählung ÷ (Nositiv_Zählung + Negativ_Zählung)`
+            - Wenn erwartet wird, dass die Preisbewegung **positiv** ist, dann:
+              `c_1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)`
+            - Wenn die Preisbewegung voraussichtlich **negativ** sein wird:
+              `c_1 = Negativ_Zählung ÷ (Nositiv_Zählung + Negativ_Zählung)`
     - **Korrelation 2 Score (c_2)**
         - Der Prozentsatz der Pips, die sich in die erwartete Richtung bewegt haben.
         - `Positiv_Summe` = Alle Pips, die sich in eine positive Richtung bewegen, werden zusammengezählt
         - `Negativ_Summe` = Alle Pips, die sich in eine negative Richtung bewegt haben, werden zusammengezählt. Da diese Zahl negativ ist, wird sie mit -1 multipliziert, um eine positive Zahl zu werden, sodass sie mit der folgenden Gleichung funktioniert.
-        - Wenn der Preis voraussichtlich **positiv** ist, dann:
-          `c_2 = Positiv_Summe ÷ (Positiv_Summe + Negativ_Summe )`
-        - Wenn der Preis voraussichtlich **negativ** sein wird:
-          `c_2 = Negativ_Summe ÷ (Positiv_Summe + Negativ_Summe)`
+            - Wenn der Preis voraussichtlich **positiv** ist, dann:
+              `c_2 = Positiv_Summe ÷ (Positiv_Summe + Negativ_Summe )`
+            - Wenn der Preis voraussichtlich **negativ** sein wird:
+              `c_2 = Negativ_Summe ÷ (Positiv_Summe + Negativ_Summe)`
     - **Korrelation 3 Score (c_3)**
         - Dies ist der mittlere Durchschnitt (mean average) von c_1 & c_2
         - `c_3 = (c_1 + c_2) ÷ 2`
@@ -360,10 +360,10 @@ Die Korrelationswerte (c_3) können als Darstellungen dafür angesehen werden, w
 
 Da der c_3-Wert wie ein Vorhersagbarkeitswert ist, ist es sinnvoll, größere Trades zu platzieren, wenn größere Lot Sizes verwendet werden, wenn der c_3-Wert höher ist. Ich habe die folgenden Lot Sizes für jede c_3-Punktzahl ermittelt:
 
-- zwischen **80** und **85**: **0,5** Lots pro $1000 Kontostand
-- zwischen **85** und **90**: **0,75** Lots pro $1000
+- zwischen **80** und **85**: **0.5** Lots pro $1000 Kontostand
+- zwischen **85** und **90**: **0.75** Lots pro $1000
 - zwischen **90** und **95**: **1** Lot pro $1000
-- über **90**: **1,5** Lots pro $1000
+- über **90**: **1.5** Lots pro $1000
 
 Ich habe ein weiteres Skript geschrieben, das die Ranking-Ergebnisse für alle Indikatoren mit einem c_3-Wert über 80 betrachtet und dann den Wirtschaftskalender von investing.com überprüft, um zu sehen, ob einer davon in der nächsten Woche veröffentlicht werden soll.
 
