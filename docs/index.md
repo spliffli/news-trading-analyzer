@@ -316,15 +316,15 @@ Normalerweise wird der Korrelationswert (Correlation Score) höher, wenn die Abw
           - Wenn erwartet wird, dass die Preisbewegung **positiv** ist, dann:
             `c_1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)`
           - Wenn die Preisbewegung voraussichtlich **negativ** sein wird:
-            `c_1 = Negative_Zählung ÷ (Nositive_Zählung + Negative_Zählung)`
+            `c_1 = Negativ_Zählung ÷ (Nositiv_Zählung + Negativ_Zählung)`
     - **Korrelation 2 Score (c_2)**
         - Der Prozentsatz der Pips, die sich in die erwartete Richtung bewegt haben.
-        - `Positive_Summe` = Alle Pips, die sich in eine positive Richtung bewegen, werden zusammengezählt
-        - `Negative_Summe` = Alle Pips, die sich in eine negative Richtung bewegt haben, werden zusammengezählt. Da diese Zahl negativ ist, wird sie mit -1 multipliziert, um eine positive Zahl zu werden, sodass sie mit der folgenden Gleichung funktioniert.
+        - `Positiv_Summe` = Alle Pips, die sich in eine positive Richtung bewegen, werden zusammengezählt
+        - `Negativ_Summe` = Alle Pips, die sich in eine negative Richtung bewegt haben, werden zusammengezählt. Da diese Zahl negativ ist, wird sie mit -1 multipliziert, um eine positive Zahl zu werden, sodass sie mit der folgenden Gleichung funktioniert.
         - Wenn der Preis voraussichtlich **positiv** ist, dann:
-          `c_2 = Positive_Summe ÷ (Positive_Summe + Negative_Summe )`
+          `c_2 = Positiv_Summe ÷ (Positiv_Summe + Negativ_Summe )`
         - Wenn der Preis voraussichtlich **negativ** sein wird:
-          `c_2 = Negative_Summe ÷ (Positive_Summe + Negative_Summe)`
+          `c_2 = Negativ_Summe ÷ (Positiv_Summe + Negativ_Summe)`
     - **Korrelation 3 Score (c_3)**
         - Dies ist der mittlere Durchschnitt (mean average) von c_1 & c_2
         - `c_3 = (c_1 + c_2) ÷ 2`
