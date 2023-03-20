@@ -51,7 +51,7 @@ The base currency is the first one, which is USD in USD/CAD, and the quote curre
   - When the underlying currency is the **quote currency** in the pair (e.g. **CAD** in USD/**CAD**) and there is:
     - **positive news:** the price goes down
     - **negative news:** the price goes up
-- When you trade a currency pair, you are speculating on the direction of the exchange rate. If you think that the base currency will appreciate against the quote currency, you can buy the pair (go long). If you think that the base currency will depreciate against the quote currency, you can sell the pair (go short). The profit or loss you make depends on the difference between the entry and exit (a.k.a. open and close) price of the trade, and the size of your position (Position just means an open trade).
+- When you trade a currency pair, you are speculating on the direction of the exchange rate. If you think that the base currency will appreciate against the quote currency, you can buy the pair (go long). If you think that the base currency will depreciate against the quote currency, you can sell the pair (go short). The profit or loss you make depends on the difference between the entry and exit (a.k.a. open and close) prices of the trade, and the size of your position (Position just means an open trade).
 
 ## **5. What the price is and why it moves**
 
