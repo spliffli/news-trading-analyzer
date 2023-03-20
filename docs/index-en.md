@@ -66,8 +66,8 @@ The current price of the currency pair is always based on two prices: the best a
 ## **6. Order types**
 
 - **Market orders** are executed immediately at the best available price, either at the best ask for a market buy order or at the best bid for a market sell order. The current market price, or mid-price, is the price at which the best bid and best ask intersect in the order book, but it does not necessarily reflect the price at which a market order will be executed.
-   - If a trader places a market order to **buy** the currency pair (***Market Buy Order***), their order will be filled at the current best **ask** price.
-   - For a ***Market Sell Order***, their order will be filled at the current best **bid** price.
+    - If a trader places a market order to **buy** the currency pair (***Market Buy Order***), their order will be filled at the current best **ask** price.
+    - For a ***Market Sell Order***, their order will be filled at the current best **bid** price.
 - **Limit orders** are filled when the market price reaches a specified price level
 
 If there are more buyers than sellers at a particular price level, the price of the currency pair may rise as buyers compete to purchase the currency. Conversely, if there are more sellers than buyers at a particular price level, the price of the currency pair may fall as sellers compete to sell the currency.

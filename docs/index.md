@@ -67,8 +67,8 @@ Der aktuelle Kurs des Währungspaares basiert immer auf zwei Kursen: dem besten 
 ## **6. Auftragsarten (Order Types)**
 
 - **Market Orders (Marktaufträge)** werden sofort zum besten verfügbaren Preis ausgeführt, entweder zum besten ask für einen Market Buy Order (Marktkaufauftrag) oder zum besten bid für einen Market Sell Order (Marktverkaufsauftrag).
-   - Wenn ein Händler einen Marktauftrag zum **Kauf/Buy** des Währungspaares erteilt (***Market Buy Order***), wird sein Auftrag zum aktuell besten **ask** preis ausgeführt.
-   - Bei einem ***Market Sell Order*** (Marktauftrag zum **Verkauf/Sell**) wird der Auftrag zum aktuell besten **bid** preis ausgeführt.
+    - Wenn ein Händler einen Marktauftrag zum **Kauf/Buy** des Währungspaares erteilt (***Market Buy Order***), wird sein Auftrag zum aktuell besten **ask** preis ausgeführt.
+    - Bei einem ***Market Sell Order*** (Marktauftrag zum **Verkauf/Sell**) wird der Auftrag zum aktuell besten **bid** preis ausgeführt.
 - **Limit Orders (Limitaufträge)** werden ausgeführt, wenn der Marktpreis ein bestimmtes Preisniveau erreicht.
 
 Wenn es auf einem bestimmten Kursniveau mehr Käufer als Verkäufer gibt, kann der Kurs des Währungspaares steigen, da die Käufer um den Kauf der Währung konkurrieren. Umgekehrt kann der Preis des Währungspaares fallen, wenn es auf einem bestimmten Preisniveau mehr Verkäufer als Käufer gibt, da die Verkäufer um den Verkauf der Währung konkurrieren.
