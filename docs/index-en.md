@@ -45,12 +45,12 @@ The base currency is the first one, which is USD in USD/CAD, and the quote curre
 - The exchange rate can be affected by various factors, such as changes in interest rates, economic indicators, geopolitical events, and market sentiment. These factors can influence the demand and supply of the currencies in the pair, and therefore affect their relative value and the exchange rate.
 - In the USDJPY pair, USD is the base currency so the exchange rate tells you how many JPY you need to buy 1 USD. If the exchange rate is 110.00, you need to spend 110 JPY to buy 1 USD. Positive news for USD can make the exchange rate go up, while negative news can make it go down. You can trade USDJPY by going long (buying) or short (selling), depending on your view of the market
 - In the USDCAD pair, USD is also the base currency and CAD is the quote currency, so the exchange rate tells you how much CAD you need to buy 1 USD. For example, if the exchange rate is 1.25, you need to spend 1.25 CAD to buy 1 USD. This means that if you have 100 CAD, you can only buy 80 USD if the exchange rate is 0.80. Positive news for CAD can make the exchange rate go down, while negative news can make it go up. As with USDJPY, you can trade USDCAD by going long or short, depending on your view of the market
-- When the underlying currency is the **base currency** in the pair (e.g. **USD** in **USD**/JPY) and there is:
-  - **positive news:** the price goes up
-  - **negative news:** the price goes down
-- When the underlying currency is the **quote currency** in the pair (e.g. **CAD** in USD/**CAD**) and there is:
-  - **positive news:** the price goes down
-  - **negative news:** the price goes up
+  - When the underlying currency is the **base currency** in the pair (e.g. **USD** in **USD**/JPY) and there is:
+    - **positive news:** the price goes up
+    - **negative news:** the price goes down
+  - When the underlying currency is the **quote currency** in the pair (e.g. **CAD** in USD/**CAD**) and there is:
+    - **positive news:** the price goes down
+    - **negative news:** the price goes up
 - When you trade a currency pair, you are speculating on the direction of the exchange rate. If you think that the base currency will appreciate against the quote currency, you can buy the pair (go long). If you think that the base currency will depreciate against the quote currency, you can sell the pair (go short). The profit or loss you make depends on the difference between the entry and exit (a.k.a. open and close) price of the trade, and the size of your position (Position just means an open trade).
 
 ## **5. What the price is and why it moves**
