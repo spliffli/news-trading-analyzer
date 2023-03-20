@@ -249,7 +249,7 @@ Für jedes Ereignis gibt es 6 Triggerpegel, die konfiguriert werden können:
   - +UT1: +25  |  0.5 lots
   - +UT2: +50  |  1 lot
   - +UT3: +90  |  1.5 lots
-  - Nehmen wir dann an, die Prognose ist 205 und die tatsächliche Zahl ist 311. Das würde eine Abweichung von +106 ergeben, also würde '+UT3' ausgelöst und es würde einen Handel von 1,5 Lots in Kaufrichtung eröffnen, weil 'UTA' gesetzt ist zum 'Buy' für US Nonfarm Payrolls.
+  - Nehmen wir dann an, die Prognose ist 205 und die tatsächliche Zahl ist 311. Das würde eine Abweichung von +106 ergeben, also würde '+UT3' ausgelöst und es würde einen Handel von 1.5 Lots in Kaufrichtung eröffnen, weil 'UTA' gesetzt ist zum 'Buy' für US Nonfarm Payrolls.
 
 ## **17. Historische Datenanalyse (Historic Data Analysis)**
 
