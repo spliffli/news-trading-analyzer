@@ -21,7 +21,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 chromedriver_autoinstaller.install()
 options = Options()
 options.add_argument("--no-sandbox")
-# options.add_argument("--headless")  # hide GUI
+options.add_argument("--headless")  # hide GUI
 # options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
 options.add_argument("start-maximized")  # ensure window is full-screen
 options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})  # Load without images

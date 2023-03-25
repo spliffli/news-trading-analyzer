@@ -5,6 +5,7 @@ import math
 import json
 import warnings
 from utils import str_to_datetime, datetime_to_str, haawks_id_to_str, read_news_data, save_news_data, get_indicator_info, convert_news_data_to_float, get_deviation
+import numpy as np
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -608,6 +609,32 @@ def calc_correlation_2_score(values: list, expected_direction="positive"):
 
     return correlation_2_score
 
+def ema(values, window_size):
+    if len(values) < window_size:
+        return values  # Not enough data to calculate the EMA
+
+    # Create an array of linearly spaced values between -1 and 0 (inclusive), with a length equal to the window size.
+    # This will be used to create the weights for the EMA calculation.
+    linspace_values = np.linspace(-1., 0., window_size)
+
+    # Calculate the exponential of each value in the linspace_values array.
+    # This will transform the linearly spaced values into a set of exponential weights,
+    # where the most recent value has the highest weight and the oldest value has the lowest weight.
+    weights = np.exp(linspace_values)
+
+    # Normalize the weights by dividing each weight by the sum of all weights.
+    # This ensures that the sum of the weights equals 1.
+    weights /= weights.sum()
+
+    # Calculate the EMA using a convolution operation, which combines the input values (values) and the weights.
+    # The 'valid' mode means that the output EMA array has a size equal to the input size minus the window size plus 1,
+    # which ensures that there is no padding with zeros and that the EMA is only calculated where the values and
+    # weights fully overlap.
+    ema_values = np.convolve(values, weights, mode='valid')
+
+    # Convert the resulting EMA array to a list and return it.
+    return list(ema_values)
+
 
 def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_dev):
     """
@@ -720,6 +747,28 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                 "correlation_3": correlation_3_score,
                 "values": values
             }
+
+            # Calculate the EMA values for the given time_delta and trigger
+            ema_values = ema(values, 10)
+
+            # Calculate the EMA-based correlation scores
+            if symbol_higher_dev == "bullish":
+                correlation_1_ema10 = calc_correlation_1_score(ema_values, expected_direction="positive")
+                correlation_2_ema10 = calc_correlation_2_score(ema_values, expected_direction="positive")
+            elif symbol_higher_dev == "bearish":
+                correlation_1_ema10 = calc_correlation_1_score(ema_values, expected_direction="negative")
+                correlation_2_ema10 = calc_correlation_2_score(ema_values, expected_direction="negative")
+            else:
+                raise ValueError("higher_dev must be 'bullish' or 'bearish'")
+
+            correlation_3_ema10 = round((correlation_1_ema10 + correlation_2_ema10) / 2, 1)
+
+            # Add the calculated metrics to the news_pip_metrics dictionary
+            news_pip_metrics[trigger][time_delta].update({
+                "correlation_1_ema10": correlation_1_ema10,
+                "correlation_2_ema10": correlation_2_ema10,
+                "correlation_3_ema10": correlation_3_ema10,
+            })
 
     # Return the dictionary of news_pip_metrics
     return news_pip_metrics

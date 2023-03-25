@@ -326,17 +326,17 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
               `c_1 = positive_count ÷ (positive_count + negative_count)`
             - If the price movement is expected to be **negative** then:
               `c_1 = negative_count ÷ (positive_count + negative_count)`
-    - **Correlation 2 Score (c_2)**
-        - The percentage of pips which moved in the expected direction.
-        - `positive_sum` = All pips which moved in a positive direction added up
-        - `negative_sum` = All pips which moved in a negative direction added up. Because this number is negative, it is multiplied by -1 to become a positive number so that it works with the equation below.
-            - If the price is expected to be **positive** then:
-            `c_2 = positive_sum ÷ (positive_sum + negative_sum )`
-            - If the price is expected to be **negative** then:
-            `c_2 = negative_sum ÷ (positive_sum + negative_sum)`
-    - **Correlation 3 Score (c_3)**
-        - This is the mean average of c_1 & c_2
-        - `c_3 = (c_1 + c_2) ÷ 2`
+   - **Correlation 2 Score (c_2)**
+       - The percentage of pips which moved in the expected direction.
+       - `positive_sum` = All pips which moved in a positive direction added up
+       - `negative_sum` = All pips which moved in a negative direction added up. Because this number is negative, it is multiplied by -1 to become a positive number so that it works with the equation below.
+           - If the price is expected to be **positive** then:
+           `c_2 = positive_sum ÷ (positive_sum + negative_sum )`
+           - If the price is expected to be **negative** then:
+           `c_2 = negative_sum ÷ (positive_sum + negative_sum)`
+   - **Correlation 3 Score (c_3)**
+       - This is the mean average of c_1 & c_2
+       - `c_3 = (c_1 + c_2) ÷ 2`
         
 6. The total/averages are then calculated for each trigger:
 
