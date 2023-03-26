@@ -72,7 +72,7 @@ def generate_report(haawks_id_str, symbol, news_data, news_pip_metrics_dfs, trig
 
 
 def render_trigger_html(trigger):
-    output_html = (f"            <h5>{trigger['c_3_ema']}: <span>{trigger['c_3_ema_val']}</span></h5>\n"
+    output_html = (f"            <h5>{trigger['lowest_ema_type']}: <span>{trigger['lowest_ema_val']}</span></h5>\n"
                    + f"            <h5>dev: <span>{trigger['dev']}</span></h5>\n"
                    + f"            <h5>lots/$1k: <span>{trigger['lots_per_1000']}</span></h5>\n"
                    + f"            <h5>lots: <span>{trigger['lots']}</span></h5>\n")

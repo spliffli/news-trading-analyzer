@@ -64,10 +64,10 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
             'correlation_3_ema10': last_row['correlation_3_ema10'],
             'correlation_3_ema15': last_row['correlation_3_ema15'],
         }
-        min_c_3_ema, min_c_3_value = min(c_3_values.items(), key=lambda x: x[1])
+        lowest_ema_type, lowest_ema_val = min(c_3_values.items(), key=lambda x: x[1])
         c_3_scores[trigger] = {
-            'c_3_ema': min_c_3_ema,
-            'c_3_ema_val': min_c_3_value,
+            'lowest_ema_type': lowest_ema_type,
+            'lowest_ema_val': lowest_ema_val,
         }
 
     trigger_c_3_keys = list(c_3_scores.keys())
