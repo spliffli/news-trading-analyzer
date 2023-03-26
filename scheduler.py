@@ -57,7 +57,18 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
         trigger_vars['uta'] = 'Sell'
 
     for trigger in news_pip_metrics_dfs:
-        c_3_scores[trigger] = news_pip_metrics_dfs[trigger].iloc[-1]['c_3']
+        last_row = news_pip_metrics_dfs[trigger].iloc[-1]
+        c_3_values = {
+            'correlation_3': last_row['correlation_3'],
+            'correlation_3_ema5': last_row['correlation_3_ema5'],
+            'correlation_3_ema10': last_row['correlation_3_ema10'],
+            'correlation_3_ema15': last_row['correlation_3_ema15'],
+        }
+        min_c_3_ema, min_c_3_value = min(c_3_values.items(), key=lambda x: x[1])
+        c_3_scores[trigger] = {
+            'c_3_ema': min_c_3_ema,
+            'c_3_ema_val': min_c_3_value,
+        }
 
     trigger_c_3_keys = list(c_3_scores.keys())
     trigger_c_3_values = list(c_3_scores.values())
@@ -69,7 +80,6 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
 
     over_80_count = 0
 
-    # debug
     if type(trigger_c_3_values) == numpy.float64:
         breakpoint()
         if trigger_c_3_values >= 80:
@@ -82,24 +92,24 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
                                                                                     trigger_c_3_values,
                                                                                 account_balance, "negative")
     else:
-
         for index, value in enumerate(trigger_c_3_values):
-            if value >= 80:
+            if value['c_3_ema_val'] >= 80:
                 over_80_count += 1
-                # trigger_vars.setdefault("upper_triggers", {}).setdefault("ut1", {})
                 trigger_vars["upper_triggers"].setdefault(f"ut{over_80_count}", "")
                 trigger_vars["lower_triggers"].setdefault(f"lt{over_80_count}", "")
 
+                trigger_vars["upper_triggers"][f"ut{over_80_count}"] = get_trigger_vars(value['c_3_ema_val'], triggers[
+                    trigger_c_3_keys[index]], account_balance, "positive")
+                trigger_vars["lower_triggers"][f"lt{over_80_count}"] = get_trigger_vars(value['c_3_ema_val'], triggers[
+                    trigger_c_3_keys[index]], account_balance, "negative")
 
-                trigger_vars["upper_triggers"][f"ut{over_80_count}"] = get_trigger_vars(value, triggers[trigger_c_3_keys[index]], account_balance, "positive")
-                trigger_vars["lower_triggers"][f"lt{over_80_count}"] = get_trigger_vars(value, triggers[trigger_c_3_keys[index]], account_balance, "negative")
+                # Add the c_3_ema and c_3_ema_val to the trigger_vars dictionary for rendering
+                trigger_vars["upper_triggers"][f"ut{over_80_count}"]["c_3_ema"] = value['c_3_ema']
+                trigger_vars["upper_triggers"][f"ut{over_80_count}"]["c_3_ema_val"] = value['c_3_ema_val']
+                trigger_vars["lower_triggers"][f"lt{over_80_count}"]["c_3_ema"] = value['c_3_ema']
+                trigger_vars["lower_triggers"][f"lt{over_80_count}"]["c_3_ema_val"] = value['c_3_ema_val']
 
-
-
-
-            # breakpoint()
-    return trigger_vars
-
+            return trigger_vars
 
 
 def create_schedule():

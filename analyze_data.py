@@ -748,27 +748,35 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                 "values": values
             }
 
-            # Calculate the EMA values for the given time_delta and trigger
-            ema_values = ema(values, 10)
+            # Calculate the EMA values for different periods (EMA5, EMA10, and EMA15) for the given time_delta and trigger
+            ema5_values = ema(values, 5)
+            ema10_values = ema(values, 10)
+            ema15_values = ema(values, 15)
 
-            # Calculate the EMA-based correlation scores
-            if symbol_higher_dev == "bullish":
-                correlation_1_ema10 = calc_correlation_1_score(ema_values, expected_direction="positive")
-                correlation_2_ema10 = calc_correlation_2_score(ema_values, expected_direction="positive")
-            elif symbol_higher_dev == "bearish":
-                correlation_1_ema10 = calc_correlation_1_score(ema_values, expected_direction="negative")
-                correlation_2_ema10 = calc_correlation_2_score(ema_values, expected_direction="negative")
-            else:
-                raise ValueError("higher_dev must be 'bullish' or 'bearish'")
+            # Create a list containing the EMA values and their corresponding suffixes for labeling purposes
+            ema_values_list = [(ema5_values, 'ema5'), (ema10_values, 'ema10'), (ema15_values, 'ema15')]
 
-            correlation_3_ema10 = round((correlation_1_ema10 + correlation_2_ema10) / 2, 1)
+            # Iterate through the list of EMA values and suffixes
+            for ema_values, ema_suffix in ema_values_list:
+                # Calculate the EMA-based correlation scores depending on the symbol_higher_dev value
+                if symbol_higher_dev == "bullish":
+                    correlation_1_ema = calc_correlation_1_score(ema_values, expected_direction="positive")
+                    correlation_2_ema = calc_correlation_2_score(ema_values, expected_direction="positive")
+                elif symbol_higher_dev == "bearish":
+                    correlation_1_ema = calc_correlation_1_score(ema_values, expected_direction="negative")
+                    correlation_2_ema = calc_correlation_2_score(ema_values, expected_direction="negative")
+                else:
+                    raise ValueError("higher_dev must be 'bullish' or 'bearish'")
 
-            # Add the calculated metrics to the news_pip_metrics dictionary
-            news_pip_metrics[trigger][time_delta].update({
-                "correlation_1_ema10": correlation_1_ema10,
-                "correlation_2_ema10": correlation_2_ema10,
-                "correlation_3_ema10": correlation_3_ema10,
-            })
+                # Calculate the average of the two correlation scores for the current EMA period, rounding to 1 decimal place
+                correlation_3_ema = round((correlation_1_ema + correlation_2_ema) / 2, 1)
+
+                # Add the calculated correlation scores to the news_pip_metrics dictionary with the corresponding EMA suffixes
+                news_pip_metrics[trigger][time_delta].update({
+                    f"correlation_1_{ema_suffix}": correlation_1_ema,
+                    f"correlation_2_{ema_suffix}": correlation_2_ema,
+                    f"correlation_3_{ema_suffix}": correlation_3_ema,
+                })
 
     # Return the dictionary of news_pip_metrics
     return news_pip_metrics
