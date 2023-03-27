@@ -70,7 +70,6 @@ def import_ticks_for_indicator(haawks_id, symbol):
             else:
                 print(f"Local {symbol} tick data exists for {row_count - len(timestamps_to_download)}/{row_count} releases. The remaining {len(timestamps_to_download)} will be downloaded.")
 
-
             for index, timestamp in enumerate(timestamps_to_download):
                 print(
                     f"Downloading {symbol} tick data for: {timestamp} ({int(index) + 1}/{len(timestamps_to_download)})")

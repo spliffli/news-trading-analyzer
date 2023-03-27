@@ -5,6 +5,7 @@ from analyze_data import read_news_data, read_triggers, load_news_pip_data, calc
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
 from utils import str_to_datetime
+from pprint import pprint
 import pandas as pd
 
 env = Environment(loader=FileSystemLoader('.'))
@@ -73,6 +74,7 @@ def generate_report(haawks_id_str, symbol, news_data, news_pip_metrics_dfs, trig
 
 def render_trigger_html(trigger):
     output_html = (f"            <h5>{trigger['lowest_ema_type']}: <span>{trigger['lowest_ema_val']}</span></h5>\n"
+                   + f"            <h5>data pts: <span>{trigger['data_points']}</span></h5>\n"
                    + f"            <h5>dev: <span>{trigger['dev']}</span></h5>\n"
                    + f"            <h5>lots/$1k: <span>{trigger['lots_per_1000']}</span></h5>\n"
                    + f"            <h5>lots: <span>{trigger['lots']}</span></h5>\n")
@@ -94,12 +96,15 @@ def render_triggers_html(triggers_vars):
                     output_html += '          <div class="trigger">\n'
                     match trigger:
                         case 'lt1':
+                            print("trigger (lt1):", trigger)
                             output_html += (f"            <h4>-LT1:</h4>\n"
                                             + render_trigger_html(triggers_vars[key][trigger]))
                         case 'lt2':
+                            print("trigger (lt2):", trigger)
                             output_html += (f"            <h4>-LT2:</h4>\n"
                                             + render_trigger_html(triggers_vars[key][trigger]))
                         case 'lt3':
+                            print("trigger (lt3):", trigger)
                             output_html += (f"            <h4>-LT3:</h4>\n"
                                             + render_trigger_html(triggers_vars[key][trigger]))
                     output_html += '          </div>\n'
@@ -111,12 +116,15 @@ def render_triggers_html(triggers_vars):
                     output_html += '          <div class="trigger">\n'
                     match trigger:
                         case 'ut1':
+                            print("trigger (ut1):", trigger)
                             output_html += (f"          <h4>+UT1:</h4>\n"
                                             + render_trigger_html(triggers_vars[key][trigger]))
                         case 'ut2':
+                            print("trigger (ut2):", trigger)
                             output_html += (f"          <h4>+UT2:</h4>\n"
                                             + render_trigger_html(triggers_vars[key][trigger]))
                         case 'ut3':
+                            print("trigger (ut3):", trigger)
                             output_html += (f"          <h4>+UT3:</h4>\n"
                                             + render_trigger_html(triggers_vars[key][trigger]))
                     output_html += '          </div>\n'
@@ -140,7 +148,7 @@ def render_event_html(title, time, time_et, symbol, triggers):
 def generate_weekly_schedule(template_vars):
     template = env.get_template('reports/template/weekly-schedule.html')
     output_html = template.render(template_vars)
-    HTML(string=output_html).write_pdf("reports/weekly-schedules/test.pdf",
+    HTML(string=output_html).write_pdf("reports/weekly-schedules/test_2023-03-26.pdf",
                                        stylesheets=["reports/template/weekly-schedule-style.css"])
 
 triggers_vars = {
@@ -936,5 +944,5 @@ output_html = """
 </body>
 """
 
-HTML(string=output_html).write_pdf("reports/weekly-schedules/test.pdf",
-                                       stylesheets=["reports/template/weekly-schedule-style.css"])
+# HTML(string=output_html).write_pdf("reports/weekly-schedules/test.pdf",
+#                                        stylesheets=["reports/template/weekly-schedule-style.css"])
