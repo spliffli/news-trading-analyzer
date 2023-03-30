@@ -12,9 +12,11 @@ from generate_report import render_event_html, generate_weekly_schedule
 import numpy
 
 
-def get_trigger_vars(lowest_c_3_type, lowest_c_3_val, dev, account_balance, dev_direction):
+def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_balance, dev_direction):
 
-    if lowest_c_3_val < 85:
+    if 75 <= lowest_c_3_val < 80:
+        lots_per_1000 = 0.5
+    elif 80 <= lowest_c_3_val < 85:
         lots_per_1000 = 0.75
     elif 85 <= lowest_c_3_val < 90:
         lots_per_1000 = 1
@@ -26,6 +28,7 @@ def get_trigger_vars(lowest_c_3_type, lowest_c_3_val, dev, account_balance, dev_
     lots = (account_balance / 1000) * lots_per_1000
 
     trigger_vars = {}
+    trigger_vars["data_points"] = str(data_points)
     trigger_vars["lowest_c_3_type"] = str(lowest_c_3_type)
     trigger_vars["lowest_c_3_val"] = str(lowest_c_3_val)
     if dev_direction == "positive":
@@ -39,8 +42,8 @@ def get_trigger_vars(lowest_c_3_type, lowest_c_3_val, dev, account_balance, dev_
 
 
 def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
-    news_data = update_indicator_history(haawks_id_str)  # read_news_data(haawks_id_str)
-    import_ticks_for_indicator(haawks_id_str, symbol)
+    news_data = read_news_data(haawks_id_str)  # update_indicator_history(haawks_id_str)  # read_news_data(haawks_id_str)
+    # import_ticks_for_indicator(haawks_id_str, symbol)
     triggers = read_triggers(haawks_id_str)
     news_pip_data = load_news_pip_data(haawks_id_str, news_data, symbol)
     news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, higher_dev)
@@ -60,6 +63,8 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
         trigger_vars['lta'] = 'Buy'
         trigger_vars['uta'] = 'Sell'
 
+    all_c_3_scores = {}
+
     for trigger in news_pip_metrics_dfs:
         last_row = news_pip_metrics_dfs[trigger].iloc[-1]
         data_points = news_pip_metrics_dfs[trigger].iloc[0]['data_points']
@@ -67,82 +72,94 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
             continue
 
         c_3_scores = {
+            'data_points': data_points,
             'lowest_c_3_type': last_row['lowest_c_3_type'],
             'lowest_c_3_val': last_row['lowest_c_3_val'],
+            'c_3': last_row['c_3'],
             'c_3_ema5': last_row['c_3_ema5'],
             'c_3_ema10': last_row['c_3_ema10'],
             'c_3_ema15': last_row['c_3_ema15'],
         }
 
-        print("c_3_scores:", c_3_scores)
+        all_c_3_scores[f"{trigger}"] = c_3_scores
+
+        print(f"c_3_scores ({trigger}):\n  ", c_3_scores)
 
     # Create a list of the keys in the c_3_scores dictionary (trigger names)
-    trigger_c_3_keys = list(c_3_scores.keys())
+    triggers_c_3_keys = list(all_c_3_scores.keys())
 
     # Create a list of the values in the c_3_scores dictionary (trigger scores)
-    trigger_c_3_values = list(c_3_scores.values())
+    triggers_c_3_values = list(all_c_3_scores.values())
 
     # Find the index of the key (trigger name) with the highest 'lowest_c_3_val' in the
-    # trigger_c_3_keys list by first finding the key with the highest 'lowest_c_3_val' using
+    # triggers_c_3_keys list by first finding the trigger/key with the highest 'lowest_c_3_val' using
     # the max() function with a custom key function that looks up the 'lowest_c_3_val' for each key.
-    # Then, find the index of that key in the trigger_c_3_keys list and assign it to
+    # Then, find the index of that key in the triggers_c_3_keys list and assign it to
     # the best_trigger_index variable.
-    best_trigger_index = trigger_c_3_keys.index(
-        max(trigger_c_3_keys, key=lambda x: c_3_scores[x]['lowest_c_3_val'])
+    best_trigger_index = triggers_c_3_keys.index(
+        max(triggers_c_3_keys, key=lambda x: all_c_3_scores[x]['lowest_c_3_val'])
     )
 
-    if len(trigger_c_3_values) == 4 and best_trigger_index == 3:
-        trigger_c_3_keys = trigger_c_3_keys.pop(0)
-        trigger_c_3_values = trigger_c_3_values.pop(0)
+    if len(triggers_c_3_values) == 4 and best_trigger_index == 3:
+        triggers_c_3_keys = triggers_c_3_keys.pop(0)
+        triggers_c_3_values = triggers_c_3_values.pop(0)
 
-    over_80_count = 0
+    over_75_count = 0
 
-    if type(trigger_c_3_values) == numpy.float64 or float:
+    if type(triggers_c_3_values) == numpy.float64 or type(triggers_c_3_values) == float:
         if len(c_3_scores) == 0:  # Check if there are no valid triggers
             triggers_vars = "Not enough data"
         else:
-            if trigger_c_3_values[0]['lowest_c_3_val'] >= 80:
+            if triggers_c_3_values[0]['lowest_c_3_val'] >= 75:
                 trigger_vars["upper_triggers"].setdefault(f"ut1", "")
                 trigger_vars["lower_triggers"].setdefault(f"lt1", "")
-                trigger_vars["upper_triggers"][f"ut1"] = get_trigger_vars(lowest_c_3_type=trigger_c_3_values[0]['lowest_c_3_type'],
-                                                                           lowest_c_3_val=trigger_c_3_values[0]['lowest_c_3_val'],
-                                                                                      dev=triggers[trigger_c_3_keys[0]],
-                                                                          account_balance=account_balance,
-                                                                            dev_direction="positive")
-                trigger_vars["lower_triggers"][f"lt1"] = get_trigger_vars(lowest_c_3_type=trigger_c_3_values[0]['lowest_c_3_type'],
-                                                                           lowest_c_3_val=trigger_c_3_values[0]['lowest_c_3_val'],
-                                                                                      dev=triggers[trigger_c_3_keys[0]],
-                                                                          account_balance=account_balance,
-                                                                            dev_direction="negative")
+                trigger_vars["upper_triggers"][f"ut1"] = get_trigger_vars(data_points=triggers_c_3_values[0]['data_points'],
+                                                                      lowest_c_3_type=triggers_c_3_values[0]['lowest_c_3_type'],
+                                                                       lowest_c_3_val=triggers_c_3_values[0]['lowest_c_3_val'],
+                                                                                  dev=triggers[triggers_c_3_keys[0]],
+                                                                      account_balance=account_balance,
+                                                                        dev_direction="positive")
+                trigger_vars["lower_triggers"][f"lt1"] = get_trigger_vars(data_points=triggers_c_3_values[0]['data_points'],
+                                                                      lowest_c_3_type=triggers_c_3_values[0]['lowest_c_3_type'],
+                                                                       lowest_c_3_val=triggers_c_3_values[0]['lowest_c_3_val'],
+                                                                                  dev=triggers[triggers_c_3_keys[0]],
+                                                                      account_balance=account_balance,
+                                                                        dev_direction="negative")
             else:
                 trigger_vars = "lowest_c_3_val too low"
 
         return trigger_vars
     else:
-        for index, value in enumerate(trigger_c_3_values):
-            if value['c_3_ema_val'] >= 80:
-                over_80_count += 1
-                trigger_vars["upper_triggers"].setdefault(f"ut{over_80_count}", "")
-                trigger_vars["lower_triggers"].setdefault(f"lt{over_80_count}", "")
+        for index, trigger in enumerate(triggers_c_3_values):
+            if trigger['lowest_c_3_val'] >= 75:
+                over_75_count += 1
+                trigger_vars["upper_triggers"].setdefault(f"ut{over_75_count}", "")
+                trigger_vars["lower_triggers"].setdefault(f"lt{over_75_count}", "")
 
-                trigger_vars["upper_triggers"][f"ut{over_80_count}"] = get_trigger_vars(lowest_c_3_type=value['lowest_c_3_type'],
-                                                                                         lowest_c_3_val=value['lowest_c_3_val'],
-                                                                                                    dev=triggers[trigger_c_3_keys[index]],
-                                                                                        account_balance=account_balance,
-                                                                                          dev_direction="positive")
-                trigger_vars["lower_triggers"][f"lt{over_80_count}"] = get_trigger_vars(lowest_c_3_type=value['lowest_c_3_type'],
-                                                                                         lowest_c_3_val=value['lowest_c_3_val'],
-                                                                                                    dev=triggers[trigger_c_3_keys[index]],
-                                                                                        account_balance=account_balance,
-                                                                                          dev_direction="negative")
+                trigger_vars["upper_triggers"][f"ut{over_75_count}"] = get_trigger_vars(data_points=trigger['data_points'],
+                                                                                    lowest_c_3_type=trigger['lowest_c_3_type'],
+                                                                                     lowest_c_3_val=trigger['lowest_c_3_val'],
+                                                                                                dev=triggers[triggers_c_3_keys[index]],
+                                                                                    account_balance=account_balance,
+                                                                                      dev_direction="positive")
+                trigger_vars["lower_triggers"][f"lt{over_75_count}"] = get_trigger_vars(data_points=trigger['data_points'],
+                                                                                    lowest_c_3_type=trigger['lowest_c_3_type'],
+                                                                                     lowest_c_3_val=trigger['lowest_c_3_val'],
+                                                                                                dev=triggers[triggers_c_3_keys[index]],
+                                                                                    account_balance=account_balance,
+                                                                                      dev_direction="negative")
 
                 # Add the c_3_ema and c_3_ema_val to the trigger_vars dictionary for rendering
-                trigger_vars["upper_triggers"][f"ut{over_80_count}"]["c_3_ema"] = value['c_3_ema']
-                trigger_vars["upper_triggers"][f"ut{over_80_count}"]["c_3_ema_val"] = value['c_3_ema_val']
-                trigger_vars["lower_triggers"][f"lt{over_80_count}"]["c_3_ema"] = value['c_3_ema']
-                trigger_vars["lower_triggers"][f"lt{over_80_count}"]["c_3_ema_val"] = value['c_3_ema_val']
+                trigger_vars["upper_triggers"][f"ut{over_75_count}"]["c_3_ema"] = trigger['lowest_c_3_type']
+                trigger_vars["upper_triggers"][f"ut{over_75_count}"]["c_3_ema_val"] = trigger['lowest_c_3_val']
+                trigger_vars["lower_triggers"][f"lt{over_75_count}"]["c_3_ema"] = trigger['lowest_c_3_type']
+                trigger_vars["lower_triggers"][f"lt{over_75_count}"]["c_3_ema_val"] = trigger['lowest_c_3_val']
 
+        if len(trigger_vars['lower_triggers']) == 0 or len(trigger_vars['upper_triggers']) == 0:
+            return "lowest_c_3_val too low"
+        else:
             return trigger_vars
+
 
 
 def create_schedule():
@@ -171,7 +188,7 @@ def create_schedule():
         print(f"[{int(index) + 1}/{no_of_events}] {haawks_id_str}  {title} ({symbol})")
         # timedelta_hrs = 5
 
-        dt_gmt = event[5] + datetime.timedelta(hours=5)
+        dt_gmt = event[5] + datetime.timedelta(hours=4)
         datetime_et_str = event[5].strftime("%A %-d/%-m @%H:%M") + " (ET)"
         datetime_str = dt_gmt.strftime("%A %-d/%-m @%H:%M") + " (GMT)"
 
@@ -184,7 +201,7 @@ def create_schedule():
         else:
             event_html = render_event_html(title, datetime_str, datetime_et_str, symbol, triggers_vars)
 
-    weekdays_html[day] += event_html
+        weekdays_html[day] += event_html
 
     template_vars = {
         "year": datetime.datetime.now().strftime("%Y"),

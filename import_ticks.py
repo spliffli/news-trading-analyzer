@@ -42,6 +42,7 @@ def truncate_tick_data(tick_df, start_datetime, end_datetime):
 
 def import_ticks_for_indicator(haawks_id, symbol):
     haawks_id_str = haawks_id_to_str(haawks_id)
+    print(f"Finding news data for {haawks_id_str}...")
     for filename in os.listdir("./news_data"):
         if filename.startswith(haawks_id_str):
             print(f"Reading news data: {filename}")
@@ -70,25 +71,26 @@ def import_ticks_for_indicator(haawks_id, symbol):
             else:
                 print(f"Local {symbol} tick data exists for {row_count - len(timestamps_to_download)}/{row_count} releases. The remaining {len(timestamps_to_download)} will be downloaded.")
 
-            for index, timestamp in enumerate(timestamps_to_download):
-                print(
-                    f"Downloading {symbol} tick data for: {timestamp} ({int(index) + 1}/{len(timestamps_to_download)})")
-                release_date = timestamp.date()
-                release_date_hyphenated = timestamp.strftime("%Y-%m-%d")
-                release_date_underscored = timestamp.strftime("%Y_%m_%d")
-                import_ticks(symbol, release_date)
-                downloaded_tick_data_filename = f"{symbol}-{release_date_underscored}-{release_date_underscored}.csv"
+                for index, timestamp in enumerate(timestamps_to_download):
+                    print(
+                        f"Downloading {symbol} tick data for: {timestamp} ({int(index) + 1}/{len(timestamps_to_download)})")
+                    release_date = timestamp.date()
+                    release_date_hyphenated = timestamp.strftime("%Y-%m-%d")
+                    release_date_underscored = timestamp.strftime("%Y_%m_%d")
+                    import_ticks(symbol, release_date)
+                    downloaded_tick_data_filename = f"{symbol}-{release_date_underscored}-{release_date_underscored}.csv"
 
-                tick_df = pd.read_csv(f"./tick_data/{downloaded_tick_data_filename}")
-                tick_start_dt = timestamp - datetime.timedelta(minutes=5)
-                tick_end_dt = timestamp + datetime.timedelta(minutes=15)
+                    tick_df = pd.read_csv(f"./tick_data/{downloaded_tick_data_filename}")
+                    tick_start_dt = timestamp - datetime.timedelta(minutes=5)
+                    tick_end_dt = timestamp + datetime.timedelta(minutes=15)
 
-                print("Truncating tick data")
-                try:
-                    tick_df = truncate_tick_data(tick_df, tick_start_dt, tick_end_dt)
-                except:
-                    print(f"tick data for {timestamp} invalid")
-                os.remove(f"./tick_data/{downloaded_tick_data_filename}")
-                new_filename = f"{symbol}__{release_date_hyphenated}__{tick_start_dt.strftime('%H-%M-%S')}_{tick_end_dt.strftime('%H-%M-%S')}.csv"
-                tick_df.to_csv(f"./tick_data/{new_filename}", index=False)
-                # print(tick_df)
+                    print("Truncating tick data")
+                    try:
+                        tick_df = truncate_tick_data(tick_df, tick_start_dt, tick_end_dt)
+                    except:
+                        print(f"tick data for {timestamp} invalid")
+                    os.remove(f"./tick_data/{downloaded_tick_data_filename}")
+                    new_filename = f"{symbol}__{release_date_hyphenated}__{tick_start_dt.strftime('%H-%M-%S')}_{tick_end_dt.strftime('%H-%M-%S')}.csv"
+                    tick_df.to_csv(f"./tick_data/{new_filename}", index=False)
+                    # print(tick_df)
+            break
