@@ -4,7 +4,7 @@
 
 --------
 
-## Tuesday
+## **Tuesday**
   
 <div class="card-wrapper">
   <div class="card">
@@ -109,7 +109,7 @@
   </div>
 </div>
   
-## Wednesday
+## **Wednesday**
   
 <div class="card-wrapper">
   <div class="card">
@@ -265,7 +265,7 @@
   </div>
 </div>
   
-## Thursday
+## **Thursday**
   
 <div class="card-wrapper">
   <div class="card">
@@ -390,7 +390,7 @@
   </div>
 </div>
   
-## Friday
+## **Friday**
   
 <div class="card-wrapper">
   <div class="card">
