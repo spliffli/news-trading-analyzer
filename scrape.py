@@ -295,9 +295,11 @@ def update_indicator_history(haawks_id_str):
                 print("No new releases found. No need to update local data.")
                 return local_news_data
 
-def prepare_calendar(next_week=False):
+
+def prepare_calendar(next_week=False, custom_date=False):
     driver.get("https://www.investing.com/economic-calendar/")
     time.sleep(1)
+
     print("Setting filters:\nClearing all countries")
     driver.execute_script("clearAll('country[]');")
 
@@ -329,17 +331,6 @@ def prepare_calendar(next_week=False):
     print("Applying filters")
     driver.execute_script("calendarFilters.innerFiltersSubmit();")
 
-    print("Checking if Saturday")
-    if next_week:
-        print("Showing next week's events")
-        driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_nextWeek"))
-    elif check_if_saturday():
-        print("Today is Saturday. Showing next week's events")
-        driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_nextWeek"))
-    else:
-        print("Today is not Saturday. Showing this week's events")
-        driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_thisWeek"))
-
     # Close popup
     popup = None
     while popup is None:
@@ -352,13 +343,34 @@ def prepare_calendar(next_week=False):
     driver.execute_script("arguments[0].click();", driver.find_element(By.CLASS_NAME, "popupCloseIcon"))
     # driver.execute_script("return window.stop")
 
+    if not next_week and not custom_date:
+        print("Checking if Saturday")
+        if next_week:
+            print("Showing next week's events")
+            driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_nextWeek"))
+        elif check_if_saturday():
+            print("Today is Saturday. Showing next week's events")
+            driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_nextWeek"))
+        else:
+            print("Today is not Saturday. Showing this week's events")
+            driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_thisWeek"))
+    elif next_week and not custom_date:
+        driver.execute_script("arguments[0].click();", driver.find_element(By.ID, "timeFrame_nextWeek"))
+    elif custom_date and not next_week:
+        input_str = "."
 
-def scrape_economic_calendar(indicators: list, next_week=False):
+        while input_str != "":
+            input_str = input("Press enter after manually selecting dates on investing.com...")
+    elif next_week and custom_date:
+        raise ValueError("Either `next_week` or `custom_date` can be true but not both of them at the same time.")
+
+
+def scrape_economic_calendar(indicators: list, next_week=False, custom_date=False):
     relevent_events = []
 
     while len(relevent_events) == 0:
         print("Loading economic calendar")
-        prepare_calendar(next_week)
+        prepare_calendar(next_week=next_week, custom_date=custom_date)
         print("Getting table's HTML")
         table = driver.find_element(By.ID, "economicCalendarData").get_attribute("outerHTML")
         print("Parsing HTML")

@@ -42,7 +42,7 @@ def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_
 
 
 def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
-    news_data = read_news_data(haawks_id_str)  # update_indicator_history(haawks_id_str)  # read_news_data(haawks_id_str)
+    news_data = read_news_data(haawks_id_str)  # read_news_data(haawks_id_str)
     # import_ticks_for_indicator(haawks_id_str, symbol)
     triggers = read_triggers(haawks_id_str)
     news_pip_data = load_news_pip_data(haawks_id_str, news_data, symbol)
@@ -84,6 +84,9 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
         all_c_3_scores[f"{trigger}"] = c_3_scores
 
         print(f"c_3_scores ({trigger}):\n  ", c_3_scores)
+
+    if len(all_c_3_scores) == 0:
+        return "Not enough data"
 
     # Create a list of the keys in the c_3_scores dictionary (trigger names)
     triggers_c_3_keys = list(all_c_3_scores.keys())
@@ -162,14 +165,14 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
 
 
 
-def create_schedule():
+def create_schedule(next_week=False, custom_date=False, update_news_and_tick_data=True):
     top_indicators = pd.read_excel("reports/top_indicators.xlsx")
     indicators = []
 
     for index, row in top_indicators.iterrows():
         indicators.append((str(row['inv_id']), haawks_id_to_str(row['haawks_id']), row['symbol'], row['higher_dev'], row['inv_title']))
 
-    upcoming_events = scrape_economic_calendar(indicators, next_week=True)
+    upcoming_events = scrape_economic_calendar(indicators, next_week=next_week, custom_date=custom_date)
     no_of_events = len(upcoming_events)
 
     weekdays_html = {
@@ -180,6 +183,20 @@ def create_schedule():
         "Thursday": "",
         "Friday": "",
     }
+
+    if update_news_and_tick_data:
+        print(f"Updating news & tick data for {len(upcoming_events)} upcoming events")
+        for index, event in enumerate(upcoming_events):
+            haawks_id_str = event[1]
+            symbol = event[2]
+            title = event[4]
+            print(f"[{int(index) + 1}/{len(upcoming_events)}] {haawks_id_str}  {title} ({symbol})")
+            print("  Updating indicator history...")
+            update_indicator_history(haawks_id_str)
+            print("  Importing ticks...")
+            import_ticks_for_indicator(haawks_id_str, symbol)
+
+    print(f"Analyzing & generating recommended triggers for {len(upcoming_events)} events...")
     for index, event in enumerate(upcoming_events):
         haawks_id_str = event[1]
         symbol = event[2]
@@ -219,5 +236,4 @@ def create_schedule():
     generate_weekly_schedule(template_vars)
 
 
-
-create_schedule()
+create_schedule(custom_date=True, update_news_and_tick_data=False)

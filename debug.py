@@ -3,6 +3,8 @@ from analyze_data import read_triggers, load_news_pip_data, calc_news_pip_metric
 from utils import get_indicator_info, get_higher_dev_expected_direction
 from scrape import update_indicator_history
 from generate_report import generate_report, render_markdown
+from scheduler import get_triggers_vars, get_day, render_event_html
+import datetime
 
 #import_ticks_for_indicator("10000", "EURUSD")
 
@@ -50,6 +52,45 @@ def debug_save_markdown(markdown_str):
         file.write(markdown_str)
 
 
+def debug_update_news_and_tick_data(haawks_id_str, symbol):
+    print("  Updating indicator history...")
+    update_indicator_history(haawks_id_str)
+    print("  Importing ticks...")
+    import_ticks_for_indicator(haawks_id_str, symbol)
+
+
+def debug_generate_triggers(event_tuple=None):
+
+    if event_tuple is None:
+        event_tuple = ('1226', '10037', 'USDJPY', 'bullish', 'U.S. Core Consumer Price Index (CPI) Index', datetime.datetime(2023, 4, 12, 8, 30))
+
+    haawks_id_str = event_tuple[1]
+    symbol = event_tuple[2]
+    higher_dev = event_tuple[3]
+    title = event_tuple[4]
+    print(f"Analyzing & generating recommended triggers for: {haawks_id_str}  {title} ({symbol})")
+    # timedelta_hrs = 5
+
+    dt_gmt = event_tuple[5] + datetime.timedelta(hours=4)
+    datetime_et_str = event_tuple[5].strftime("%A %-d/%-m @%H:%M") + " (ET)"
+    datetime_str = dt_gmt.strftime("%A %-d/%-m @%H:%M") + " (GMT)"
+
+    triggers_vars = get_triggers_vars(haawks_id_str, symbol, higher_dev)
+    day = get_day(dt=dt_gmt)
+
+    # Check if triggers_vars has "Not enough data" of "lowest_c_3_val too low"
+    if triggers_vars in ["Not enough data", "lowest_c_3_val too low"]:
+        event_html = ""
+    else:
+        event_html = render_event_html(title, datetime_str, datetime_et_str, symbol, triggers_vars)
+
+    return event_html
+
+
 # debug_generate_report("USDJPY", "10000")
-md = debug_render_markdown()
-debug_save_markdown(md)
+# md = debug_render_markdown()
+# debug_save_markdown(md)
+
+# debug_update_news_and_tick_data("10037", "USDJPY")
+
+event_triggers_html = debug_generate_triggers()

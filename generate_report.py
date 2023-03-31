@@ -193,7 +193,7 @@ def generate_weekly_schedule(template_vars):
     template = env.get_template('reports/template/weekly-schedule.html')
     output_html = template.render(template_vars)
     output_markdown = render_markdown(template_vars)
-    week_no = "14"  # template_vars['week_no']
+    week_no = "15"  # template_vars['week_no']
 
     """
     file = open(f'docs/weekly-schedules/week-{week_no}-schedule.md', 'w')
