@@ -1,7 +1,7 @@
 
-# **2023 Week  Schedule**
+# **2023 Week 14 Schedule**
 
-### This was generated on 2023/03/31 and has events from **2023/04/06** to **2023/04/06**
+### This was generated on **2023/03/31** and has events from **2023/04/06** to **2023/04/06**
 
 --------
 
