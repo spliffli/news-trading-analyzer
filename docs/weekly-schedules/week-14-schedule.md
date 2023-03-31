@@ -3,6 +3,8 @@
 
 ### This was generated on **2023/03/31** and has events from **2023/04/06** to **2023/04/06**
 
+#### For events which are at the same time, it's only possible to trade one of them, so in those cases the one with the highest c_3 score will be chosen
+
 --------
 
 ## **Thursday**

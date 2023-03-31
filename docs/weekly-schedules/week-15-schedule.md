@@ -1,6 +1,8 @@
 # **2023 Week 15 Schedule**
 
-### This was generated on **2023/03/31** and has events from **2023/04/11** to **2023/04/11**
+### This was generated on **2023/03/31** and has **8** events from **2023/04/11** to **2023/04/11**. 
+
+#### For events which are at the same time, it's only possible to trade one of them, so in those cases the one with the highest c_3 score will be chosen
 
 --------
 
