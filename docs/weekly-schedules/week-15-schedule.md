@@ -108,7 +108,9 @@
     </div>
   </div>
 </div>
-  
+
+--------
+
 ## **Wednesday**
   
 <div class="card-wrapper">
@@ -264,7 +266,9 @@
     </div>
   </div>
 </div>
-  
+
+--------
+
 ## **Thursday**
   
 <div class="card-wrapper">
@@ -389,7 +393,9 @@
     </div>
   </div>
 </div>
-  
+
+--------
+
 ## **Friday**
   
 <div class="card-wrapper">
