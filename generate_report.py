@@ -1,4 +1,5 @@
 import datetime
+import markdown
 
 from analyze_data import read_news_data, read_triggers, load_news_pip_data, calc_news_pip_metrics, \
     news_pip_metrics_to_dfs
@@ -145,9 +146,63 @@ def render_event_html(title, time, time_et, symbol, triggers):
     return output_html
 
 
+def render_markdown(template_vars):
+
+    current_date = datetime.datetime.now().strftime("%Y/%m/%d")
+
+
+    output = f"""
+    # {template_vars['year']} Week {template_vars['week_no']} Schedule
+    
+    ### This was generated on {current_date} and has events from **{template_vars['start_date']}** to **{template_vars['end_date']}**
+    
+    --------
+    
+    ## Sunday
+    
+    {template_vars['sunday_events']}
+    
+    ## Monday
+    
+    {template_vars['monday_events']}
+    
+    ## Tuesday
+    
+    {template_vars['tuesday_events']}
+    
+    ## Wednesday
+    
+    {template_vars['wednesday_events']}
+    
+    ## Thursday
+    
+    {template_vars['thursday_events']}
+    
+    ## Friday
+    
+    {template_vars['friday_events']}
+    """
+
+    return output
+
+
+
+    pass
+
 def generate_weekly_schedule(template_vars):
     template = env.get_template('reports/template/weekly-schedule.html')
     output_html = template.render(template_vars)
+    output_markdown = render_markdown(template_vars)
+    week_no = "14"  # template_vars['week_no']
+
+    """
+    file = open(f'docs/weekly-schedules/week-{week_no}-schedule.md', 'w')
+    file.write(output_markdown)
+    file.close()
+    """
+    with open(f'docs/weekly-schedules/week-{week_no}-schedule.md', 'w') as file:
+        file.write(output_markdown)
+
     HTML(string=output_html).write_pdf("reports/weekly-schedules/test_2023-03-30.pdf",
                                        stylesheets=["reports/template/weekly-schedule-style.css"])
 

@@ -1,0 +1,93 @@
+body {
+      font-family: 'Roboto', sans-serif;
+}
+
+.day {
+  margin: 20px 0;
+  text-align: center;
+}
+
+h1 {
+  margin: 0px;
+}
+
+.card-wrapper {
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline-block;
+  vertical-align: top; /* Added vertical-align to avoid any unexpected space */
+  width: 48%; /* Added width to leave some space between the card wrappers */
+}
+
+.card {
+  background-color: #f2f2f2;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2b2b2b
+}
+
+
+
+
+.card h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 0px;
+}
+
+.card p {
+  display: inline-block;
+  font-size: 16px;
+  margin: 0px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+.triggers {
+  margin-top: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.triggers h4 {
+  font-size: 14px;
+  margin: 0;
+}
+
+
+.triggers h5 {
+  display: inline-block;
+  margin: 0;
+  font-size: 10px;
+}
+
+.triggers h5 {
+  display: block;
+  font-weight: normal;
+}
+
+.triggers h4 span {
+  font-weight: normal
+}
+
+.trigger {
+  text-align: right;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.trigger h5 {
+  font-weight: bold;
+}
+
+.trigger h5 span {
+  font-weight: normal;
+}

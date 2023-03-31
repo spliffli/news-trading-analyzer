@@ -28,6 +28,7 @@ extra_css:
 - css/codehilite.css
 - css/profont.css
 - css/youtube-videos.css
+- css/nta-weekly-schedule-cards.css
 - https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
 
 extra_javascript:
@@ -42,6 +43,8 @@ plugins:
 nav:
   - (DE) News Trading System erklärt: index.md
   - (EN) News Trading System Explained: index-en.md
+  - Weekly Schedules:
+    - Week 14: weekly-schedules/week-14-schedule.md
 
 
 edit_uri: '#docs/'
