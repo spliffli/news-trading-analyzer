@@ -4,6 +4,15 @@
 
 #### For events which are at the same time, it's only possible to trade one of them, so in those cases the one with the highest c_3 score will be chosen
 
+#### If the lowest c_3 is:
+
+- Between **75-80** (`if 75 <= lowest_c_3_val < 80:`): Lot Size = **0.5/$1000**
+- Between **80-85** (`elif 80 <= lowest_c_3_val < 85:`): Lot Size = **0.75/$1000**
+- Between **85-90** (`elif 85 <= lowest_c_3_val < 90:`): Lot Size = **1/$1000**
+- Between **90-95** (`elif 90 <= lowest_c_3_val < 95:`): Lot Size = **1.5/$1000**
+- Above or equal to **95** (`elif lowest_c_3_val >= 95:`): Lot Size = **2/$1000**
+
+
 --------
 
 ## **Tuesday**
