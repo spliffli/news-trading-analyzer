@@ -6,7 +6,7 @@ In this document I will outline the system I'm developing for trading economic n
 
 ## **2. What this system is not**
 
-It's worth noting that the vast majority of trading strategies involve technical analysis (TA). That essentially means looking at the price charts and adding indicators such as RSI, MACD and others to predict which way the price will move. This is based entirely on the historic price and nothing more, and most traders who use only technical analysis lose in the long term. Probably about 95% of traders are using technical analysis and about 95% of traders lose. The only way to consistently win in the market is to have an edge, and this is impossible with only TA.
+The majority of trading strategies rely on technical analysis (TA), which involves examining price charts and using indicators like RSI and MACD to forecast price movement based solely on historical data. However, this approach often leads to long-term losses for approximately 95% of traders who exclusively use TA. To achieve consistent success in the market, traders must establish a unique edge, which cannot be accomplished through TA alone.
 
 ## **3. How I found out about this strategy**
 
@@ -18,40 +18,8 @@ It's only possible for the price to move when people trade, so clearly there are
 
 ## **4. What kind of news moves the market?**
 
-If you go to `investing.com/economic-calendar/` you will find a big list of news events which have an impact on the market. These are also known as 'economic news indicators':
+Market-moving news typically consists of economic indicators found on websites like `investing.com/economic-calendar/`. The most crucial figures are the Actual and Forecast numbers, where market movement occurs if the Actual number deviates from the Forecast. For example, with Canada's monthly GDP, a higher than expected Actual number is bullish for the Canadian dollar (CAD), causing its price to rise, while a lower than expected number is bearish, causing its price to fall. In currency pairs like USD/CAD, the base currency (USD) and quote currency (CAD) react differently to news: positive news for the base currency causes the price to increase, while negative news results in a decrease; positive news for the quote currency causes the price to decrease, and negative news leads to an increase. Trading currency pairs involves speculating on the direction of the exchange rate, with profit or loss determined by the difference between entry and exit prices, and the size of the position (an open trade).
 
-![](images/economic-calendar.png)
-
-For most events, there are three figures: Actual, Forecast & Previous
-
-- **Actual**
-  This is the figure that is released at the sceduled release time
-- **Forecast**
-  This number represents the average/consensus of predictions that economists around the world have made
-- **Previous**
-  This is the number from the previous release
-
-The most important ones are the Forecast and Actual numbers. What actually causes the market to move is when the Actual number deviates from the forecast. If we look at Canada's monthly GDP as an example:
-![](images/canada-gdp-mom.png)
-
-Each time the actual number was higher than the forecast, the number is shown in green. Each time it was lower than the forecast, it is shown in red.
-
-For GDP, a higher than expected number is positive a.k.a. 'bullish' for the underlying currency which in this case is the Canadian dollar (CAD). Therefore, a higher deviation should make the price of CAD go up, and a lower than expected number is negative a.k.a. 'bearish' which should make the price go down. If there is no deviation i.e. the actual number is the same as the forecast, then there's no trade setup.
-
-If you were actually going to trade this event, then the currency pair/symbol to use would be USDCAD. In any currency pair there are two currencies: the base currency and the quote currency. Sometimes it is written with a '/' between the currencies e.g. USD/CAD.
-
-The base currency is the first one, which is USD in USD/CAD, and the quote currency is the second one, which is CAD. The price of USDCAD is the amount of CAD you need to buy 1 USD.
-
-- The exchange rate can be affected by various factors, such as changes in interest rates, economic indicators, geopolitical events, and market sentiment. These factors can influence the demand and supply of the currencies in the pair, and therefore affect their relative value and the exchange rate.
-- In the USDJPY pair, USD is the base currency so the exchange rate tells you how many JPY you need to buy 1 USD. If the exchange rate is 110.00, you need to spend 110 JPY to buy 1 USD. Positive news for USD can make the exchange rate go up, while negative news can make it go down. You can trade USDJPY by going long (buying) or short (selling), depending on your view of the market
-- In the USDCAD pair, USD is also the base currency and CAD is the quote currency, so the exchange rate tells you how much CAD you need to buy 1 USD. For example, if the exchange rate is 1.25, you need to spend 1.25 CAD to buy 1 USD. This means that if you have 100 CAD, you can only buy 80 USD if the exchange rate is 0.80. Positive news for CAD can make the exchange rate go down, while negative news can make it go up. As with USDJPY, you can trade USDCAD by going long or short, depending on your view of the market
-  - When the underlying currency is the **base currency** in the pair (e.g. **USD** in **USD**/JPY) and there is:
-    - **positive news:** the price goes up
-    - **negative news:** the price goes down
-  - When the underlying currency is the **quote currency** in the pair (e.g. **CAD** in USD/**CAD**) and there is:
-    - **positive news:** the price goes down
-    - **negative news:** the price goes up
-- When you trade a currency pair, you are speculating on the direction of the exchange rate. If you think that the base currency will appreciate against the quote currency, you can buy the pair (go long). If you think that the base currency will depreciate against the quote currency, you can sell the pair (go short). The profit or loss you make depends on the difference between the entry and exit (a.k.a. open and close) prices of the trade, and the size of your position (Position just means an open trade).
 
 ## **5. What the price is and why it moves**
 
@@ -68,14 +36,8 @@ The current price of the currency pair is always based on two prices: the best a
 
 ## **6. Order types**
 
-- **Market orders** are executed immediately at the best available price, either at the best ask for a market buy order or at the best bid for a market sell order.
-    - If a trader places a market order to **buy** the currency pair (***Market Buy Order***), their order will be filled at the current best **ask** price.
-    - For a ***Market Sell Order***, their order will be filled at the current best **bid** price.
-- **Limit orders** are filled when the market price reaches a specified price level
+Market orders execute immediately at the best available price, with market buy orders at the best ask and market sell orders at the best bid. Limit orders, on the other hand, fill when the market price reaches a specified level. The current price of a forex instrument is determined by the intersection of bids and asks in the order book, with the best bid and best ask establishing the current market price. This price represents the highest someone is willing to pay (best bid) and the lowest someone is willing to sell (best ask) at any given moment.
 
-If there are more buyers than sellers at a particular price level, the price of the currency pair may rise as buyers compete to purchase the currency. Conversely, if there are more sellers than buyers at a particular price level, the price of the currency pair may fall as sellers compete to sell the currency.
-
-In summary, the current price of a forex instrument is determined by the intersection of the bids and asks in the order book. The order book displays all buy and sell orders for the currency pair at various price levels, and the best bid and best ask determine the current market price, which is the highest price someone is willing to pay (best bid) and the lowest price someone is willing to sell (best ask) at a given moment in time.
 
 ## **7. How the price is measured**
 
@@ -89,37 +51,18 @@ However, it's worth noting that many forex brokers use 'fractional pips' or 'pip
 
 ## **8. Lots**
 
-For every buy or sell order, the amount of lots (a.k.a. lot size or position size) must be specified. One lot refers to the standard trading size for a particular currency pair. The size of a lot varies by currency pair and can range from 1,000 units of the base currency to 100,000 units or more. For example, a standard lot for the EUR/USD currency pair is 100,000 units of the euro.
+Lot size, or position size, must be specified for every buy or sell order in forex trading. The lot size directly impacts potential profit or loss, as it determines the position size and value of each pip. For EUR/USD, 1 lot has a pip-value of $10 (This amount varies by currency pair). So, a 20-pip movement in a 1-lot EUR/USD trade results in a $200 profit, while the same movement in a 0.1 lot trade (Where 1 pip = $1) would result in a $20 profit. Traders must carefully consider their lot size in relation to their strategy and risk tolerance.
 
-The lot size you trade with has a direct impact on the amount of profit or loss you can make from a given amount of pips. This is because the profit or loss from a trade is calculated based on the size of the position you take, which is determined by the lot size.
-
-For example, let's say you buy 1 lot of EUR/USD at 1.2000 and the price rises to 1.2020, which is a movement of 20 pips. If you close the trade at this price, you would make a profit of $200, as one standard lot of EUR/USD is worth $100,000 and each pip is worth $10. If you buy 0.1 lots of EUR/USD and the price moves 20 pips, then you would make a profit of $20 as each pip is worth $1.
-
-The lot size you trade with is an important factor to consider when calculating potential profits and losses in forex trading because it has has a direct impact on the amount of profit or loss you can make from a given amount of pips. Traders must carefully consider their lot size in relation to their trading strategy and risk tolerance.
 
 ## **9. Spread**
 
-The spread in forex refers to the difference between the bid price and the ask price of a currency pair. The bid price is the price at which a buyer is willing to buy the currency pair, while the ask price is the price at which a seller is willing to sell the currency pair.
+The spread in forex represents the difference between the bid and ask prices of a currency pair, essentially serving as the cost of trading. Influenced by factors such as market volatility, liquidity, and supply and demand, the spread is typically measured in pips and determined by liquidity providers like banks and financial institutions. During economic news events, the bid-ask spread may widen and liquidity decrease, leading to increased volatility and slippage, which can make it challenging for traders to enter or exit positions quickly and efficiently, raising the risk of losses. Thus, employing a strategy like a 5-pip trailing stop loss can help mitigate these risks.
 
-The spread is essentially the cost of trading and is typically measured in pips. The spread is determined by the liquidity providers, such as banks and other financial institutions, and is influenced by various factors such as market volatility, liquidity, and supply and demand.
-
-For example, if the bid price for EUR/USD is 1.2000 and the ask price is 1.2002, the spread is 2 pips. This means that a trader who wants to buy EUR/USD will have to pay the ask price of 1.2002, while a trader who wants to sell EUR/USD will receive the bid price of 1.2000.
-
-During economic news events, the bid-ask spread often widens and the available liquidity decreases, as there may be fewer market participants willing to buy or sell the currency pair at the prevailing prices.
-
-The decrease in liquidity during economic news events can cause increased volatility and slippage, as the bid-ask spread widens and it becomes more difficult to execute trades at the desired price levels. This can make it more challenging for traders to enter or exit positions quickly and efficiently, which can increase the risk of losses.
-
-For that reason, this strategy uses a 5 pip trailing stoploss, which means the price only has to move 5 pips to breakeven and anything above that is profit.
 
 ## **10. Liquidity**
 
-In the context of forex trading and the order book, liquidity refers to the abundance and availability of buy and sell orders for a specific currency pair, which enables traders to efficiently execute transactions with minimal impact on market prices and reduced transaction costs. The foreign exchange market is the most liquid market globally, with a daily trading volume exceeding $6 trillion. High liquidity in the forex market leads to a robust and efficient order book, which in turn affects trading conditions and opportunities for traders.
+Liquidity in forex trading refers to the abundance and availability of buy and sell orders for a specific currency pair, allowing for efficient transactions with minimal price impact and reduced costs. The forex market, with over $6 trillion daily trading volume, is highly liquid, resulting in a robust order book and favorable trading conditions. High liquidity leads to tight bid-ask spreads, lower transaction costs, and minimal price movements when entering or exiting positions. Factors affecting liquidity include geopolitical events, economic data releases, market sentiment, and trading hours. Major currency pairs like EUR/USD, USD/JPY, and GBP/USD exhibit higher liquidity, providing better trading opportunities, faster execution, and reduced price impact for traders.
 
-A highly liquid forex market has a large number of buyers and sellers actively participating in trading. As a result, the order book is filled with numerous buy and sell orders at various price levels. This abundance of orders allows traders to easily enter and exit positions without causing significant price movements or affecting the currency pair's market price. In a liquid market, the order book has tight bid-ask spreads, which means the difference between the highest price a buyer is willing to pay (bid) and the lowest price a seller is willing to accept (ask) is minimal. Tight spreads lower the overall transaction costs for traders, making it more cost-effective to trade.
-
-In contrast, low liquidity in the forex market results in a sparse order book with fewer buy and sell orders. This can lead to wider bid-ask spreads, increased slippage (the difference between the expected price of a trade when creating an order vs. the price at which it is actually executed/filled), and a higher likelihood of price gaps (sudden jumps in the market price without any trades occurring in between). These factors can increase transaction costs and create more volatile trading conditions.
-
-The forex market's liquidity is affected by several factors, such as geopolitical events, economic data releases, market sentiment, and trading hours. The most liquid currency pairs are the major pairs, such as EUR/USD, USD/JPY, and GBP/USD, which have tighter spreads and more stable prices compared to less liquid pairs or exotic currencies. High liquidity in the forex market ultimately provides better trading opportunities, faster execution, and reduced price impact for traders.
 
 ## **11. Stoploss (SL)**
 
@@ -154,50 +97,13 @@ Compared to forex, volatility in Bitcoin and other cryptocurrencies is generally
 
 ## **14. Slippage**
 
-Price slippage refers to the difference between the expected price of a trade and the price at which the trade is actually executed.
+Slippage occurs when there's a difference between the expected price of a trade and the price at which it's executed, often caused by rapid market changes or high volatility during events like news releases. In low-latency trading, delays between trade initiation and execution can result in market prices moving away from the expected level. To minimize slippage, traders can use a low-latency connection to their broker's server through co-location and ensure fast trade execution. For news trading, a low-latency news feed, such as the one provided by haawks, is essential to executing trades quickly and reducing slippage.
 
-In low-latency trading, where traders use high-speed computer algorithms to execute trades quickly, price slippage can occur when market conditions change rapidly or when there is high volatility e.g. news events. This can result in a delay between the time the trade is initiated and the time it is executed, during which time the market price may have moved away from the expected price.
-
-For example, if a trader places an order to buy a currency pair at a certain price and there is a sudden shift in the market, the actual execution price may be higher than the expected price. This difference in price is known as price slippage.
-
-Slippage cannot be completely avoided
-when trading with MT4 but it can be reduced by having a low-latency connection to the broker's server (which is achieved by having a co-located server), as well as fast trade execution. In the context of news trading, having a low-latency news feed like the one provided by haawks is essential to execute the trade as quickly as possible and avoid slippage.
 
 ## **15. Forex Brokers**
 
-Forex brokers are companies that provide traders with access to the foreign exchange market, where currencies are bought and sold. These brokers act as intermediaries between the traders and the market, executing trades on their behalf and providing them with a platform to access the market.
+Forex brokers serve as intermediaries between traders and the forex market by providing access, executing trades, and offering leverage. They are necessary for individual traders to access and participate in the market. There are three primary types of forex brokers: Straight Through Processing (STP), Electronic Communication Network (ECN), and Market Makers. STP and ECN brokers provide direct market access, allowing clients to trade with each other and routing orders to liquidity providers. They earn profits through commissions or markups on spreads, ensuring a more transparent and less conflicting relationship with clients. Market Makers create a market for clients by taking the opposite side of their trades, profiting from the spread. This model can lead to potential conflicts of interest and less transparency compared to STP and ECN brokers.
 
-Forex brokers are necessary for several reasons:
-
-1. ***Access to the market:*** Forex brokers provide traders with a platform to access the forex market, which is otherwise not available to individual traders. Without a broker, traders would not be able to access the market directly.
-2. ***Execution of trades:*** Forex brokers execute trades on behalf of traders. When a trader wants to buy or sell a currency pair, they place an order with their broker, who then executes the trade in the market. The broker ensures that the trade is executed at the best possible price and in a timely manner.
-3. ***Leverage:*** Forex brokers offer leverage, which allows traders to control a large position with a relatively small amount of capital. With larger lot sizes possible, this can increase the value of one pip, therefore increasing the profit & loss of each pip. This allows traders to potentially make larger profits than they would be able to with their own capital. However, it is important to note that leverage can also increase the potential risk of losses.
-
-Overall, forex brokers are necessary for traders to access the forex market and execute trades. They provide a platform, execute trades and offer leverage.
-
-### **Types of brokers**
-
-There are three main types of forex broker profit models: STP, ECN, and Market Maker.
-
-1. **Straight Through Processing (STP):**
-    - An STP broker is a type of Forex broker that provides its clients with Direct Market Access or DMA. This means that the broker does not act as a market maker, but forwards client orders directly to liquidity providers. A liquidity provider is usually a large financial institution, e.g. a bank or another broker, which provides pricing and liquidity on the Forex market.
-    - When a client places an order with an STP broker, the broker will route the order to a liquidity provider that offers the best available price at that moment. This allows the client to receive competitive pricing and execution, as they are accessing the real market. The broker earns its profit by charging a commission or markup on the spread.
-    - For example, if the bid price for EUR/USD is 1.1000 and the ask price is 1.1001, the spread is 1 pip. When a client places an order with an STP broker, the broker will typically add a small markup to the spread in order to earn a profit. The markup is typically transparent and disclosed to the client before the trade is executed.
-2. **Electronic Communication Network (ECN):**
-
-    - An ECN broker is similar to an STP broker in that it provides direct market access to its clients. However, an ECN broker also allows clients to trade with each other. This means that clients can act as both buyers and sellers in the market, and the broker does not act as a counterparty to their trades. Like with STP, the also broker earns its profit by charging a commission on each trade.
-
-3. **Market Maker:**
-
-    - A market maker is a type of forex broker that creates a market for its clients by taking the opposite side of their trades. This means that when a client buys a currency pair, the broker sells that same currency pair to the client, and vice versa. The broker earns its profit by pocketing the difference between the bid and ask price, also known as the spread. Market makers may also engage in other trading practices to manage their risk, such as hedging their positions in the interbank market.
-
-In summary, STP and ECN brokers provide direct market access to their clients and earn their profits by charging a commission or markup on the spread. Market makers, on the other hand, create a market for their clients by taking the opposite side of their trades and earn their profits by pocketing the spread.
-
-The market maker model involves the broker taking the opposite side of their clients' trades, which means that the broker profits from their clients' losses. This creates a potential conflict of interest between the broker and their clients because the broker may be incentivized to manipulate prices or take actions that benefit the broker's bottom line rather than the client's best interests. For example, a market maker may widen the spread or delay order execution to increase their profits.
-
-In contrast, STP and ECN models provide direct market access to clients, which means that the broker does not take the opposite side of their clients' trades. Instead, the broker acts as an intermediary and passes the orders on to liquidity providers or other traders in the market. This eliminates the potential conflict of interest between the broker and their clients because the broker does not profit from their clients' losses.
-
-The STP and ECN models are generally considered to be more transparent because they allow clients to see the actual market depth and participate in price discovery. This means that clients can see the bid and ask prices of other market participants and place their orders accordingly, which can help to ensure fair pricing and prevent price manipulation.
 
 ## **16. Trading Software**
 
@@ -347,6 +253,8 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
       - **c_2:** Add up the c_2 values for every time delta then divide by 18
       - **c_3:** Add up the c_3 values for every time delta then divide by 18
 
+
+
 ## **18. Ranking every indicator**
 
 Once I was able to create this analysis for individual indicators, then I decided to run the it on every indicator from haawks which has news data on investing.com and tick data from dukascopy available. That totals to 95 indicators which isn't all of them but it's still quite a lot.
@@ -368,24 +276,17 @@ The correlation (c_3) score can be thought of as a representation of how predict
 
 ## **19. Generating trading plans**
 
-Since the c_3 score is like a predictablity score, it makes sense to place larger trades when which uses larger lot sizes when the c_3 score is higher. I came up with the following lot sizes for each c_3 score:
+Utilizing the c_3 score as a predictability measure, it is reasonable to place larger trades with bigger lot sizes when the c_3 score is higher. The following lot sizes are suggested for different c_3 score ranges:
 
-- between **80** and **85**: **0.5** lots per $1000 account balance
-- between **85** and **90**: **0.75** lots per $1000
-- between **90** and **95**: **1** lot per $1000
-- above **90**: **1.5** lots per $1000
+- **80-85**: 0.5 lots per $1000 account balance
+- **85-90**: 0.75 lots per $1000
+- **90-95**: 1 lot per $1000
+- Above **90**: 1.5 lots per $1000
 
-I wrote another script which looks at the ranker results for any indicators with a c_3 score above 80, then checks the investing.com economic calendar to see if any of those are scheduled to be released in the next week.
+A script examines the ranker results for indicators with a c_3 score above 80, cross-references the investing.com economic calendar to identify upcoming news releases within the week, and generates recommended trigger deviations and lot sizes as inputs for the haawks news trader program.
 
-Then, for each indicator which will be released in the next week, it generates recommended trigger deviations and lot sizes as inputs for the haawks news trader program like this:
+These recommendations create a weekly schedule of trigger recommendations for various indicators. The 'lots/$1k' and 'lots' values are the same when assuming an account balance of $1000. If the account balance were $2000, the 'lots' would be double the amount of 'lots/$1k'. This trading plan generation process helps traders make informed decisions based on the predictability of news releases and their potential impact on the market.
 
-![](images/us-core-ppi-mom-triggers.png)
-
-So the weekly schedule will be a bunch of trigger recommendations like the one above:
-
-![](images/triggers-output.png)
-
-In the above example, '**lots/$1k**' and '**lots**' are the same because it assumed an account balance of $1000. If the account balance was $2000, then the '**lots**' would be double the amount of '**lots/$1k**'
 
 # **20. Conclusion**
 
@@ -395,32 +296,17 @@ However, there are still some things which can be improved. For example, I have 
 
 To solve this problem, I am planning to create another correlation score which is weighted more towards recent events instead of how it is now with all the events from 2017-2023 equally weighted. That would mean that if the all-time correlation score (what I currently have) is high, but for more recent events, the correlation score is lower, then it would use a smaller lot size.
 
-This can be achieved by using an EMA (exponential moving average). Moving averages are used in technical analysis by applying them to price data.
-
-There are different types of moving averages:
-
-- **SMA (Simple Moving Average)** is a commonly used technical indicator in forex trading that calculates the average price of an asset over a specific period of time. It is called "simple" because it gives equal weight to each data point in the calculation. Traders use SMAs to identify trends and potential entry and exit points for trades.
-- **EMA (Exponential Moving Average)** is also a commonly used technical indicator in forex trading that calculates the average price of an asset over a specific period of time. However, unlike the SMA, the EMA gives more weight to recent price data points, making it more sensitive to recent price changes. This means that the EMA may respond more quickly to changes in the market compared to the SMA. As a result, traders often use EMAs for shorter-term trading strategies, while SMAs are typically used for longer-term analysis.
-- Both types have an input called the '**period**' which specifies how many previous data points back it uses in its calculation. For example, an SMA or EMA with a period of 10 would look at the past 10 data points (e.g. the last 10 price levels for technical analysis, or in our case the c_3 scores for the last 10 releases for each trigger)
-
-Here is a video which shows the difference between SMAs & EMAs:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ijheqz9OHZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+This can be achieved by using an EMA (exponential moving average). Moving averages, including the Simple Moving Average (SMA) and the Exponential Moving Average (EMA), are commonly used technical indicators in forex trading. 
+- They calculate the average price of an asset over a specific period of time, with the SMA giving equal weight to each data point and the EMA giving more weight to recent price data points. 
+- This difference makes the EMA more sensitive to recent price changes and often used for shorter-term trading strategies, while the SMA is typically used for longer-term analysis.
+- Both types have an input called the 'period,' which specifies the number of previous data points used in their calculations, such as the last 10 price levels for technical analysis or the c_3 scores for the last 10 releases for each trigger.
 
 Although EMAs are commonly used for price analysis (Like in the video above), I will instead be applying it to the correlation scores for each trigger. This will make the correlation score more sensitive to recent events and should better reflect how the indicator has performed recently.
 
-Beyond that, the creator of the haawks news trader program also told me he can modify his program to accept triggers from a database. That would mean this can be fully automated. The current workflow is to generate a weekly pdf report with the recommended triggers, and then manually input them into his program. However, with a database this could be done automatically.
+!!! update
+    **[31/03/2023]** Now it uses the lowest score out of the regular **c_3**, and also the **c_3_ema5**, **c_3_ema10** & **c_3ema15**, then bases the lot size calculation on that with higher lots used when there's a higher correlation score.
 
-Another thing to change is how the recommended triggers sometimes have higher deviations with lower correlation scores:
+The creator of the haawks news trader program can modify the program to accept triggers from a database, allowing for full automation. Instead of generating a weekly PDF report with recommended triggers and manually inputting them into the program, a database could handle this automatically. However, the current recommendations sometimes have higher deviations with lower correlation scores, and when this occurs, it would be preferable to omit those triggers.
 
-![](images/us-cpi-index-nsa-triggers.png)
+To address this inconsistency, the haawks news trader program could be modified to allow deviations to fall between two values, rather than just above or below one value. This would enable trades to be made only when deviations fall within a specific range. Applying an Exponential Moving Average (EMA) to correlation scores could further enhance the trading strategy. It's essential to observe the performance of this approach, making adjustments as needed over time.
 
-In the above example, you can see that -LT3 & +UT3 have a lower lot size than the triggers with lower deviations (-LT2 & +UT2). This is because despite the deviation being bigger, the correlation scores were actually lower for those triggers.
-
-When this happens, it should omit those triggers, so in this example it would only show -LT1, -LT2, +UT1 & +UT2.
-
-To account for this weird behaviour of bigger deviations sometimes having lower correlation scores (common sense would say that this shouldn't happen but it does), I might also pay the creator of the haawks news trader program to modify his program so that the deviation can be between two values instead of just above or below one value.
-
-If his program could accept those parameters, then it would be possible to only make a trade when the deviation is between -0.2 and -0.4 for -LT2 instead of anything below 0.4. For +UT2 it would be anything between +0.2 and +0.4.
-
-That pretty much covers everything I could think of which relates to this trading strategy (but I may have forgotten some things so feel free to ask me). I think it's ready to start trading, but once I apply the EMA to the correlation scores, it will be even better. Things may evolve over time and it will be important to observe how it performs and adjust as needed.

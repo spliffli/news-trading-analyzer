@@ -43,7 +43,6 @@ plugins:
 nav:
   - (DE) News Trading System erklärt: index.md
   - (EN) News Trading System Explained: index-en.md
-  - (EN) News Trading System Explained (Summarized): index-en-summary.md
   - Weekly Schedules:
     - Week 14: weekly-schedules/week-14-schedule.md
     - Week 15: weekly-schedules/week-15-schedule.md
