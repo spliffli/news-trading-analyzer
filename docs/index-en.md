@@ -18,7 +18,15 @@ It's only possible for the price to move when people trade, so clearly there are
 
 ## **4. What kind of news moves the market?**
 
-Market-moving news typically consists of economic indicators found on websites like `investing.com/economic-calendar/`. The most crucial figures are the Actual and Forecast numbers, where market movement occurs if the Actual number deviates from the Forecast. For example, with Canada's monthly GDP, a higher than expected Actual number is bullish for the Canadian dollar (CAD), causing its price to rise, while a lower than expected number is bearish, causing its price to fall. In currency pairs like USD/CAD, the base currency (USD) and quote currency (CAD) react differently to news: positive news for the base currency causes the price to increase, while negative news results in a decrease; positive news for the quote currency causes the price to decrease, and negative news leads to an increase. Trading currency pairs involves speculating on the direction of the exchange rate, with profit or loss determined by the difference between entry and exit prices, and the size of the position (an open trade).
+Market-moving news typically consists of economic indicators found on websites like `investing.com/economic-calendar/`.
+
+![](images/economic-calendar.png)
+
+ The most crucial figures are the Actual and Forecast numbers, where market movement occurs if the Actual number deviates from the Forecast. For example, with Canada's monthly GDP, a higher than expected Actual number is bullish for the Canadian dollar (CAD), causing its price to rise, while a lower than expected number is bearish, causing its price to fall. In currency pairs like USD/CAD, the base currency (USD) and quote currency (CAD) react differently to news: positive news for the base currency causes the price to increase, while negative news results in a decrease; positive news for the quote currency causes the price to decrease, and negative news leads to an increase.
+ 
+![](images/canada-gdp-mom.png)
+
+  Trading currency pairs involves speculating on the direction of the exchange rate, with profit or loss determined by the difference between entry and exit prices, and the size of the position (an open trade).
 
 
 ## **5. What the price is and why it moves**
@@ -36,7 +44,10 @@ The current price of the currency pair is always based on two prices: the best a
 
 ## **6. Order types**
 
-Market orders execute immediately at the best available price, with market buy orders at the best ask and market sell orders at the best bid. Limit orders, on the other hand, fill when the market price reaches a specified level. The current price of a forex instrument is determined by the intersection of bids and asks in the order book, with the best bid and best ask establishing the current market price. This price represents the highest someone is willing to pay (best bid) and the lowest someone is willing to sell (best ask) at any given moment.
+- **Market orders** execute immediately at the best available price, with market buy orders at the best ask and market sell orders at the best bid. 
+- **Limit orders**, on the other hand, fill when the market price reaches a specified level. 
+
+The current price of a forex instrument is determined by the intersection of bids and asks in the order book, with the best bid and best ask establishing the current market price. This price represents the highest someone is willing to pay (best bid) and the lowest someone is willing to sell (best ask) at any given moment.
 
 
 ## **7. How the price is measured**
@@ -285,7 +296,11 @@ Utilizing the c_3 score as a predictability measure, it is reasonable to place l
 
 A script examines the ranker results for indicators with a c_3 score above 80, cross-references the investing.com economic calendar to identify upcoming news releases within the week, and generates recommended trigger deviations and lot sizes as inputs for the haawks news trader program.
 
+![](images/us-core-ppi-mom-triggers.png)
+
 These recommendations create a weekly schedule of trigger recommendations for various indicators. The 'lots/$1k' and 'lots' values are the same when assuming an account balance of $1000. If the account balance were $2000, the 'lots' would be double the amount of 'lots/$1k'. This trading plan generation process helps traders make informed decisions based on the predictability of news releases and their potential impact on the market.
+
+![](images/triggers-output.png)
 
 
 # **20. Conclusion**

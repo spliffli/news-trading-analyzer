@@ -18,40 +18,15 @@ Der Kurs kann sich nur bewegen, wenn gehandelt wird, also gibt es eindeutig eini
 
 ## **4. Welche Art von Nachrichten bewegt den Markt?**
 
-Unter `investing.com/economic-calendar/` finden Sie eine umfangreiche Liste von Ereignissen, die sich auf den Markt auswirken. Diese werden auch als 'Wirtschaftsnachrichtenindikatoren' (Economic news indicators) bezeichnet:
+Marktbewegende Nachrichten bestehen in der Regel aus Wirtschaftsindikatoren, die auf Websites wie `investing.com/economic-calendar/` zu finden sind.
 
 ![](images/economic-calendar.png)
 
-Für die meisten Ereignisse/Events gibt es drei Zahlen: Actual (Tatsächlich), Forecast (Prognose) und Previous (Vorhersage).
+Die wichtigsten Zahlen sind die tatsächlichen (Actual) und die prognostizierten (Forecast) Zahlen, wobei es zu Marktbewegungen kommt, wenn die tatsächliche Zahl von der prognostizierten abweicht. Bei den monatlichen GDP (BIP)-Zahlen Kanadas beispielsweise ist eine höher als erwartete Ist-Zahl positiv für den Kanadischen Dollar (CAD) und führt zu einem Kursanstieg, während eine niedriger als erwartete Zahl negativ ist und zu einem Kursrückgang führt. Bei Währungspaaren wie USD/CAD reagieren die Basiswährung (USD) und die Kurswährung (CAD) unterschiedlich auf Nachrichten: Positive Nachrichten für die Basiswährung führen zu einem Kursanstieg, während negative Nachrichten zu einem Kursrückgang führen; positive Nachrichten für die Kurswährung führen zu einem Kursrückgang, während negative Nachrichten zu einem Kursanstieg führen. 
 
-- **Actual**
-  Dies ist die Zahl, die zur geplanten Freigabezeit freigegeben wird.
-- **Forecast**
-  Diese Zahl stellt den Durchschnitt/Konsens der Vorhersagen dar, die Wirtschaftswissenschaftler in aller Welt gemacht haben.
-- **Previous**
-  Dies ist die Zahl aus der vorherigen Veröffentlichung/Release
-
-Die wichtigsten sind die Forecast und die Actual Zahl. Was den Markt tatsächlich in Bewegung bringt, ist, wenn die Actual Zahl von der Forecast abweicht. Betrachten wir als Beispiel das monatliche BIP Kanadas (Canada GDP MoM):
 ![](images/canada-gdp-mom.png)
 
-Jedes Mal, wenn die Actual/tatsächliche Zahl höher als die Forecast/Vorhersage war, wird die Zahl in grün angezeigt. Jedes Mal, wenn sie niedriger war als die Vorhersage, wird sie in rot angezeigt.
-
-Beim BIP (GDP) ist eine höher als erwartete Zahl positiv, d.h. "bullish" für die zugrunde liegende Währung, in diesem Fall den Kanadischen Dollar (CAD). Daher sollte eine höhere Abweichung den CAD-Kurs steigen lassen, und eine niedriger als erwartete Zahl ist negativ, d. h. "bearish", was den Kurs fallen lassen sollte. Wenn es keine Abweichung gibt, d.h. wenn die tatsächliche Zahl mit der Prognose übereinstimmt, dann gibt es keinen Handelsaufbau.
-
-Wenn Sie tatsächlich mit diesem Ereignis handeln wollten, wäre das zu verwendende Symbol/Währungspaar (Currency Pair) USDCAD. In jedem Währungspaar gibt es zwei Währungen: die Basiswährung (Base Currency) und die Kurswährung (Quote currency). Manchmal wird zwischen den Währungen ein "/" geschrieben, z. B. USD/CAD.
-
-Die Basiswährung (base currency) ist die erste, die USD in USD/CAD ist, und die Kurswährung (quote currency) ist die zweite, die CAD ist. Der Preis von USDCAD ist die Menge an CAD, die Sie benötigen, um 1 USD zu kaufen.
-
-- Der Wechselkurs (exchange rate) kann von verschiedenen Faktoren beeinflusst werden, z. B. von Änderungen der Zinssätze, Wirtschaftsindikatoren, geopolitischen Ereignissen und der Marktstimmung. Diese Faktoren können die Nachfrage und das Angebot der Währungen des Paares beeinflussen und sich somit auf ihren relativen Wert und den Wechselkurs auswirken.
-- Beim Währungspaar USD/JPY ist der USD die Basiswährung (base currency), so dass der Wechselkurs angibt, wie viele JPY Sie benötigen, um 1 USD zu kaufen. Wenn der Wechselkurs 110.00 beträgt, müssen Sie 110 JPY ausgeben, um 1 USD zu kaufen. Positive Nachrichten für den USD können den Wechselkurs steigen lassen, während negative Nachrichten ihn sinken lassen können. Sie können mit USDJPY handeln, indem Sie je nach Ihrer Einschätzung des Marktes long (kaufen/buy) oder short (verkaufen/sell) gehen.
-- Beim Währungspaar USD/CAD ist der USD auch die Basiswährung (base currency) und der CAD die Kurswährung (quote currency). Der Wechselkurs gibt also an, wie viel CAD Sie benötigen, um 1 USD zu kaufen. Wenn der Wechselkurs zum Beispiel 1.25 beträgt, müssen Sie 1.25 CAD ausgeben, um 1 USD zu kaufen. Wenn Sie also 100 CAD haben, können Sie nur 80 USD kaufen, wenn der Wechselkurs 0.80 beträgt. Positive Nachrichten für den CAD können den Wechselkurs sinken lassen, während negative Nachrichten ihn steigen lassen können. Wie beim USDJPY können Sie auch beim USDCAD je nach Ihrer Markteinschätzung long oder short gehen.
-- Wenn die zugrunde liegende Währung die **Basiswährung (base currency)** des Paares ist (z.B. **USD** in **USD**/JPY) und es gibt:
-    - **positive Nachrichten:** der Preis steigt
-    - **negative Nachrichten:** der Preis sinkt
-- Wenn die zugrunde liegende Währung die **Kurswährung (quote currency)** des Paares ist (z.B. **CAD** in USD/**CAD**) und es gibt:
-    - **positive Nachrichten:** der Preis sinkt
-    - **negative Nachrichten:** der Preis steigt
-- Wenn Sie mit einem Währungspaar handeln, spekulieren Sie auf die Entwicklung des Wechselkurses. Wenn Sie glauben, dass die Basiswährung (base currency) gegenüber der Kurswährung (quote currency) aufwerten wird, können Sie das Paar kaufen (long gehen). Wenn Sie glauben, dass die Basiswährung (base currency) gegenüber der Kurswährung (quote currency) an Wert verlieren wird, können Sie das Paar verkaufen (short gehen). Der Gewinn (profit) oder Verlust (loss), den Sie erzielen, hängt von der Differenz zwischen dem Einstiegs- und dem Ausstiegskurs (Entry & Exit price) (auch bekannt als open & close price) des Handels und dem Umfang Ihrer Position ab (Position bedeutet nur einen offenen Handel/Trade).
+Beim Handel mit Währungspaaren wird auf die Richtung des Wechselkurses spekuliert, wobei Gewinn oder Verlust durch die Differenz zwischen Einstiegs- und Ausstiegskurs und den Umfang der Position (ein offener Handel) bestimmt werden.
 
 ## **5. Was der Preis ist und warum er sich bewegt**
 
@@ -89,37 +64,15 @@ Es ist jedoch erwähnenswert, dass viele Forex-Broker "Fraktionierte Pips" oder 
 
 ## **8. Lots**
 
-Für jeden Kauf- oder Verkaufsauftrag muss die Anzahl der Lots (auch 'Lot Size' oder 'Position Size' genannt) angegeben werden. Ein Lot bezieht sich auf die Standardhandelsgröße für ein bestimmtes Währungspaar. Die Größe eines Lots variiert je nach Währungspaar und kann von 1000 Einheiten der Basiswährung bis zu 100,000 Einheiten oder mehr reichen. Ein Standard-Lot für das Währungspaar EUR/USD beträgt zum Beispiel 100,000 Einheiten des Euro.
-
-Die Lot Size, mit der Sie handeln, hat einen direkten Einfluss auf die Höhe des Gewinns oder Verlusts, den Sie mit einer bestimmten Anzahl von Pips erzielen können. Dies liegt daran, dass der Gewinn oder Verlust aus einem Handel auf der Grundlage der Größe der Position, die Sie einnehmen, berechnet wird, die durch die Lot Size bestimmt wird.
-
-Nehmen wir zum Beispiel an, Sie kaufen 1 Lot EUR/USD zu 1.2000 und der Kurs steigt auf 1.2020, was einer Bewegung von 20 Pips entspricht. Wenn Sie den Handel zu diesem Preis schließen, würden Sie einen Gewinn von $200 erzielen, da ein Standardlot von EUR/USD $100,000 wert ist und jeder Pip $10 wert ist. Wenn Sie 0.1 Lots von EUR/USD kaufen und der Kurs sich um 20 Pips bewegt, würden Sie einen Gewinn von $20 erzielen, da jeder Pip $1 wert ist.
-
-Die Lot Size, mit der Sie handeln, ist ein wichtiger Faktor, den Sie bei der Berechnung potenzieller Gewinne und Verluste im Devisenhandel berücksichtigen müssen, da sie sich direkt auf die Höhe des Gewinns oder Verlusts auswirkt, den Sie mit einer bestimmten Anzahl von Pips erzielen können. Händler müssen ihre Lot Size sorgfältig im Verhältnis zu ihrer Handelsstrategie und Risikotoleranz abwägen.
+Die Lot Size (Lotgröße) bzw. Position Size (Positionsgröße) muss für jeden Kauf- oder Verkaufsauftrag im Forex-Handel angegeben werden. Die Lot Size wirkt sich direkt auf den potenziellen Gewinn oder Verlust aus, da sie die Positionsgröße und den Wert jedes Pips bestimmt. Für EUR/USD hat 1 Lot einen Pip-Wert von $10 (Dieser Betrag variiert je nach Währungspaar). Eine Bewegung von 20 Pips bei einem EUR/USD-Handel mit 1 Lot führt also zu einem Gewinn von $200, während die gleiche Bewegung bei einem Handel mit 0.1 Lot (1 Pip = $1) zu einem Gewinn von $20 führen würde. Händler müssen ihre Lotgröße sorgfältig im Verhältnis zu ihrer Strategie und Risikotoleranz abwägen.
 
 ## **9. Spread (Spanne)**
 
-Die Spread im Forexhandel bezieht sich auf die Differenz zwischen dem Bidpreis und dem Askpreis eines Währungspaares. Der Bidpreis ist der Preis, zu dem ein Käufer bereit ist, das Währungspaar zu kaufen, während der Askpreis der Preis ist, zu dem ein Verkäufer bereit ist, das Währungspaar zu verkaufen.
-
-Der Spread ist im Wesentlichen die Kosten des Handels und wird in der Regel in Pips gemessen. Der Spread wird von den Liquiditätsanbietern (Liquidity Providers or 'LPs'), wie Banken und anderen Finanzinstituten, festgelegt und von verschiedenen Faktoren wie Marktvolatilität (Market Volatility), Liquidität (Liquidity) sowie Angebot und Nachfrage (Supply & Demand) beeinflusst.
-
-Liegt der Bidpreis für EUR/USD beispielsweise bei 1.2000 und der Askpreis bei 1.2002, beträgt der Spread 2 Pips. Das bedeutet, dass ein Händler, der EUR/USD kaufen möchte, den Askpreis von 1.2002 zahlen muss, während ein Händler, der EUR/USD verkaufen möchte, den Bidpreis von 1.2000 erhält.
-
-Bei Wirtschaftsnachrichten weitet sich die Bid-Ask-Spread häufig aus und die verfügbare Liquidität nimmt ab, da möglicherweise weniger Marktteilnehmer bereit sind, das Währungspaar zu den aktuellen Kursen zu kaufen oder zu verkaufen.
-
-Der Rückgang der Liquidität bei Wirtschaftsnachrichten kann zu erhöhter Volatilität und Slippage führen, da sich die Bid-Ask-Spread ausweitet und es schwieriger wird, Trades zum gewünschten Kursniveau auszuführen. Dies kann es für Händler schwieriger machen, schnell und effizient in Positionen ein- oder auszusteigen, was das Risiko von Verlusten erhöhen kann.
-
-Aus diesem Grund wird bei dieser Strategie ein Trailing-Stoploss von 5 Pips verwendet, d. h. der Kurs muss sich nur um 5 Pips bewegen, um die Gewinnschwelle (break even) zu erreichen, und alles, was darüber liegt, ist Gewinn.
+Der Spread im Forex-Handel stellt die Differenz zwischen dem Bid und Ask (Geld- und dem Briefkurs) eines Währungspaares dar und dient im Wesentlichen als Kosten für den Handel. Beeinflusst von Faktoren wie Marktvolatilität, Liquidität sowie Angebot und Nachfrage, wird die Spread in der Regel in Pips gemessen und von Liquiditätsanbietern wie Banken und Finanzinstituten festgelegt. Während wirtschaftlicher Nachrichtenereignisse kann sich die Bid-Ask-Spread (Geld-Brief-Spanne) ausweiten und die Liquidität abnehmen, was zu erhöhter Volatilität und Slippage führt, was es für Händler schwierig machen kann, schnell und effizient in Positionen ein- oder auszusteigen, was das Risiko von Verlusten erhöht. Daher kann eine Strategie wie ein 5-Pip-Trailing-Stop-Loss helfen, diese Risiken zu mindern.
 
 ## **10. Liquidity (Liquidität)**
 
-Im Zusammenhang mit dem Forexhandel wirkt sich die Liquidität insbesondere auf das Orderbuch aus, das eine Echtzeitliste der Kauf- und Verkaufsaufträge für ein bestimmtes Währungspaar darstellt. Der Forexmarkt ist mit einem täglichen Handelsvolumen von über 6 Billionen Dollar der liquideste Markt der Welt. Eine hohe Liquidität auf dem Forexmarkt führt zu einem robusten und effizienten Orderbuch, was sich wiederum auf die Handelsbedingungen und die Chancen für die Händler auswirkt.
-
-Auf einem hochliquiden Forexmarkt ist eine große Zahl von Käufern und Verkäufern aktiv am Handel beteiligt. Infolgedessen ist das Orderbuch mit zahlreichen Kauf- und Verkaufsaufträgen (Buy & Sell Orders) auf verschiedenen Kursniveaus gefüllt. Diese Fülle an Aufträgen ermöglicht es den Händlern, problemlos in Positionen ein- und auszusteigen, ohne dass es zu erheblichen Kursbewegungen kommt oder der Marktpreis des Währungspaares beeinflusst wird. Auf einem liquiden Markt sind die Bid-Ask-Spread im Auftragsbuch eng, d. h. die Differenz zwischen dem höchsten Preis, den ein Käufer zu zahlen bereit ist (Bidpreis), und dem niedrigsten Preis, den ein Verkäufer zu akzeptieren bereit ist (Askpreis), ist minimal. Enge Spreads senken die Gesamttransaktionskosten für Händler und machen den Handel kostengünstiger.
-
-Im Gegensatz dazu führt eine geringe Liquidität auf dem Forexmarkt zu einem dünnen Orderbuch mit weniger Kauf- und Verkaufsaufträgen (Buy & Sell Orders). Dies kann zu größeren Bid-Ask-Spreads, erhöhter Slippage (die Differenz zwischen dem erwarteten Preis eines Geschäfts und dem Preis, zu dem es tatsächlich ausgeführt wird) und einer höheren Wahrscheinlichkeit von Kurslücken (plötzliche Sprünge des Marktpreises, ohne dass dazwischen ein Handel stattfindet) führen. Diese Faktoren können die Transaktionskosten erhöhen und zu volatileren Handelsbedingungen führen.
-
-Die Liquidität des Forexmarktes wird von mehreren Faktoren beeinflusst, z. B. von geopolitischen Ereignissen, der Veröffentlichung von Wirtschaftsdaten, der Marktstimmung und den Handelszeiten. Die liquidesten Währungspaare sind die großen Paare wie EUR/USD, USD/JPY und GBP/USD, die im Vergleich zu weniger liquiden Paaren oder exotischen Währungen engere Spreads und stabilere Preise aufweisen. Eine hohe Liquidität auf dem Forexmarkt bietet Händlern letztlich bessere Handelsmöglichkeiten, eine schnellere Ausführung und geringere Preisauswirkungen.
+Liquidität im Devisenhandel bezieht sich auf die Fülle und Verfügbarkeit von Buy- und Sell-Orders für ein bestimmtes Währungspaar, was effiziente Transaktionen mit minimalen Preisauswirkungen und reduzierten Kosten ermöglicht. Der Devisenmarkt ist mit einem täglichen Handelsvolumen von mehr als 6 Billionen Dollar sehr liquide, was zu einem robusten Auftragsbuch und günstigen Handelsbedingungen führt. Die hohe Liquidität führt zu engen Geld-Brief-Spannen, niedrigeren Transaktionskosten und minimalen Kursbewegungen beim Eingehen oder Verlassen von Positionen. Zu den Faktoren, die die Liquidität beeinflussen, gehören geopolitische Ereignisse, die Veröffentlichung von Wirtschaftsdaten, die Marktstimmung und die Handelszeiten. Wichtige Währungspaare wie EUR/USD, USD/JPY und GBP/USD weisen eine höhere Liquidität auf, die Händlern bessere Handelsmöglichkeiten, eine schnellere Ausführung und geringere Preisauswirkungen bietet.
 
 ## **11. Stoploss (SL)**
 
@@ -154,48 +107,11 @@ Im Vergleich zu Forex ist die Volatilität bei Bitcoin und anderen Kryptowährun
 
 ## **14. Slippage**
 
-Die Kursslippage (price slippage) bezieht sich auf die Differenz zwischen dem erwarteten Preis eines Geschäfts und dem Preis, zu dem das Geschäft tatsächlich ausgeführt wird.
-
-Beim Handel mit geringer Latenz, bei dem Händler Hochgeschwindigkeits-Computeralgorithmen zur schnellen Ausführung von Geschäften verwenden, kann es zu Kursabweichungen kommen, wenn sich die Marktbedingungen schnell ändern oder eine hohe Volatilität vorliegt, z. B. bei Nachrichtenereignissen (news events). Dies kann zu einer Verzögerung zwischen dem Zeitpunkt, an dem der Handel eingeleitet wird, und dem Zeitpunkt seiner Ausführung führen, wobei sich der Marktpreis in dieser Zeit vom erwarteten Preis entfernt haben kann.
-
-Wenn ein Händler beispielsweise einen Auftrag zum Kauf eines Währungspaares zu einem bestimmten Preis erteilt und es zu einer plötzlichen Marktverschiebung kommt, kann der tatsächliche Ausführungskurs höher sein als der erwartete Kurs. Dieser Preisunterschied wird als Slippage bezeichnet.
-
-Beim Handel mit MT4 lässt sich Slippage zwar nicht vollständig vermeiden, aber durch eine Verbindung mit niedriger Latenz zum Server des Brokers (die durch einen Co-Located Server erreicht wird) und eine schnelle Handelsausführung kann es reduziert werden. Im Zusammenhang mit dem Nachrichtenhandel ist ein News-Feed mit niedriger Latenz, wie er von Haawks bereitgestellt wird, unerlässlich, um den Handel so schnell wie möglich auszuführen und Slippage zu vermeiden.
+Slippage tritt auf, wenn es eine Differenz zwischen dem erwarteten Preis eines Geschäfts und dem Preis, zu dem es ausgeführt wird, gibt, was oft durch schnelle Marktveränderungen oder hohe Volatilität bei Ereignissen wie Nachrichtenmeldungen verursacht wird. Beim Handel mit geringer Latenz können Verzögerungen zwischen Handelsbeginn und Ausführung dazu führen, dass sich die Marktpreise vom erwarteten Niveau entfernen. Um Slippage zu minimieren, können Händler eine Verbindung mit niedriger Latenz zum Server ihres Brokers durch Co-Location nutzen und eine schnelle Handelsausführung sicherstellen. Für den Nachrichtenhandel ist ein Nachrichten-Feed mit niedriger Latenz, wie er von haawks bereitgestellt wird, von entscheidender Bedeutung für die schnelle Ausführung von Geschäften und die Reduzierung von Slippage.
 
 ## **15. Forex Brokers**
 
-Forexmakler (Forex Brokers) sind Unternehmen, die Händlern Zugang zum Forexmarkt verschaffen, wo Währungen gekauft und verkauft werden. Diese Broker fungieren als Vermittler zwischen den Händlern und dem Markt, führen in ihrem Namen Geschäfte aus und bieten ihnen eine Plattform für den Zugang zum Markt.
-
-Forex-Broker sind aus mehreren Gründen notwendig:
-
-1. ***Zugang zum Markt (Access to the market):*** Forex-Broker bieten Händlern eine Plattform für den Zugang zum Forexmarkt, die Einzelhändlern (Retail Traders) sonst nicht zur Verfügung steht. Ohne einen Broker hätten die Händler keinen direkten Zugang zum Markt.
-2. ***Ausführung von Geschäften (Trade Execution):*** Forex-Broker führen die Geschäfte im Namen der Händler aus. Wenn ein Händler ein Währungspaar kaufen oder verkaufen möchte, erteilt er seinem Broker einen Auftrag, der den Handel dann auf dem Markt ausführt. Der Broker sorgt dafür, dass der Handel zum bestmöglichen Preis und rechtzeitig ausgeführt wird.
-3. ***Hebelwirkung (Leverage):*** Forex-Broker bieten eine Hebelwirkung an, die es Händlern ermöglicht, mit einem relativ kleinen Kapitalbetrag eine große Position zu kontrollieren. Da größere Lot Size möglich sind, kann dies den Wert eines Pips erhöhen und somit den Gewinn und Verlust jedes Pips steigern. Auf diese Weise können Händler potenziell größere Gewinne erzielen, als es ihnen mit ihrem eigenen Kapital möglich wäre. Es ist jedoch zu beachten, dass die Leverage auch das potenzielle Verlustrisiko erhöhen kann.
-
-Insgesamt sind Forex Brokers für Händler notwendig, um Zugang zum Forexmarkt zu erhalten und Geschäfte abzuschließen. Sie stellen eine Plattform zur Verfügung, führen den Handel aus und bieten Leverage.
-
-### **Arten von Brokers**
-
-Es gibt drei Haupttypen von Gewinnmodellen für Forex-Broker: STP, ECN und Market Maker.
-
-1. **Straight Through Processing (STP):**
-    - Ein STP-Broker ist eine Art von Forex-Broker, der seinen Kunden direkten Marktzugang (Direct Market Access or DMA) bietet. Das bedeutet, dass der Broker nicht als Market Maker fungiert, sondern die Kundenaufträge direkt an Liquiditätsanbieter weiterleitet. Ein Liquiditätsanbieter ist in der Regel ein großes Finanzinstitut, z. B. eine Bank oder ein anderer Broker, der Preise und Liquidität auf dem Forexmarkt bereitstellt.
-    - Wenn ein Kunde einen Auftrag an einen STP-Broker erteilt, leitet dieser den Auftrag an einen Liquiditätsanbieter weiter, der zu diesem Zeitpunkt den besten verfügbaren Preis bietet. Dies ermöglicht dem Kunden eine wettbewerbsfähige Preisgestaltung und Ausführung, da er Zugang zum realen Markt hat. Der Broker verdient seinen Gewinn, indem er eine Provision oder einen Aufschlag auf den Spread erhebt.
-    - Liegt der Bidpreis für EUR/USD beispielsweise bei 1.1000 und der Askpreis bei 1.1001, beträgt der Spread 1 Pip. Wenn ein Kunde einen Auftrag an einen STP-Broker erteilt, schlägt der Broker in der Regel einen kleinen Aufschlag auf die Spread (Spanne) auf, um einen Gewinn zu erzielen. Der Aufschlag ist in der Regel transparent und wird dem Kunden vor der Ausführung des Geschäfts mitgeteilt.
-
-2. **Electronic Communication Network (ECN):**
-    - Ein ECN-Broker ist einem STP-Broker insofern ähnlich, als er seinen Kunden direkten Marktzugang bietet. Allerdings erlaubt ein ECN-Broker seinen Kunden auch, miteinander zu handeln. Das bedeutet, dass die Kunden sowohl als Käufer als auch als Verkäufer auf dem Markt auftreten können und der Broker nicht als Gegenpartei bei ihren Geschäften auftritt. Wie beim STP verdient der Broker auch hier seinen Gewinn, indem er für jeden Handel eine Provision verlangt.
-
-3. **Market Maker:**
-    - Ein Market Maker ist eine Art von Broker, der für seine Kunden einen Markt schafft, indem er die Gegenseite ihrer Geschäfte übernimmt. Das heißt, wenn ein Kunde ein Währungspaar kauft, verkauft der Broker dasselbe Währungspaar an den Kunden und umgekehrt. Der Broker erzielt seinen Gewinn, indem er die Differenz zwischen dem Bid und dem Ask, auch bekannt als Spread, in die Tasche steckt. Market Maker können auch andere Handelspraktiken anwenden, um ihr Risiko zu steuern, wie z. B. die Absicherung ihrer Positionen auf dem Interbankenmarkt.
-
-Zusammenfassend bieten STP- und ECN-Broker Kunden direkten Marktzugang und ihre Gewinne, indem sie eine Provision oder einen Aufschlag auf den Spread erheben. Market Maker hingegen schaffen einen Markt für ihre Kunden, indem sie die Gegenseite ihrer Trades aufnehmen und ihre Gewinne erzielen, indem sie den Spread einstecken.
-
-Beim Market-Maker-Modell funktioniert der Broker die Gegenseite der Trades seiner Kunden, was bedeutet, dass der Broker von den Verlusten seiner Kunden profitiert. Dies schafft einen potenziellen Interessenkonflikt zwischen dem Broker und seinen Kunden, da der Broker Anreize erhalten kann, Preise zu manipulieren oder Maßnahmen zu ergreifen, die eher dem Endergebnis des Brokers als den besten Interessen des Kunden zugute kommen. Zum Beispiel kann ein Market Maker den Spread erweitern oder die Auftragsausführung verzögern, um seine Gewinne zu steigern.
-
-Im Gegensatz dazu bieten STP- und ECN-Modelle den Kunden direkten Marktzugang (Direct Market Access oder DMA), was bedeutet, dass der Broker nicht die Gegenseite der Geschäfte seiner Kunden einnimmt. Stattdessen tritt der Broker als Vermittler auf und gibt die Aufträge an Liquiditätsanbieter oder andere Händler am Markt weiter. Dadurch wird der potenzielle Interessenkonflikt zwischen dem Broker und seinen Kunden beseitigt, da der Broker nicht von den Verlusten seiner Kunden profitiert.
-
-Die STP- und ECN-Modelle gelten im Allgemeinen als transparenter, da sie es den Kunden ermöglichen, die tatsächliche Markttiefe zu sehen und an der Preisfindung teilzunehmen. Das bedeutet, dass Kunden die Bid- und Askpreis anderer Marktteilnehmer sehen und ihre Aufträge entsprechend platzieren können, was zu einer fairen Preisgestaltung beitragen und Preismanipulationen verhindern kann.
+Forex Brokers (Forex-makler) dienen als Vermittler zwischen Händlern und dem Forex-Markt, indem sie Zugang gewähren, Geschäfte ausführen und Leverage anbieten. Sie sind für einzelne Händler notwendig, um Zugang zum Markt zu erhalten und an ihm teilzunehmen. Es gibt drei Haupttypen von Forex-Brokern: Straight Through Processing (STP), Electronic Communication Network (ECN) und Market Maker. STP- und ECN-Broker bieten einen direkten Marktzugang, der es den Kunden ermöglicht, miteinander zu handeln und Aufträge an Liquiditätsanbieter weiterzuleiten. Sie erzielen Gewinne durch Provisionen oder Aufschläge auf die Spreads und sorgen so für eine transparentere und weniger konfliktreiche Beziehung zu den Kunden. Market Maker schaffen einen Markt für die Kunden, indem sie die Gegenseite ihrer Geschäfte übernehmen und vom Spread profitieren. Dieses Modell kann im Vergleich zu STP- und ECN-Brokern zu potenziellen Interessenkonflikten und weniger Transparenz führen.
 
 ## **16. Trading Software (Handelssoftware)**
 
@@ -381,38 +297,22 @@ Im obigen Beispiel sind '**lots/$1k**' und '**lots**' identisch, da ein Kontosta
 
 # **20. Abschluss**
 
-Da bin ich mit der Entwicklung dieses Projektes im Wesentlichen (Stand 19.03.2023). Ich glaube, dass der Handel mit diesen Ereignissen mit Lot Sizes proportional zum Korrelationsergebnis Gewinn bringen sollte.
+Das ist im Wesentlichen der Stand der Entwicklung dieses Projekts (Stand: 19/03/2023). Ich glaube, dass der Handel mit diesen Ereignissen mit Losgrößen, die proportional zum Korrelationswert sind, Gewinn bringen sollte.
 
-Es gibt jedoch noch einige Dinge, die verbessert werden können. Zum Beispiel habe ich dem Schöpfer des Haawks-News-Trader-Programms, der seit Jahren mit Nachrichten handelt, eine E-Mail geschickt. Er war an meiner Arbeit interessiert, sagte aber, dass sich die Zuverlässigkeit/Vorhersagbarkeit (Reliability/Predictability) von Indikatoren im Laufe der Zeit ändern kann. Das Beispiel, das er gab, war der schwedische CPI, der seiner Meinung nach vor etwa 3 Jahren gut zu handeln war, aber jetzt unzuverlässig ist.
+Es gibt jedoch noch einige Dinge, die verbessert werden können. Ich habe zum Beispiel den Erfinder des Haawks News Trader Programms angeschrieben, der seit Jahren mit Nachrichten handelt. Er war an meiner Arbeit interessiert, aber er sagte, dass sich die Zuverlässigkeit/Vorhersagbarkeit von Indikatoren im Laufe der Zeit ändern kann. Als Beispiel nannte er den schwedischen Verbraucherpreisindex, der seiner Meinung nach vor etwa 3 Jahren gut zu handeln war, jetzt aber unzuverlässig ist.
 
-Um dieses Problem zu lösen, plane ich, eine andere Score-Korrelation zu erstellen, die stärker auf die jüngsten Ereignisse ausgerichtet ist, anstatt wie jetzt alle Ereignisse von 2017 bis 2023 gleich gewichtet. Das würde bedeuten, dass, wenn der Korrelationswert aller Zeiten (was ich derzeit habe) hoch ist, der Korrelationswert für neuere Ereignisse jedoch niedriger ist, eine kleinere Lot Size verwendet werden würde.
+Um dieses Problem zu lösen, plane ich, einen anderen Korrelationswert zu erstellen, der stärker nach den jüngsten Ereignissen gewichtet ist als der jetzige, bei dem alle Ereignisse von 2017 bis 2023 gleich gewichtet sind. Das würde bedeuten, dass, wenn der Allzeit-Korrelationswert (den ich derzeit habe) hoch ist, aber für neuere Ereignisse der Korrelationswert niedriger ist, dann würde eine kleinere Lotgröße verwendet.
 
-Dies kann durch die Verwendung eines EMA (exponentieller gleitender Durchschnitt oder exponential moving average) erreicht werden. Gleitende Durchschnitte werden in der technischen Analyse verwendet, indem sie auf Preisdaten angewendet werden.
+Dies kann durch die Verwendung eines EMA (exponentieller gleitender Durchschnitt) erreicht werden. Gleitende Durchschnitte, einschließlich des einfachen gleitenden Durchschnitts (Simple Moving Average - SMA) und des exponentiellen gleitenden Durchschnitts (Exponential Moving Average - EMA), sind häufig verwendete technische Indikatoren im Devisenhandel. 
+- Sie berechnen den Durchschnittspreis eines Vermögenswerts über einen bestimmten Zeitraum, wobei der SMA jedem Datenpunkt das gleiche Gewicht gibt und der EMA den jüngsten Preisdatenpunkten mehr Gewicht verleiht. 
+- Aufgrund dieses Unterschieds reagiert der EMA empfindlicher auf jüngste Kursänderungen und wird häufig für kurzfristige Handelsstrategien verwendet, während der SMA in der Regel für längerfristige Analysen eingesetzt wird.
+- Beide Typen haben eine Eingabe, die als "Periode" bezeichnet wird und die Anzahl der vorherigen Datenpunkte angibt, die für ihre Berechnungen verwendet werden, wie z. B. die letzten 10 Kursniveaus für die technische Analyse oder die c_3-Bewertungen für die letzten 10 Veröffentlichungen für jeden Auslöser.
 
-Es gibt verschiedene Arten von gleitenden Durchschnitten (Moving Averages):
+Obwohl EMAs üblicherweise für die Preisanalyse verwendet werden (wie im Video oben), werde ich sie stattdessen auf die Korrelationswerte für jeden Auslöser anwenden. Dadurch wird der Korrelationswert empfindlicher auf die jüngsten Ereignisse reagieren und sollte besser widerspiegeln, wie sich der Indikator in letzter Zeit entwickelt hat.
 
-- **SMA (Simple Moving Average)** ist ein häufig verwendeter technischer Indikator im Devisenhandel, der den Durchschnittspreis eines Vermögenswerts über einen bestimmten Zeitraum berechnet. Es wird "simple" (einfach) genannt, weil es jedem Datenpunkt in der Berechnung das gleiche Gewicht gibt. Händler verwenden SMAs, um Trends und potenzielle Einstiegs- und Ausstiegspunkte für Trades zu identifizieren.
-- **EMA (Exponential Moving Average)** ist auch ein häufig verwendeter technischer Indikator im Forexhandel, der den Durchschnittspreis eines Vermögenswerts über einen bestimmten Zeitraum berechnet. Im Gegensatz zum SMA misst der EMA jedoch den jüngsten Preisdatenpunkten mehr Gewicht bei, wodurch er empfindlicher auf jüngste Preisänderungen reagiert. Dies bedeutet, dass der EMA im Vergleich zum SMA möglicherweise schneller auf Veränderungen am Markt reagiert. Infolgedessen verwenden Händler häufig EMAs für kurzfristigere Handelsstrategien, während SMAs normalerweise für längerfristige Analysen verwendet werden.
-- Beide Typen haben eine Eingabe, die "**Periode**" genannt wird und angibt, wie viele vorherige Datenpunkte in die Berechnung einfließen. Ein SMA oder EMA mit einer Periode von 10 würde zum Beispiel die letzten 10 Datenpunkte betrachten (z. B. die letzten 10 Preisniveaus für die technische Analyse oder in unserem Fall die c_3-Bewertungen für die letzten 10 Veröffentlichungen/Releases für jeden Auslöser/Trigger).
+!!! update
+    **[31.03.2023]** Jetzt wird der niedrigste Wert aus dem regulären **c_3** und auch **c_3_ema5**, **c_3_ema10** und **c_3ema15** verwendet, und die Lotgröße wird auf dieser Grundlage berechnet, wobei höhere Lots verwendet werden, wenn ein höherer Korrelationswert vorliegt.
 
-Hier ist ein Video, das den Unterschied zwischen SMAs und EMAs zeigt (auf Englisch, aber Sie können Deutsche Untertitel einfügen):
+Der Ersteller des Haawks News Trader-Programms kann das Programm so modifizieren, dass es Trigger aus einer Datenbank akzeptiert, was eine vollständige Automatisierung ermöglicht. Anstatt einen wöchentlichen PDF-Bericht mit empfohlenen Auslösern zu erstellen und diese manuell in das Programm einzugeben, könnte eine Datenbank dies automatisch übernehmen. Allerdings weisen die aktuellen Empfehlungen manchmal höhere Abweichungen mit niedrigeren Korrelationswerten auf, und in diesem Fall wäre es besser, diese Auslöser wegzulassen.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ijheqz9OHZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-Obwohl EMAs häufig für Preisanalysen, d. h. technische Analysen (Wie in dem Video oben), verwendet werden, werde ich sie stattdessen auf die Korrelationen der Ergebnisse für jeden Auslöser anwenden. Dadurch wird der Korrelationswert empfindlicher gegenüber jüngsten Ereignissen und sollte besser widerspiegeln, wie sich der Indikator in letzter Zeit entwickelt hat.
-
-Darüber hinaus sagte mir der Schöpfer des Haawks-News-Trader-Programms, dass er sein Programm so modifizieren kann, dass es Trigger aus einer Datenbank akzeptiert. Das würde bedeuten, dass dies vollständig automatisiert werden kann. Der aktuelle Arbeitsablauf besteht darin, einen wöchentlichen PDF-Bericht mit den empfohlenen Auslösern/Triggers zu erstellen und diese dann manuell in sein Programm einzugeben. Mit einer Datenbank könnte dies jedoch automatisch erfolgen.
-
-Eine andere Sache, die geändert werden muss, ist, dass die empfohlenen Auslöser (Triggers) manchmal höhere Abweichungen (Deviations) mit niedrigeren Korrelationswerten aufweisen:
-
-![](images/us-cpi-index-nsa-triggers.png)
-
-Im obigen Beispiel sehen Sie, dass -LT3 & +UT3 eine geringere Lot Size haben als die Trigger mit geringeren Abweichungen (-LT2 & +UT2). Dies liegt daran, dass die Korrelationswerte für diese Auslöser/Trigger trotz größerer Abweichung/Deviation tatsächlich niedriger waren.
-
-In diesem Fall sollten diese Trigger weggelassen werden, sodass in diesem Beispiel nur -LT1, -LT2, +UT1 und +UT2 angezeigt werden.
-
-Um diesem komischen Verhalten Rechnung zu tragen, dass größere Abweichungen (Deviations) manchmal zu niedrigeren Korrelationswerten führen (der gesunde Menschenverstand würde sagen, dass dies nicht passieren sollte, aber es passiert doch), könnte ich auch den Ersteller des Haawks News Trader-Programms dafür bezahlen, sein Programm so zu ändern, dass die Abweichung zwischen zwei Werten liegen kann und nicht nur über oder unter einem Wert.
-
-Wenn sein Programm diese Parameter akzeptieren könnte, dann wäre es möglich, nur dann einen Handel zu tätigen, wenn die Abweichung zwischen -0.2 und -0.4 für -LT2 liegt, anstatt alles unter 0.4. Für +UT2 wäre es alles zwischen +0.2 und +0.4.
-
-Das deckt so ziemlich alles ab, was mir zu dieser Handelsstrategie einfiel (aber vielleicht habe ich auch etwas vergessen, also fragen Sie mich ruhig). Ich denke, sie ist bereit, mit dem Handel zu beginnen, aber sobald ich den EMA auf die Korrelationswerte anwende, wird sie noch besser sein. Die Dinge können sich im Laufe der Zeit weiterentwickeln, und es wird wichtig sein, zu beobachten, wie sie sich entwickelt, und sie bei Bedarf anzupassen.
+Um diese Inkonsistenz zu beheben, könnte das haawks news trader Programm so modifiziert werden, dass die Abweichungen zwischen zwei Werten liegen können und nicht nur über oder unter einem Wert. Auf diese Weise könnten Geschäfte nur dann getätigt werden, wenn die Abweichungen innerhalb einer bestimmten Spanne liegen. Die Anwendung eines Exponential Moving Average (EMA) auf Korrelationswerte könnte die Handelsstrategie weiter verbessern. Es ist wichtig, die Leistung dieses Ansatzes zu beobachten und bei Bedarf im Laufe der Zeit Anpassungen vorzunehmen.
