@@ -1,6 +1,8 @@
 
 # **2023 Week 14 Schedule**
 
+<img src="/images/week-current-300-120px.png" alt="This week is CURRENT">
+
 ### This was generated on **2023/03/31** and has **4** events from **2023/04/06** to **2023/04/06**
 
 #### For events which are at the same time, it's only possible to trade one of them, so in those cases the one with the highest c_3 score will be chosen

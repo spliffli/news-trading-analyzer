@@ -18,7 +18,7 @@ It's only possible for the price to move when people trade, so clearly there are
 
 ## **4. What kind of news moves the market?**
 
-Market-moving news typically consists of economic indicators found on websites like `investing.com/economic-calendar/`.
+Market-moving news typically happens because of economic indicators found on websites like `investing.com/economic-calendar/`.
 
 ![](images/economic-calendar.png)
 
