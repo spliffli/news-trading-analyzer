@@ -4,6 +4,12 @@
 
 ### This was generated on **2023/03/31** and has **14** events from **2023/04/11** to **2023/04/11**. 
 
+### Out of those, **3** will actually be traded:
+
+- [ ] **U.S. Core Consumer Price Index (CPI) MoM** ***(Wed 12/04/23 @12:30 GMT)***
+- [ ] **U.S. Core Producer Price Index (PPI) MoM** ***(Thu 13/04/23 @12:30 GMT)***
+- [ ] **U.S. Retail Sales MoM** ***(Fri 14/04/23 @12:30 GMT)***
+
 #### For events which are at the same time, it's only possible to trade one of them, so in those cases the ones with the highest c_3 scores were chosen which works out to 5 events to trade.
 
 #### If the lowest c_3 is:
