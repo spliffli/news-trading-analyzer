@@ -8,7 +8,8 @@
     This month there are event which I'm not trading because the trading pair isn't available on [Blackbull Markets](https://blackbullmarkets.com/en/) i.e. **USDNOK** & **USDSEK**. 
 
       - I didn't realize this until after paying for a server in New Jersey which is close to where the broker's server is. 
-      - So next month I will switch to [fpmarkets](https://www.fpmarkets.com/) which does have those pairs available for trading. Their server is in LD4 though which isn't where my current server is. Will have to get a new server in London and change my [haawks](https://www.haawks.com/) subsciption IP address. 
+      - So next month I will switch to [fpmarkets](https://www.fpmarkets.com/) which does have those pairs available for trading. Their server is in LD4 though which isn't where my current server is.
+          - I'll have to get a new server in London and change my [haawks](https://www.haawks.com/) subsciption IP address. 
 
 ### Out of those, **3** will actually be traded:
 
