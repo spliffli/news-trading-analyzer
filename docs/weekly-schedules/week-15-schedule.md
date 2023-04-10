@@ -5,7 +5,7 @@
 ### This was generated on **2023/03/31** and has **14** events from **2023/04/11** to **2023/04/11**. 
 
 !!! info 
-    This month there are events which I'm not trading because the trading pair isn't available on [Blackbull Markets](https://blackbullmarkets.com/en/) i.e. **USDNOK** & **USDSEK**. 
+    This month there are events which I'm not trading because the trading pairs aren't available on [Blackbull Markets](https://blackbullmarkets.com/en/) i.e. **USDNOK** & **USDSEK**. 
 
       - I didn't realize this until after paying for a server in New Jersey which is close to where the broker's server is. 
       - Originally I planned on using [fpmarkets](https://www.fpmarkets.com/) because according to [this](https://offbeatforex.com/forex-brokers-for-trading-news/) article where they tested brokers for order execution speed and spreads, and fpmarkets was one of the best.
