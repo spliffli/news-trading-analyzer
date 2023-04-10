@@ -1,6 +1,6 @@
 # **2023 Week 15 Schedule**
 
-<img src="/images/week-upcoming-300-120px.png" alt="This week is UPCOMING">
+<img src="/images/week-current-300-120px.png" alt="This week is CURRENT">
 
 ### This was generated on **2023/03/31** and has **14** events from **2023/04/11** to **2023/04/11**. 
 
@@ -20,6 +20,7 @@
 - <span><strong class="blue-text">Blue: </strong>Events that will be traded.</span>
 - <span><strong class="green-text">Green: </strong>Events that were traded and made profit.</span>
 - <span><strong class="red-text">Red: </strong>Events that were traded and lost money.</span>
+- <span><strong class="gray-text">Gray: </strong>Events which are not being traded, either because there's another event at the same time which is being traded, or this month because the trading pair isn't available on Blackbull Markets i.e. USDNOK & USDSEK. I didn't realize this until after paying for a server in New Jersey which is close to where the broker's server is. So next month I will switch to Fpmarkets which does have those pairs available for trading.</span>
 
 
 --------
@@ -28,7 +29,7 @@
 
 <div class="time-group">
   <div class="card-wrapper">
-    <div class="card to-trade no-bottom-margin">
+    <div class="card no-bottom-margin">
       <h3>Norway Consumer Price Index (CPI) YoY</h3>
       <h3>Tuesday 11/4 @06:00 (GMT)</h3>
       <h3>Tuesday 11/4 @02:00 (ET)</h3>
@@ -607,7 +608,7 @@
     </div>
   </div>
   <div class="card-wrapper">
-    <div class="card to-trade no-bottom-margin">
+    <div class="card no-bottom-margin">
       <h3>Sweden Consumer Price Index at Constant Interest Rates (CPIF) MoM</h3>
       <h3>Friday 14/4 @06:00 (GMT)</h3>
       <h3>Friday 14/4 @02:00 (ET)</h3>

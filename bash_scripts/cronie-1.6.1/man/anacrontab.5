@@ -1,0 +1,141 @@
+.TH ANACRONTAB 5 2012-11-22 "cronie" "File Formats"
+.SH NAME
+/etc/anacrontab \- configuration file for Anacron
+.SH DESCRIPTION
+The
+.I /etc/anacrontab
+configuration file describes the jobs controlled by
+.BR anacron (8).
+It can contain three types of lines: job-description lines, environment
+assignments, or empty lines.
+.PP
+Job-description lines can have the following format:
+.PP
+   period in days   delay in minutes   job-identifier   command
+.PP
+The
+.I period in days
+variable specifies the frequency of execution of a job in days.  This
+variable can be represented by an integer or a macro (@daily, @weekly,
+@monthly), where @daily denotes the same value as the integer 1, @weekly
+the same as 7, and @monthly specifies that the job is run once a month,
+independent on the length of the month.
+.PP
+The
+.I delay in minutes
+variable specifies the number of minutes anacron waits, if necessary,
+before executing a job.  This variable is represented by an integer where
+0 means no delay.
+.PP
+The
+.I job-identifier
+variable specifies a unique name of a job which is used in the log files.
+.PP
+The
+.I command
+variable specifies the command to execute.  The command can either be a
+command such as
+.B ls /proc >> /tmp/proc
+or a command to execute a custom script.
+.PP
+Environment assignment lines can have the following format:
+.PP
+   VAR=VALUE
+.PP
+Any spaces around
+.I VAR
+are removed.  No spaces around
+.I VALUE
+are allowed (unless you want them to be part of the value).  The
+specified assignment takes effect from the next line until the end of the
+file, or to the next assignment of the same variable.
+.PP
+The
+.I START_HOURS_RANGE
+variable defines an interval (in hours) when scheduled jobs can be run.
+In case this time interval is missed, for example, due to a power down,
+then scheduled jobs are not executed that day.
+.PP
+The
+.I RANDOM_DELAY
+variable denotes the maximum number of minutes that will be added to the
+delay in minutes variable which is specified for each job.  A
+.I RANDOM_DELAY
+set to 12 would therefore add, randomly, between 0 and 12 minutes to the
+delay in minutes for each job in that particular anacrontab.  When set to
+0, no random delay is added.
+.PP
+If 
+.I MAILTO
+is defined (and non-empty), mail is sent to the specified address,
+otherwise, system user is used.
+.PP
+If
+.I MAILFROM
+is defined (and non-empty), it is used as the envelope sender address,
+otherwise, system user is used.
+.PP 
+(Note: Both 
+.I MAILFROM
+and 
+.I MAILTO 
+variables are expanded, so setting them as in the following example works as expected: MAILFROM=cron-$USER@cron.com ($USER is replaced by the system user) ) 
+.PP
+.PP
+Empty lines are either blank lines, line containing white spaces only, or
+lines with white spaces followed by a '#' followed by an arbitrary
+comment.
+.PP
+You can continue a line onto the next line by adding a '\\' at the end of it.
+.PP
+In case you want to disable Anacron, add a line with
+.I 0anacron
+which is the name of the script running the Anacron into the
+.I /etc/cron.hourly/jobs.deny
+file.
+.SH EXAMPLE
+This example shows how to set up an Anacron job similar in functionality to
+.I /etc/crontab
+which starts all regular jobs
+between 6:00 and 8:00
+.I only.
+A
+.I RANDOM_DELAY
+which can be 30 minutes at the most is specified.  Jobs will run
+serialized in a queue where each job is started only after the previous
+one is finished.
+.PP
+.nf
+# environment variables
+SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+RANDOM_DELAY=30
+# Anacron jobs will start between 6am and 8am.
+START_HOURS_RANGE=6-8
+# delay will be 5 minutes + RANDOM_DELAY for cron.daily
+1		5	cron.daily		nice run-parts /etc/cron.daily
+7		0	cron.weekly		nice run-parts /etc/cron.weekly
+@monthly	0	cron.monthly		nice run-parts /etc/cron.monthly
+.fi
+.SH "SEE ALSO"
+.BR anacron (8),
+.BR crontab (1)
+.PP
+The Anacron
+.I README
+file.
+.SH AUTHOR
+.MT itzur@\:actcom.\:co.\:il
+Itai Tzur
+.ME
+.PP
+Currently maintained by
+.MT pasc@\:(debian.\:org|\:redellipse.\:net)
+Pascal Hakim
+.ME .
+.PP
+For Fedora, maintained by
+.MT mmaslano@redhat.com
+Marcela Mašláňová
+.ME .

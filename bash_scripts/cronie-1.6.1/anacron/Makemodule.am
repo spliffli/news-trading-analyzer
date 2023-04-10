@@ -1,0 +1,42 @@
+# Makefile.am - two binaries crond and crontab
+if ANACRON
+sbin_PROGRAMS += anacron/anacron
+anacron_anacron_SOURCES = \
+	anacron-paths.h \
+	anacron/global.h \
+	anacron/gregor.c \
+	anacron/gregor.h \
+	anacron/lock.c \
+	anacron/log.c \
+	anacron/main.c \
+	anacron/matchrx.c \
+	anacron/matchrx.h \
+	anacron/readtab.c \
+	anacron/runjob.c \
+	cronie_common.c
+common_nodist += anacron-paths.h
+nodist_anacron_anacron_SOURCES = $(common_nodist)
+BUILT_SOURCES += $(common_nodist)
+
+if NEED_OBSTACK
+anacron_anacron_SOURCES += obstack/obstack.c
+endif
+
+anacron_anacron_LDADD = $(LIBSELINUX) $(LIBPAM) $(LIBAUDIT)
+
+# This header contains all the paths.
+# If they are configurable, they are declared in configure script.
+# Depends on this Makefile, because it uses make variables.
+CLEANFILES += anacron-paths.h
+anacron-paths.h: Makefile
+	@echo 'creating $@'
+	@sed >$@ 's/ *\\$$//' <<\END #\
+	/* This file has been automatically generated.  Do not edit. */ \
+	\
+	#ifndef _ANACRON_PATHS_H_ \
+	#define _ANACRON_PATHS_H_ \
+	#define ANACRON_SPOOL_DIR "$(ANACRON_SPOOL_DIR)" \
+	#define ANACRONTAB "$(ANACRONTAB)" \
+	#endif /* _ANACRON_PATHS_H_ */ \
+	END
+endif

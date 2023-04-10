@@ -1,0 +1,118 @@
+# Makefile.am - two binaries crond and crontab
+
+sbin_PROGRAMS += \
+	src/crond
+
+bin_PROGRAMS += \
+	src/cronnext \
+	src/crontab
+
+src_crond_SOURCES = \
+	src/cron.c \
+	src/database.c \
+	src/do_command.c \
+	src/job.c \
+	src/popen.c \
+	src/security.c \
+	src/user.c \
+	cronie_common.c \
+	$(common_src)
+
+src_crontab_SOURCES = \
+	src/crontab.c \
+	src/security.c \
+	$(common_src)
+
+src_cronnext_SOURCES = \
+	src/cronnext.c \
+	src/database.c \
+	src/job.c \
+	src/user.c \
+	$(common_src)
+
+common_src = \
+	src/bitstring.h \
+	src/entry.c \
+	src/env.c \
+	src/externs.h \
+	src/funcs.h \
+	src/globals.h \
+	src/macros.h \
+	src/misc.c \
+	src/pathnames.h \
+	src/pw_dup.c \
+	src/structs.h
+
+common_nodist += cron-paths.h
+nodist_src_crond_SOURCES = $(common_nodist)
+nodist_src_crontab_SOURCES = $(common_nodist)
+nodist_src_cronnext_SOURCES = $(common_nodist)
+BUILT_SOURCES += $(common_nodist)
+
+src_crond_LDADD = $(LIBSELINUX) $(LIBPAM) $(LIBAUDIT)
+src_crontab_LDADD = $(LIBSELINUX) $(LIBPAM) $(LIBAUDIT)
+
+## if DEBUG
+## noinst_PROGRAMS = debug
+## endif
+
+# This header contains all the paths.
+# If they are configurable, they are declared in configure script.
+# Depends on this Makefile, because it uses make variables.
+# CCD 2010/09/10 added CRON_HOSTNAME for clustered-cron.
+CLEANFILES += cron-paths.h
+if HAS_RUNSTATE
+cronpidcomment=/* directory of cron pid file */
+cronpiddir=\#define CRON_PID_DIR "$(runstatedir)"
+else
+cronpidcomment=
+cronpiddir=
+endif
+cron-paths.h: Makefile
+	@echo 'creating $@'
+	@sed >$@ 's/ *\\$$//' <<\END #\
+	/* This file has been automatically generated.  Do not edit. */ \
+	\
+	#ifndef _CRON_PATHS_H_ \
+	#define _CRON_PATHS_H_ \
+	\
+			/* SPOOLDIR is where the crontabs live. \
+			 * This directory will have its modtime updated \
+			 * whenever crontab(1) changes a crontab; this is \
+			 * the signal for cron(8) to look at each individual \
+			 * crontab file and reload those whose modtimes are \
+			 * newer than they were last time around (or which \
+			 * didn't exist last time around...) \
+			 * or it will be checked by inotify \
+			 */ \
+	#define SPOOL_DIR	"$(SPOOL_DIR)" \
+	\
+			/* CRON_HOSTNAME is file in SPOOL_DIR which, if it \
+			 * exists, and does not just contain a line matching \
+			 * the name returned by gethostname(), causes all \
+			 * crontabs in SPOOL_DIR to be ignored.  This is \
+			 * intended to be used when clustering hosts sharing \
+			 * one NFS-mounted SPOOL_DIR, and where only one host \
+			 * should use the crontab files here at any one time. \
+			 */ \
+	#define CRON_HOSTNAME	".cron.hostname" \
+	\
+			/* cron allow/deny file.  At least cron.deny must \
+			 * exist for ordinary users to run crontab. \
+			 */ \
+	#define	CRON_ALLOW	"$(sysconfdir)/cron.allow" \
+	#define	CRON_DENY	"$(sysconfdir)/cron.deny" \
+	\
+			$(cronpidcomment) \
+	$(cronpiddir) \
+	\
+			/* 4.3BSD-style crontab f.e. /etc/crontab */ \
+	#define SYSCRONTAB	"$(SYSCRONTAB)" \
+	\
+			/* system crontab dir f.e. /etc/cron.d/ */  \
+	#define SYS_CROND_DIR	"$(SYS_CROND_DIR)" \
+	\
+	#define SYSCONFDIR	"$(sysconfdir)" \
+	\
+	#endif /* _CRON_PATHS_H_ */ \
+	END

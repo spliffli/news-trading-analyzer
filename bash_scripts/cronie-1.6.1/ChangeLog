@@ -1,0 +1,2730 @@
+2022-03-23  w30023233 <wangyuhang27@huawei.com>
+
+	* Fix regression in handling 1-5 crontab entries
+
+2022-03-22  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Release version 1.6.0
+
+2022-03-22  w30023233 <wangyuhang27@huawei.com>
+
+	* Add switch -f for foreground mode
+
+2022-03-22  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix regression in handling */x crontab entries
+
+2022-01-05  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* get_number: Add missing NUL termination for the scanned string
+
+2021-11-08  Ondřej Pohořelský <35430604+opohorel@users.noreply.github.com>
+
+	* Add random within range '~' operator
+
+2021-11-03  Nicolas Limare <nicolas@limare.net>
+
+	* Fix RandomScale calculation
+
+2021-10-27  sgerwk <sgerwk@aol.com>
+
+	* include the case where runstate is undefined
+
+2021-10-26  sgerwk <sgerwk@aol.com>
+
+	* use the configure runstatedir directory for pid file
+
+2021-09-02  Nils Philippsen <nils@tiptoe.de>
+
+	* crond: Fix description of '-P' option
+
+2021-07-13  Danilo Spinella <danilo.spinella@suse.com>
+
+	* Increase the maximum number of crontab entries
+
+2021-04-29  Jan Staněk <jstanek@redhat.com>
+
+	* Address issues found by coverity scan
+
+2021-03-29  Christian Hesse <mail@eworm.de>
+
+	* crontab: use bold colors
+
+2021-03-29  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Release new version 1.5.7
+
+2021-03-29  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* crond: Skip blanks between user name and command
+
+2021-03-29  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* 0anacron: Check only Mains type power_supply for status
+
+2021-03-22  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* 0anacron: Ignore Battery type power supply devices
+
+2021-03-19  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* crontab: switch off colors if NO_COLOR is set
+
+2021-03-17  Lars Wendler <polynomial-c@gentoo.org>
+
+	* configure.ac: Don't use AM_CONDITIONAL inside an if statement
+	  or else configure might break:
+
+2021-03-17  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Release new version 1.5.6
+
+2021-03-17  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Partially revert the behavior of crontab command without arguments
+	  If the stdin is not a TTY we behave as required in the POSIX spec.
+	  This still prevents mistakes from simply running crontab without
+	  arguments in a terminal.
+
+2021-03-17  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Any online power supply indicates that the system is on mains
+
+2021-01-22  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix some compilation warnings
+
+2021-01-22  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Always load database on startup even if all files have st_mtime == 0
+
+2020-11-28  Mark Hills <mark@xwax.org>
+
+	* Fix compiler warnings on 32-bit systems
+
+2020-12-28  Sami Kerola <kerolasa@iki.fi>
+
+	* build-sys: update to autoconf 2.70
+
+2020-12-24  Hyunsoo Choe <hytgbn@gmail.com>
+
+	* Fix race condition between file update and load_database
+	  Issue: https://github.com/cronie-crond/cronie/issues/73
+
+2020-11-02  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* configure.ac: Drop the bug report e-mail from AC_INIT()
+	  Fixes #70
+
+2020-10-25  Wayne Van Son <waynevanson@gmail.com>
+
+	* docs(readme): adds Void Linux to packaged distributions
+
+2020-08-20  Björn Persson <Bjorn@Rombobjörn.se>
+
+	* Add missing Content-Transfer-Encoding.
+
+2020-08-03  Kevin Adler <kadler@us.ibm.com>
+
+	* Fix anacron build when obstack not available
+
+2020-07-23  Fernando Cappi <3818944+fcappi@users.noreply.github.com>
+
+	* Expand MAILTO and MAILFROM environment variables
+
+2020-07-13  J. Paul Reed <preed@release-approaches.com>
+
+	* Fix crontab.5 man page, wrt verbiage regarding named lists/ranges for crontab entries.
+	  See https://github.com/cronie-crond/cronie/issues/62 for more info.
+
+2020-06-11  Fernando Cappi <3818944+fcappi@users.noreply.github.com>
+
+	* Add new option to test a crontab file syntax without installing it
+	  Co-authored-by: Fernando Cappi <fcappi@motorola.com>
+
+2020-06-10  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Update packit configuration for latest Fedora versions
+
+2020-06-10  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix the .spec for packit
+
+2020-04-21  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Sync cronie.spec with Fedora
+
+2019-11-11  Dominika Hodovska <dhodovsk@redhat.com>
+
+	* Enable copr builds and add packit config
+
+2020-04-21  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Handle out-of-memory condition from mkprints() call
+
+2020-04-20  John Horne <john.horne@plymouth.ac.uk>
+
+	* Ensure the command name is not null before logging it.
+
+2020-04-20  John Horne <john.horne@plymouth.ac.uk>
+
+	* Moved CMDEND code to outside for for loop.
+
+2020-04-20  John Horne <john.horne@plymouth.ac.uk>
+
+	* Add CMDEND log entry to log when cron jobs end.
+
+2020-03-02  Ian2020 <Ian2020@users.noreply.github.com>
+
+	* Allow backslashes when not part of a line continuation
+
+2019-12-16  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix incorrect flag set for @weekly jobs.
+	  Fixes #52
+
+2019-11-24  Josef Schlehofer <pepe.schlehofer@gmail.com>
+
+	* Fix incorrect include of fcntl.h
+
+2019-11-06  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* crontab: Fix coloring when crontab ends with comment
+	  Also emphasize a missing EOL at EOF by red warning text
+	  Fixes #45
+
+2019-10-31  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Release new version 1.5.5
+
+2019-10-31  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Avoid warning for strncat.
+
+2019-10-29  Christian Kastner <ckk@kvr.at>
+
+	* crontab.1: Various fixes and improvements
+
+2019-10-30  Christian Kastner <ckk@kvr.at>
+
+	* crontab: fsync to check for full disk
+
+2019-10-30  Christian Kastner <ckk@kvr.at>
+
+	* crontab: Add Y/N to retry prompt
+
+2019-10-30  Christian Kastner <ckk@kvr.at>
+
+	* entries: Explicitly validate upper ranges and steps
+
+2019-10-29  Christian Kastner <ckk@kvr.at>
+
+	* crond: report missing newline before EOF
+
+2019-09-09  Christian Hesse <mail@eworm.de>
+
+	* do not log carriage return
+
+2019-08-22  sgerwk <sgerwk@aol.com>
+
+	* skip directories when given as crontabs
+
+2019-07-22  Stephane Blondon <stephane.blondon@gmail.com>
+
+	* crontab -l colors comment lines in a different color
+
+2019-07-09  sgerwk <sgerwk@aol.com>
+
+	* fix compile instruction: configure is generated by autogen.sh
+
+2019-07-08  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* getdtablesize() can return very high values in containers
+
+2019-05-11  John Horne <jayaich@users.noreply.github.com>
+
+	* Power supply name not detected correctly.
+
+2019-05-07  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Revert "Avoid creating pid files when crond doesn't fork"
+
+2019-04-15  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* anacron: fix types in comparisons
+
+2019-03-31  Sami Kerola <kerolasa@iki.fi>
+
+	* mics: stop using plain integer as NULL pointer
+
+2019-03-31  Sami Kerola <kerolasa@iki.fi>
+
+	* cron: fix type in comparison
+
+2019-03-31  Sami Kerola <kerolasa@iki.fi>
+
+	* cron: fix variable shadowing
+
+2019-03-31  Sami Kerola <kerolasa@iki.fi>
+
+	* cron: mark signal number arguments in signal handlers unused
+
+2019-04-08  Tomáš Mráz <t8m@users.noreply.github.com>
+
+	* Update readme.md with recent releases
+
+2019-04-08  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Move allowed() and related function to security.c
+
+2019-03-31  Sami Kerola <kerolasa@iki.fi>
+
+	* build-sys: enable anacron by default
+
+2019-03-31  Sami Kerola <kerolasa@iki.fi>
+
+	* build-sys: use none-recursive build
+
+2019-04-02  sgerwk <sgerwk@aol.com>
+
+	* cronnext: optionally select jobs by substring
+
+2019-03-18  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* crond: Do not abort loading crontab prematurely in case of error
+
+2019-03-18  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Release new version 1.5.4
+
+2019-03-18  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* crond: Fix regression from last release
+	  Only first job from a crontab was being run.
+
+2019-03-15  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Release new version 1.5.3
+
+2019-03-15  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix warnings in anacron and crond code.
+
+2019-03-15  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix CVE-2019-9704 and CVE-2019-9705
+
+2019-03-15  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Remove leftover debugging message.
+
+2019-03-11  Marcel Plch <mplch@redhat.com>
+
+	* Make crond run after autofs mounts
+
+2019-02-15  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* crontab: Make crontab without arguments fail.
+
+2018-12-07  Marcel Plch <mplch@redhat.com>
+
+	* Use system-auth instead of password-auth for PAM authentication (#25)
+
+2018-11-23  Marcel Plch <mplch@redhat.com>
+
+	* Restart crond if it fails
+
+2018-11-19  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* load_env: parse the environment variables in-place
+
+2018-11-19  Tomáš Mráz <t8m@users.noreply.github.com>
+
+	* Update readme.md with the latest release and better link to Fedora
+
+2018-11-18  Oliver Kurz <okurz@suse.de>
+
+	* readme.md: Replace dead link to openSUSE ML with package link
+
+2018-10-18  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Use the role from the crond context for system job contexts.
+
+2018-08-28  Marcel Plch <mplch@redhat.com>
+
+	* Fix unsafe code
+
+2018-08-28  Marcel Plch <mplch@redhat.com>
+
+	* Fix possible memory leaks
+
+2018-05-03  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Release new version 1.5.2
+
+2018-05-03  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Silence may be used uninitialized warning.
+
+2018-05-03  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* crontab: do not try to replace the crontab with a directory
+
+2018-01-24  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Support the MAILFROM also in anacron.
+
+2017-11-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Document that in range the first number must be less than second.
+
+2017-10-28  sgerwk <sgerwk@aol.com>
+
+	* round time on the minute
+
+2017-10-28  sgerwk <sgerwk@aol.com>
+
+	* print all jobs executed in interval
+
+2017-10-28  sgerwk <sgerwk@aol.com>
+
+	* new options -l and -q
+
+2017-10-28  sgerwk <sgerwk@aol.com>
+
+	* output in yaml format
+
+2017-10-28  sgerwk <sgerwk@aol.com>
+
+	* print the job(s) that is going to be executed next
+
+2017-10-28  sgerwk <sgerwk@aol.com>
+
+	* allow checking a time interval
+
+2017-10-28  sgerwk <sgerwk@aol.com>
+
+	* print format for flags
+
+2017-11-02  Marco Migliori <sgerwk@aol.com>
+
+	* cronnext can read additional crontabs from files
+
+2017-09-14  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Use proper variable types.
+
+2017-09-14  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Add myself as author.
+
+2017-09-14  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Log startup even when started in non-forking mode.
+
+2017-07-14  Mark Montague <mark@catseye.org>
+
+	* Fix SELinux denial when running under Docker
+
+2017-07-01  Sami Kerola <kerolasa@iki.fi>
+
+	* build-sys: use silent build rule
+
+2017-06-11  Sami Kerola <kerolasa@iki.fi>
+
+	* cronnext: improve manual page
+
+2017-06-11  Sami Kerola <kerolasa@iki.fi>
+
+	* all: add version printing option -V
+
+2017-06-11  Sami Kerola <kerolasa@iki.fi>
+
+	* cronnext: use same style in usage() with other commands
+
+2017-06-10  Sami Kerola <kerolasa@iki.fi>
+
+	* various files: fix indentation
+
+2017-06-10  Sami Kerola <kerolasa@iki.fi>
+
+	* crond: never define unused cron_start_pam()
+
+2017-05-01  SjonHortensius <SjonHortensius@users.noreply.github.com>
+
+	* Add Arch Linux to list of distributions
+
+2017-04-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix misleading indentation.
+
+2017-04-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Make cronnext build and work with additional features enabled.
+
+2017-04-18  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Add MIME-Version header also to mails generated by anacron.
+
+2017-04-18  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Add MIME-Version header to generated mails.
+
+2017-03-29  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* The output might not be mailed, make the message more precise.
+
+2017-03-29  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Allow empty environment values in crontab.
+
+2017-03-29  Tomáš Mráz <t8m@users.noreply.github.com>
+
+	* Point releases to the GitHub cronie releases page
+
+2017-03-29  Kristýna Streitová <kstreitova@suse.com>
+
+	* crontab.5: Add a mention about disabling logging
+
+2017-03-29  Kristýna Streitová <kstreitova@suse.com>
+
+	* Avoid creating pid files when crond doesn't fork
+
+2017-01-20  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* readme.md: remove CRs
+
+2017-01-20  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Add readme.md for github
+
+2016-09-08  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Make it clear that one of the reasons for getpwnam() failure is unknown user.
+
+2016-09-05  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* On some machines the power supply is named ADP0.
+
+2016-08-23  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Query power supply status directly from kernel.
+
+2016-06-27  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* cronnext: Fix warnings
+
+2016-06-27  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* cronnext: Print usage and error on stderr.
+
+2016-06-27  Marco Migliori <sgerwk@aol.com>
+
+	* Added useful utility cronnext to find out time of the next job run.
+
+2016-06-23  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* anacron: Check return value of fchdir.
+
+2016-06-23  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Release new version 1.5.1
+
+2016-06-23  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Remove unneeded obsolete SELinux include.
+
+2016-06-23  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Remove unneeded obsolete SELinux includes.
+
+2016-06-23  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Rename timeval time to tv so time function can be used.
+
+2016-06-23  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix longstanding race condition on crontab modification.
+	  If crontab is modified twice at the same second the crond reads it
+	  which means the timestamp will not change, the latest content will
+	  never be read.
+
+2016-06-10  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix misleading comment in pam configuration file.
+
+2016-05-13  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* anacron: use mkstemp() instead of tempnam()
+	  Although the use of tempnam() seemed to be safeguarded
+	  better to not use it at all.
+
+2016-05-13  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* anacron: Drop potentially unsafe umask setting.
+
+2016-05-13  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* anacron: Do not try to mail to empty address.
+
+2016-04-25  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Clarify the crontab(1) documentation.
+
+2016-04-23  Gary Tierney <gary.tierney@gmx.com>
+
+	* Remove hardcoded "system_u" SELinux user
+	  This gets rid of the hardcoded reference to the ref-policy system_u user
+	  and instead relies on the user that cronie is currently running as.
+
+2016-04-25  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Clarify return value.
+
+2016-03-15  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Correct instructions for disabling Anacron.
+
+2015-11-07  Ville Skyttä <ville.skytta@iki.fi>
+
+	* Man page syntax fixes
+
+2015-11-05  Robert Byrnes <Robert.Byrnes@deshaw.com>
+
+	* Inherit PATH from the crond environment if -P option is used.
+
+2015-07-13  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* In crontab command use a temporary filename that is ignored by crond.
+
+2015-05-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Add *.patch and *.orig to .gitignore
+
+2015-05-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Add compile to .gitignore.
+
+2015-05-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Release new version 1.5.0
+	  properly create dist tarball even with anacron and PAM disabled
+
+2015-05-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Pass the job environment also when executing the sendmail.
+
+2015-01-31  Felix Janda <felix.janda@posteo.de>
+
+	* database.c: Use POSIX NAME_MAX instead of BSD MAXNAMLEN
+
+2015-04-21  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Prevent adding duplicate orphans on reload.
+
+2015-02-05  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Do not overwrite the last zero-byte.
+
+2015-02-03  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Log the crond shutdown.
+
+2015-01-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* No need to call strcmp on already matched variables.
+
+2015-01-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Use unbiased random number for RANDOM_DELAY.
+
+2015-01-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Call PAM only when it makes sense.
+
+2015-01-28  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Fix broken test for match_rx() failure.
+
+2014-11-04  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* Properly check the existence of the user at the time the job is run.
+
+2014-09-17  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* contrib/cronie.systemd: Services must be running before starting
+	crond, otherwise many jobs is not running properly for no obvious
+	reason.  nss-user-lookup.target should help when people are authenticated
+	through nss/sssd.  Based on: https://bugzilla.redhat.com/show_bug.cgi?id=1067236
+
+2014-07-30  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c: More logging when getpwnam fails.  Based on: rhbz#1123984 Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2014-07-25  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac, src/env.c: BSD doesn't define environ in unistd.h.
+	Also cronie didn't have option for enabling BSD specifics.  Based on: naota@gentoo.org Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2014-07-25  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/readtab.c: Add missing brackets into anacron readtab.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2014-07-25  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/misc.c: Include missing header for signal handlers.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2014-07-04  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* contrib/cronie.systemd: Missing reload definition in unit file was
+	added.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2014-04-30  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* : commit b2c8cbcef8c97b5a175d6e71995249b288707b0f Author: Tomas
+	Mraz <tmraz@fedoraproject.org> Date:   Tue Apr 29 14:08:25 2014
+	+0200
+
+2014-03-31  Martin Poole <mpoole@redhat.com>
+
+	* src/misc.c: crond installs a signal hander for SIGINT & SIGTERM
+	which removes the pid file and exits. This handler is not reset for
+	individual forked sub-processes which results in the condition that
+	if the child receives SIGINT or SIGTERM the pid file is erroneously
+	removed.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2014-02-14  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/readtab.c: Anacron does not correctly check configuration
+	parameters for validity and can segfault on certain data types. The return code
+	from the match_rx calls in readtab.c are not being checked
+	correctly. Bugfix let to segfaults in downstreams on non intel
+	architectures. All options in anacrontab should be now working
+	correctly.  Based on patch from: Martin Poole
+
+2014-01-20  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* contrib/cronie.systemd: Remove syslog.target according to Fedora
+	and systemd guidelines.  https://fedorahosted.org/fpc/ticket/177#comment:2 Thanks to: Ville Skyttä
+
+2014-01-17  Ville Skyttä <ville.skytta@iki.fi>
+
+	* man/anacron.8: [PATCH] Fix anacron.8 UTF-8 encoding.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2013-12-18  Ville Skyta <ville.skytta@iki.fi>
+
+	* anacron/lock.c, anacron/readtab.c, man/crontab.5, src/cron.c,
+	src/database.c: Spelling fixes.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2013-12-18  Ville Skytta <ville.skytta@iki.fi>
+
+	* anacron/readtab.c, src/do_command.c: strncmp() size fixes.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2013-12-18  Martin Poole <mpoole@redhat.com>
+
+	* anacron/readtab.c: Anacron does not correctly check configuration
+	parameters for validity and can segfault on certain data types. The
+	return code from the match_rx calls in readtab.c are not being
+	checked correctly.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2013-09-26  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8: crond -n must change pam setting.
+
+2013-09-12  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* cronie.init: Non-root user can't read configuration. Init file
+	will fail with proper error message.  rhbz#1006869
+
+2013-08-29  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* : commit 2ec335f9549e8134102ac37665171a40a5407512 Author: Saul
+	Wold <sgw@linux.intel.com> Date:   Mon Aug 26 11:18:27 2013 +0200
+
+2013-08-16  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/security.c: Pull PAM environment variables also from session
+	modules.  - also fix memory leak of environment returned by pam_getenvlist()
+
+2013-08-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* contrib/cronie.systemd: KillMode in systemd unit file will enable
+	to finish jobs executed by cron. Even if cron dies, jobs should
+	continue.  Based on: https://bugzilla.redhat.com/show_bug.cgi?id=919290
+
+2013-08-09  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/misc.c: Fcntl locking has different semantics than flock.
+	Prefer flock.
+
+2013-07-18  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: Release 1.4.11
+
+2013-06-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/user.c: Log failures in load_user().
+
+2013-06-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* man/crontab.5, src/cron.c, src/entry.c, src/env.c, src/globals.h,
+	src/structs.h: Add support for RANDOM_DELAY of jobs.
+
+2013-06-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/user.c: Fixed bug introduced by previous commit and simplified
+	error handling.
+
+2013-06-07  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/env.c, src/funcs.h, src/user.c: Copy some variables from the
+	crond process environment.  Also cleanup error handling in load_env().
+
+2013-06-06  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c: setenv takes 3 arguments
+
+2013-06-06  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c: Do not use putenv with string literal.
+
+2013-04-25  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/do_command.c: Make From field in mails from crond RFC
+	compliant.
+
+2012-12-30  Sami Kerola <kerolasa@iki.fi>
+
+	* src/crontab.c: cron: clarify usage() print out The -n option needs argument, which was missing from the usage().  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-29  Sami Kerola <kerolasa@iki.fi>
+
+	* anacron/global.h, anacron/main.c, anacron/readtab.c: anacron: fix
+	shadow declarations Change global variables to have more specific name.  This will make
+	warnings about shadowing to go away, and may result to a little more
+	readable code.  log.c:74:35: warning: declaration of 'args' shadows a global
+	declaration [-Wshadow] global.h:97:15: warning: shadowed declaration
+	is here [-Wshadow] Reference:
+
+	http://web.archiveorange.com/archive/v/N6p0RpcfZsIBsaU8B2sE#72jDywyk8NZ3i9gSigned-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-29  Sami Kerola <kerolasa@iki.fi>
+
+	* src/crontab.c, src/entry.c, src/macros.h, src/security.c: smatch
+	scan: fix various warningss found using smatch entry.c:396 load_entry() info: redundant null check on e->pwd
+	calling free() entry.c:398 load_entry() info: redundant null check
+	on e->cmd calling free() /usr/include/bits/fcntl.h:48:10: warning: preprocessor token
+	O_NOFOLLOW redefined macros.h:136:9: this was the original
+	definition security.c:98:44: warning: non-ANSI function declaration of function
+	'cron_restore_default_security_context' crontab.c:439:29: warning:
+	non-ANSI function declaration of function 'tmp_path' Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2013-01-02  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8: Mention systemctl command in man page of crond. Based
+	on rhbz#891160.
+
+2012-12-20  Sami Kerola <kerolasa@iki.fi>
+
+	* contrib/0anacron: contrib: remove bashisms Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-20  Sami Kerola <kerolasa@iki.fi>
+
+	* COPYING.anacron, anacron/global.h, anacron/gregor.c,
+	anacron/gregor.h, anacron/lock.c, anacron/log.c, anacron/main.c,
+	anacron/matchrx.c, anacron/matchrx.h, anacron/readtab.c,
+	anacron/runjob.c: docs: corrections to FSF license files, and postal
+	address The COPYING and file is replaced by files from GNU web site.  http://www.gnu.org/licenses/gpl-2.0.txt Postal addresses to FSF in other files are updated to match with the
+	address in license files.  References:
+
+	http://lists.gnu.org/archive/html/freefont-announce/2005-04/msg00001.htmlSigned-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-02  Sami Kerola <kerolasa@iki.fi>
+
+	* cronie.init: init script: remove bashisms References: https://sourceforge.net/projects/checkbaskisms/
+	Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-01  Sami Kerola <kerolasa@iki.fi>
+
+	* anacron/log.c, anacron/main.c, anacron/readtab.c,
+	anacron/runjob.c: anacron: make function declarations to be ansi
+	compliant Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-01  Sami Kerola <kerolasa@iki.fi>
+
+	* anacron/main.c, anacron/runjob.c: anacron: remove numeric exit and
+	file descriptor values Use symbolic values from standard header instead.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-01  Sami Kerola <kerolasa@iki.fi>
+
+	* anacron/main.c: anacron: clean up usage() output Inform in usage which options will need arguments, and add reference
+	to manual page.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-01  Sami Kerola <kerolasa@iki.fi>
+
+	* anacron/runjob.c: anacron: set end job message string to be
+	constant runjob.c:308:7: warning: assignment discards 'const' qualifier from
+	pointer target type [enabled by default] Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-01  Sami Kerola <kerolasa@iki.fi>
+
+	* anacron/global.h, anacron/main.c: anacron: add function attributes Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-01  Sami Kerola <kerolasa@iki.fi>
+
+	* Makefile.am, cronie_common.h, src/cron.c, src/crontab.c,
+	src/security.c: compile: add function attributes Some of the argument values are not in use, and few functions does
+	not return.  Informing which will make few warning messages
+	disapper, and compiler to generate better binary.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-12-01  Sami Kerola <kerolasa@iki.fi>
+
+	* src/cron.c: compile: fix signed and unsigned warnings cron.c:100:16: warning: comparison between signed and unsigned
+	integer expressions [-Wsign-compare] cron.c:108:16: warning:
+	comparison between signed and unsigned integer expressions
+	[-Wsign-compare] cron.c:125:16: warning: comparison between signed
+	and unsigned integer expressions [-Wsign-compare] Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-27  Sami Kerola <kerolasa@iki.fi>
+
+	* src/cron.c: crond: make usage easier to read Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-27  Sami Kerola <kerolasa@iki.fi>
+
+	* src/crontab.c: crontab: make usage easier to read Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-27  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: New release 1.4.10.
+
+2012-11-27  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/crontab.c, src/do_command.c, src/funcs.h: Condtionalize pam
+	functions.
+
+2012-11-27  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* configure.ac: Drop duplicate -lselinux -laudit.
+
+2012-11-27  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/funcs.h, src/security.c, src/structs.h: Fix missing includes
+	for selinux and other types.
+
+2012-11-27  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8, src/cron.c: Fix some issues introduced in c58b1d9
+	Documentation improvements based on Michael Lass suggestions.  * give -m an own line in manpage * don't explain -P twice * correct description of -P to what it actually does Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2012-11-26  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/crontab.c: Fix const usage in crontab.
+
+2012-11-22  Sami Kerola <kerolasa@iki.fi>
+
+	* man/anacron.8: docs: anacron fix out dated information about open
+	file limits For quite a while open files limit has defaulted to 1024, but rather
+	than informing what might be the number user should inspect value
+	from own time.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-22  Sami Kerola <kerolasa@iki.fi>
+
+	* man/anacrontab.5: docs: fix reference to other manual There is no crontabs(4).  For user it makes most sense to look
+	crontab(1).  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-22  Sami Kerola <kerolasa@iki.fi>
+
+	* man/anacron.8, man/anacrontab.5, man/cron.8, man/crontab.1,
+	man/crontab.5: docs: fix various groff issues * Add spaces after dots (English spacing).  * Remove use of inline emphasis where possible.  * Use mail and url macros.  * Wrap long and join short lines.  * Remove end of line white spaces.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* configure.ac, src/pathnames.h: build-sys: make ./configure to
+	seach vi path Using "/usr/ucb/vi" as defaut fallback EDITOR is not going to work
+	on most of distributions where this package is installed.  That said
+	it might work somewhere, so searching the vi editor at configure
+	time is the sensible thing to do, if user does not want to define
+	the default.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/cron.c, src/crontab.c, src/database.c, src/do_command.c,
+	src/entry.c, src/env.c, src/macros.h, src/security.c, src/user.c: 
+	debuging: make Debug macro look like function This will make indent(1) program not to think it is a clause.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/do_command.c, src/user.c: declarations: fix shadow
+	declarations user.c:68:7: warning: declaration of 'save_errno' shadows a previous
+	local [-Wshadow] user.c:64:14: warning: shadowed declaration is here
+	[-Wshadow] do_command.c:559:9: warning: declaration of 'pid' shadows a previous
+	local [-Wshadow] do_command.c:91:8: warning: shadowed declaration is
+	here [-Wshadow] Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/Makefile.am, src/cron.c, src/cron.h, src/crontab.c,
+	src/database.c, src/do_command.c, src/entry.c, src/env.c,
+	src/externs.h, src/funcs.h, src/globals.h, src/job.c, src/macros.h,
+	src/misc.c, src/popen.c, src/pw_dup.c, src/security.c,
+	src/structs.h, src/user.c: includes: make inclusions clean This change makes files to include what they need, instead of having
+	generic inclusion headers which will include everything to
+	everywhere.  Also the local headers havee ifndef & define
+	protection, which makes them to be save to include in any file,
+	without one having to think in which order the inclusions happen at
+	compile time.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-26  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/misc.c: Fix up also the const in comment.
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/crontab.c, src/database.c, src/env.c, src/funcs.h, src/misc.c: 
+	variables: use const where ever possible Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/crontab.c, src/security.c, src/user.c: build-sys: reduce
+	selinux and pam compiling scope when possible This will fix following warnings, and makes compiled program to
+	contain less unnecessary references.  crontab.c:60:14: warning: 'selinux_context' defined but not used
+	[-Wunused-variable] security.c:188:12: warning:
+	'cron_open_pam_session' defined but not used [-Wunused-function]
+	security.c:250:12: warning: 'cron_authorize_context' defined but not
+	used [-Wunused-function] security.c:283:12: warning:
+	'cron_authorize_range' defined but not used [-Wunused-function] Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/crontab.c: compliancy: do not mix declarations and code Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/database.c, src/do_command.c: clean up: reduce variable
+	passing when they are not used Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/database.c, src/pw_dup.c, src/security.c: assingments: remove
+	initialization if value is never used The next operation with these variables will overwrite the values
+	set at init.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/cron.c, src/entry.c, src/env.c, src/misc.c, src/popen.c: 
+	compliancy: use memset() rather than bzero() Reference:
+
+	http://pubs.opengroup.org/onlinepubs/9699919799/xrat/V4_xsh_chap03.htmlSigned-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* src/Makefile.am: build-sys: make clean needs to remove
+	cron-paths.h The file is generated at build time.  This change is needed to make
+	distcheck work without an error.  [...] ERROR: files left in build directory after distclean:
+	./src/cron-paths.h Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-24  Sami Kerola <kerolasa@iki.fi>
+
+	* autogen.sh: build-sys: add autotools helper script The script will help building when source code is checked out from
+	git.  Signed-off-by: Sami Kerola <kerolasa@iki.fi>
+
+2012-11-26  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c: Do not log that syslog will be used instead of
+	sendmail if explicitly requested.
+
+2012-11-26  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* configure.ac, src/cron.c, src/database.c: Enable system crontab by
+	default and use AC_ARG_ENABLE instead of AC_ARG_WITH.
+
+2012-11-22  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: Minor release 1.4.9.
+
+2012-11-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8, src/cron.c: Documentation improvements based on
+	Michael Lass suggestions.
+
+2012-11-02  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* contrib/cronie.systemd: Add time-sync.target. If synchronization
+	is used, crond will start after sync by ntpd/chrony. rhbz#872516
+
+2012-10-11  Tom Jones <tom@oxix.org>
+
+	* man/cron.8, src/cron.c, src/entry.c, src/globals.h: The sysadmin
+	may want to arrange for the PATH to be correct in the environment
+	from which cron is launched.  This new option tells cron to not
+	overwrite this path for itself or for the child cron jobs.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2012-07-24  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac: The enable-relro erased previously set LDFLAGS.
+
+2012-07-02  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/crontab.5: Fix typo in man page.  rhbz#836292 Thanks to: Dave Allan
+
+2012-06-22  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/global.h, anacron/lock.c, anacron/main.c,
+	anacron/readtab.c: Preferred hour of start of the job. If the hour
+	is missed job will be skipped.
+
+2012-06-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/readtab.c: Range of hours for daily jobs must have
+	lower-higher hour.
+
+2012-06-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/crontab.c: Crontab has wrong permission.  Based on rhbz#676081
+
+2012-06-19  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac, src/cron.c, src/database.c: syscrontab, the system
+	crontab, is not mandatory anymore.  Cronie can be build without it. The patch was based on complaints of
+	distribution without /etc/crontab file.  https://fedorahosted.org/cronie/ticket/10
+
+2012-06-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c, src/do_command.c: Sendmail doesn't have to be
+	installed.  The info message should make sense.  https://fedorahosted.org/cronie/ticket/15
+
+2012-06-06  Tim Landscheidt <tim@tim-landscheidt.de>
+
+	* src/cron.c: Previously, crond exited in the signal handler for
+	SIGINT and SIGTERM.  Thus, the Inotify close code in main() was
+	never reached.  This commit introduces a got_sigintterm variable
+	that is set when SIGINT or SIGTERM are received and leads to a clean
+	exit of the main loop.  * src/cron.c: Rename quit() to sigintterm_handler().  Add
+	got_sigintterm variable and set it on SIGINT and SIGTERM.  Shorten
+	sleep and exit main loop on got_sigintterm.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2012-06-06  Tim Landscheidt <tim@tim-landscheidt.de>
+
+	* src/entry.c: 9th bit is overwritten.  Hour bit fields have 24 bits (0..23, 3 bytes). bit_nclear() however
+	in this case is called to clear bits 0..24! Thus, it overwrites the
+	first bit of the following struct member (dom). This is not
+	problematic for normal use as dom is set after hour as are all other
+	fields.  The last field, dow, uses 8 bits so 9 are cleared. This could be the
+	MIN_STAR bit of flags, but as flags is an int, there is probably a
+	padding byte in between; at least I couldn't trigger it to be unset.
+	So this could probably only cause problems on 8-bit systems.  https://fedorahosted.org/cronie/ticket/11 Signed-off-by: Marcela
+	Mašláňová <mmaslano@redhat.com>
+
+2012-06-06  Tim Landscheidt <tim@tim-landscheidt.de>
+
+	* anacron/readtab.c, anacron/runjob.c: Remove unused variables.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2012-06-06  Tim Landscheidt <tim@tim-landscheidt.de>
+
+	* anacron/runjob.c: Fix use of "const char *" in call to putenv().  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2012-04-12  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/do_command.c: The mail header for automatic reply will now
+	contain another field: "Precedence: bulk", which is not compulsory
+	according to RFC3834.  Based on: Harald Reindl request in rhbz#811186
+
+2012-04-12  Sven Vermeulen <swift@gentoo.org>
+
+	* src/security.c: setkeycreatecon is not needed. Users should
+	inherited key context if it was already set for them.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2012-04-11  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* Makefile.am, contrib/cronie.systemd: systemd unit file was added
+	into contrib This unit file is used in Fedora. The systemd-user-sessions.service
+	guarantees everything, what is needed for log in of users, is
+	already running (ypbind, sssd, ldap, ...).
+
+2012-04-11  T.M. Abraham <tabraham@novell.com>
+
+	* man/crontab.5: adjust documentation title to reference "crontab"
+	instead of "anacrontab" Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2011-12-07  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* contrib/0anacron, contrib/0hourly, contrib/dailyjobs, man/cron.8,
+	man/crontab.5: Adjust the documentation to better describe the
+	current situation with crontab and anacrontab.
+
+2011-11-24  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/crontab.1: Add name of file, where can be set PAM
+	configuration.
+
+2011-10-24  Petr Sabata <psabata@redhat.com>
+
+	* cronie.init: Service restart needlessly reports failure.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2011-10-06  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/security.c: Raw context should be used. Especially when
+	mcstransd in older releases is running.
+
+2011-09-20  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c, src/crontab.c: No need to have full path in the
+	ProgramName.
+
+2011-06-29  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* : commit 01a692b123c885c883e7791f0a1833df5edfe327 Author: Tomas
+	Mraz <tmraz@fedoraproject.org> Date:   Wed Jun 29 12:42:27 2011
+	+0200
+
+2011-06-29  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c: Revert "Cronie disables inotify support when the
+	/etc/crontab file does not exist at startup." This reverts commit acdf4ae8456888ed78201906ef528f4c28f54582 as it
+	introduces fd leaks.
+
+2011-06-27  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: Minor release 1.4.8
+
+2011-06-24  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/do_command.c: Cron writes job output to syslog incorrectly.
+	When cron is invoked in a way to print job output to syslog, it does
+	print only the first character of the output. Author: Vitezslav
+	Cizek Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2011-06-21  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c, src/database.c, src/funcs.h, src/structs.h: Check
+	orphaned crontabs for adoption.
+
+2011-06-21  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/do_command.c: Unify logging in case of SyslogOutput with the
+	rest of crond.
+
+2011-05-26  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8, man/crontab.1: Change of email adress of cluster
+	support author.
+
+2011-05-16  Kiyoshi OHGISHI <ohgishi@gaia.eonet.ne.jp>
+
+	* anacron/main.c: The charset of anacron's mail is always
+	ANSI_X3.4-1968. There are no setlocale is anacron's source.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2011-04-28  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c: Cronie disables inotify support when the /etc/crontab
+	file does not exist at startup.  Existence of crontab and directories wasn't controlled before
+	creating inotify watches.
+
+2011-03-15  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac: Clean configure.
+
+2011-03-15  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: New release 1.4.7.
+
+2011-03-15  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac: Split relro and pie into two options.
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* anacron/matchrx.c: Add missing va_end() call.
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c: Remove unused variable.
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/env.c: Fix incorrect pointer in sizeof.
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/crontab.c: Fixed leaking of env and members of entry in
+	replace_cmd().
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/database.c, src/user.c: Fix memory leaks in load_user.
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/entry.c: The last bit to set is always LAST_ - FIRST_.
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* anacron/matchrx.c: Check malloc return for NULL.
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/misc.c: Do not try to compile dead code.
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c, src/crontab.c, src/funcs.h, src/misc.c: Rename
+	set_cron_cwd() to check_spool_dir() as we do not do any chdir
+	anymore.
+
+2011-03-11  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/misc.c: Add missing check for stat() return value.
+
+2011-03-09  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* anacron/main.c: Safeguard for system time changes. Otherwise
+	anacron might wait with the job running for a too long time.
+
+2011-03-08  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c: Fix the non-default timezone support. Do not run jobs
+	multiple times on DST change.
+
+2011-03-07  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/do_command.c, src/security.c: Set mailfrom to the user
+	account, better PAM logging.
+
+2011-03-07  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/do_command.c, src/funcs.h, src/popen.c, src/security.c: Set
+	only groups in the process handling PAM calls. Keep uids at 0 so the
+	process is not killable by the user.
+
+2011-03-02  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/do_command.c: Whitespace cleanups.
+
+2011-03-02  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/do_command.c, src/popen.c: Fix SIGPIPE handling in
+	do_command() and popen.  Ensure that PAM session is always closed.
+
+2011-02-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/do_command.c: Comment not freeing mailfrom - found during code
+	review.
+
+2011-02-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/security.c: Free security contexts.
+
+2011-02-18  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/crontab.c: mkstemp needs only 6 X's
+
+2011-02-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/runjob.c: fdin could be tested before initialization.
+
+2011-02-17  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac: PIE and RELRO flags to be set We want all long running daemons to have PIE and RELRO flags set.
+	This is a missing security mechanism. Fixing this generally involves
+	adding -fPIE -DPIE to the CFLAGS, and -pie -Wl,-z,relro -Wl,-z,now
+	to the LDFLAGS.  Expected results: PIE and partial RELRO at a
+	minimum.
+
+2010-12-16  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/security.c: Add translation for remaining hardcoded contexts
+	and av bits.
+
+2010-12-16  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c, src/funcs.h, src/security.c: Revert "Cache the
+	security class and bit values and translate the remaining hardcoded
+	values." Caching cannot be done as the values can change on SELinux
+	policy update.  This reverts commit b15f72976965d2ae1a1273558bf45be7de077b79.
+
+2010-12-16  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c: Revert "Missing exit if cron_init_security() fails."
+	Caching cannot be done as the values can change on SELinux policy
+	update.  This reverts commit ac70de36ec6c403c28291689701bd2567c565107.
+
+2010-12-16  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c: Missing exit if cron_init_security() fails.
+
+2010-12-15  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/cron.c, src/funcs.h, src/security.c: Cache the security class
+	and bit values and translate the remaining hardcoded values.
+
+2010-12-15  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* src/security.c: Clean up unnecessary assignment.
+
+2010-12-15  Dan Walsh <dwalsh@redhat.com>
+
+	* src/security.c: This patch causes cronie to ask kernel for
+	constant definition rather then using hard coded Also add info to syslog message to help diagnose problems.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2010-12-10  Tomas Mraz <tmraz@fedoraproject.org>
+
+	* anacron/global.h, anacron/lock.c, anacron/main.c: Do not lock jobs
+	that fall out of allowed range - rhbz#661966
+
+2010-10-26  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/crontab.1: Man - another typo
+
+2010-10-26  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8, man/crontab.1: Re-add missing option into man and fix
+	some typos.  Thanks to Colin Dean.
+
+2010-10-22  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: New release 1.4.6
+
+2010-10-21  Martin Prpič <mprpic@redhat.com>
+
+	* man/anacron.8, man/anacrontab.5, man/cron.8, man/crontab.1,
+	man/crontab.5: Rewrite of man pages & correction.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2010-10-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/bitstring.3: Remove useless man page.  Thanks to Colin Dean.
+
+2010-10-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c: Apply previous patch correctly.
+
+2010-10-20  Colin Dean <c.c.dean@durham.ac.uk>
+
+	* src/cron.c: Check clustering before un/watch function Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2010-10-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* : commit 2d3a872e9c66d9550a5b3cc97fa78ff9d7708cce Author: Marcela
+	Mašláňová <mmaslano@redhat.com> Date:   Fri Oct 8 12:17:15 2010
+	+0200
+
+2010-10-07  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8: man page typo: change to correct option
+
+2010-10-06  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/database.c: Remove cluster support from inotify_database check_inotify_database is called only when inotify is on, which is
+	not with cluster support.
+
+2010-10-06  Colin Dean <c.c.dean@durham.ac.uk>
+
+	* man/crontab.1, src/crontab.c: The crontab command uses "-c" and
+	"-n" instead of "-h".  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2010-10-04  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/crontab.c: Correct ifdef HAVE_FCHOWN Based on https://fedorahosted.org/cronie/ticket/7 Thanks to
+	crrodriguez
+
+2010-10-04  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* .gitignore, src/database.c: is_local set to zero
+
+2010-10-04  Colin Dean <c.c.dean@durham.ac.uk>
+
+	* man/cron.8, man/crontab.1, src/Makefile.am, src/cron.c,
+	src/crontab.c, src/database.c, src/globals.h: cronie on cluster On issue we have is that although we've made our services very
+	resilient, by employing HA failover, load balancing and round robin
+	DNS, the one service that's difficult to do anything with is cron,
+	because it has traditionally been tied to a single machine.  For instance, we have a cluster of 4 Fedora servers which our end
+	users use as timeshare systems, using round robin DNS, and if one of
+	the servers is down it doesn't really matter too much. We don't even
+	backup the servers, relying on NFS home directories and rebuilding
+	from scratch using kickstart + cfengine if a server fails and can't
+	be restarted.  However, the users have scattered crontab files around the 4
+	servers, so that if the particular server a cron job is meant to run
+	on dies, the job doesn't run any more, and the crontab file may be
+	permanently lost.  What we needed was a facility to allow crontabs in /var/spool/cron
+	on these 4 servers be NFS mounted from a single directory on our
+	NetApp filers (so giving us backups and snapshots), with any user
+	able to run "crontab -e" from any of the servers to manage a single
+	shared crontab, and for us in the IT Service to be able to set just
+	one of the 4 servers to run user crontab jobs at any time. However,
+	we needed to keep /etc/crontab and the files in /etc/cron.d/
+	specific to each individual server still, and keep crond running on
+	all 4 servers.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2010-08-30  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/runjob.c: Typo in log message Based on Tom London report
+	https://bugzilla.redhat.com/show_bug.cgi?id=626947
+
+2010-08-23  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/main.c: Close leaking file descriptor anacron was leaking fd, which caused denial of jobs by selinux.
+
+2010-08-02  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: New minor release 1.4.5.
+
+2010-08-02  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* cronie.init: OK value printed twice Fix based on 615107. There were too many OK's messages.
+
+2010-07-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c: Help and usage fix Option -h was added. Also details about options were added into
+	usage.
+
+2010-07-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8: man crond -i Document missing option.
+
+2010-07-12  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8, src/cron.c: Syslog output will be used instead of mail If sendmail isn't installed, syslog is used. This patch should also
+	solve problem with RPM requirements of sendmail (and which mail
+	should be installed by default).  Based on: https://bugzilla.redhat.com/show_bug.cgi?id=472710#c42
+
+2010-04-14  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/entry.c: Remove the whole unused part.
+
+2010-04-14  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/entry.c: Remove 'dont log' part which probably never worked.
+
+2010-04-14  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/do_command.c, src/entry.c: Beautify error outputs.
+
+2010-04-14  Michal Seben <mseben@suse.cz>
+
+	* man/crontab.5, src/entry.c: Option "-" don't log jobs as root If the uid of the owner is 0 (root), he can put a "-" as first
+	character of a crontab entry. This will prevent cron from writing a
+	syslog message about this command getting executed.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2010-04-14  Michal Seben <mseben@suse.cz>
+
+	* src/security.c: Correctly reported PAM errors cron_conv could be helpfull for debug purposes, when something bad
+	happens with pam e.g. : expired user password - without cron_conv
+	cronie doesn't report usefull info in syslog messages  (it just
+	write no conversation function error to messages file),if you want
+	to do quick test of pam conversation function, you  could set
+	PASS_MAX_DAYS and PASS_WARN_AGE in etc/login.defs , add new user and
+	for this user create cron rule (crontab -e) Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2010-03-25  Andrew Man-Hon Lau <amlau@alum.mit.edu>
+
+	* contrib/0anacron: 0anacron should check only readability.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2010-03-23  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/security.c: Revert previous change. The code which control the
+	input entry should be sufficient. Only "/" are removed from scripts.
+
+2010-03-22  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* contrib/0hourly, contrib/dailyjobs, src/security.c: In system
+	tables was hardcoded home directory to "/". This was changed to
+	switching to "/" only when home for user isn't defined.  Based on rhbz#575419
+
+2010-02-23  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/crontab.5: Definition of system crontables.
+
+2010-02-18  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: New release
+
+2010-02-17  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/crontab.c: CVE-2010-0424 -- crontab -e crontab file timestamp
+	race condition When run as "crontab -e", crontab creates a temporary file in /tmp,
+	copies the contents of an existing crontab to this file, and then
+	calls utime() on the temporary file name to set its mtime and atime
+	to 0, in order to check after editing whether or not the file has
+	been modified.  Since the file is created with the user's euid, and
+	because utime is called on the file as root, an attacker can replace
+	the temporary file after it is created with a symlink to any file or
+	folder on disk, which will then have its atime and mtime set to 0.
+	This is certainly not a critical issue, but this action can be used
+	to deny service in many scenarios. For example, the cron daemon
+	checks the mtime of the crontab spool folder and its contents to
+	determine whether or not it needs to update its database of
+	cronjobs, and if these times are reset to 0, no new cronjobs will be
+	added. Other daemons relying on accurate timestamps may be similarly
+	affected. Finally, build tools such as make could be tricked into
+	not re-compiling source, based on an old timestamp.  Thanks to: Dan
+	Rosenberg
+
+2010-02-16  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac: Dynamic shared libraries -laudit There is need to add -laudit into gcc options because now it's not
+	found automatically. Based on:
+	http://fedoraproject.org/wiki/Features/ChangeInImplicitDSOLinking
+
+2010-02-12  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/anacrontab.5: Make man page more readable based on #564206.
+
+2010-01-25  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* crond.sysconfig, cronie.init: CRON_VALIDATE_MAILRCPTS was removed,
+	because it was not used anyway.
+
+2010-01-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/do_command.c, src/funcs.h, src/security.c: With NFS homes
+	can't be job executed, because root can't access this directory.
+
+2010-01-05  Will Woods <wwoods@redhat.com>
+
+	* man/cron.8, src/do_command.c: Disable mailing output.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2010-01-05  Will Woods <wwoods@redhat.com>
+
+	* man/cron.8, src/cron.c, src/do_command.c, src/globals.h: Output
+	could be redirectered to syslog.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-12-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/security.c: Cron doesn't use environment values from
+	/etc/security/pam_env.conf.  This was fixed by moving pam_setcred
+	into first part of authentication of pam.
+
+2009-11-27  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* cronie.init: Initscript: if unprivileged user stop deamon, it
+	should return 4.
+
+2009-11-27  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* cronie.init: Initscript: if unprivileged user restart deamon, it
+	should return 4.
+
+2009-11-05  Guido Trentalancia <guido@trentalancia.com>
+
+	* src/security.c: This function will be probably removed from
+	libselinux, so it is added into source code here.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-11-05  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* pam/crond: One line was missing in pam authentication. rhbz#533189
+
+2009-11-03  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* Makefile.am, configure.ac: Autotools - Makefile includes
+	dailyjobs, configure has new version.
+
+2009-11-03  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog: New release 1.4.3.
+
+2009-11-03  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* src/misc.c: Fix "warning: unused variable" if LOG_FILE is not
+	defined Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-11-03  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* src/crontab.c: Portability: Use swap_uids() instead of setreuid()
+	directly Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-11-03  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* src/externs.h: Portability: Solaris and AIX support saved UID/GID Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-11-03  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* configure.ac, src/externs.h: Portability: Check if fchown() and
+	fchgrp() exist by configure.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-11-03  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* src/crontab.c: Security: Ignore $TMPDIR if ruid!=euid and/or
+	rgid!=egid A setuid/setgid process with GNU C library does NOT
+	inherit $TMPDIR from the parent process for security reason, but
+	this behavior is NOT standard feature.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-11-03  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* configure.ac: Portability: pam_misc.so is the Linux-PAM specific
+	library Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-11-03  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* configure.ac, src/externs.h: Portability: Check if sys/fcntl.h
+	exists or not Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-11-03  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* contrib/dailyjobs: Dailyjobs are here for users who don't like
+	anacron.  0hourly executes cron.hourly scripts and other will be
+	executed by dailyjobs.
+
+2009-10-19  HONDA Hirofumi <honda.hirofumi@oss.ntt.co.jp>
+
+	* cronie.init: When parent crond is stopped and child crond
+	(executing program) is running,"service crond status" reports "crond
+	(pid  XXX) is running...".  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-10-12  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: New release with few bugfixes.
+
+2009-09-25  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/database.c: Symlinks were not followed. This is a limitation
+	of inotify API.  rhbz#477100
+
+2009-09-18  Tomas Mraz <t8m@centrum.cz>
+
+	* src/do_command.c: Do not segfault if mailto does not pass safe_p
+	test.
+
+2009-09-16  Tomas Mraz <t8m@centrum.cz>
+
+	* pam/crond: Use password-auth common PAM configuration.
+
+2009-08-17  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/lock.c, anacron/readtab.c, man/anacrontab.5: Add daily,
+	weekly as a possibility of anacrontab configuration.
+
+2009-08-11  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* contrib/anacrontab: Add anacrontab configuration file.
+
+2009-08-11  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/anacron.8, man/anacrontab.5, man/cron.8, man/crontab.1,
+	man/regularly-jobs.5: Polish manual pages.
+
+2009-07-30  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* Makefile.am, anacron/Makefile, configure.ac, man/Makefile.am,
+	man/anacron.8, man/anacrontab.5, man/cron.8, man/crontab.5: Revert
+	configuration file regularly-file back to anacrontab.
+
+2009-07-29  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: Start minor releases cronie-1.4.1.
+
+2009-07-29  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* contrib/regularly-jobs: Revert configure file for anacrontab.
+
+2009-07-29  Rocco Iannacci <rocian AT gmail DOT com>
+
+	* anacron/readtab.c: Segfault on ppc64 was caused by parsing random
+	delay from anacrontab.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-07-21  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac: New release cronie1.4.
+
+2009-07-20  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, Makefile.am, anacron/Makefile.am, man/Makefile.am,
+	man/anacron.8, man/anacrontab.5, man/cron.8, man/crontab.1,
+	man/crontab.5, man/regularly-jobs.5: New option: enable-anacron in
+	configure which can set compilation with or without anacron part.
+	Also there were changes in manual pages.  Updated ChangeLog.
+
+2009-07-17  Štěpán Kasal <kasal AT redhat DOT com>
+
+	* .gitignore, Makefile.am, anacron/Makefile.am, configure.ac: Fix of
+	autotools stuff for anacron.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-07-16  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* Makefile.am, anacron/Makefile.am, configure.ac, man/Makefile.am: 
+	Make anacron configurable. The option --enable-anacron in configure
+	can switch on/off compilation of this part of the package.
+
+2009-07-16  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/Makefile.am: Put anacron binary into proper location.
+
+2009-07-16  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* .gitignore, Makefile.am, anacron/anacron.8, anacron/anacrontab.5,
+	contrib/0anacron, contrib/0hourly, contrib/regularly-jobs,
+	man/Makefile.am, man/anacron.8, man/anacrontab.5, regularly-jobs: 
+	Add configuration scripts into contrib.  Cleaning/adding man pages
+	into Makefile/directories.
+
+2009-07-14  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* COPYING.anacron, ChangeLog.anacron, README.anacron,
+	anacron/COPYING, anacron/ChangeLog, anacron/README, anacron/TODO,
+	anacron/anacron.apm, anacron/debian/0anacron.daily,
+	anacron/debian/0anacron.monthly, anacron/debian/0anacron.weekly,
+	anacron/debian/README.debian, anacron/debian/anacron.postinst,
+	anacron/debian/anacron.postrm, anacron/debian/anacrontab,
+	anacron/debian/apm.d, anacron/debian/changelog,
+	anacron/debian/compat, anacron/debian/control,
+	anacron/debian/copyright, anacron/debian/cron.d,
+	anacron/debian/dirs, anacron/debian/docs, anacron/debian/init.d,
+	anacron/debian/rules: Cleaning useless files.
+
+2009-07-14  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* Makefile.am, anacron/Makefile, anacron/Makefile.am,
+	anacron/global.h, anacron/main.c, configure.ac, regularly-jobs: 
+	Anacron makefile was rewritten according to the rest of autotools
+	makefiles in this project.
+
+2009-07-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/global.h, anacron/log.c, anacron/main.c,
+	anacron/readtab.c: New options: random delay could be set from
+	anacrontab instead of sysconfig file, range of hours when should be
+	jobs started.
+
+2009-07-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/anacron.8, anacron/anacrontab.5: Update manual pages.
+
+2009-07-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/readtab.c: Fix error message for wrong spooldir.
+
+2009-07-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/global.h, anacron/gregor.c, anacron/log.c,
+	anacron/matchrx.c, anacron/runjob.c: Memory leaks should be fixed.
+	Instead of log is used slog function.
+
+2009-07-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/global.h, anacron/runjob.c: The temporary file has file
+	descriptors for input and output instead of one descriptor.
+
+2009-07-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/runjob.c: Mail langinfo was fixed.
+
+2009-07-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/ChangeLog, anacron/README, anacron/TODO,
+	anacron/anacron.8, anacron/anacron.apm, anacron/anacrontab.5,
+	anacron/debian/0anacron.daily, anacron/debian/0anacron.monthly,
+	anacron/debian/0anacron.weekly, anacron/debian/README.debian,
+	anacron/debian/anacron.postinst, anacron/debian/anacron.postrm,
+	anacron/debian/anacrontab, anacron/debian/apm.d,
+	anacron/debian/changelog, anacron/debian/compat,
+	anacron/debian/control, anacron/debian/copyright,
+	anacron/debian/cron.d, anacron/debian/dirs, anacron/debian/docs,
+	anacron/debian/init.d, anacron/debian/rules, anacron/global.h,
+	anacron/gregor.c, anacron/gregor.h, anacron/lock.c, anacron/log.c,
+	anacron/main.c, anacron/readtab.c, anacron/runjob.c: Minor debian
+	release anacron-2.3.1 which adds this features: -anacron runs jobs
+	twice in a 31 day month -add hostname to emails sent to admin -allow
+	user anacrontabs and some debian scripts for apm support.
+
+2009-07-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* anacron/COPYING, anacron/ChangeLog, anacron/Makefile,
+	anacron/README, anacron/TODO, anacron/anacron.8,
+	anacron/anacrontab.5, anacron/global.h, anacron/gregor.c,
+	anacron/gregor.h, anacron/lock.c, anacron/log.c, anacron/main.c,
+	anacron/matchrx.c, anacron/matchrx.h, anacron/readtab.c,
+	anacron/runjob.c: Initial upload of anacron-2.3 which should be
+	optimized for better cooperation with cronie. However, cronie should
+	be working with or without anacron, which should be configurable.
+
+2009-06-19  Tomas Mraz <t8m@centrum.cz>
+
+	* src/cron.c: Fix the disable inotify functionality.
+
+2009-06-19  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c: Option -i for disabling inotify support.  This option
+	was based on email by user who can't set up daemon when they have
+	mounted from NFS /var/spool/cron for a number of identical machines.
+	Inotify pass the test because it find the directory, but didn't
+	notice changes.
+	http://linux-nfs.org/pipermail/nfsv4/2007-November/007127.html
+	Thanks to: Alex Bame
+
+2009-06-05  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c, src/do_command.c, src/globals.h: ValidateMailRcpts
+	removed for problems when could be enviromental settings exported
+	under wrong user.
+
+2009-05-29  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/.indent.pro, src/cron.c, src/crontab.c, src/database.c,
+	src/do_command.c, src/entry.c, src/env.c, src/job.c, src/misc.c,
+	src/popen.c, src/security.c, src/user.c: Beautify the code with
+	indent.  Thanks for .indent.pro to Martin Klozik.
+
+2009-05-29  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac, src/Makefile.am, src/misc.c: CRON_DIR became
+	obsolete. SPOOL_DIR is enough for work with user crontables.
+
+2009-05-22  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* : commit b96c9b94317b31c6bb7e1335a4c7ba7a7dca7e4a Author:
+	Štěpán Kasal <kasal AT redhat DOT com> Date:   Fri May 22
+	09:05:10 2009 +0200
+
+2009-05-22  Štěpán Kasal <kasal AT redhat DOT com>
+
+	* src/cron.c, src/database.c, src/pathnames.h: Rename RH_CRON_DIR to
+	SYS_CRON_DIR.
+
+2009-05-22  Štěpán Kasal <kasal AT redhat DOT com>
+
+	* configure.ac: Drop uselles part of configure.
+
+2009-05-22  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8, src/funcs.h, src/security.c: Remove unused function
+	cron_get_job_context.
+
+2009-05-20  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/do_command.c, src/funcs.h, src/security.c: PAM logging was
+	incorrect bz#249870.  The jobs is setuid to user before exec. Mail
+	runs under root permissions.
+
+2009-05-14  Vlad Glagolev <stealth at sourcemage.org>
+
+	* src/cron.c: @reboot alias check the return value.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-05-14  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/do_command.c: Save delimiters need more characters f.e. '_'.
+	Fix based on: http://bugs.gentoo.org/show_bug.cgi?id=197625
+
+2009-05-13  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac, man/crontab.5, src/do_command.c: MAILFROM, if set,
+	will be used as the envelope sender address when cron mails the
+	output of commands in that crontab.  The initial patch was written
+	by: Heath Caldwell
+
+2009-04-28  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/globals.h: No need to initialize globals, which are set by
+	default to zero.
+
+2009-04-28  Stěpán Kasal <kasal AT redhat DOT com>
+
+	* configure.ac: Fix with(out)-pam in configure.  Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-04-27  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: Update ChangeLog for new release.
+
+2009-04-23  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c: Inotify initialization left open file descriptors
+	which are leaking and annoying SElinux.  This could be once fixed by
+	inotify_init1, but that's supported from kernel 2.6.27.
+
+2009-04-15  Willy Tarreua <wtarreau AT exosec DOT fr>
+
+	* src/cron.c, src/crontab.c, src/globals.h: I have noticed that with
+	cronie-1.2, my binaries have seen their \ size grow by 10x (from
+	28kB to 290kB). After searching a bit, I found that the responsible
+	was the INIT() macro in globals.h \ which initializes huge strings
+	MailCmd and cron_default_mail_charset both of which are 128 kB. Due
+	to this initialization, the memory \ areas are stored for real in
+	the binary, resulting in larger sizes Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2009-02-12  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac: Cronie could be build as Position Independent
+	Executable when the configure is executed with --enable-pie.  Erased
+	commented unused stuff from configure.
+
+2009-02-12  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* crond.sysconfig: Fix typo in sysconfig.
+
+2008-12-23  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog: After long time update ChangeLog file.
+
+2008-12-23  Tomas Mraz <t8m@centrum.cz>
+
+	* man/cron.8, man/crontab.5: Update man pages to reflect the
+	reality.
+
+2008-12-22  Tomas Mraz <t8m@centrum.cz>
+
+	* src/cron.c, src/database.c, src/funcs.h, src/structs.h: Fix
+	handling of HUP signal with inotify enabled.
+
+2008-12-02  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac: Configure can't be run without pam-devel libraries.
+	(rhbz#473893)
+
+2008-10-24  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* cronie.init: Init script is according to SysVInitScript
+	guidelines.
+
+2008-08-11  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c: Check user before job is run.
+
+2008-07-28  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/pathnames.h: Clean hardwired pathnames.
+
+2008-07-28  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/crontab.5, src/cron.c, src/pathnames.h: @reboot jobs should be
+	run only after reboot instead of every daemon's restart.  Patch
+	inspired by debian.
+
+2008-06-26  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog, configure.ac: Release 1.2
+
+2008-06-26  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* man/cron.8, man/crontab.1: Updated manuals - diffent typos and
+	inotify support mentioned.
+
+2008-06-26  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* configure.ac, src/misc.c: Portability: File locking by fcntl,
+	lockf or flock Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2008-06-26  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* src/macros.h, src/misc.c: Bugfix: PATH_MAX is defined in limits.h Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2008-06-26  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* configure.ac, src/popen.c: Portability: Check if sys/cdefs.h is
+	there on the platform Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2008-06-23  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* configure.ac, src/funcs.h, src/macros.h, src/misc.c: Portability:
+	Check for struct tm.tm_gmtoff by AC_CHECK_MEMBERS Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2008-06-26  SATOH Fumiyasu <fumiyas@osstech.co.jp>
+
+	* src/funcs.h: Bugfix: Correct log_it() prototype Signed-off-by: Marcela Mašláňová <mmaslano@redhat.com>
+
+2008-06-26  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/database.c: Add missing endif.
+
+2008-06-23  Tomas Mraz <t8m@centrum.cz>
+
+	* src/cron.c, src/database.c: Fix the inotify support.
+
+2008-06-23  Tomas Mraz <t8m@centrum.cz>
+
+	* src/crontab.c, src/database.c, src/do_command.c, src/entry.c,
+	src/env.c, src/job.c, src/misc.c, src/popen.c, src/pw_dup.c,
+	src/user.c: Remove rcsid tags.
+
+2008-06-23  Tomas Mraz <t8m@centrum.cz>
+
+	* src/cron.h, src/security.c: Move macros and static declarations
+	where they are needed.
+
+2008-06-23  Tomas Mraz <t8m@centrum.cz>
+
+	* configure.ac: Add check for _GNU_SOURCE.
+
+2008-06-23  Tomas Mraz <t8m@centrum.cz>
+
+	* src/cron.c: Fix wrong declaration of orig_tz.
+
+2008-06-23  Tomas Mraz <t8m@centrum.cz>
+
+	* src/cron.c, src/crontab.c, src/database.c, src/do_command.c,
+	src/entry.c, src/funcs.h, src/misc.c, src/popen.c, src/security.c,
+	src/user.c: Unification of logging (syslog->log_it).
+
+2008-06-23  Tomas Mraz <t8m@centrum.cz>
+
+	* src/security.c: Fixed call to setkeycreatecon.
+
+2008-05-30  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac: Update version also in configure.
+
+2008-05-30  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* ChangeLog: cronie-1.1 released.  Updated Changelog.
+
+2008-05-30  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* cronie.init: Init script die faster, if the sysconfig script is
+	missing.  Patch from scop.
+
+2008-05-29  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/database.c: Function instead of macro. Code cleaning.
+
+2008-05-27  Marcela <marca@caladan.englab.brq.redhat.com>
+
+	* man/crontab.1: Man: crontab.1 TMP directory could be set in
+	eviroment instead of /tmp.
+
+2008-05-27  Marcela <marca@caladan.englab.brq.redhat.com>
+
+	* src/security.c: Keyring will be created after restart of computer
+	and services won't be dying on selinux denial. The reason for this
+	change was pam-devels update.
+
+2008-05-27  Marcela <marca@caladan.englab.brq.redhat.com>
+
+	* src/funcs.h, src/security.c: Remove unused function.
+
+2008-05-27  Marcela <marca@caladan.englab.brq.redhat.com>
+
+	* src/cron.c, src/database.c: Permission of crontabs are checked in
+	case we AREN'T using -p option.
+
+2008-03-14  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/cron.c: Better testing, when we are closing watches.
+
+2008-03-14  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* configure.ac, src/cron.c, src/cron.h, src/crontab.c,
+	src/database.c, src/externs.h, src/funcs.h, src/structs.h: Rewrited
+	inotify support.
+
+2008-01-31  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* src/security.c, src/user.c: Using get_default_context() for name =
+	NULL instead of getseuserbyname because files created in
+	/var/spool/cron hadn't wrong context.  rhbz#426704
+
+2008-01-31  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* .gitignore, Makefile.am, crond.pam, man/bitstring.3, man/cron.8,
+	man/crontab.1, man/crontab.5, pam/crond: Stepan Kasal: create pam's
+	own directory for pam configure.  Create correct man pages in man
+	directory.  Add .gitignore file.
+
+2008-01-30  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* Makefile.am, config.h, config.h.in, configure.ac,
+	man/Makefile.am, man/bitstring.3.in, man/cron.8.in, man/crond.8.in,
+	man/crontab.1.in, man/crontab.5.in, src/.deps/cron.Po,
+	src/.deps/crontab.Po, src/.deps/database.Po, src/.deps/debug.Po,
+	src/.deps/do_command.Po, src/.deps/entry.Po, src/.deps/env.Po,
+	src/.deps/job.Po, src/.deps/misc.Po, src/.deps/popen.Po,
+	src/.deps/pw_dup.Po, src/.deps/security.Po, src/.deps/user.Po,
+	src/Makefile.am, src/cron.c, src/crontab.c, src/database.c,
+	src/do_command.c, src/entry.c, src/env.c, src/job.c, src/misc.c,
+	src/popen.c, src/pw_dup.c, src/security.c, src/user.c, stamp-h1: 
+	Added patch from Stepan Kasal, which fixed all autotools issues.
+	Also the pam's configure file is now installed directly into correct
+	path, if it's configure runned with pam.
+
+2008-01-17  Marcela Mašláňová <mmaslano@redhat.com>
+
+	* CHANGES, COPYING, ChangeLog, INSTALL, LICENSE, Makefile,
+	Makefile.am, Makefile.in, NEWS, README, aclocal.m4,
+	autom4te.cache/output.0, autom4te.cache/output.1,
+	autom4te.cache/requests, autom4te.cache/traces.0,
+	autom4te.cache/traces.1, config.guess, config.h, config.log,
+	config.status, config.sub, configure, configure.ac, cronie.init,
+	depcomp, install-sh, man/Makefile, man/Makefile.am,
+	man/Makefile.in, man/bitstring.3, man/cron.8, man/crond.8,
+	man/crontab.1, man/crontab.5, missing, src/Makefile,
+	src/Makefile.am, src/Makefile.in, vixie-cron.init: Cleaning git from
+	unnecessary files, which were generated from autotools. Add files or
+	rename according to autotools custom practice.  There were also alternation of configure and makefiles.
+
+2008-01-09  Marcela Maslanova <marca@caladan.englab.brq.redhat.com>
+
+	* Makefile, config.h, config.log, config.status, man/Makefile,
+	man/bitstring.3, man/cron.8, man/crontab.1, man/crontab.5,
+	src/.deps/cron.Po, src/.deps/crontab.Po, src/.deps/database.Po,
+	src/.deps/debug.Po, src/.deps/do_command.Po, src/.deps/entry.Po,
+	src/.deps/env.Po, src/.deps/job.Po, src/.deps/misc.Po,
+	src/.deps/popen.Po, src/.deps/pw_dup.Po, src/.deps/security.Po,
+	src/.deps/user.Po, src/Makefile: Add missing files generated after
+	running ./configure
+
+2008-01-09  Marcela Maslanova <marca@caladan.englab.brq.redhat.com>
+
+	* CHANGES: In CHANGES could be found git-log with last changes.
+
+2008-01-09  Marcela Maslanova <marca@caladan.englab.brq.redhat.com>
+
+	* Makefile.in, aclocal.m4, autom4te.cache/output.0,
+	autom4te.cache/output.1, autom4te.cache/requests,
+	autom4te.cache/traces.0, autom4te.cache/traces.1, config.guess,
+	config.sub, configure, depcomp, install-sh, man/Makefile.in,
+	missing, src/Makefile.in: Now really add all files generated by
+	autotools.
+
+2008-01-09  Marcela Maslanova <marca@caladan.englab.brq.redhat.com>
+
+	* config.h.in: Add binary configure.
+
+2008-01-03  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* vixie-cron.spec: Use changelog instead of spec.
+
+2007-11-30  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* configure.ac: Don't set up MAIL_DATE, because if the user doesn't
+	use sendmail, then he has incorrect time format.
+
+2007-11-19  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* vixie-cron.spec: Upload spec file with fixed bcond macro.
+
+2007-11-12  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* man/cron.8.in, man/crond.8.in, man/crontab.5.in: Man pages are
+	updated for time zone and some small changes.
+
+2007-11-12  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* src/cron.c, src/misc.c: Time zones are now supported.  Setting in
+	cron table CRON_TZ=SomeTimeZone does jobs in this time zone. There
+	was problem with syslog, because it print local time into log only,
+	when I remove ifdef parts from misc.c. With ifdef parts print out
+	the time of 'highest' time zone, which could be bug of rsyslog.
+
+2007-11-12  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* configure.ac: In configure was incorrect path for sendmail. The
+	error occured only when sendmail wasn't set up like default MTA.
+
+2007-11-05  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* src/security.c: Opening credentials is really needed for cron
+	jobs, but not for crontab. Crontab doesn't use credentials from file
+	security.c so we can leave it as it was.
+
+2007-10-30  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* configure.ac: Change version of cron in configure.
+
+2007-10-29  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* vixie-cron.spec: Update spec file - new bcond macro.
+
+2007-10-29  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* src/popen.c: Some cron jobs failed without error message. If the
+	job had too "big" output and no mail client set, then only a part
+	from job was done. The reason was pipe, which has restricted size.
+	rh bugzilla #247228
+
+2007-10-03  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* LICENSE: The file LICENSE is used instead of COPYING.
+
+2007-10-03  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* vixie-cron.spec: Add spec file from rpm package, because there is
+	changelog.
+
+2007-10-03  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* COPYING, ChangeLog, INSTALL, Makefile.am, NEWS, README,
+	configure.ac, doc/CHANGES, doc/CONVERSION, doc/FEATURES,
+	doc/INSTALL, doc/MAIL, doc/Makefile.am, doc/README, doc/THANKS,
+	src/Makefile.am: Deleting and modyfing files with license etc.  The
+	compilation with selinux and audit is optional.
+
+2007-10-02  Marcela Maslanova <marca@dhcp-lab-135.englab.brq.redhat.com>
+
+	* src/user.c: The jobs in RH_CROND_DIR weren't syntactically
+	checked.  Also SYSCRON wasn't checked. The problem is reported into
+	log.
+
+2007-08-28  Marcela Mašláňová <marca@arrakis.(none)>
+
+	* vixie-cron.init: Fix reading arguments from configure file.
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* src/security.c: Commented out cron_open_pam_session, it's unused.  Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* src/security.c: Protect the call to setexeccon with WITH_SELINUX.  Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* src/misc.c: Compile fix in misc.c.  (I have no f*cking idea why do I do this change now...) Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* src/crontab.c, src/funcs.h: Kill a few warnings.  Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* config.h.in, configure.ac: Fix the MAILARG and MAILFMT definitions
+	and regenerate config.h.in.  Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* configure.ac, src/security.c: Move #define _GNU_SOURCE from
+	security.c to CFLAGS.  (it's needed for HAVE_SELINUX as well) Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* src/pathnames.h: Don't define SYSLOG in pathnames.h.  It's in configure.ac and gets defined in config.h.  Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* configure.ac: CRON_GROUP shall not be defined at all.  (also filled in a sensible default in case someone enables it again) Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* src/Makefile.am: Added -laudit to LDADD.  Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  mmaslano <mmaslano@redhat.com>
+
+	* configure.ac, src/cron.c, src/cron.h: Version of cron is used from
+	configure.
+
+2007-08-27  mmaslano <mmaslano@redhat.com>
+
+	* configure.ac: Correct setting of path to mail program.
+
+2007-08-27  mmaslano <mmaslano@redhat.com>
+
+	* src/config.h, src/cron.h, src/pw_dup.c: Use config.h generated by
+	autotools.
+
+2007-08-27  mmaslano <mmaslano@redhat.com>
+
+	* src/security.c: Added missing #ifdef WITH_PAM.
+
+2007-08-27  mmaslano <mmaslano@redhat.com>
+
+	* src/funcs.h: Correct definition of cron_popen in .h file.
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* src/crontab.c: Added missing #ifdef WITH_PAM.  Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* src/funcs.h, src/security.c: Make
+	cron_restore_default_security_context return void.  Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-27  Tomas Janousek <tjanouse@redhat.com>
+
+	* src/misc.c: Revert "System table wasn't sometimes checked for
+	changes." This reverts commit b18c0c9a01bef691c7b696709cd2f9736ba98a82.  Signed-off-by: Tomas Janousek <tjanouse@redhat.com>
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* src/popen.c: rhbz#247228 cron jobs fail semi-randomly if sendmail
+	(or other mail) isn't set. The jobs aren't "sometimes" run, because output, which
+	has to be sent isn't set and the stdin pipe, which is used haven't
+	enough capacity.  The problem is at least reported in log.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* man/crond.8.in, man/crontab.1.in, man/crontab.5.in: Add crond.8
+	(the same as cron.8) manual page and other man pages were updated.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* src/funcs.h: Change definiton from popen.c in header file.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* src/bitstring.h, src/popen.c: For the same license for whole cron,
+	I've removed two files and found almost the same with correct license.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* AUTHORS, CHANGES, CONVERSION, COPYING, ChangeLog, FEATURES,
+	INSTALL, MAIL, Makefile, Makefile.am, NEWS, README, THANKS,
+	bitstring.3, bitstring.h, config.h, config.h.in, configure.ac,
+	cron.8, cron.c, cron.h, crond.sysconfig, crontab.1, crontab.5,
+	crontab.c, database.c, do_command.c, doc/CHANGES, doc/CONVERSION,
+	doc/FEATURES, doc/INSTALL, doc/MAIL, doc/Makefile.am, doc/README,
+	doc/THANKS, entry.c, env.c, externs.h, funcs.h, globals.h, job.c,
+	macros.h, man/Makefile.am, man/bitstring.3.in, man/cron.8.in,
+	man/crontab.1.in, man/crontab.5.in, misc.c, pathnames.h, popen.c,
+	putman.sh, pw_dup.c, security.c, src/Makefile.am, src/bitstring.h,
+	src/config.h, src/cron.c, src/cron.h, src/crontab.c,
+	src/database.c, src/do_command.c, src/entry.c, src/env.c,
+	src/externs.h, src/funcs.h, src/globals.h, src/job.c, src/macros.h,
+	src/misc.c, src/pathnames.h, src/popen.c, src/pw_dup.c,
+	src/security.c, src/structs.h, src/user.c, stamp-h1, structs.h,
+	user.c, vixie-cron.init: Cron source was ready for merge with
+	patches. After the merge I used autotools (files were copied to new dirs and configure.ac and
+	Makefile.am were written).
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* cron.h, crontab.c, do_command.c, security.c: Pam authentication
+	wasn't used wise. User's crontab didn't use pam and functions, which were for pam opening etc. were
+	incorrect (wrong credetials).
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* crontab.1, security.c: Checking homedir is last, because we need
+	at first set up gid and uid.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: It's possible to use your own tmp dir. Before was /tmp
+	hardwired.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* crontab.5: System table in manual page is mentioned.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* database.c: Hard links on system table break doing jobs.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* misc.c: System table wasn't sometimes checked for changes.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* security.c: Audit: new auditing message is print, when the user
+	isn't allowed to use mls range. Job wasn't runned without warning message.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* misc.c: Because there was typo (- instead of +) jobs wasn't runned
+	after new year.
+
+2007-08-24  mmaslano <mmaslano@redhat.com>
+
+	* cron.8, crontab.1, crontab.5: Errors in manual was fixed and mls
+	range was mentioned.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.c, database.c: Force reload of database when SIGGUP is
+	received.  max_mtime uses dir_name instead of SPOOL_DIR now. (which
+	caused a bug preventing correct detection of changes in
+	RH_CROND_DIR) (comment updated by <tjanouse@redhat.com>)
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c, do_command.c, funcs.h, security.c: Selinux ranges: for
+	every selinux operation are now checked the ranges of user. Now is set not only context for user, but even
+	ranges(enabled selinux or selinux in mls mode).
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: It's possible to change file without changing mtime of
+	file.  So we're stat'ing files for the changes of files.  The detection of
+	not_a_crontab files was added: files started with dot aren't
+	crontabs etc.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crond.pam: pam.limits.so was substitued by system-auth (pam
+	progress).
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* security.c: Part with_selinux now include even the testing of
+	linux context.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.c: Loading database before reaping the child take up time of running the jobs.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* do_command.c: The Auto-Submitted header is defined (and suggested
+	by) RFC3834.  Added into mail header: 'Auto-Submitted: auto-generated'
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.8: Fix typo in man pages.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* database.c: It's possible to change file without changing mtime of
+	file.  So we're stat'ing files for the changes of files.  The detection of
+	not_a_crontab files was added: files started with dot aren't
+	crontabs etc.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.1, crontab.5, crontab.c, funcs.h, security.c: Selinux:
+	option -s added. Header from crontab was removed and now is print into crontab the SELINUX_ROLE_TYPE which specify the
+	permission of user. With mls could one user run some jobs with
+	different roles and security level.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* Makefile, security.c, structs.h: Into with_selinux and with_pam
+	part was added variables used only there. In Makefile are libs set by variables.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.c, crontab.5, do_command.c, externs.h, globals.h: Now is
+	possible to use different character encodings for mailed cron job
+	output by setting the CONTENT_TYPE and CONTENT_TRANSFER_ENCODING variables in
+	crontabs, to the correct values of the mail headers of those names.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crond.pam: Module pam_limit.so was added to default configuration.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* security.c: Fixing "security": minutely job are made realy only
+	one time per minute. If the job is delayed into next minute, then it's skipped
+	for this minute.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* Makefile, crontab.c, do_command.c, funcs.h, popen.c, security.c,
+	user.c: The security.c file was filled with selinux and pam often used functions, which were removed from other files.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.8, cron.c, do_command.c, globals.h: Option -m was added: it's
+	possible to use something else then sendmail.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* Makefile, misc.c: Now is cron with audit. Complaining about
+	denying users.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c, do_command.c, env.c, misc.c, pw_dup.c: The return value
+	were added because of too many warning messages from compiler. Also the variables were initialized.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* do_command.c: 'Build enviroment' is set in pam section for better
+	security.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* config.h: Comments were changed.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* user.c: Selinux: Instead of getting context and then the username
+	is used function getuserbyname.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: Too many flags was set for lstating crontab. Time of
+	change is checked and uids for reading new crontab are ok.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* database.c, funcs.h, structs.h, user.c: List corruption when items
+	are removed from /etc/cron.d.  Variable tabname is filled with file or NULL and checked when
+	crontab is changed.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crond.pam: Crond.pam was changed according to pam modules.  The pam_limits.so could be used.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: lstat instead of stat can stat even symlink itself, not
+	the file that it refers to.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* macros.h: Redefined limits of macros.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* do_command.c: If fork fails, pam has to close session.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: fix of bug rhbz#154065: crontab should not use
+	waitpid(...,WUNTRACED) and stop itself if its child is stopped
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* do_command.c: PAM hadn't closed session.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* do_command.c, user.c: Selinux doesn't segfault, because of:
+	permissive mode returns 0 and selinux enabled is also check context.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.c, do_command.c, globals.h: Cron validate the recipient only
+	when CRON_VALIDATE_MAILRCPTS isn't null.  Validating of email
+	recipient is default off.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* do_command.c: Set item in pam - "cron".
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* do_command.c, misc.c, pw_dup.c: Initialize some important
+	variables.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.8, cron.c, database.c, globals.h: Add -p option for crontab.  Without the -p option /etc/crontab must not be writable by any user
+	other than root, no crontab files may be links, or linked to by any
+	other file, and no crontab files may be executable, or be writable
+	by any user other than their owner
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* Makefile, crontab.c: Fix for ppc: int ch='\0' is initialized.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: Don't read the header of crontab.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* misc.c: For setegid are used saved gid instead of getgid().  Now are swaped back the correct gid.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* misc.c: Allow root's crontab (check with getuid).
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: According to changes in selinux
+	selinux_check_passwd_access is now enough for examinitaion of user's password.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* user.c: Context in selinux is now correctly undone.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.8, crontab.5, database.c: /etc/crontab is now writable only
+	by root. No links on this file are allowed.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.1, crontab.c: Add -i option to crontab, which print prompt
+	before removing crontab.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.5: Nicknames were mentioned in man pages (@yearly,
+	@hourly, etc).
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: Crontab is stat instead of fstat and crontab is
+	reopened for reading new stdin.  This change should: Allowed editors
+	such as 'gedit' which do not modify original file, but which
+	rename(2) a temp file to original, to be used by crontab -e (bug
+	129170).
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* do_command.c: In lower version of pam was re-open log needed
+	(rhel-4 and lower).
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crond.pam: Change in pam configuration file (auth sufficient is
+	now used).
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c, user.c: Selinux for crontab: checking users with
+	selinux.  User is fixed from char to const char.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* database.c: Hardwired 'system' wasn't needed.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* Makefile, crond.pam: Add file crond.pam, which has rules for pam
+	sessions.  In Makefile is now crond.pam installed.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* Makefile:  Now we compile with pam flags and libs.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.8, cron.h, do_command.c: PAM support was added: open sessions
+	and set credentials for users.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* Makefile:  In Makefile are now LIB = -lselinux and -DWITH_SELINUX flags.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* FEATURES, cron.8, crontab.1, crontab.5: Features was added into
+	manual.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: Remove header in user's crontab.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* misc.c: Logs now inform about creating crontabs for users, which
+	aren't allowed to use crontab.  It's for user in cron.{allow,deny}
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* crontab.c: Change behavior to allow crontab to take stdin with no
+	'-'.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* database.c: RH_CROND was added in programme - stating directory.
+	In RH_CROND are system crontables.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* misc.c: Use snprintf instead of sprintf.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* do_command.c, popen.c: Use fork instead of vfork.      Add signal: Our grandparent is watching for our parent's death
+	    by catching SIGCHLD. Meanwhile, our parent will use wait     explicitly and so has disabled SIGCHLD. So now it's     time to reset SIGCHLD handling.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* cron.h, database.c, do_command.c, funcs.h, structs.h, user.c:  Add first selinux patch. Loading users through selinux scontext.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* config.h: Redefine sendmail options.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* pathnames.h:  Change path names for redhat/fedora system.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* Makefile: Changes in Makefile: flags, -pie option, permission and
+	installation paths for redhat/fedora system.
+
+2007-08-17  mmaslano <mmaslano@redhat.com>
+
+	* Source files of vixie-cron-4.1.
+

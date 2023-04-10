@@ -1,7 +1,7 @@
 
 # **2023 Week 14 Schedule**
 
-<img src="/images/week-current-300-120px.png" alt="This week is CURRENT">
+<img src="/images/week-past-300-120px.png" alt="This week is PAST">
 
 ### This was generated on **2023/03/31** and has **4** events from **2023/04/06** to **2023/04/06**
 

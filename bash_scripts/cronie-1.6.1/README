@@ -1,0 +1,13 @@
+Cronie contains the standard UNIX daemon crond that runs specified programs at
+scheduled times and related tools. The source is based on the original vixie-cron
+and has security and configuration enhancements like the ability to use pam and
+SELinux.
+
+And why cronie? See http://www.urbandictionary.com/define.php?term=cronie
+
+Contact
+-------
+
+Mailing list: `cronie-devel AT lists.fedorahosted DOT org`
+
+Bug reports and pull requests can be filled at the Github site.

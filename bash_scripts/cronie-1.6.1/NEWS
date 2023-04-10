@@ -1,0 +1,79 @@
+cronie NEWS -- history of user-visible changes.
+
+Release 1.6.1
+
+* crond: Fix regression of handling ranges (x-y) in crontab
+
+Release 1.6.0
+
+* crond: Add switch -f as an alias for -n
+* crond: Add random within range '~' operator
+* crond: Use the configure runstatedir directory for pid file
+* crond: Increase the maximum number of crontab entries to 10000
+
+Release 1.5.7
+
+* anacron: Fix problem of anacron not being started on some desktops
+* crontab: switch off colors if NO_COLOR is set
+
+Release 1.5.6
+
+* crontab: crontab without arguments now works if stdin is not a TTY
+* crond: Fix various issues on loading the crontab databases on startup
+* anacron: Expand MAILTO and MAILFROM environment variables
+* crontab: New option to test crontab file syntax without installing it
+
+Release 1.5.5
+
+* Explicitly validate upper end of range and step to disallow entries
+  such as: 1-234/5678 * * * * ....
+* crond: Report missing newline before EOF in syslog so the line is not
+  completely silently ignored.
+* crontab -l colors comment lines in a different color.
+* crond: Revert "Avoid creating pid files when crond doesn't fork".
+* anacron is built by default.
+* Use non-recursive build.
+* cronnext: Allow to optionally select jobs by substring.
+
+Release 1.5.4
+
+* crond: Fix regression from previous release. Only first job from a crontab
+  was being run.
+
+Release 1.5.3
+
+* Fix CVE-2019-9704 and CVE-2019-9705 to avoid local DoS of the crond.
+* crontab: Make crontab without arguments fail.
+* crond: In PAM configuration include system-auth instead of password-auth.
+* crond: In the systemd service file restart crond if it fails.
+* crond: Use the role from the crond context for system job contexts.
+* Multiple small cleanups and fixes.
+
+Release 1.5.2
+
+* cronnext: New useful utility to find out time of the next job run.
+* crond: Avoid creating PID files when crond doesn't fork.
+* crontab: Do not try to replace the crontab with a directory.
+* crond: Log startup even when started in non-forking mode.
+* Multiple small cleanups and fixes.
+
+Release 1.5.1
+
+* crontab: Use temporary file name that is ignored by crond.
+* crond: Inherit PATH from the crond environment if -P option is used.
+* crond: Remove hardcoded "system_u" SELinux user, use the SELinux user
+  of the running crond.
+* anacron: Small cleanups and fixes.
+* crond: Fix longstanding race condition on repeated crontab modification.
+
+Release 1.5.0
+
+* First release with NEWS. :)
+* crond: Job environment variables are set also when executing sendmail.
+* crond: Adding duplicate orphans on reload is now prevented.
+* crond: The regular crond shutdown is now logged.
+* crontab: PAM is not called in crontab command if the caller's uid is 0.
+* crond: PAM is not called from crond for system cron jobs
+  (/etc/crontab, /etc/cron.d) which are run for uid 0.
+* crond: The existence of an user is checked at time when job is run
+  and not when the crontab is parsed on database reload.

@@ -1,0 +1,17 @@
+Basic Installation
+==================
+
+Run the usual autotools combination of:
+./configure
+make
+make install
+
+If no "configure" script is present, generate it by:
+./autogen.sh
+
+The executable files will be installed in /usr/local/* by default.
+
+Configure Options
+=================
+Please see the ./configure --help output for available build-time
+options.
