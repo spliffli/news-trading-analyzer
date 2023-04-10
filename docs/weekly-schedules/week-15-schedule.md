@@ -13,6 +13,7 @@
       - I didn't realize until after paying for the dedicated server in **New Jersey** (Close to **Blackbull Markets'** server in **NY4**) that **fpmarkets** (Whose server is in **LD4** in **London**) keeps their client funds with Australian banks (Even with their international/non-ASIC branch with 1:500 leverage) who also have high reserve requirements and should be safe.
       - So next month (or possibly earlier?) I will switch to **fpmarkets** which does have those pairs available for trading. 
         - I'll have to get a new server in London and change my [haawks](https://www.haawks.com/) subsciption IP address. 
+      - Also, because this is the first week I'll be using 10% of the lot sizes that were generated (just to see how many pips it gains/loses before committing larger amounts of capital), so for example 1 lot becomes 0.1 lots
 
 ### Out of those events, **3** will actually be traded:
 
