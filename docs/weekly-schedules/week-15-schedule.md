@@ -11,7 +11,7 @@
       - Originally I planned on using [fpmarkets](https://www.fpmarkets.com/) because according to [this](https://offbeatforex.com/forex-brokers-for-trading-news/) article where they tested brokers for order execution speed and spreads, and fpmarkets was one of the best.
           - However, because of the current global banking collapse, I decided to go with **Blackbull Markets** who are regulated in New Zealand meaning that their client funds are kept with NZ banks who have high reserve requirements and should be relatively safe from bank-runs.
       - I didn't realize until after paying for the dedicated server in **New Jersey** (Close to **Blackbull Markets'** server in **NY4**) that **fpmarkets** (Whose server is in **LD4** in **London**) keeps their client funds with Australian banks who have similarly high reserve requirements and should also be safe.
-      - So next month I will switch to **fpmarkets** which does have those pairs available for trading. 
+      - So next month (or possibly earlier?) I will switch to **fpmarkets** which does have those pairs available for trading. 
         - I'll have to get a new server in London and change my [haawks](https://www.haawks.com/) subsciption IP address. 
 
 ### Out of those, **3** will actually be traded:
