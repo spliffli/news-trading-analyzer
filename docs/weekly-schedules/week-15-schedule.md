@@ -8,8 +8,11 @@
     This month there are event which I'm not trading because the trading pair isn't available on [Blackbull Markets](https://blackbullmarkets.com/en/) i.e. **USDNOK** & **USDSEK**. 
 
       - I didn't realize this until after paying for a server in New Jersey which is close to where the broker's server is. 
-      - So next month I will switch to [fpmarkets](https://www.fpmarkets.com/) which does have those pairs available for trading. Their server is in LD4 though which isn't where my current server is.
-          - I'll have to get a new server in London and change my [haawks](https://www.haawks.com/) subsciption IP address. 
+      - Originally I planned on using [fpmarkets](https://www.fpmarkets.com/) because according to [this](https://offbeatforex.com/forex-brokers-for-trading-news/) article where they tested brokers for order execution speed and spreads, and fpmarkets was one of the best.
+          - However, because of the current global banking collapse, I decided to go with **Blackbull Markets** who are regulated in New Zealand meaning that their client funds are kept with NZ banks who have high reserve requirements and should be relatively safe from bank-runs.
+      - I didn't realize until after paying for the dedicated server in **New Jersey** (Close to **Blackbull Markets'** server in **NY4**) that **fpmarkets** (Whose server is in **LD4** in **London**) keeps their client funds with Australian banks who have similarly high reserve requirements and should also be safe.
+      - So next month I will switch to **fpmarkets** which does have those pairs available for trading. 
+        - I'll have to get a new server in London and change my [haawks](https://www.haawks.com/) subsciption IP address. 
 
 ### Out of those, **3** will actually be traded:
 
