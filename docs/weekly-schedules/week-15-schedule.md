@@ -4,6 +4,12 @@
 
 ### This was generated on **2023/03/31** and has **14** events from **2023/04/11** to **2023/04/11**. 
 
+!!! info 
+    This month there are event which I'm not trading because the trading pair isn't available on [Blackbull Markets](https://blackbullmarkets.com/en/) i.e. **USDNOK** & **USDSEK**. 
+
+      - I didn't realize this until after paying for a server in New Jersey which is close to where the broker's server is. 
+      - So next month I will switch to [fpmarkets](https://www.fpmarkets.com/) which does have those pairs available for trading.
+
 ### Out of those, **3** will actually be traded:
 
 - [ ] **U.S. Core Consumer Price Index (CPI) MoM** ***(Wed 12/04/23 @12:30 GMT)***
@@ -26,7 +32,7 @@
 - <span><strong class="blue-text">Blue: </strong>Events that will be traded.</span>
 - <span><strong class="green-text">Green: </strong>Events that were traded and made profit.</span>
 - <span><strong class="red-text">Red: </strong>Events that were traded and lost money.</span>
-- <span><strong class="gray-text">Gray: </strong>Events which are not being traded, either because there's another event at the same time which is being traded, or this month because the trading pair isn't available on Blackbull Markets i.e. USDNOK & USDSEK. I didn't realize this until after paying for a server in New Jersey which is close to where the broker's server is. So next month I will switch to Fpmarkets which does have those pairs available for trading.</span>
+- <span><strong class="gray-text">Gray: </strong>Events which are not being traded, either because there's another event at the same time which is being traded, or the pair isn't available on Blackbull Markets.</span>
 
 
 --------
