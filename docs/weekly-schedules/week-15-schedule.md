@@ -14,7 +14,7 @@
       - So next month (or possibly earlier?) I will switch to **fpmarkets** which does have those pairs available for trading. 
         - I'll have to get a new server in London and change my [haawks](https://www.haawks.com/) subsciption IP address. 
 
-### Out of those, **3** will actually be traded:
+### Out of those events, **3** will actually be traded:
 
 - [ ] **U.S. Core Consumer Price Index (CPI) MoM** ***(Wed 12/04/23 @12:30 GMT)***
 - [ ] **U.S. Core Producer Price Index (PPI) MoM** ***(Thu 13/04/23 @12:30 GMT)***
