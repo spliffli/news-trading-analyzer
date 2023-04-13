@@ -410,7 +410,7 @@
         </div>
         <h3>Balance: <span class="green-text">€3384.37</span></h3>
         <h3>Video of trade (Demo Account):</h3>
-<iframe src="https://player.vimeo.com/video/817339517?h=800a403077" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<iframe src="https://player.vimeo.com/video/817339517?h=800a403077" height=200px frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
   </div>  
