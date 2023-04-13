@@ -392,7 +392,7 @@
         <h3>Results</h3>
         <div class="news-figures">
           <h3>Forecast: <span>0.3%</span></h3>
-          <h3>Actual: <span class="red-text">-0.1%%</span></h3>
+          <h3>Actual: <span class="red-text">-0.1%</span></h3>
           <h3>Dev: <span class="red-text">-0.4%</span></h3>
         </div>
         <div class="trigger-direction">
