@@ -25,11 +25,36 @@
 
 #### If the lowest c_3 is:
 
-- Between **75-80** (`if 75 <= lowest_c_3_val < 80:`): Lot Size = **0.5/$1000**
-- Between **80-85** (`elif 80 <= lowest_c_3_val < 85:`): Lot Size = **0.75/$1000**
-- Between **85-90** (`elif 85 <= lowest_c_3_val < 90:`): Lot Size = **1/$1000**
-- Between **90-95** (`elif 90 <= lowest_c_3_val < 95:`): Lot Size = **1.5/$1000**
-- Above or equal to **95** (`elif lowest_c_3_val >= 95:`): Lot Size = **2/$1000**
+- Between **75-80** (`if 75 <= lowest_c_3_val < 80:`): 
+    - Lot Size = **1 (0.5)/1000€**
+        - USDJPY: 
+            - **1 pip = 6.89€ (0.69%)**
+            - **3 pips = 20.68€ (2.07%)**
+            - **5 pips = 34.46€ (3.45%)**
+- Between **80-85** (`elif 80 <= lowest_c_3_val < 85:`):
+    - Lot Size = **2 (0.75)/1000€**
+        - USDJPY: 
+            - **1 pip = 13.79€ (1.38%)**
+            - **3 pips = 41.36€ (4.14%)**
+            - **5 pips = 68.93€ (6.89%)**
+- Between **85-90** (`elif 85 <= lowest_c_3_val < 90:`):
+    - Lot Size = **3 (1)/1000€**
+        - USDJPY: 
+            - **1 pip = 20.68€ (2.07%)**
+            - **3 pips = 62.03€ (6.2%)**
+            - **5 pips = 103.39€ (10.34%)**
+- Between **90-95** (`elif 90 <= lowest_c_3_val < 95:`):
+    - Lot Size = **3.75 (1.5)/1000€**
+        - USDJPY:
+            - **1 pip = 25.85€ (2.59%)**
+            - **3 pips = 77.54€ (7.75%)**
+            - **5 pips = 129.24€ (12.92%)**
+- Above or equal to **95** (`elif lowest_c_3_val >= 95:`):
+    - Lot Size = **4.5 (2)/1000€**
+      - USDJPY:
+          - **1 pip = 31.02€ (3.1%)**
+          - **3 pips = 93.05€ (9.3%)**
+          - **5 pips = 155.08€ (15.5%)**
 
 #### Color-coded borders
 
@@ -62,8 +87,8 @@
             <h5>c_3: <span>79.5</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
               <h4>-LT2:</h4>
@@ -78,8 +103,8 @@
             <h5>c_3: <span>89.9</span></h5>
             <h5>data pts: <span>16</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
         </div>
         <br>
@@ -89,16 +114,16 @@
             <h5>c_3: <span>79.5</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>89.3</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
             <h4>+UT3:</h4>
@@ -129,8 +154,8 @@
             <h5>c_3: <span>81.2</span></h5>
             <h5>data pts: <span>16</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
         <br>
@@ -140,8 +165,8 @@
             <h5>c_3: <span>81.2</span></h5>
             <h5>data pts: <span>16</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
       </div>
@@ -169,16 +194,16 @@
             <h5>c_3: <span>89.8</span></h5>
             <h5>data pts: <span>34</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>c_3: <span>92.2</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
-            <h5>lots: <span>4.5</span></h5>
+            <h5>lots/$1k: <span>4</span></h5>
+            <h5>lots: <span>12.0</span></h5>
           </div>
         </div>
         <br>
@@ -188,16 +213,16 @@
             <h5>c_3: <span>89.8</span></h5>
             <h5>data pts: <span>34</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>92.2</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
-            <h5>lots: <span>4.5</span></h5>
+            <h5>lots/$1k: <span>4</span></h5>
+            <h5>lots: <span>12.0</span></h5>
           </div>
         </div>
       </div>
@@ -220,16 +245,16 @@
             <h5>c_3: <span>89.3</span></h5>
             <h5>data pts: <span>36</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>c_3: <span>91.8</span></h5>
             <h5>data pts: <span>19</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
-            <h5>lots: <span>4.5</span></h5>
+            <h5>lots/$1k: <span>4</span></h5>
+            <h5>lots: <span>12.0</span></h5>
           </div>
         </div>
         <br>
@@ -239,16 +264,16 @@
             <h5>c_3: <span>89.3</span></h5>
             <h5>data pts: <span>36</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>91.8</span></h5>
             <h5>data pts: <span>19</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
-            <h5>lots: <span>4.5</span></h5>
+            <h5>lots/$1k: <span>4</span></h5>
+            <h5>lots: <span>12.0</span></h5>
           </div>
         </div>
       </div>
@@ -271,16 +296,16 @@
             <h5>c_3: <span>84.0</span></h5>
             <h5>data pts: <span>23</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>c_3: <span>82.7</span></h5>
             <h5>data pts: <span>31</span></h5>
             <h5>dev: <span>-0.4</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
         <br>
@@ -290,16 +315,16 @@
             <h5>c_3: <span>84.0</span></h5>
             <h5>data pts: <span>23</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>82.7</span></h5>
             <h5>data pts: <span>31</span></h5>
             <h5>dev: <span>0.4</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
       </div>
@@ -312,55 +337,80 @@
 ## **Thursday**
 
 <div class="time-group">
-  <div class="card-wrapper">
-    <div class="card to-trade">
-      <h3>U.S. Core Producer Price Index (PPI) MoM</h3>
-      <h3>Thursday 13/4 @12:30 (GMT)</h3>
-      <h3>Thursday 13/4 @08:30 (ET)</h3>
-      <h3>USDJPY</h3>
-      <hr>
-      <div class="triggers">
-        <h4>LTA: <span>Sell</span></h4>
-        <h4>UTA: <span>Buy</span></h4>
-        <br>
-          <div class="lower-triggers">
-          <div class="trigger">
-            <h4>-LT1:</h4>
-            <h5>c_3_ema5: <span>77.8</span></h5>
-            <h5>data pts: <span>15</span></h5>
-            <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+  <div class="card-wrapper with-results">
+    <div class="card traded-won with-results">
+      <div class="left">
+        <h3>U.S. Core Producer Price Index (PPI) MoM</h3>
+        <h3>Thursday 13/4 @12:30 (GMT)</h3>
+        <h3>Thursday 13/4 @08:30 (ET)</h3>
+        <h3>USDJPY</h3>
+        <hr>
+        <div class="triggers">
+          <h4>LTA: <span>Sell</span></h4>
+          <h4>UTA: <span>Buy</span></h4>
+          <br>
+            <div class="lower-triggers">
+            <div class="trigger">
+              <h4>-LT1:</h4>
+              <h5>c_3_ema5: <span>77.8</span></h5>
+              <h5>data pts: <span>15</span></h5>
+              <h5>dev: <span>-0.2</span></h5>
+              <h5>lots/$1k: <span>1</span></h5>
+              <h5>lots: <span>3.0</span></h5>
+            </div>
+            <div class="trigger">
+              <h4>-LT2:</h4>
+              <h5>c_3: <span>81.0</span></h5>
+              <h5>data pts: <span>25</span></h5>
+              <h5>dev: <span>-0.3</span></h5>
+              <h5>lots/$1k: <span>2</span></h5>
+              <h5>lots: <span>6.0</span></h5>
+            </div>
           </div>
-          <div class="trigger">
-            <h4>-LT2:</h4>
-            <h5>c_3: <span>81.0</span></h5>
-            <h5>data pts: <span>25</span></h5>
-            <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+          <br>
+          <div class="upper-triggers">
+            <div class="trigger">
+            <h4>+UT1:</h4>
+              <h5>c_3_ema5: <span>77.8</span></h5>
+              <h5>data pts: <span>15</span></h5>
+              <h5>dev: <span>0.2</span></h5>
+              <h5>lots/$1k: <span>1</span></h5>
+              <h5>lots: <span>3.0</span></h5>
+            </div>
+            <div class="trigger">
+            <h4>+UT2:</h4>
+              <h5>c_3: <span>81.0</span></h5>
+              <h5>data pts: <span>25</span></h5>
+              <h5>dev: <span>0.3</span></h5>
+              <h5>lots/$1k: <span>2</span></h5>
+              <h5>lots: <span>6.0</span></h5>
+            </div>
           </div>
         </div>
-        <br>
-        <div class="upper-triggers">
-          <div class="trigger">
-          <h4>+UT1:</h4>
-            <h5>c_3_ema5: <span>77.8</span></h5>
-            <h5>data pts: <span>15</span></h5>
-            <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
-          </div>
-          <div class="trigger">
-          <h4>+UT2:</h4>
-            <h5>c_3: <span>81.0</span></h5>
-            <h5>data pts: <span>25</span></h5>
-            <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+      </div>
+      <div class="right">
+        <h3>Results</h3>
+        <div class="news-figures">
+          <h3>Forecast: <span>0.3%</span></h3>
+          <h3>Actual: <span class="red-text">-0.1%%</span></h3>
+          <h3>Dev: <span class="red-text">-0.4%</span></h3>
+        </div>
+        <div class="trigger-direction">
+          <h3>Trigger: <span class="red-text">-LT2</span></h3>
+          <h3>Direction: <span class="red-text">Sell</span></h3>
+        </div>
+        <h3>Lots: <span>6.0</span></h3>
+        <h3>PnL: </h3>
+        <div class="pnl">
+          <div class="pips-eur">
+            <h3>Pips: <span class="green-text">10</span></h3>
+            <h3>EUR: <span class="green-text">€384.37</span></span></h3>
+            <h3>Percent: <span class="green-text">+12.81%</span></h3>
           </div>
         </div>
-
+        <h3>Balance: <span class="green-text">€3384.37</span></h3>
+        <h3>Video of trade (Demo Account):</h3>
+<iframe src="https://player.vimeo.com/video/817339517?h=800a403077" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
   </div>  
@@ -381,8 +431,8 @@
             <h5>c_3: <span>79.4</span></h5>
             <h5>data pts: <span>29</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
         <br>
@@ -392,8 +442,8 @@
             <h5>c_3: <span>79.4</span></h5>
             <h5>data pts: <span>29</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
       </div>
@@ -416,8 +466,8 @@
             <h5>c_3: <span>76.4</span></h5>
             <h5>data pts: <span>28</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
         <br>
@@ -427,8 +477,8 @@
             <h5>c_3: <span>76.4</span></h5>
             <h5>data pts: <span>28</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
       </div>
@@ -456,24 +506,24 @@
             <h5>c_3: <span>75.3</span></h5>
             <h5>data pts: <span>27</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>c_3: <span>83.7</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT3:</h4>
             <h5>c_3: <span>83.6</span></h5>
             <h5>data pts: <span>18</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
         <br>
@@ -483,24 +533,24 @@
             <h5>c_3: <span>75.3</span></h5>
             <h5>data pts: <span>27</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>83.7</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT3:</h4>
             <h5>c_3: <span>83.6</span></h5>
             <h5>data pts: <span>18</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
       </div>
@@ -523,16 +573,16 @@
             <h5>c_3: <span>84.6</span></h5>
             <h5>data pts: <span>22</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>c_3: <span>83.9</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
         <br>
@@ -542,16 +592,16 @@
             <h5>c_3: <span>84.6</span></h5>
             <h5>data pts: <span>22</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>83.9</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
       </div>
@@ -574,24 +624,24 @@
             <h5>c_3: <span>80.9</span></h5>
             <h5>data pts: <span>26</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>c_3: <span>85.2</span></h5>
             <h5>data pts: <span>21</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT3:</h4>
             <h5>c_3: <span>79.8</span></h5>
             <h5>data pts: <span>16</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
         <br>
@@ -601,24 +651,24 @@
             <h5>c_3: <span>80.9</span></h5>
             <h5>data pts: <span>26</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>85.2</span></h5>
             <h5>data pts: <span>21</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT3:</h4>
             <h5>c_3: <span>79.8</span></h5>
             <h5>data pts: <span>16</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
       </div>
@@ -641,24 +691,24 @@
             <h5>c_3: <span>76.7</span></h5>
             <h5>data pts: <span>26</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>c_3: <span>90.2</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
-            <h5>lots: <span>4.5</span></h5>
+            <h5>lots/$1k: <span>4</span></h5>
+            <h5>lots: <span>12.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT3:</h4>
             <h5>c_3: <span>76.4</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
         <br>
@@ -668,24 +718,24 @@
             <h5>c_3: <span>76.7</span></h5>
             <h5>data pts: <span>26</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>90.2</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
-            <h5>lots: <span>4.5</span></h5>
+            <h5>lots/$1k: <span>4</span></h5>
+            <h5>lots: <span>12.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT3:</h4>
             <h5>c_3: <span>76.4</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
       </div>
@@ -710,24 +760,24 @@
             <h5>c_3: <span>89.2</span></h5>
             <h5>data pts: <span>16</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>c_3: <span>75.2</span></h5>
             <h5>data pts: <span>20</span></h5>
             <h5>dev: <span>-0.5</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT3:</h4>
             <h5>c_3: <span>78.4</span></h5>
             <h5>data pts: <span>29</span></h5>
             <h5>dev: <span>-1.0</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
         <br>
@@ -737,24 +787,24 @@
             <h5>c_3: <span>89.2</span></h5>
             <h5>data pts: <span>16</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
-            <h5>lots: <span>3.0</span></h5>
+            <h5>lots/$1k: <span>3</span></h5>
+            <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>75.2</span></h5>
             <h5>data pts: <span>20</span></h5>
             <h5>dev: <span>0.5</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT3:</h4>
             <h5>c_3: <span>78.4</span></h5>
             <h5>data pts: <span>29</span></h5>
             <h5>dev: <span>1.0</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
       </div>
@@ -777,24 +827,24 @@
             <h5>c_3: <span>96.2</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>2</span></h5>
-            <h5>lots: <span>6.0</span></h5>
+            <h5>lots/$1k: <span>6</span></h5>
+            <h5>lots: <span>18.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>c_3: <span>77.4</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>-0.5</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT3:</h4>
             <h5>c_3: <span>83.5</span></h5>
             <h5>data pts: <span>22</span></h5>
             <h5>dev: <span>-0.9</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>2.25</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
         <br>
@@ -804,24 +854,24 @@
             <h5>c_3: <span>96.2</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>2</span></h5>
-            <h5>lots: <span>6.0</span></h5>
+            <h5>lots/$1k: <span>6</span></h5>
+            <h5>lots: <span>18.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>c_3: <span>77.4</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>0.5</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
-            <h5>lots: <span>1.5</span></h5>
+            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT3:</h4>
             <h5>c_3: <span>83.5</span></h5>
             <h5>data pts: <span>22</span></h5>
             <h5>dev: <span>0.9</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
-            <h5>lots: <span>0.75</span></h5>
+            <h5>lots/$1k: <span>2</span></h5>
+            <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
       </div>

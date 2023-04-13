@@ -12,18 +12,58 @@ from generate_report import render_event_html, generate_weekly_schedule
 import numpy
 
 
-def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_balance, dev_direction):
+def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_balance, dev_direction, symbol):
 
     if 75 <= lowest_c_3_val < 80:
-        lots_per_1000 = 0.5
+        match symbol:
+            case 'USDJPY':
+                lots_per_1000 = 1
+            case 'USDCAD':
+                lots_per_1000 = 1.01
+            case 'USDSEK':
+                lots_per_1000 = 0.26
+            case 'USDNOK':
+                lots_per_1000 = 0.26
     elif 80 <= lowest_c_3_val < 85:
-        lots_per_1000 = 0.75
+        match symbol:
+            case 'USDJPY':
+                lots_per_1000 = 2
+            case 'USDCAD':
+                lots_per_1000 = 2.02
+            case 'USDSEK':
+                lots_per_1000 = 0.52
+            case 'USDNOK':
+                lots_per_1000 = 0.52
     elif 85 <= lowest_c_3_val < 90:
-        lots_per_1000 = 1
+        match symbol:
+            case 'USDJPY':
+                lots_per_1000 = 3
+            case 'USDCAD':
+                lots_per_1000 = 3.03
+            case 'USDSEK':
+                lots_per_1000 = 0.78
+            case 'USDNOK':
+                lots_per_1000 = 0.78
     elif 90 <= lowest_c_3_val < 95:
-        lots_per_1000 = 1.5
+        match symbol:
+            case 'USDJPY':
+                lots_per_1000 = 3.75
+            case 'USDCAD':
+                lots_per_1000 = 3.78
+            case 'USDSEK':
+                lots_per_1000 = 0.97
+            case 'USDNOK':
+                lots_per_1000 = 0.97
     elif lowest_c_3_val >= 95:
-        lots_per_1000 = 2
+        match symbol:
+            case 'USDJPY':
+                lots_per_1000 = 4.5
+            case 'USDCAD':
+                lots_per_1000 = 4.54
+            case 'USDSEK':
+                lots_per_1000 = 1.16
+            case 'USDNOK':
+                lots_per_1000 = 1.16
 
     lots = (account_balance / 1000) * lots_per_1000
 
@@ -41,7 +81,7 @@ def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_
     return trigger_vars
 
 
-def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
+def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=3000):
     news_data = read_news_data(haawks_id_str)  # read_news_data(haawks_id_str)
     # import_ticks_for_indicator(haawks_id_str, symbol)
     triggers = read_triggers(haawks_id_str)
@@ -121,13 +161,15 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
                                                                        lowest_c_3_val=triggers_c_3_values[0]['lowest_c_3_val'],
                                                                                   dev=triggers[triggers_c_3_keys[0]],
                                                                       account_balance=account_balance,
-                                                                        dev_direction="positive")
+                                                                        dev_direction="positive",
+                                                                               symbol=symbol)
                 trigger_vars["lower_triggers"][f"lt1"] = get_trigger_vars(data_points=triggers_c_3_values[0]['data_points'],
                                                                       lowest_c_3_type=triggers_c_3_values[0]['lowest_c_3_type'],
                                                                        lowest_c_3_val=triggers_c_3_values[0]['lowest_c_3_val'],
                                                                                   dev=triggers[triggers_c_3_keys[0]],
                                                                       account_balance=account_balance,
-                                                                        dev_direction="negative")
+                                                                        dev_direction="negative",
+                                                                               symbol=symbol)
             else:
                 trigger_vars = "lowest_c_3_val too low"
 
@@ -144,13 +186,15 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=1000):
                                                                                      lowest_c_3_val=trigger['lowest_c_3_val'],
                                                                                                 dev=triggers[triggers_c_3_keys[index]],
                                                                                     account_balance=account_balance,
-                                                                                      dev_direction="positive")
+                                                                                      dev_direction="positive",
+                                                                                             symbol=symbol)
                 trigger_vars["lower_triggers"][f"lt{over_75_count}"] = get_trigger_vars(data_points=trigger['data_points'],
                                                                                     lowest_c_3_type=trigger['lowest_c_3_type'],
                                                                                      lowest_c_3_val=trigger['lowest_c_3_val'],
                                                                                                 dev=triggers[triggers_c_3_keys[index]],
                                                                                     account_balance=account_balance,
-                                                                                      dev_direction="negative")
+                                                                                      dev_direction="negative",
+                                                                                             symbol=symbol)
 
                 # Add the c_3_ema and c_3_ema_val to the trigger_vars dictionary for rendering
                 trigger_vars["upper_triggers"][f"ut{over_75_count}"]["c_3_ema"] = trigger['lowest_c_3_type']
@@ -236,4 +280,4 @@ def create_schedule(next_week=False, custom_date=False, update_news_and_tick_dat
     generate_weekly_schedule(template_vars)
 
 
-create_schedule(custom_date=True, update_news_and_tick_data=False)
+create_schedule(custom_date=True, update_news_and_tick_data=True)
