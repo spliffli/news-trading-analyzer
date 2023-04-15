@@ -180,6 +180,12 @@ hr {
   border-color: red;
 }
 
+.no-trade {
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+}
+
 .white-text {
   color: white;
 }
@@ -198,4 +204,8 @@ hr {
 
 .gray-text {
   color: #ccc
+}
+
+.black-text {
+  color: black;
 }
