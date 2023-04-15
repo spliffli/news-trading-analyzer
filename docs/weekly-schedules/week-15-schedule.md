@@ -4,7 +4,7 @@
 
 ### This was generated on **31/03/2023** and has **14** events.   
 
-### Out of those events, **3** were actually traded:
+### Out of those events, **3** were actually traded (on a demo account):
 
 - [x] **U.S. Core Consumer Price Index (CPI) MoM** ***(Wed 12/04/23 08:30 ET)***
     - <span class="green-text">+10 pips</span> × 6 lots = <span class="green-text">€384.37 (+12.81%)</span>
@@ -13,7 +13,7 @@
 - [x] **U.S. Retail Sales MoM** ***(Fri 14/04/23 08:30 ET)***
     - <span class="green-text">+7.4 pips</span> × 1 lot = <span class="green-text">€135.10 (+3.91%)</span>
 
-#### Start Balance: €3000
+#### Start Balance: €3000 
 #### End Balance: €3592.40
 ### Total Profit: <span class="green-text">€592.40 (+19.75%)</span>
 
