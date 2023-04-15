@@ -8,6 +8,19 @@
 - [ ] **Canada Consumer Price Index (CPI) MoM** ***(Tue 18/04/23 08:30 ET)***
 - [ ] **Canada Core Retail Sales MoM** ***(Fri 21/04/23 08:30 ET)***
 
+--------
+
+#### For events which are at the same time, it's only possible to trade one of them, so in those cases the ones with the highest c_3 scores were chosen which works out to 5 events to trade.
+
+#### Color-coded borders
+
+- <span><strong class="white-text">White: </strong>Events happening at the same time are grouped together so that one can be chosen.</span>
+- <span><strong class="blue-text">Blue: </strong>Events that will be traded.</span>
+- <span><strong class="green-text">Green: </strong>Events that were traded and made profit</span>
+- <span><strong class="red-text">Red: </strong>Events that were traded and lost money</span>
+- <span><strong class="gray-text">Gray: </strong>Events which are not traded e.g. when there's another event at the same time which is being traded</span>
+- <span><strong class="black-text">Black: </strong>Events which were set up to be traded but there was no trade, usually because the Forecast-Actual deviation wasn't large enough to activate any triggers</span>
+
 
 --------
 

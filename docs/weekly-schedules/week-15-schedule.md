@@ -21,6 +21,8 @@
 
 This week's trades were all on a demo account just to test that it works and also because I changed my mind about which broker to use at after depositing, so I had to wait to withdraw from BlackBull Markets and deposit to FP Markets.
 
+--------
+
 #### For events which are at the same time, it's only possible to trade one of them, so in those cases the ones with the highest c_3 scores were chosen which works out to 5 events to trade.
 
 #### Color-coded borders
@@ -30,7 +32,7 @@ This week's trades were all on a demo account just to test that it works and als
 - <span><strong class="green-text">Green: </strong>Events that were traded and made profit</span>
 - <span><strong class="red-text">Red: </strong>Events that were traded and lost money</span>
 - <span><strong class="gray-text">Gray: </strong>Events which are not traded e.g. when there's another event at the same time which is being traded</span>
-- <span><strong class="black-text">Black: </strong>Events which were set up to be traded but there was no trade, usually because the Forecast-Actual deviation wasn't high enough to activate any triggers</span>
+- <span><strong class="black-text">Black: </strong>Events which were set up to be traded but there was no trade, usually because the Forecast-Actual deviation wasn't large enough to activate any triggers</span>
 
 
 --------
