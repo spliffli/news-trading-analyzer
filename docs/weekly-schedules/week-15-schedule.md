@@ -6,9 +6,9 @@
 
 ### Out of those events, **3** were actually traded (on a demo account):
 
-- [x] **U.S. Core Consumer Price Index (CPI) MoM** ***(Wed 12/04/23 08:30 ET)***
+- [x] **U.S. Core Producer Price Index (PPI) MoM** ***(Thu 13/04/23 08:30 ET)***
     - <span class="green-text">+10 pips</span> × 6 lots = <span class="green-text">€384.37 (+12.81%)</span>
-- [x] **Sweden Consumer Price Index (CPI) MoM** ***(Thu 14/04/23 02:00 ET)***
+- [x] **Sweden Consumer Price Index (CPI) MoM** ***(Fri 14/04/23 02:00 ET)***
     - <span class="green-text">+89 pips</span> × 1 lot = <span class="green-text">€72.93 (+2.43%)</span>
 - [x] **U.S. Retail Sales MoM** ***(Fri 14/04/23 08:30 ET)***
     - <span class="green-text">+7.4 pips</span> × 1 lot = <span class="green-text">€135.10 (+3.91%)</span>
