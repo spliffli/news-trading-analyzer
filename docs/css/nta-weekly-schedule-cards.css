@@ -165,7 +165,7 @@ hr {
 .not-trading {
   border-style: solid;
   border-width: 3px;
-  border-color: black;
+  border-color: #ccc;
 }
 
 .traded-won {
@@ -208,4 +208,23 @@ hr {
 
 .black-text {
   color: black;
+}
+
+input[type="number"] {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 6px 12px;
+  margin-left: 5px;
+  width: 100px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
