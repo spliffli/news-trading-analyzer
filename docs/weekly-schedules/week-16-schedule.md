@@ -12,7 +12,7 @@
 
 --------
 
-#### For events which are at the same time, it's only possible to trade one of them, so in those cases the ones with the highest c_3 scores were chosen which works out to 5 events to trade.
+#### For events which are at the same time, it's only possible to trade one of them, so in those cases the ones with the highest c_3 scores were chosen.
 
 --------
 
