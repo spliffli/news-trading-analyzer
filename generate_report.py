@@ -77,7 +77,7 @@ def render_trigger_html(trigger):
     output_html = (f"            <h5>{trigger['lowest_c_3_type']}: <span>{trigger['lowest_c_3_val']}</span></h5>\n"
                    + f"            <h5>data pts: <span>{trigger['data_points']}</span></h5>\n"
                    + f"            <h5>dev: <span>{trigger['dev']}</span></h5>\n"
-                   + f"            <h5>lots/$1k: <span>{trigger['lots_per_1000']}</span></h5>\n"
+                   + f"            <h5>lots/€1k: <span>{trigger['lots_per_1000']}</span></h5>\n"
                    + f"            <h5>lots: <span>{trigger['lots']}</span></h5>\n")
     return output_html
 
@@ -305,13 +305,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
         </div>
@@ -320,13 +320,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
         </div>
@@ -348,13 +348,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
         </div>
@@ -363,13 +363,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
         </div>
@@ -391,19 +391,19 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.15</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>1.5</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT3:</h4>
             <h5>dev: <span>-0.25</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>1.5</span></h5>
           </div>
         </div>
@@ -412,19 +412,19 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.15</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>1.5</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT3:</h4>
             <h5>dev: <span>0.25</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>1.5</span></h5>
           </div>
         </div>
@@ -446,19 +446,19 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT3:</h4>
             <h5>dev: <span>-0.4</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -467,19 +467,19 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT3:</h4>
             <h5>dev: <span>0.4</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -501,7 +501,7 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.7</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -510,7 +510,7 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.7</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -535,13 +535,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -550,13 +550,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -578,13 +578,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -593,13 +593,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -621,13 +621,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -636,13 +636,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -664,7 +664,7 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
         </div>
@@ -673,7 +673,7 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>1.0</span></h5>
           </div>
         </div>
@@ -695,13 +695,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -710,13 +710,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -738,13 +738,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -753,13 +753,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -781,13 +781,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -796,13 +796,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -824,13 +824,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -839,13 +839,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -867,13 +867,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>1.5</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-0.9</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -882,13 +882,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>1.5</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>0.9</span></h5>
-            <h5>lots/$1k: <span>0.75</span></h5>
+            <h5>lots/€1k: <span>0.75</span></h5>
             <h5>lots: <span>0.75</span></h5>
           </div>
         </div>
@@ -913,13 +913,13 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-3.0</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
             <h5>dev: <span>-6.0</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>1.5</span></h5>
           </div>
         </div>
@@ -928,13 +928,13 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>3.0</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
             <h5>dev: <span>6.0</span></h5>
-            <h5>lots/$1k: <span>1.5</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>1.5</span></h5>
           </div>
         </div>
@@ -978,7 +978,7 @@ output_html = """
           <div class="trigger">
             <h4>-LT1:</h4>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>
@@ -987,7 +987,7 @@ output_html = """
           <div class="trigger">
           <h4>+UT1:</h4>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/$1k: <span>0.5</span></h5>
+            <h5>lots/€1k: <span>0.5</span></h5>
             <h5>lots: <span>0.5</span></h5>
           </div>
         </div>

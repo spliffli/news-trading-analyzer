@@ -262,7 +262,7 @@ def create_schedule(next_week=False, custom_date=False, update_news_and_tick_dat
         else:
             event_html = render_event_html(title, datetime_str, datetime_et_str, symbol, triggers_vars)
 
-        weekdays_html[day] += event_html
+        weekdays_html[day] += "\n" + event_html
 
     template_vars = {
         "year": datetime.datetime.now().strftime("%Y"),

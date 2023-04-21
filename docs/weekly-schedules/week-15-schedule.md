@@ -38,12 +38,12 @@ This week's trades were all on a demo account just to test that it works and als
 --------
 
 <label>Account Balance (For calculating lot sizes): €</label>
-<input type="number" id="account-balance" value="3000">
+<input type="number" id="account-balance" value="1700">
 
 --------
 
 <label>
-  <input type="checkbox" id="exclude-not-traded">
+  <input type="checkbox" id="exclude-not-traded" checked="checked">
   Hide events which were not selected to trade
 </label>
 

@@ -1,14 +1,14 @@
 
 # 2023 Week  Schedule
 
-### This was generated on 2023/04/12 and has events from **2023/04/25** to **2023/04/25**
+### This was generated on **2023/04/12** and has 1 event
 
 --------
 
-## Friday
+## **Friday**
 
 <div class="card-wrapper">
-  <div class="card">
+  <div class="card to-trade">
     <h3>Canada Gross Domestic Product (GDP) MoM</h3>
     <h3>Friday 28/4 @12:30 (GMT)</h3>
     <h3>Friday 28/4 @08:30 (ET)</h3>
