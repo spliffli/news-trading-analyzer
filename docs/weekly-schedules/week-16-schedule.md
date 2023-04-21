@@ -1,11 +1,10 @@
-
 # **2023 Week 16 Schedule**
 
-<img src="/images/week-current-300-120px.png" alt="This week is CURRENT">
+<img src="/images/week-past-300-120px.png" alt="This week is CURRENT">
 
 ### This was generated on **11/04/2023** and has **5** events
 
-### Out of those events, **2** are actually going to be traded (on a live account):
+### Out of those events, **2** were set up to be traded (on a live account) but neither resulted in a trade:
 
 - [ ] **Canada Consumer Price Index (CPI) MoM** ***(Tue 18/04/23 08:30 ET)***
 - [ ] **Canada Core Retail Sales MoM** ***(Fri 21/04/23 08:30 ET)***

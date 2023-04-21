@@ -1,5 +1,6 @@
+# **2023 Week  Schedule**
 
-# 2023 Week  Schedule
+<img src="/images/week-past-300-120px.png" alt="This week is PAST">
 
 ### This was generated on **2023/04/12** and has 1 event
 
