@@ -1,6 +1,6 @@
 # **2023 Week 17 Schedule**
 
-<img src="/images/week-upcoming-300-120px.png" alt="This week is UPCOMING">
+<img src="/images/week-current-300-120px.png" alt="This week is CURRENT">
 
 ### This was generated on **12/04/2023** and has **1** event:
 
