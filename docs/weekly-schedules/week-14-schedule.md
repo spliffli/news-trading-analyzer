@@ -3,7 +3,7 @@
 
 <img src="/images/week-past-300-120px.png" alt="This week is PAST">
 
-### This was generated on **2023/03/31** and has **4** events from **2023/04/06** to **2023/04/06**
+### This was generated on **31/03/2023** and has **4** events from **2023/04/06** to **2023/04/06**
 
 #### For events which are at the same time, it's only possible to trade one of them, so in those cases the one with the highest c_3 score will be chosen
 

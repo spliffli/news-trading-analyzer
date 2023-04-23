@@ -17,53 +17,53 @@ def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_
     if 75 <= lowest_c_3_val < 80:
         match symbol:
             case 'USDJPY':
-                lots_per_1000 = 1
+                lots_per_1000 = 1.5
             case 'USDCAD':
-                lots_per_1000 = 1.01
+                lots_per_1000 = 1.53
             case 'USDSEK':
-                lots_per_1000 = 0.26
+                lots_per_1000 = 0.77
             case 'USDNOK':
-                lots_per_1000 = 0.26
+                lots_per_1000 = 0.79
     elif 80 <= lowest_c_3_val < 85:
         match symbol:
             case 'USDJPY':
-                lots_per_1000 = 2
+                lots_per_1000 = 2.5
             case 'USDCAD':
-                lots_per_1000 = 2.02
+                lots_per_1000 = 2.55
             case 'USDSEK':
-                lots_per_1000 = 0.52
+                lots_per_1000 = 1.28
             case 'USDNOK':
-                lots_per_1000 = 0.52
+                lots_per_1000 = 1.31
     elif 85 <= lowest_c_3_val < 90:
         match symbol:
             case 'USDJPY':
-                lots_per_1000 = 3
+                lots_per_1000 = 3.5
             case 'USDCAD':
-                lots_per_1000 = 3.03
+                lots_per_1000 = 3.57
             case 'USDSEK':
-                lots_per_1000 = 0.78
+                lots_per_1000 = 1.79
             case 'USDNOK':
-                lots_per_1000 = 0.78
+                lots_per_1000 = 1.83
     elif 90 <= lowest_c_3_val < 95:
         match symbol:
             case 'USDJPY':
-                lots_per_1000 = 3.75
+                lots_per_1000 = 4
             case 'USDCAD':
-                lots_per_1000 = 3.78
+                lots_per_1000 = 4.08
             case 'USDSEK':
-                lots_per_1000 = 0.97
+                lots_per_1000 = 2.04
             case 'USDNOK':
-                lots_per_1000 = 0.97
+                lots_per_1000 = 2.08
     elif lowest_c_3_val >= 95:
         match symbol:
             case 'USDJPY':
                 lots_per_1000 = 4.5
             case 'USDCAD':
-                lots_per_1000 = 4.54
+                lots_per_1000 = 4.59
             case 'USDSEK':
-                lots_per_1000 = 1.16
+                lots_per_1000 = 2.3
             case 'USDNOK':
-                lots_per_1000 = 1.16
+                lots_per_1000 = 2.35
 
     lots = (account_balance / 1000) * lots_per_1000
 

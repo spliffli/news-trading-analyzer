@@ -1,12 +1,42 @@
 
-# 2023 Week  Schedule
+# **2023 Week 18 Schedule**
 
-### This was generated on 18/04/2023 and has 1 event on Friday 5th May
+<img src="/images/week-upcoming-300-120px.png" alt="This week is UPCOMING">
+
+### This was generated on **18/04/2023** and has **1** event:
+
+- [ ] **U.S. Nonfarm Payrolls** ***(Fri 05/05/23 08:30 ET)***
 
 --------
 
+#### For events which are at the same time, it's only possible to trade one of them, so in those cases the ones with the highest c_3 scores were chosen.
 
-## Friday
+--------
+
+#### Color-coded borders
+
+- <span><strong class="white-text">White: </strong>Events happening at the same time are grouped together so that one can be chosen.</span>
+- <span><strong class="blue-text">Blue: </strong>Events that will be traded.</span>
+- <span><strong class="green-text">Green: </strong>Events that were traded and made profit</span>
+- <span><strong class="red-text">Red: </strong>Events that were traded and lost money</span>
+- <span><strong class="gray-text">Gray: </strong>Events which are not traded e.g. when there's another event at the same time which is being traded</span>
+- <span><strong class="black-text">Black: </strong>Events which were set up to be traded but there was no trade, usually because the Forecast-Actual deviation wasn't large enough to activate any triggers</span>
+
+--------
+
+<label>Account Balance (For calculating lot sizes): €</label>
+<input type="number" id="account-balance" value="1700">
+
+--------
+
+<label>
+  <input type="checkbox" id="exclude-not-traded" checked="checked">
+  Hide events which were not selected to trade
+</label>
+
+
+
+## **Friday**
 
 <div class="card-wrapper">
   <div class="card to-trade">

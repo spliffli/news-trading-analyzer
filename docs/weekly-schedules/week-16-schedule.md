@@ -204,11 +204,103 @@
 </div>
 
 ## **Friday**
-
-<div class="card-wrapper with-results">
-  <div class="card no-trade with-results">
-    <div class="left">
-      <h3>Canada Core Retail Sales MoM</h3>
+<div class="time-group">
+  <div class="card-wrapper with-results">
+    <div class="card no-trade with-results">
+      <div class="left">
+        <h3>Canada Core Retail Sales MoM</h3>
+        <h3>Friday 21/4 @12:30 (GMT)</h3>
+        <h3>Friday 21/4 @08:30 (ET)</h3>
+        <h3>USDCAD</h3>
+        <hr>
+        <div class="triggers">
+          <h4>LTA: <span>Buy</span></h4>
+          <h4>UTA: <span>Sell</span></h4>
+          <br>
+            <div class="lower-triggers">
+            <div class="trigger">
+              <h4>-LT1:</h4>
+              <h5>c_3: <span>76.4</span></h5>
+              <h5>data pts: <span>22</span></h5>
+              <h5>dev: <span>-0.3</span></h5>
+              <h5>lots/€1k: <span>1</span></h5>
+              <h5>lots: <span>3.0</span></h5>
+            </div>
+            <div class="trigger">
+              <h4>-LT2:</h4>
+              <h5>c_3: <span>93.1</span></h5>
+              <h5>data pts: <span>17</span></h5>
+              <h5>dev: <span>-0.6</span></h5>
+              <h5>lots/€1k: <span>3.75</span></h5>
+              <h5>lots: <span>11.25</span></h5>
+            </div>
+            <div class="trigger">
+              <h4>-LT3:</h4>
+              <h5>c_3: <span>76.7</span></h5>
+              <h5>data pts: <span>27</span></h5>
+              <h5>dev: <span>-1.0</span></h5>
+              <h5>lots/€1k: <span>1</span></h5>
+              <h5>lots: <span>3.0</span></h5>
+            </div>
+          </div>
+          <br>
+          <div class="upper-triggers">
+            <div class="trigger">
+            <h4>+UT1:</h4>
+              <h5>c_3: <span>76.4</span></h5>
+              <h5>data pts: <span>22</span></h5>
+              <h5>dev: <span>0.3</span></h5>
+              <h5>lots/€1k: <span>1</span></h5>
+              <h5>lots: <span>3.0</span></h5>
+            </div>
+            <div class="trigger">
+            <h4>+UT2:</h4>
+              <h5>c_3: <span>93.1</span></h5>
+              <h5>data pts: <span>17</span></h5>
+              <h5>dev: <span>0.6</span></h5>
+              <h5>lots/€1k: <span>3.75</span></h5>
+              <h5>lots: <span>11.25</span></h5>
+            </div>
+            <div class="trigger">
+            <h4>+UT3:</h4>
+              <h5>c_3: <span>76.7</span></h5>
+              <h5>data pts: <span>27</span></h5>
+              <h5>dev: <span>1.0</span></h5>
+              <h5>lots/€1k: <span>1</span></h5>
+              <h5>lots: <span>3.0</span></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <h3>Results</h3>
+        <div class="news-figures">
+          <h3>Forecast: <span>-0.1%</span></h3>
+          <h3>Actual: <span class="red-text">-0.7%</span></h3>
+          <h3>Dev: <span class="red-text">-0.6%</span></h3>
+        </div>
+        <div class="trigger-direction">
+          <h3>Trigger: <span class="red-text">-LT2</span></h3>
+          <h3>Direction: <span class="green-text">Buy</span></h3>
+        </div>
+        <h3>Lots: <span>0.0 (would have been 6.4)</span></h3>
+        <h3>PnL: </h3>
+        <div class="pnl">
+          <div class="pips-eur">
+            <h3>Pips: <span class="dark-gray-text">0</span></h3>
+            <h3>EUR: <span class="dark-gray-text">€0.0</span></span></h3>
+            <h3>Percent: <span class="dark-gray-text">+0.0%</span></h3>
+          </div>
+        </div>
+        <h3>Balance: <span class="dark-gray-text">€1694.00</span></h3>
+        <h3><span class="dark-gray-text">No trade</span></h3>
+        <p><strong>Note: </strong>This should have opened a trade but the results didn't come from haawks to the news trading program for over a minute before I decided to de-activate trading. Hopefully this doesn't happen too often. It would be good to automatically de-activate trading after a specified time e.g. 10 or 15 seconds </p>
+      </div>
+    </div>
+  </div>
+  <div class="card-wrapper">
+    <div class="card not-trading">
+      <h3>Canada Retail Sales MoM</h3>
       <h3>Friday 21/4 @12:30 (GMT)</h3>
       <h3>Friday 21/4 @08:30 (ET)</h3>
       <h3>USDCAD</h3>
@@ -220,25 +312,17 @@
           <div class="lower-triggers">
           <div class="trigger">
             <h4>-LT1:</h4>
-            <h5>c_3: <span>76.4</span></h5>
-            <h5>data pts: <span>22</span></h5>
-            <h5>dev: <span>-0.3</span></h5>
+            <h5>c_3: <span>75.1</span></h5>
+            <h5>data pts: <span>19</span></h5>
+            <h5>dev: <span>-0.6</span></h5>
             <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
             <h4>-LT2:</h4>
-            <h5>c_3: <span>93.1</span></h5>
-            <h5>data pts: <span>17</span></h5>
-            <h5>dev: <span>-0.6</span></h5>
-            <h5>lots/€1k: <span>3.75</span></h5>
-            <h5>lots: <span>11.25</span></h5>
-          </div>
-          <div class="trigger">
-            <h4>-LT3:</h4>
-            <h5>c_3: <span>76.7</span></h5>
-            <h5>data pts: <span>27</span></h5>
-            <h5>dev: <span>-1.0</span></h5>
+            <h5>c_3: <span>78.0</span></h5>
+            <h5>data pts: <span>19</span></h5>
+            <h5>dev: <span>-0.9</span></h5>
             <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
@@ -247,103 +331,20 @@
         <div class="upper-triggers">
           <div class="trigger">
           <h4>+UT1:</h4>
-            <h5>c_3: <span>76.4</span></h5>
-            <h5>data pts: <span>22</span></h5>
-            <h5>dev: <span>0.3</span></h5>
+            <h5>c_3: <span>75.1</span></h5>
+            <h5>data pts: <span>19</span></h5>
+            <h5>dev: <span>0.6</span></h5>
             <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
           <h4>+UT2:</h4>
-            <h5>c_3: <span>93.1</span></h5>
-            <h5>data pts: <span>17</span></h5>
-            <h5>dev: <span>0.6</span></h5>
-            <h5>lots/€1k: <span>3.75</span></h5>
-            <h5>lots: <span>11.25</span></h5>
-          </div>
-          <div class="trigger">
-          <h4>+UT3:</h4>
-            <h5>c_3: <span>76.7</span></h5>
-            <h5>data pts: <span>27</span></h5>
-            <h5>dev: <span>1.0</span></h5>
+            <h5>c_3: <span>78.0</span></h5>
+            <h5>data pts: <span>19</span></h5>
+            <h5>dev: <span>0.9</span></h5>
             <h5>lots/€1k: <span>1</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="right">
-      <h3>Results</h3>
-      <div class="news-figures">
-        <h3>Forecast: <span>-0.1%</span></h3>
-        <h3>Actual: <span class="red-text">-0.7%</span></h3>
-        <h3>Dev: <span class="red-text">-0.6%</span></h3>
-      </div>
-      <div class="trigger-direction">
-        <h3>Trigger: <span class="red-text">-LT2</span></h3>
-        <h3>Direction: <span class="green-text">Buy</span></h3>
-      </div>
-      <h3>Lots: <span>0.0 (would have been 6.4)</span></h3>
-      <h3>PnL: </h3>
-      <div class="pnl">
-        <div class="pips-eur">
-          <h3>Pips: <span class="dark-gray-text">0</span></h3>
-          <h3>EUR: <span class="dark-gray-text">€0.0</span></span></h3>
-          <h3>Percent: <span class="dark-gray-text">+0.0%</span></h3>
-        </div>
-      </div>
-      <h3>Balance: <span class="dark-gray-text">€1694.00</span></h3>
-      <h3><span class="dark-gray-text">No trade</span></h3>
-      <p><strong>Note: </strong>This should have opened a trade but the results didn't come from haawks to the news trading program for over a minute before I decided to de-activate trading. Hopefully this doesn't happen too often. It would be good to automatically de-activate trading after a specified time e.g. 10 or 15 seconds </p>
-    </div>
-  </div>
-</div>
-<div class="card-wrapper">
-  <div class="card not-trading">
-    <h3>Canada Retail Sales MoM</h3>
-    <h3>Friday 21/4 @12:30 (GMT)</h3>
-    <h3>Friday 21/4 @08:30 (ET)</h3>
-    <h3>USDCAD</h3>
-    <hr>
-    <div class="triggers">
-      <h4>LTA: <span>Buy</span></h4>
-      <h4>UTA: <span>Sell</span></h4>
-      <br>
-        <div class="lower-triggers">
-        <div class="trigger">
-          <h4>-LT1:</h4>
-          <h5>c_3: <span>75.1</span></h5>
-          <h5>data pts: <span>19</span></h5>
-          <h5>dev: <span>-0.6</span></h5>
-          <h5>lots/€1k: <span>1</span></h5>
-          <h5>lots: <span>3.0</span></h5>
-        </div>
-        <div class="trigger">
-          <h4>-LT2:</h4>
-          <h5>c_3: <span>78.0</span></h5>
-          <h5>data pts: <span>19</span></h5>
-          <h5>dev: <span>-0.9</span></h5>
-          <h5>lots/€1k: <span>1</span></h5>
-          <h5>lots: <span>3.0</span></h5>
-        </div>
-      </div>
-      <br>
-      <div class="upper-triggers">
-        <div class="trigger">
-        <h4>+UT1:</h4>
-          <h5>c_3: <span>75.1</span></h5>
-          <h5>data pts: <span>19</span></h5>
-          <h5>dev: <span>0.6</span></h5>
-          <h5>lots/€1k: <span>1</span></h5>
-          <h5>lots: <span>3.0</span></h5>
-        </div>
-        <div class="trigger">
-        <h4>+UT2:</h4>
-          <h5>c_3: <span>78.0</span></h5>
-          <h5>data pts: <span>19</span></h5>
-          <h5>dev: <span>0.9</span></h5>
-          <h5>lots/€1k: <span>1</span></h5>
-          <h5>lots: <span>3.0</span></h5>
         </div>
       </div>
     </div>
