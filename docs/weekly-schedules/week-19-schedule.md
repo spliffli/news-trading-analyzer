@@ -50,7 +50,7 @@
             <h5>c_3: <span>79.5</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/€1k: <span>0.26</span></h5>
+            <h5>lots/€1k: <span>0.79</span></h5>
             <h5>lots: <span>0.78</span></h5>
           </div>
           <div class="trigger">
@@ -58,7 +58,7 @@
             <h5>c_3: <span>89.3</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/€1k: <span>0.78</span></h5>
+            <h5>lots/€1k: <span>1.83</span></h5>
             <h5>lots: <span>2.34</span></h5>
           </div>
           <div class="trigger">
@@ -66,7 +66,7 @@
             <h5>c_3: <span>90.2</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/€1k: <span>0.97</span></h5>
+            <h5>lots/€1k: <span>2.08</span></h5>
             <h5>lots: <span>2.91</span></h5>
           </div>
         </div>
@@ -77,7 +77,7 @@
             <h5>c_3: <span>79.5</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/€1k: <span>0.26</span></h5>
+            <h5>lots/€1k: <span>0.79</span></h5>
             <h5>lots: <span>0.78</span></h5>
           </div>
           <div class="trigger">
@@ -85,7 +85,7 @@
             <h5>c_3: <span>89.3</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/€1k: <span>0.78</span></h5>
+            <h5>lots/€1k: <span>1.83</span></h5>
             <h5>lots: <span>2.34</span></h5>
           </div>
           <div class="trigger">
@@ -93,7 +93,7 @@
             <h5>c_3: <span>90.2</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/€1k: <span>0.97</span></h5>
+            <h5>lots/€1k: <span>2.08</span></h5>
             <h5>lots: <span>2.91</span></h5>
           </div>
         </div>
@@ -117,7 +117,7 @@
             <h5>c_3: <span>81.2</span></h5>
             <h5>data pts: <span>16</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/€1k: <span>0.52</span></h5>
+            <h5>lots/€1k: <span>1.31</span></h5>
             <h5>lots: <span>1.56</span></h5>
           </div>
         </div>
@@ -128,7 +128,7 @@
             <h5>c_3: <span>81.2</span></h5>
             <h5>data pts: <span>16</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/€1k: <span>0.52</span></h5>
+            <h5>lots/€1k: <span>1.31</span></h5>
             <h5>lots: <span>1.56</span></h5>
           </div>
         </div>
@@ -155,7 +155,7 @@
             <h5>c_3: <span>89.8</span></h5>
             <h5>data pts: <span>34</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/€1k: <span>3</span></h5>
+            <h5>lots/€1k: <span>3.5</span></h5>
             <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
@@ -163,7 +163,7 @@
             <h5>c_3: <span>92.2</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/€1k: <span>3.75</span></h5>
+            <h5>lots/€1k: <span>4</span></h5>
             <h5>lots: <span>11.25</span></h5>
           </div>
         </div>
@@ -174,7 +174,7 @@
             <h5>c_3: <span>89.8</span></h5>
             <h5>data pts: <span>34</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/€1k: <span>3</span></h5>
+            <h5>lots/€1k: <span>3.5</span></h5>
             <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
@@ -182,7 +182,7 @@
             <h5>c_3: <span>92.2</span></h5>
             <h5>data pts: <span>17</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/€1k: <span>3.75</span></h5>
+            <h5>lots/€1k: <span>4</span></h5>
             <h5>lots: <span>11.25</span></h5>
           </div>
         </div>
@@ -206,7 +206,7 @@
             <h5>c_3: <span>89.3</span></h5>
             <h5>data pts: <span>36</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/€1k: <span>3</span></h5>
+            <h5>lots/€1k: <span>3.5</span></h5>
             <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
@@ -214,7 +214,7 @@
             <h5>c_3: <span>91.8</span></h5>
             <h5>data pts: <span>19</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/€1k: <span>3.75</span></h5>
+            <h5>lots/€1k: <span>4</span></h5>
             <h5>lots: <span>11.25</span></h5>
           </div>
         </div>
@@ -225,7 +225,7 @@
             <h5>c_3: <span>89.3</span></h5>
             <h5>data pts: <span>36</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/€1k: <span>3</span></h5>
+            <h5>lots/€1k: <span>3.5</span></h5>
             <h5>lots: <span>9.0</span></h5>
           </div>
           <div class="trigger">
@@ -233,7 +233,7 @@
             <h5>c_3: <span>91.8</span></h5>
             <h5>data pts: <span>19</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/€1k: <span>3.75</span></h5>
+            <h5>lots/€1k: <span>4</span></h5>
             <h5>lots: <span>11.25</span></h5>
           </div>
         </div>
@@ -257,7 +257,7 @@
             <h5>c_3: <span>84.0</span></h5>
             <h5>data pts: <span>23</span></h5>
             <h5>dev: <span>-0.1</span></h5>
-            <h5>lots/€1k: <span>2</span></h5>
+            <h5>lots/€1k: <span>2.5</span></h5>
             <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
@@ -265,7 +265,7 @@
             <h5>c_3: <span>82.5</span></h5>
             <h5>data pts: <span>32</span></h5>
             <h5>dev: <span>-0.4</span></h5>
-            <h5>lots/€1k: <span>2</span></h5>
+            <h5>lots/€1k: <span>2.5</span></h5>
             <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
@@ -276,7 +276,7 @@
             <h5>c_3: <span>84.0</span></h5>
             <h5>data pts: <span>23</span></h5>
             <h5>dev: <span>0.1</span></h5>
-            <h5>lots/€1k: <span>2</span></h5>
+            <h5>lots/€1k: <span>2.5</span></h5>
             <h5>lots: <span>6.0</span></h5>
           </div>
           <div class="trigger">
@@ -284,7 +284,7 @@
             <h5>c_3: <span>82.5</span></h5>
             <h5>data pts: <span>32</span></h5>
             <h5>dev: <span>0.4</span></h5>
-            <h5>lots/€1k: <span>2</span></h5>
+            <h5>lots/€1k: <span>2.5</span></h5>
             <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
@@ -313,7 +313,7 @@
             <h5>c_3_ema5: <span>77.8</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>-0.2</span></h5>
-            <h5>lots/€1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
@@ -321,7 +321,7 @@
             <h5>c_3: <span>80.8</span></h5>
             <h5>data pts: <span>26</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/€1k: <span>2</span></h5>
+            <h5>lots/€1k: <span>2.5</span></h5>
             <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
@@ -332,7 +332,7 @@
             <h5>c_3_ema5: <span>77.8</span></h5>
             <h5>data pts: <span>15</span></h5>
             <h5>dev: <span>0.2</span></h5>
-            <h5>lots/€1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
           <div class="trigger">
@@ -340,7 +340,7 @@
             <h5>c_3: <span>80.8</span></h5>
             <h5>data pts: <span>26</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/€1k: <span>2</span></h5>
+            <h5>lots/€1k: <span>2.5</span></h5>
             <h5>lots: <span>6.0</span></h5>
           </div>
         </div>
@@ -364,7 +364,7 @@
             <h5>c_3: <span>79.4</span></h5>
             <h5>data pts: <span>29</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/€1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
@@ -375,7 +375,7 @@
             <h5>c_3: <span>79.4</span></h5>
             <h5>data pts: <span>29</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/€1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
@@ -399,7 +399,7 @@
             <h5>c_3: <span>76.5</span></h5>
             <h5>data pts: <span>29</span></h5>
             <h5>dev: <span>-0.3</span></h5>
-            <h5>lots/€1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
@@ -410,7 +410,7 @@
             <h5>c_3: <span>76.5</span></h5>
             <h5>data pts: <span>29</span></h5>
             <h5>dev: <span>0.3</span></h5>
-            <h5>lots/€1k: <span>1</span></h5>
+            <h5>lots/€1k: <span>1.5</span></h5>
             <h5>lots: <span>3.0</span></h5>
           </div>
         </div>
