@@ -32,6 +32,19 @@ DEFAULT_TIME_DELTAS = {
 
 
 def get_decimal_places(num: float):
+    """
+    Get the number of decimal places of a given float number.
+
+    Args:
+        num (float): The number to check for decimal places.
+
+    Returns:
+        int: The number of decimal places.
+
+    Example:
+        >>> get_decimal_places(123.456)
+        3
+    """
     # Convert the input number to a string, split it at the decimal point,
     # and retrieve the second part of the resulting list
     # (which represents the digits after the decimal point).
@@ -46,6 +59,20 @@ def get_decimal_places(num: float):
 
 
 def get_decimal_places_from_tick_data(tick_data):
+    """
+    Extracts the maximum number of decimal places from the 'ask' column of a given DataFrame's sample.
+
+    Args:
+        tick_data (pd.DataFrame): DataFrame containing tick data with an 'ask' column.
+
+    Returns:
+        int: Maximum number of decimal places found in the sample of 'ask' column.
+
+    Example:
+        >>> df = pd.DataFrame({"ask": [1.235, 1.2365, 1.2378]})
+        >>> get_decimal_places_from_tick_data(df)
+        4
+    """
     # To avoid rounding issues, we take the first 20 rows of tick data as a sample
     df = tick_data.loc[1:20]
     decimal_places_list = []
@@ -64,6 +91,23 @@ def get_decimal_places_from_tick_data(tick_data):
 
 
 def price_movement_to_pips(price_movement, decimal_places):
+    """
+    Convert a price movement to pips based on the number of decimal places.
+
+    Args:
+        price_movement (float): The price movement to convert.
+        decimal_places (int): Number of decimal places in the price movement. Can be 5, 4, 3, or 2.
+
+    Returns:
+        float: Price movement in pips.
+
+    Raises:
+        ValueError: If the provided decimal places is not 5, 4, 3, or 2.
+
+    Example:
+        >>> price_movement_to_pips(0.0003, 5)
+        3.0
+    """
     match decimal_places:
         case 5:
             pips = round(price_movement / 0.0001, 1)
@@ -80,6 +124,25 @@ def price_movement_to_pips(price_movement, decimal_places):
 
 
 def get_release_time_price(release_datetime, tick_df):
+    """
+    Retrieve the ask and bid prices at the time just before the given release datetime.
+
+    Args:
+        release_datetime (datetime): The datetime of the release event.
+        tick_df (pd.DataFrame): DataFrame containing tick data with 'time', 'ask', and 'bid' columns.
+
+    Returns:
+        tuple: A tuple containing the ask and bid prices at the release time.
+
+    Notes:
+        - Assumes 'time' column values can be in one of two formats: "%Y-%m-%d %H:%M:%S.%f" or "%Y-%m-%d %H:%M:%S".
+
+    Example:
+        >>> tick_df = pd.DataFrame({"time": ["2023-08-14 12:00:00.000", "2023-08-14 12:01:00.000"], "ask": [1.2345, 1.2350], "bid": [1.2344, 1.2349]})
+        >>> release_datetime = datetime(2023, 8, 14, 12, 1)
+        >>> get_release_time_price(release_datetime, tick_df)
+        (1.2345, 1.2344)
+    """
     release_index = 0
 
     for index, value in tick_df['time'].items():
@@ -98,18 +161,26 @@ def get_release_time_price(release_datetime, tick_df):
 
 def get_prices_at_time_deltas(release_datetime, tick_df, time_deltas=DEFAULT_TIME_DELTAS):
     """
-    Get the prices at specific time intervals after the release_datetime.
+    Retrieve the ask and bid prices at specific intervals after the given release datetime.
 
     Args:
-        release_datetime (datetime): The datetime of a release.
-        tick_df (DataFrame): A DataFrame of tick data.
-        time_deltas (dict): A dictionary of time deltas to extract prices from.
+        release_datetime (datetime): The datetime of the release event.
+        tick_df (pd.DataFrame): DataFrame containing tick data with 'time', 'ask', and 'bid' columns.
+        time_deltas (dict, optional): Dictionary mapping descriptive strings to timedelta objects indicating desired time intervals after the release. Defaults to `DEFAULT_TIME_DELTAS`.
 
     Returns:
-        dict: A dictionary of prices at specific time intervals after the release datetime.
+        dict: A dictionary mapping descriptive strings to tuples of ask and bid prices at each interval after the release.
 
+    Notes:
+        - Assumes 'time' column values can be in one of two formats: "%Y-%m-%d %H:%M:%S.%f" or "%Y-%m-%d %H:%M:%S".
+
+    Example:
+        >>> tick_df = pd.DataFrame({"time": ["2023-08-14 12:00:00.000", "2023-08-14 12:01:00.000", "2023-08-14 12:02:00.000"], "ask": [1.2345, 1.2350, 1.2355], "bid": [1.2344, 1.2349, 1.2354]})
+        >>> release_datetime = datetime(2023, 8, 14, 12, 0)
+        >>> time_deltas = {"1_minute": timedelta(minutes=1), "2_minutes": timedelta(minutes=2)}
+        >>> get_prices_at_time_deltas(release_datetime, tick_df, time_deltas)
+        {"1_minute": (1.2350, 1.2349), "2_minutes": (1.2355, 1.2354)}
     """
-
     prices = {}
     td_timestamps = {}
 
@@ -133,30 +204,6 @@ def get_prices_at_time_deltas(release_datetime, tick_df, time_deltas=DEFAULT_TIM
     return prices
 
 
-
-def get_prices_at_time_deltas_2(release_datetime, tick_df, time_deltas=DEFAULT_TIME_DELTAS):
-    """
-    This is meant to be an optimized version of get_prices_at_time_deltas which converts
-    the time delta timestamps to strings at the beginning and searches for those instead
-    of converting every timestamp in the tick datas into a datetime.
-    It should speed things up (I hope).
-    Update. This is faster but the results are wrong
-    """
-    prices = {}
-    td_timestamps_strs = {}
-
-    for td in time_deltas:
-        td_timestamps_strs[td] = datetime.strftime(release_datetime + time_deltas[td], "%Y-%m-%d %H:%M:%S")
-
-    for td in td_timestamps_strs:
-        for index, value in tick_df['time'].items():
-            if value.startswith(td_timestamps_strs[td]):
-                prices[td] = (tick_df.loc[index]['ask'], tick_df.loc[index]['bid'])
-                break
-
-    return prices
-
-
 def get_relative_price_movements(prices_per_time_delta, release_time_price, decimal_places):
     """
     Calculates the relative price movements based on the release time price and the prices at different time deltas.
@@ -168,6 +215,13 @@ def get_relative_price_movements(prices_per_time_delta, release_time_price, deci
 
     Returns:
         price_movements (dict): A dictionary containing the relative price movements rounded to the specified decimal places.
+    Example:
+        >>> prices_per_time_delta = {"1m": (1.2350, 1.2349), "2m": (1.2355, 1.2354)}
+        >>> release_time_price = (1.2345, 1.2344)
+        >>> decimal_places = 4
+        >>> get_relative_price_movements(prices_per_time_delta, release_time_price, decimal_places)
+        {"1m": (0.0005, 0.0005), "2m": (0.0010, 0.0010)}
+
     """
     release_ask = float(release_time_price[0])
     release_bid = float(release_time_price[1])
