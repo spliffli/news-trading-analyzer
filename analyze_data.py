@@ -610,6 +610,18 @@ def calc_all_indicator_deviations():
 
 
 def calc_mean_deviation(news_data):
+    """
+    Calculate deviations for all indicators listed in a specific Excel file.
+
+    This function reads an Excel file named "haawks-indicator-shortlist.xlsx" that contains
+    information about various indicators. For each indicator in the file, this function
+    calls another function `calc_all_deviations_for_indicator(haawks_id_str)` to calculate
+    the deviations for that specific indicator.
+
+    Notes:
+        - The progress of the calculation is printed to the console in the format:
+          "Calculating deviations for: [indicator title] ([current index]/[total indicators])"
+    """
     deviations = []
 
     for index, value in news_data['Deviation'].items():
@@ -646,9 +658,30 @@ def calc_median_deviations(news_data):
 
 
 def calc_quantiles(data_list: list, quantile_count=5):
-    """https://www.thoughtco.com/what-is-a-quantile-3126239
-    https://www.statisticshowto.com/quantile-definition-find-easy-steps/"""
+    """
+    Calculate quantiles for a given list of data.
 
+    Args:
+        data_list (list): A list of numerical data for which quantiles are to be calculated.
+        quantile_count (int, optional): The number of equal intervals to divide the data into.
+                                        Defaults to 5 (quintiles).
+
+    Returns:
+        dict: A dictionary where keys are quantile values as strings and values are the data
+              points at those quantiles.
+
+    Raises:
+        ValueError: If the length of data_list is smaller than the specified quantile_count.
+
+    Example:
+        >>> data = [2, 4, 4, 4, 5, 5, 7, 9]
+        >>> calc_quantiles(data)
+        {'0.2': 4, '0.4': 4, '0.6': 5, '0.8': 5}
+
+    References:
+        - https://www.thoughtco.com/what-is-a-quantile-3126239
+        - https://www.statisticshowto.com/quantile-definition-find-easy-steps/
+    """
     a = 1 / quantile_count
     n = len(data_list)
     quantiles = {}
@@ -668,10 +701,37 @@ def calc_quantiles(data_list: list, quantile_count=5):
 
 
 def calc_deviation_quantiles(news_data, quantile_count=5):
-    """This should be useful in deciding which triggers_vars to screen for.
+    """
+    Calculate quantiles for positive, negative, and combined deviations in news data.
+
+    Args:
+        news_data (pd.DataFrame): A DataFrame containing news data. It is assumed
+                                  that there is a column named 'Deviation' which
+                                  contains numerical values.
+        quantile_count (int, optional): The number of equal intervals to divide the deviations
+                                        into. Defaults to 5 (quintiles).
+
+    Returns:
+        dict: A dictionary with keys 'positive', 'negative', and 'combined'. Each key is
+              associated with a dictionary of quantiles for that category.
+
+    Example:
+        >>> news_data = pd.DataFrame({'Deviation': [0.2, -0.1, 0.3, -0.2]})
+        >>> calc_deviation_quantiles(news_data)
+        {
+            'positive': {'0.2': 0.2, '0.4': 0.2, '0.6': 0.3, '0.8': 0.3},
+            'negative': {'0.2': -0.2, '0.4': -0.2, '0.6': -0.1, '0.8': -0.1},
+            'combined': {'0.2': 0.1, '0.4': 0.2, '0.6': 0.2, '0.8': 0.3}
+        }
+
+    Note:
+        This should be useful in deciding which triggers_vars to screen for.
     the default of 5 quantiles are technically called 'quintiles'
-    https://www.thoughtco.com/what-is-a-quantile-3126239
-    https://www.statisticshowto.com/quantile-definition-find-easy-steps/"""
+
+    References:
+        - https://www.thoughtco.com/what-is-a-quantile-3126239
+        - https://www.statisticshowto.com/quantile-definition-find-easy-steps/
+    """
     pos_deviations = []
     neg_deviations = []
     all_deviations = []
@@ -704,8 +764,26 @@ def calc_deviation_quantiles(news_data, quantile_count=5):
 
 
 def calc_and_save_trigger_levels(haawks_id_str):
-    """This just gets the quantiles for the deviations and populates the news data with it.
-    The levels it outputs will be adjusted manually to be more round numbers"""
+    """
+    Calculate the quantiles for the deviations of a specific indicator and save them to the Excel file.
+    The trigger levels calculated by this function can be further manually adjusted to be rounder numbers.
+
+    Args:
+        haawks_id_str (str): The identifier for the specific indicator in string format.
+
+    Returns:
+        dict: A dictionary containing the calculated trigger levels, or None if deviations are missing.
+              Keys are in the format "trigger_n" and values are the calculated quantiles for the deviations.
+
+    Example:
+        >>> calc_and_save_trigger_levels("12345")
+        {'trigger_1': 0.15, 'trigger_2': 0.30, 'trigger_3': 0.50, 'trigger_4': 0.70}
+
+    Notes:
+        - This function updates an Excel file "haawks-indicator-shortlist.xlsx" with the calculated trigger levels.
+        - This just gets the quantiles for the deviations and populates the news data with it.
+        - The levels it outputs were be adjusted manually afterwards to be more round numbers
+    """
     news_data = read_news_data(haawks_id_str)
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
     for index, row in indicators.iterrows():
@@ -736,6 +814,22 @@ def calc_and_save_trigger_levels(haawks_id_str):
 
 
 def calc_and_save_all_trigger_levels():
+    """
+    Iterate through all indicators listed in the Excel file and calculate and save the trigger levels
+    for each of them using the `calc_and_save_trigger_levels` function.
+
+    This function operates on all rows of the Excel file "haawks-indicator-shortlist.xlsx".
+
+    Example:
+        >>> calc_and_save_all_trigger_levels()
+        Calculating triggers_vars for indicator 1/100: GDP
+        Calculating triggers_vars for indicator 2/100: Unemployment Rate
+        ...
+
+    Note:
+        This function updates an Excel file "haawks-indicator-shortlist.xlsx" with the calculated trigger levels
+        for each indicator.
+    """
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
     # indicators = indicators.loc[28:]
     row_count = indicators.shape[0]
@@ -746,6 +840,24 @@ def calc_and_save_all_trigger_levels():
 
 
 def read_triggers(haawks_id_str):
+    """
+    Read the trigger levels for a specific indicator from an Excel file.
+
+    Args:
+        haawks_id_str (str): The identifier for the specific indicator in string format.
+
+    Returns:
+        dict: A dictionary containing the trigger levels for the specified indicator.
+              Keys are in the format "trigger_n" and values are the respective trigger levels.
+
+    Example:
+        >>> read_triggers("12345")
+        {'trigger_1': 0.15, 'trigger_2': 0.30, 'trigger_3': 0.50, 'trigger_4': 0.70}
+
+    Note:
+        This function reads from an Excel file "haawks-indicator-shortlist.xlsx".
+    """
+
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
     for index, row in indicators.iterrows():
         if haawks_id_to_str(row['Id']) == haawks_id_str:
@@ -762,6 +874,24 @@ def read_triggers(haawks_id_str):
 
 
 def calc_correlation_1_score(values: list, expected_direction="positive"):
+    """
+    Calculate the percentage of values in a list that are in the expected direction.
+
+    Args:
+        values (list): A list of numerical values for which the correlation score is calculated.
+        expected_direction (str, optional): The expected direction of the correlation; either "positive" or "negative".
+                                           Default is "positive".
+
+    Returns:
+        float: The correlation score, expressed as a percentage.
+
+    Raises:
+        ValueError: If the `expected_direction` is not "positive" or "negative".
+
+    Example:
+        >>> calc_correlation_1_score([0.1, -0.2, 0.3, 0.4], expected_direction="positive")
+        75.0
+    """
     pos_values = []
     neg_values = []
     for value in values:
@@ -781,6 +911,24 @@ def calc_correlation_1_score(values: list, expected_direction="positive"):
 
 
 def calc_correlation_2_score(values: list, expected_direction="positive"):
+    """
+    Calculate a correlation score based on the sum of positive and negative values in a list.
+
+    Args:
+        values (list): A list of numerical values for which the correlation score is calculated.
+        expected_direction (str, optional): The expected direction of the correlation; either "positive" or "negative".
+                                           Default is "positive".
+
+    Returns:
+        float: The correlation score, expressed as a percentage.
+
+    Raises:
+        ValueError: If the `expected_direction` is not "positive" or "negative".
+
+    Example:
+        >>> calc_correlation_2_score([0.1, -0.2, 0.3, 0.4], expected_direction="positive")
+        64.3
+    """
     pos_values = []
     neg_values = []
     for value in values:
@@ -798,6 +946,35 @@ def calc_correlation_2_score(values: list, expected_direction="positive"):
     return correlation_2_score
 
 def ema(values, window_size):
+    """
+    Calculate the Exponential Moving Average (EMA) of a list of numerical values.
+
+    This function computes the EMA of the given data over a specified window size.
+    The EMA is calculated using exponentially decreasing weights for older observations.
+
+    Args:
+        values (list or ndarray): A list or NumPy array of numerical values for which the EMA is calculated.
+        window_size (int): The size of the moving window. This is the number of observations used for calculating
+                           the EMA for each point.
+
+    Returns:
+        list: A list containing the computed EMA values. The length of the returned list is equal to the length of
+              the input minus the window size plus 1. If the length of the input values is less than the window size,
+              the input values are returned as is.
+
+    Note:
+        - The EMA is a type of weighted moving average where more weight is given to the latest data points.
+        - The weights decrease exponentially as data points become older.
+
+    Example:
+        >>> ema([1, 2, 3, 4, 5], 3)
+        [1.8, 2.8, 3.8, 4.8]
+
+    Raises:
+        No specific exceptions are raised, but the function expects numerical input values and a positive integer
+        window size.
+
+    """
     if len(values) < window_size:
         return values  # Not enough data to calculate the EMA
 
@@ -828,14 +1005,39 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
     """
     Calculate news pip metrics for each trigger.
 
+    This function processes raw news pip data and calculates various metrics, such as mean,
+    median, range, and correlation scores for each trigger. The calculation is based on the
+    deviation of news pips at different timestamps, and whether the symbol is expected to be
+    bullish or bearish for higher deviations.
+
     Args:
-        news_pip_data (dict): A dictionary containing news pip data.
-        triggers (dict): A dictionary containing trigger names and corresponding deviation values.
+        haawks_id_str (str): A unique identifier string for the haawks indicator.
+        news_pip_data (dict): A dictionary containing news pip data, where the key is the timestamp
+                              and the value is a dictionary containing 'deviation' and 'pips' for the timestamp.
+        triggers (dict): A dictionary containing trigger names as keys and corresponding deviation
+                         values as values.
         symbol_higher_dev (str): The expected direction of higher deviations. Can be "bullish" or "bearish".
 
     Returns:
-        news_pip_metrics (dict): A dictionary containing news pip metrics for each trigger.
+        news_pip_metrics (dict): A nested dictionary containing news pip metrics for each trigger.
+                                 The structure is: {trigger: {time_delta: {metric_name: metric_value}}}.
 
+                                 Here, 'trigger' is the trigger name, 'time_delta' is a specific time period
+                                 after a news event, 'metric_name' is the name of the calculated metric,
+                                 and 'metric_value' is the calculated value for that metric.
+
+    Notes:
+        - The 'deviation' value is used to determine how significant the news event is.
+        - Metrics include median, mean, range of pips, correlation scores, and more for different time periods.
+
+    Example:
+        >>> news_pip_data = {timestamp1: {'deviation': 0.5, 'pips': {...}}, timestamp2: {...}}
+        >>> triggers = {'trigger_1': 0.2, 'trigger_2': 0.5}
+        >>> calc_news_pip_metrics('hawk_id', news_pip_data, triggers, 'bullish')
+        {'trigger_1': {...}, 'trigger_2': {...}}
+
+    Raises:
+        ValueError: If 'symbol_higher_dev' is not "bullish" or "bearish".
     """
     print("Calculating news pip metrics...")
     news_pip_metrics = {}
@@ -972,6 +1174,42 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
 
 
 def calc_pip_averages_and_correlation(values: list):
+    """
+    Calculate various statistical metrics and correlation scores for a given list of pip values.
+
+    This function takes a list of numerical pip values (pips), sorts them in ascending order, and
+    calculates several statistical metrics such as the median, mean, and range. It also computes
+    correlation scores using two different correlation calculation functions, and averages these
+    two scores to produce a third correlation score.
+
+    Args:
+        values (list): A list of numerical pip values. 'Pips' in this context refer to the smallest
+                       price move that a given exchange rate can make based on market convention.
+
+    Returns:
+        dict: A dictionary containing the calculated statistical metrics and correlation scores.
+              The keys and their corresponding values in the dictionary are as follows:
+              - "median": The median of the pip values.
+              - "mean": The mean of the pip values, rounded to one decimal place.
+              - "range": A tuple containing the minimum and maximum pip values.
+              - "correlation_1": The first correlation score, calculated using `calc_correlation_1_score`.
+              - "correlation_2": The second correlation score, calculated using `calc_correlation_2_score`.
+              - "correlation_3": The average of `correlation_1` and `correlation_2`.
+              - "values": The sorted list of pip values.
+
+    Example:
+        >>> pip_values = [1.5, 2.3, 0.9, 1.8, 1.6]
+        >>> calc_pip_averages_and_correlation(pip_values)
+        {
+            'median': 1.6,
+            'mean': 1.6,
+            'range': (0.9, 2.3),
+            'correlation_1': 0.85,
+            'correlation_2': 0.78,
+            'correlation_3': 0.815,
+            'values': [0.9, 1.5, 1.6, 1.8, 2.3]
+        }
+    """
     values.sort()
     median = values[math.floor((len(values) - 1) / 2)]
     mean = round(sum(values) / len(values), 1)
@@ -991,6 +1229,76 @@ def calc_pip_averages_and_correlation(values: list):
 
 
 def calc_news_pip_metrics_2(news_pip_data, triggers):
+    """
+    Calculate news pip metrics based on given trigger levels and news pip data.
+
+    This function processes news pip data, which contains price deviations at
+    different timestamps, and organizes them according to the predefined trigger
+    levels specified in `triggers`. For each trigger level, it computes and
+    organizes pip data into positive and negative deviations, and calculates various
+    statistical metrics for those deviations using an external function
+    `calc_pip_averages_and_correlation`.
+
+    Args:
+        news_pip_data (dict): A dictionary where each key is a timestamp, and the value
+                              is another dictionary containing 'deviation' and 'pips' data.
+                              For example:
+                              {
+                                  'timestamp1': {'deviation': x, 'pips': {time_delta: [ask, bid], ...}},
+                                  ...
+                              }
+
+        triggers (dict): A dictionary containing named trigger levels as keys and
+                         corresponding numerical values as values. For example:
+                         {
+                             'level1': value1,
+                             'level2': value2,
+                             ...
+                         }
+
+    Returns:
+        dict: A nested dictionary organized first by trigger levels, then by time deltas,
+              and finally by the type of deviation ('positive_dev', 'negative_dev', 'combined').
+              Each type of deviation contains the statistical metrics calculated by the
+              `calc_pip_averages_and_correlation` function.
+
+              For example:
+              {
+                  'level1': {
+                      time_delta1: {
+                          'positive_dev': {...},
+                          'negative_dev': {...},
+                          'combined': {...}
+                      },
+                      ...
+                  },
+                  ...
+              }
+
+    Raises:
+        UnboundLocalError: If both positive and negative deviations do not exist
+                           for a certain trigger and time_delta pair.
+
+    Example:
+        >>> news_pip_data = {'2021-01-01': {'deviation': 2, 'pips': {1: [0.1, -0.1], 2: [0.2, -0.2]}}}
+        >>> triggers = {'level1': 1, 'level2': 3}
+        >>> calc_news_pip_metrics_2(news_pip_data, triggers)
+        {
+            'level1': {
+                1: {
+                    'positive_dev': {...},
+                    'negative_dev': {...},
+                    'combined': {...}
+                },
+                2: {
+                    ...
+                }
+            },
+            'level2': {
+                ...
+            }
+        }
+    """
     news_pip_metrics = {}
 
     for trigger in triggers:
@@ -1087,6 +1395,42 @@ def calc_news_pip_metrics_2(news_pip_data, triggers):
 
 
 def calc_news_pip_metrics_for_multiple_indicators(haawks_id_strs_and_symbols: list[tuple[str, str]]):
+    """
+    Calculate news pip metrics for multiple indicators using their Haawks ID strings and symbols.
+
+    This function processes a list of Haawks ID strings and symbols for various financial
+    indicators. For each pair of Haawks ID string and symbol, the function retrieves
+    the indicator information, reads news data and trigger levels, loads the news pip data,
+    and calculates the news pip metrics. It organizes the results in a dictionary,
+    where the keys are formatted as "{Haawks_ID_String}_{Symbol} {Indicator_Title}",
+    and the values are the corresponding news pip metrics.
+
+    Args:
+        haawks_id_strs_and_symbols (list[tuple[str, str]]): A list of tuples, where each tuple contains
+                                                            two elements:
+                                                            1. Haawks ID string for a financial indicator,
+                                                            2. Symbol representing the financial instrument
+                                                               (e.g., currency pair or stock symbol).
+
+    Returns:
+        dict: A dictionary where each key is a formatted string "{Haawks_ID_String}_{Symbol} {Indicator_Title}",
+              and the value is the corresponding news pip metrics calculated for that indicator and symbol pair.
+
+              For example:
+              {
+                  '1234_EURUSD Inflation': {...},
+                  '5678_USDJPY Employment': {...},
+                  ...
+              }
+
+    Example:
+        >>> haawks_id_strs_and_symbols = [('1234', 'EURUSD'), ('5678', 'USDJPY')]
+        >>> calc_news_pip_metrics_for_multiple_indicators(haawks_id_strs_and_symbols)
+        {
+            '1234_EURUSD Inflation': {...},
+            '5678_USDJPY Employment': {...},
+        }
+    """
     result = {}
 
     for haawks_id_str_and_symbol in haawks_id_strs_and_symbols:
@@ -1102,6 +1446,42 @@ def calc_news_pip_metrics_for_multiple_indicators(haawks_id_strs_and_symbols: li
     return result
 
 def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_name: str):
+    """
+    Calculate the total range and averages of various metrics for given pip data in a DataFrame.
+
+    This function iterates through rows of a DataFrame containing pip metrics data, computes the
+    total range and calculates the mean of various metrics including means, medians, c1_scores,
+    c2_scores, c3_scores, and various Exponential Moving Averages (EMAs). The results are
+    returned as a pandas Series.
+
+    Args:
+        pip_metrics_df (pd.DataFrame): A DataFrame containing pip metrics data with columns including
+                                       'range', 'mean', 'median', various correlation scores (e.g., 'c_1', 'c_2', 'c_3'),
+                                       and various EMAs (e.g., 'c_1_ema5', 'c_2_ema5', 'c_3_ema5').
+        trigger_name (str): A string representing the name of the trigger for which the pip metrics
+                            are calculated.
+
+    Returns:
+        pd.Series: A pandas Series containing the total range, the mean of various metrics, and
+                   data points for each metric. The index of the Series represents the names of
+                   these metrics.
+
+    Example:
+        >>> pip_metrics_df = pd.DataFrame({'range': [(1,5), (2,6)], 'mean': [2, 4], 'median': [2.5, 4.5], ...})
+        >>> trigger_name = 'Trigger1'
+        >>> calc_pip_metrics_df_total_averages(pip_metrics_df, trigger_name)
+        time_delta    Total/Averages
+        range            (1, 6)
+        mean                3.0
+        median              3.5
+        ...
+        data_points        100
+        dtype: object
+
+    Note:
+        The function also prints the calculated total averages to the console with the format:
+        "{trigger_name} total_averages:\n {total_averages}"
+    """
     total_range = [0, 0]
     means = []
     medians = []
@@ -1194,6 +1574,26 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
 
 
 def calc_lowest_ema_c_3(total_averages):
+    """
+    Calculate the lowest EMA (Exponential Moving Average) among c_3 related metrics.
+
+    This function takes in a pandas Series of total averages and various EMAs of the c_3 metric.
+    It finds the lowest EMA among c_3 related metrics (c_3, c_3_ema5, c_3_ema10, c_3_ema15) and
+    appends this information to the input Series as 'lowest_c_3_type' and 'lowest_c_3_val'.
+
+    Args:
+        total_averages (pd.Series): A pandas Series containing total averages and various EMAs of
+                                    the c_3 metric.
+                                    Example: ['c_3', 'c_3_ema5', 'c_3_ema10', 'c_3_ema15']
+
+    Returns:
+        pd.Series: The updated pandas Series containing the input total averages along with the
+                   'lowest_c_3_type' and 'lowest_c_3_val'.
+
+    Prints:
+        The type and value of the lowest EMA c_3 metric, and the updated total averages with the
+        lowest EMA c_3 information.
+    """
     c_3 = total_averages['c_3']
     c_3_ema5 = total_averages['c_3_ema5']
     c_3_ema10 = total_averages['c_3_ema10']
@@ -1216,6 +1616,40 @@ def calc_lowest_ema_c_3(total_averages):
 
 
 def news_pip_trigger_data_to_df(trigger_data, trigger_name):
+    """
+    Convert the raw news pip trigger data into a formatted DataFrame.
+
+    This function takes a raw data structure containing pip trigger data related to news and
+    transforms it into a structured pandas DataFrame. The DataFrame includes various metrics
+    and their EMAs (Exponential Moving Averages) for each time_delta in the trigger data.
+    It also appends a row for the total averages and the lowest EMA c_3 metric.
+
+    Args:
+        trigger_data (dict): A dictionary containing pip trigger data for various time_delta.
+                             Each time_delta is associated with a dictionary containing various
+                             metrics and their EMAs.
+
+        trigger_name (str): A string representing the name of the trigger for which the pip metrics
+                            are calculated.
+
+    Returns:
+        pd.DataFrame: A pandas DataFrame structured with columns representing time_delta, range, mean,
+                      median, various correlation scores (e.g., 'c_1', 'c_2', 'c_3'), various EMAs,
+                      data points, lowest_c_3_type, and lowest_c_3_val.
+
+    Example:
+        >>> trigger_data = {'1s': {'range': (1,5), 'mean': 2, 'median': 2.5, ...}, ...}
+        >>> trigger_name = 'Trigger1'
+        >>> news_pip_trigger_data_to_df(trigger_data, trigger_name)
+        ...
+        time_delta    1s
+        range         (1, 5)
+        mean            2
+        ...
+        lowest_c_3_type  c_3
+        lowest_c_3_val   0.5
+        Name: 0, dtype: object
+    """
     df = pd.DataFrame(
         columns=['time_delta', 'range', 'mean', 'median',
                  'c_1', 'c_2', 'c_3',
@@ -1253,6 +1687,50 @@ def news_pip_trigger_data_to_df(trigger_data, trigger_name):
 
 
 def news_pip_metrics_to_dfs(news_pip_metrics):
+    """
+    Convert the news pip metrics for multiple triggers into a dictionary of DataFrames.
+
+    This function takes in a dictionary of news pip metrics associated with various triggers
+    and converts each set of pip metrics for each trigger into a structured pandas DataFrame.
+    The resulting DataFrames are stored in a new dictionary where the keys are the trigger names
+    and the values are the corresponding DataFrames.
+
+    Args:
+        news_pip_metrics (dict): A dictionary where the keys are trigger names and the values are
+                                 dictionaries containing raw pip trigger data for each trigger.
+                                 Example:
+                                 {
+                                     'Trigger1': {'1s': {'range': (1,5), 'mean': 2, ...}, ...},
+                                     'Trigger2': {'1s': {'range': (2,6), 'mean': 3, ...}, ...},
+                                     ...
+                                 }
+
+    Returns:
+        dict: A dictionary where the keys are the trigger names and the values are pandas DataFrames
+              structured with columns representing various metrics and their EMAs (Exponential Moving
+              Averages), for each trigger.
+              Example:
+              {
+                  'Trigger1': <pd.DataFrame ...>,
+                  'Trigger2': <pd.DataFrame ...>,
+                  ...
+              }
+
+    Prints:
+        For each trigger name, it prints the name of the trigger followed by the corresponding
+        pandas DataFrame.
+
+    Example:
+        >>> news_pip_metrics = {'Trigger1': {'1s': {'range': (1,5), 'mean': 2, ...}, ...}}
+        >>> news_pip_metrics_to_dfs(news_pip_metrics)
+        Trigger1:
+        ...
+        time_delta    1s
+        range         (1, 5)
+        mean            2
+        ...
+        Name: 0, dtype: object
+    """
     dfs = {}
     for trigger in news_pip_metrics:
         if len(news_pip_metrics[trigger]) > 0:
