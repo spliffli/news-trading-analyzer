@@ -245,12 +245,13 @@ def cross_reference_pips_with_news_data(news_data, pip_data):
     Cross-references pip data with news data and stores the deviation and pips data for matching timestamps.
 
     Args:
-    - news_data: pandas DataFrame containing news data with Timestamp and Deviation columns.
-    - pip_data: dictionary containing pip data with timestamps as keys and pip movements as values.
+        news_data (pd.DataFrame): DataFrame containing news data with 'Timestamp' and 'Deviation' columns.
+        pip_data (dict): Dictionary containing pip data with timestamps as keys and pip movements as values.
 
     Returns:
-    - news_pip_data: dictionary containing matched news and pip data with timestamps as keys, and deviation and pip movements as values.
+        news_pip_data (dict): Dictionary containing matched news and pip data with timestamps as keys, and deviation and pip movements as values.
     """
+
     news_pip_data = {}
 
     for timestamp in pip_data:
@@ -289,6 +290,24 @@ def get_pip_movements(price_movements, decimal_places):
 
 
 def read_tick_data(symbol, release_datetime):
+    """
+    Reads the tick data for a given symbol and release datetime from a CSV file.
+    The function assumes a certain naming convention for the CSV files.
+
+    Args:
+        symbol (str): The trading symbol for which the tick data is to be read.
+        release_datetime (datetime): The datetime of the news release event.
+
+    Returns:
+        pd.DataFrame: DataFrame containing the tick data read from the CSV file.
+
+    Raises:
+        ValueError: If the corresponding CSV file doesn't exist.
+
+    Notes:
+        - Assumes CSV files are located in "./tick_data" directory.
+        - Assumes CSV files are named in the format: "{symbol}__{release_date}__{start_time}_{end_time}.csv".
+    """
     release_date_hyphenated = release_datetime.strftime("%Y-%m-%d")
     start_time_hyphenated = (release_datetime - timedelta(minutes=5)).strftime('%H-%M-%S')
     end_time_hyphenated = (release_datetime + timedelta(minutes=15)).strftime('%H-%M-%S')
@@ -329,6 +348,29 @@ def save_news_pip_data(haawks_id, symbol, pip_data: dict):
 
 
 def read_news_pip_data(haawks_id, symbol):
+    """
+    Read and return pip data from analysis data files based on the provided haawks_id and symbol.
+
+    Args:
+        haawks_id (str): The identifier of the haawks event.
+        symbol (str): The trading symbol (e.g., 'EURUSD') for which the data should be retrieved.
+
+    Returns:
+        dict: A dictionary containing:
+            - "data_exists" (bool): Indicates whether the relevant data file exists.
+            - "data" (dict, optional): The pip data loaded from the file, if it exists.
+            - "start" (datetime, optional): The start datetime of the pip data, if it exists.
+            - "end" (datetime, optional): The end datetime of the pip data, if it exists.
+
+    Example:
+        >>> read_news_pip_data("12345", "EURUSD")
+        {
+            "data_exists": True,
+            "data": {...},
+            "start": datetime(2023, 8, 14, 12, 0),
+            "end": datetime(2023, 8, 14, 12, 30)
+        }
+    """
     indicator_info = get_indicator_info(haawks_id)
     event_title = indicator_info['inv_title']
     inv_id = indicator_info['inv_id']
@@ -356,6 +398,28 @@ def read_news_pip_data(haawks_id, symbol):
 
 
 def mine_pip_data_from_ticks(news_data, symbol, release_datetime):
+    """
+    Extract and calculate pip movements based on tick data, symbol, and a release datetime.
+
+    Args:
+        news_data (pd.DataFrame): The news data as a DataFrame, assumed to contain relevant columns.
+        symbol (str): The trading symbol (e.g., 'EURUSD') for which the data should be retrieved.
+        release_datetime (datetime): The datetime at which the news was released.
+
+    Returns:
+        dict: A dictionary containing the pip movements for each time delta,
+        with keys being the time delta and values being a tuple of the difference in ask and bid prices,
+        expressed in pips.
+
+    Raises:
+        ValueError: If the tick data is empty.
+
+    Example:
+        >>> news_data = pd.DataFrame(...)
+        >>> release_datetime = datetime(2023, 8, 14, 12, 0)
+        >>> mine_pip_data_from_ticks(news_data, "EURUSD", release_datetime)
+        {"1m": (0.5, 0.5), "5m": (1.0, 1.0), ...}
+    """
     row_count = news_data.shape[0]
     pip_data = {}
 
@@ -374,6 +438,21 @@ def mine_pip_data_from_ticks(news_data, symbol, release_datetime):
 
 
 def sort_news_pip_data_by_timestamp(news_pip_data):
+    """
+    Sort the news pip data by timestamp in descending order.
+
+    Args:
+        news_pip_data (dict): A dictionary where the keys are timestamp strings and the values
+        are dictionaries containing pip data information for those timestamps.
+
+    Returns:
+        dict: The input dictionary sorted by timestamp keys in descending order.
+
+    Example:
+        >>> news_pip_data = {"2023-08-14 12:30": {...}, "2023-08-14 12:00": {...}}
+        >>> sort_news_pip_data_by_timestamp(news_pip_data)
+        {"2023-08-14 12:30": {...}, "2023-08-14 12:00": {...}}
+    """
     keys = list(news_pip_data.keys())
     keys.sort(reverse=True)
     sorted_dict = {i: news_pip_data[i] for i in keys}
@@ -382,6 +461,37 @@ def sort_news_pip_data_by_timestamp(news_pip_data):
 
 
 def load_news_pip_data(haawks_id_str, news_data, symbol):
+    """
+    Load news pip data for a given haawks_id, news data, and trading symbol.
+    If local data exists, it uses that; otherwise, it mines data from raw tick data.
+
+    Args:
+        haawks_id_str (str): The identifier of the haawks event as a string.
+        news_data (pd.DataFrame): The news data as a DataFrame, assumed to contain relevant columns.
+        symbol (str): The trading symbol (e.g., 'EURUSD') for which the data should be retrieved.
+
+    Returns:
+        dict: A dictionary containing the pip data information for each timestamp in the news_data DataFrame.
+
+    Notes:
+        - Prints the status of the data loading process.
+        - Saves the mined data to a file after completion.
+
+    Example:
+        >>> news_data = pd.DataFrame(...)
+        >>> load_news_pip_data("12345", news_data, "EURUSD")
+        {
+            "2023-08-14 12:30": {
+                'pips': {...},
+                'deviation': 2.5
+            },
+            "2023-08-14 12:00": {
+                'pips': {...},
+                'deviation': 1.5
+            },
+            ...
+        }
+    """
     # news_data = news_data.iloc[:7]  # FOR TESTING, shortens the dataframe to be quicker
     indicator_info = get_indicator_info(haawks_id_str)
 
@@ -445,6 +555,30 @@ def load_news_pip_data(haawks_id_str, news_data, symbol):
 
 
 def calc_all_deviations_for_indicator(haawks_id):
+    """
+    Calculate the deviations between the actual and forecast values for a given haawks_id.
+
+    For each record in the news data associated with the specified haawks_id, this function
+    calculates the deviation between the 'Actual' and 'Forecast' values. The calculated
+    deviation is then stored in a new column "Deviation" in the DataFrame.
+
+    Args:
+        haawks_id (str or int): The identifier of the haawks event.
+
+    Notes:
+        - The news data is read using the function `read_news_data(haawks_id)`.
+        - The function prints the progress of deviation calculation.
+        - If the 'Actual' or 'Forecast' data for a record is missing or invalid, that record is skipped.
+        - After calculating the deviations, it saves the updated news data using the function `save_news_data(haawks_id, news_data)`.
+        - The function prints the final DataFrame with the deviations calculated after processing.
+
+    Example:
+        >>> calc_all_deviations_for_indicator("12345")
+        Calculating deviation for: 2023-08-14 12:30 (1/100)
+        ...
+        Calculating deviation for: 2023-08-15 12:30 (100/100)
+        ... (DataFrame printed here)
+    """
     news_data = read_news_data(haawks_id)
     row_count = news_data.shape[0]
     news_data = news_data.loc[:, ~news_data.columns.str.contains('Unnamed')]  # Remove unnamed column
