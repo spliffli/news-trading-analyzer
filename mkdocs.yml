@@ -52,6 +52,11 @@ nav:
     - Week 17 (current): weekly-schedules/week-17-schedule.md
     - Week 18: weekly-schedules/week-18-schedule.md
     - Week 19: weekly-schedules/week-19-schedule.md
+  - Developer Docs:
+    - Excavation: dev-docs/excavation.md
+    - Source:
+      - analyze_data.py: dev-docs/source/analyze_data.py.md
+
 
 
 edit_uri: '#docs/'
