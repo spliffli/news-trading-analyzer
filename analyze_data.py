@@ -322,6 +322,43 @@ def read_tick_data(symbol, release_datetime):
 
 
 def save_news_pip_data(haawks_id, symbol, pip_data: dict):
+    """
+    Save the news pip data for a given financial symbol to a JSON file.
+
+    This function takes in the news pip data associated with a specific financial symbol,
+    formats the filename and directory path based on various parameters including the haawks_id,
+    and saves the data in a structured JSON file within the specified directory. If a file with
+    the same symbol prefix exists in the target directory, it will be removed before saving the
+    new data file.
+
+    Args:
+        haawks_id (str): The unique identifier associated with the Haawks platform.
+        symbol (str): The ticker symbol of the financial instrument (e.g., 'AAPL' for Apple Inc.).
+        pip_data (dict): A dictionary containing the pip data that needs to be saved.
+                         Example:
+                         {
+                             '2023-08-14 09:30:00': {'value': 120.5, ...},
+                             '2023-08-14 09:31:00': {'value': 120.7, ...},
+                             ...
+                         }
+
+    Directory Structure:
+        The JSON file will be saved in the following directory structure:
+        - analysis_data/
+            - {haawks_id}_{inv_id}_{name_formatted}/
+                - pip_data/
+                    - {symbol}__{start_date_str}_{end_date_str}.json
+
+    Example:
+        >>> haawks_id = '12345'
+        >>> symbol = 'AAPL'
+        >>> pip_data = {'2023-08-14 09:30:00': {'value': 120.5}, '2023-08-14 09:31:00': {'value': 120.7}}
+        >>> save_news_pip_data(haawks_id, symbol, pip_data)
+
+    Note:
+        This function assumes that `get_indicator_info(haawks_id)` is a function that returns a
+        dictionary containing 'inv_title' and 'inv_id' based on the given `haawks_id`.
+    """
     # pip_data.to_csv(f"{symbol}")
     indicator_info = get_indicator_info(haawks_id)
     event_title = indicator_info['inv_title']
@@ -598,6 +635,35 @@ def calc_all_deviations_for_indicator(haawks_id):
 
 
 def calc_all_indicator_deviations():
+    """
+    Calculate deviations for all indicators listed in an Excel file.
+
+    This function reads an Excel file that contains a list of financial indicators. For each
+    indicator in this list, it prints a message showing progress and then calls another function,
+    `calc_all_deviations_for_indicator`, to calculate deviations for the given indicator based on
+    the unique Haawks ID associated with that indicator.
+
+    Excel File Format:
+        The Excel file, named "haawks-indicator-shortlist.xlsx", is expected to contain at least
+        the following columns:
+        - 'Id': The unique Haawks ID for the indicator
+        - 'inv_title': The title or name of the indicator
+
+    Example Output:
+        Calculating deviations for: Unemployment Rate (1/25)
+        Calculating deviations for: Inflation Rate (2/25)
+        ...
+
+    Notes:
+        1. This function assumes that the Excel file "haawks-indicator-shortlist.xlsx" is in the
+           current working directory.
+        2. `calc_all_deviations_for_indicator(haawks_id_str)` is assumed to be a pre-defined function
+           that takes a Haawks ID string as an argument and calculates deviations for the indicator
+           associated with that ID.
+
+    Example Usage:
+        >>> calc_all_indicator_deviations()
+    """
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
     # indicators = indicators.iloc[17:].reset_index()
 

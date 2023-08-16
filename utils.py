@@ -76,8 +76,8 @@ def convert_news_data_to_float(haawks_id_str: str, data_str: str):
 def get_deviation(actual, forecast):
     return actual - forecast
 
-def get_higher_dev_expected_direction(symbol, inv_currency, higher_dev):
 
+def get_higher_dev_expected_direction(symbol, inv_currency, higher_dev):
     if higher_dev == 'unknown':
         print(f"Whether a higher news deviation is bullish or bearish is unknown for the underlying currency ({inv_currency}) and the symbol {symbol}. Please manually input whether a higher deviation is bullish or bearish for {symbol}. (This affects the calculation of the correlation scores).")
         input_str = ""

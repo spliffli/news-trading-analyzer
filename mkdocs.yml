@@ -40,7 +40,8 @@ extra_javascript:
 
 plugins:
 - search
-- mkdocstrings
+- mkdocstrings:
+    default_handler: python
 
 nav:
   - (DE) News Trading System erklärt: index.md
@@ -54,6 +55,8 @@ nav:
     - Week 19: weekly-schedules/week-19-schedule.md
   - Developer Docs:
     - Excavation: dev-docs/excavation.md
+    - create_schedule:
+      - create_schedule(): dev-docs/create_schedule/create_schedule.md
     - Source:
       - analyze_data.py: dev-docs/source/analyze_data.py.md
 
