@@ -124,3 +124,23 @@ END FUNCTION
 **What:** This line is initializing a dictionary named "weekdays_html", where the keys are the names of the days of the week and the values are empty strings.
 
 **Why:** This dictionary is used to store HTML content related to each day of the week. This seems to prepare for generating a weekly schedule or report, where each day may have different economic events associated with it.
+
+
+### **Step 8**
+
+```
+8. IF "update_news_and_tick_data" is True:
+   8.1 PRINT "Updating news & tick data for {length of upcoming_events} upcoming events"
+   8.2 FOR each "event" in "upcoming_events":
+       8.2.1 EXTRACT key details from "event"
+       8.2.2 PRINT details of the current "event"
+       8.2.3 CALL function "update_indicator_history" with "haawks_id_str"
+       8.2.4 PRINT "Importing ticks..."
+       8.2.5 CALL function "import_ticks_for_indicator" with "haawks_id_str" and "symbol"
+   8.3 END FOR
+9. END IF
+```
+
+**What:** This part checks if the variable `update_news_and_tick_data` is set to `True`. If it is, the program prints a message indicating the number of upcoming events it's updating. For each event in the list `upcoming_events`, the program updates the history for that specific indicator (using `update_indicator_history`) and then imports ticks (which comes as a `.csv` time series by using the duka library) for that indicator (using `import_ticks_for_indicator`).
+
+**Why:** This step ensures that the most recent news and tick data is available for all upcoming events before any further analysis is conducted. This is crucial because having the latest data ensures the analysis is as accurate and up-to-date as possible.
