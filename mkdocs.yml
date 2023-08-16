@@ -40,7 +40,7 @@ extra_javascript:
 
 plugins:
 - search
-- mkdocstrings
+- mkdocstrings = {version = "^0.19.0", extras = ["python"], optional = true }
 nav:
   - (DE) News Trading System erklärt: index.md
   - (EN) News Trading System Explained: index-en.md
