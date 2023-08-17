@@ -40,8 +40,7 @@ extra_javascript:
 
 plugins:
 - search
-- mkdocstrings:
-    default_handler: python
+- mkdocstrings
 
 nav:
   - (DE) News Trading System erklärt: index.md

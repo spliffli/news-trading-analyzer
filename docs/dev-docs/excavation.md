@@ -14,9 +14,9 @@
 
 ---
 
-## Journal
+## **Journal**
 
-### **16.08.23**
+### **16.08.2023**
 
 After looking at and stepping through some of my code, I figured out that the `create_schedule` function in the `scheduler` module is one of the entry points to this program. It assumes that the `top_indicators.xlsx` file is populated, and that is done by running the ranker and I manually did that. For now I'll focus on the scheduler and later I'll go back to the ranker which is the second entry point to this program.
 
@@ -72,3 +72,10 @@ FUNCTION create_schedule(next_week, custom_date, update_news_and_tick_data):
     
 END FUNCTION
 ```
+
+
+### **17.08.2023**
+
+- [ ] blah
+- [ ] blah
+    - [x] blah
