@@ -55,8 +55,9 @@ nav:
   - Developer Docs:
     - Excavation: dev-docs/excavation.md
     - create_schedule:
-      - create_schedule(): dev-docs/create_schedule/create_schedule.md
-      - render_pdf_report
+      - generate_report(): dev-docs/generate_report.md
+      - create_schedule(): dev-docs/create_schedule.md
+      - ranker.py: dev-docs/ranker.py.md
 
 edit_uri: '#docs/'
 
