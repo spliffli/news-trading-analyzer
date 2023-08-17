@@ -34,7 +34,7 @@ HTML(string=html_out).write_pdf("report-example.pdf", stylesheets=["reports/temp
 """
 
 
-def generate_report(haawks_id_str, symbol, news_data, news_pip_metrics_dfs, triggers, symbol_higher_dev, indicator_info):
+def render_pdf_report(haawks_id_str, symbol, news_data, news_pip_metrics_dfs, triggers, symbol_higher_dev, indicator_info):
     template = env.get_template('reports/template/report-template.html')
     no_of_releases = news_data.shape[0]
     start_date = str_to_datetime(news_data.loc[no_of_releases -1]['Timestamp']).date()

@@ -57,10 +57,7 @@ nav:
     - Excavation: dev-docs/excavation.md
     - create_schedule:
       - create_schedule(): dev-docs/create_schedule/create_schedule.md
-    - Source:
-      - analyze_data.py: dev-docs/source/analyze_data.py.md
-
-
+      - render_pdf_report
 
 edit_uri: '#docs/'
 

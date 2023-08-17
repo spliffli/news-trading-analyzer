@@ -280,4 +280,4 @@ def create_schedule(next_week=False, custom_date=False, update_news_and_tick_dat
     generate_weekly_schedule(template_vars)
 
 
-create_schedule(custom_date=True, update_news_and_tick_data=True)
+# create_schedule(custom_date=True, update_news_and_tick_data=True)
