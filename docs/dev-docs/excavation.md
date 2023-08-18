@@ -31,7 +31,7 @@
 ### **4. Refactor the Code:**
 
 - [ ] **4.1** Identify and eliminate global variables, replacing them with function parameters and return values where necessary.
-- [ ] **4.2** Identify repeated code blocks and move them into separate functions
+- [ ] **4.2** Identify repeated code blocks and move them into separate functions.
     - (**DRY principle** - Don't Repeat Yourself).
 - [ ] **4.3** Simplify complex functions by breaking them down into smaller functions with single responsibilities.
 - [ ] **4.4** Update function names and variables to be more descriptive, following a consistent naming convention.
