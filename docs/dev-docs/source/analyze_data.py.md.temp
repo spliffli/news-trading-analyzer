@@ -71,9 +71,9 @@
 ::: analyze_data.sort_news_pip_data_by_timestamp
     handler: python
 
-### **load_news_pip_data**
+### **load_news_pip_data_at_timedeltas**
 
-::: analyze_data.load_news_pip_data
+::: analyze_data.load_news_pip_data_at_timedeltas
     handler: python
 
 ### **calc_all_deviations_for_indicator**

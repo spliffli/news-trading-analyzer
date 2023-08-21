@@ -1,5 +1,5 @@
 from import_ticks import import_ticks_for_indicator
-from analyze_data import read_triggers, load_news_pip_data, calc_news_pip_metrics, news_pip_metrics_to_dfs, read_news_data
+from analyze_data import read_triggers, load_news_pip_data_at_timedeltas, calc_news_pip_metrics, news_pip_metrics_to_dfs, read_news_data
 from utils import get_indicator_info, get_higher_dev_expected_direction, haawks_id_to_str
 # from scrape import update_indicator_history
 from generate_report import render_pdf_report
@@ -47,7 +47,7 @@ for index, row in indicators.iterrows():
     news_data = read_news_data(haawks_id_str)
     import_ticks_for_indicator(haawks_id_str, trading_symbol)
     triggers = read_triggers(haawks_id_str)
-    news_pip_data = load_news_pip_data(haawks_id_str, news_data, trading_symbol)
+    news_pip_data = load_news_pip_data_at_timedeltas(haawks_id_str, news_data, trading_symbol)
     news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_dev)
     news_pip_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
     render_pdf_report(haawks_id_str, trading_symbol, news_data, news_pip_metrics_dfs, triggers, symbol_higher_dev, indicator_info)

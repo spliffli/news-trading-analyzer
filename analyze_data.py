@@ -497,7 +497,7 @@ def sort_news_pip_data_by_timestamp(news_pip_data):
     return sorted_dict
 
 
-def load_news_pip_data(haawks_id_str, news_data, symbol):
+def load_news_pip_data_at_timedeltas(haawks_id_str, news_data, symbol):
     """
     Load news pip data for a given haawks_id, news data, and trading symbol.
     If local data exists, it uses that; otherwise, it mines data from raw tick data.
@@ -516,7 +516,7 @@ def load_news_pip_data(haawks_id_str, news_data, symbol):
 
     Example:
         >>> news_data = pd.DataFrame(...)
-        >>> load_news_pip_data("12345", news_data, "EURUSD")
+        >>> load_news_pip_data_at_timedeltas("12345", news_data, "EURUSD")
         {
             "2023-08-14 12:30": {
                 'pips': {...},
@@ -529,65 +529,83 @@ def load_news_pip_data(haawks_id_str, news_data, symbol):
             ...
         }
     """
-    # news_data = news_data.iloc[:7]  # FOR TESTING, shortens the dataframe to be quicker
+    # For testing purposes, the below line is used to shorten the DataFrame for faster execution.
+    # news_data = news_data.iloc[:7]
+
+    # Fetches the details about the specific haawks event using its ID.
     indicator_info = get_indicator_info(haawks_id_str)
 
+    # Initialize an empty dictionary to store pip data for each timestamp.
     news_pip_data = {}
-    row_count = news_data.shape[0]
+    row_count = news_data.shape[0]  # Calculate the total number of rows in the news_data DataFrame.
+
+    # Convert the start and end timestamps from string to datetime objects.
     start_datetime = str_to_datetime(news_data.loc[row_count - 1]['Timestamp'])
     end_datetime = str_to_datetime(news_data.loc[0]['Timestamp'])
-    timestamps_to_mine = []
 
-    for timestamp in news_data["Timestamp"].items():
-        timestamps_to_mine.append(str_to_datetime(timestamp[1]))
+    # Initialize a list to store all timestamps that need data extraction (i.e., mining).
+    timestamps_to_mine = [str_to_datetime(ts) for _, ts in news_data["Timestamp"].items()]
 
+    # Provide feedback about the process.
     print(f"Loading news pip data for {indicator_info['inv_title']}: {start_datetime} - {end_datetime}")
 
+    # Check if the pip data for the specified haawks ID and trading symbol is locally available.
     local_data = read_news_pip_data(haawks_id_str, symbol)
+
     if local_data['data_exists']:
         local_data_start = local_data['start']
         local_data_end = local_data['end']
 
-        for timestamp in list(local_data['data'].keys()):
+        # For each timestamp in local data, remove it from the timestamps_to_mine list.
+        for timestamp in local_data['data']:
             timestamp = str_to_datetime(timestamp)
             if timestamp in timestamps_to_mine:
                 timestamps_to_mine.remove(timestamp)
 
+        # Update the news_pip_data dictionary with locally available data.
         news_pip_data = local_data['data']
-        if len(timestamps_to_mine) == 0:
+
+        # If all required timestamps are in the local data, use it directly.
+        if not timestamps_to_mine:
             print(
                 f"Local data exists for {len(local_data['data'].keys())}/{row_count} releases. Reading data from file...")
             return news_pip_data
+
         else:
             print(
                 f"Local data exists for {len(local_data['data'].keys())}/{row_count} releases. The remaining {row_count - len(local_data['data'])} will be mined from raw tick data")
+
+    # If no local data is available, provide a message indicating data will be mined.
     else:
         print("No local data exists, so it will be mined...")
 
+    # For each timestamp in timestamps_to_mine, extract pip data from raw tick data.
     for index, timestamp in enumerate(timestamps_to_mine):
         print(f"\rMining pip data from {timestamp} ({index + 1}/{len(timestamps_to_mine)})", end="", flush=True)
         timestamp_str = datetime_to_str(timestamp)
 
         try:
+            # Extract pip data from raw tick data.
             data = mine_pip_data_from_ticks(news_data, symbol, timestamp)
-
             news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', data)
 
-            for index, row in news_data.iterrows():
+            # Retrieve and set the 'deviation' value for the current timestamp.
+            for _, row in news_data.iterrows():
                 if row['Timestamp'] == timestamp_str:
-                    try:
-                        news_pip_data[timestamp_str]['deviation'] = row['Deviation']
-                        break
-                    except KeyError:
-                        news_pip_data[timestamp_str]['deviation'] = None
+                    news_pip_data[timestamp_str]['deviation'] = row.get('Deviation', None)
+                    break
         except ValueError:
-            # This should only happen if the tick data is empty which occasionally happens
+            # Handle any ValueErrors, e.g., when tick data might be empty.
             continue
 
+    # Sort the news pip data by timestamp.
     news_pip_data = sort_news_pip_data_by_timestamp(news_pip_data)
+
+    # Once all data is extracted, save it locally for future use.
     print("\nsaving mined data to file")
     save_news_pip_data(haawks_id_str, symbol, news_pip_data)
 
+    # Return the final news pip data dictionary.
     return news_pip_data
 
 
@@ -1067,7 +1085,7 @@ def ema(values, window_size):
     return list(ema_values)
 
 
-def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_dev):
+def calc_news_pip_metrics_old(haawks_id_str, news_pip_data, triggers, symbol_higher_dev):
     """
     Calculate news pip metrics for each trigger.
 
@@ -1237,6 +1255,158 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
 
     # Return the dictionary of news_pip_metrics
     return news_pip_metrics
+
+
+def calculate_relative_pips(ask, bid, negative_dev):
+    """
+    Calculate the 'pips' based on ask and bid values and whether the deviation is negative.
+    """
+    if negative_dev:
+        ask, bid = ask * -1, bid * -1
+
+    if ask < 0 and bid < 0:
+        return bid
+    elif ask >= 0 and bid >= 0:
+        return ask
+    elif ask < 0 and bid > 0:
+        return bid if bid > ask * -1 else ask
+    else:  # ask >= 0 and bid < 0
+        return ask if ask > bid * -1 else bid
+
+
+def calculate_basic_metrics(values):
+    """
+    Calculate the median, mean, and range of a list of 'pips' values.
+    """
+    values.sort()
+    median = values[math.floor((len(values) - 1) / 2)]
+    mean = round(sum(values) / len(values), 1)
+    range_of_values = (min(values), max(values))
+    return median, mean, range_of_values
+
+
+def get_correlation_scores(values, symbol_higher_dev):
+    """
+    Calculate correlation scores based on the expected direction of the 'symbol_higher_dev'.
+    """
+    expected_direction = "positive" if symbol_higher_dev == "bullish" else "negative"
+    correlation_1_score = calc_correlation_1_score(values, expected_direction)
+    correlation_2_score = calc_correlation_2_score(values, expected_direction)
+    correlation_3_score = round((correlation_1_score + correlation_2_score) / 2, 1)
+    return correlation_1_score, correlation_2_score, correlation_3_score
+
+
+def get_ema_correlation_scores(ema_values, ema_suffix, symbol_higher_dev):
+    """
+    Calculate EMA-based correlation scores and label them with a suffix indicating the EMA period.
+    """
+    if symbol_higher_dev == "bullish":
+        expected_direction = "positive"
+    elif symbol_higher_dev == "bearish":
+        expected_direction = "negative"
+    else:
+        raise ValueError("higher_dev must be 'bullish' or 'bearish'")
+
+    correlation_1_ema = calc_correlation_1_score(ema_values, expected_direction)
+    correlation_2_ema = calc_correlation_2_score(ema_values, expected_direction)
+    correlation_3_ema = round((correlation_1_ema + correlation_2_ema) / 2, 1)
+
+    return {
+        f"correlation_1_{ema_suffix}": correlation_1_ema,
+        f"correlation_2_{ema_suffix}": correlation_2_ema,
+        f"correlation_3_{ema_suffix}": correlation_3_ema,
+    }
+
+# TODO: Write get_tsl_hits here
+
+
+def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_dev):
+    """
+    Calculate news pip metrics for each trigger.
+
+    Refer to the initial function's documentation for argument and return value descriptions.
+    """
+    print("Calculating news pip metrics...")
+    news_pip_metrics = {trigger: {} for trigger in triggers}
+    indicator_info = get_indicator_info(haawks_id_str)
+
+    for timestamp in news_pip_data:
+        deviation, negative_dev = preprocess_deviation(news_pip_data, timestamp)
+        trigger = find_trigger(deviation, triggers)
+
+        for time_delta in news_pip_data[timestamp]['pips']:
+            ask, bid = news_pip_data[timestamp]['pips'][time_delta]
+            pips = calculate_relative_pips(ask, bid, negative_dev)
+
+            if trigger:
+                news_pip_metrics[trigger[0]].setdefault(time_delta, []).append(pips)
+
+    for trigger in news_pip_metrics:
+        for time_delta, values in news_pip_metrics[trigger].items():
+            median, mean, range_of_values = calculate_basic_metrics(values)
+            correlation_1, correlation_2, correlation_3 = get_correlation_scores(values, symbol_higher_dev)
+
+            news_pip_metrics[trigger][time_delta] = {
+                "median": median,
+                "mean": mean,
+                "range": range_of_values,
+                "correlation_1": correlation_1,
+                "correlation_2": correlation_2,
+                "correlation_3": correlation_3,
+                "values": values
+            }
+
+            # Compute EMA values for various periods and their corresponding correlation scores
+            ema_values_list = [
+                (ema(values, 5), 'ema5'),
+                (ema(values, 10), 'ema10'),
+                (ema(values, 15), 'ema15')
+            ]
+
+            for ema_values, ema_suffix in ema_values_list:
+                ema_correlation_scores = get_ema_correlation_scores(ema_values, ema_suffix, symbol_higher_dev)
+                news_pip_metrics[trigger][time_delta].update(ema_correlation_scores)
+
+    return news_pip_metrics
+
+
+# Helper function to preprocess deviation values
+def preprocess_deviation(news_pip_data, timestamp):
+    """
+    Process deviation value and check if it is negative.
+    """
+    deviation = news_pip_data[timestamp]['deviation']
+    negative_dev = False
+    if deviation < 0:
+        deviation = deviation * -1
+        negative_dev = True
+    return deviation, negative_dev
+
+
+# Helper function to find the trigger for a given deviation
+def find_trigger(deviation, triggers):
+    """
+    Find the corresponding trigger for the given deviation value.
+    """
+    for index, trigger in enumerate(list(triggers.items())):
+        if trigger[1] == 0:
+            continue
+        if index == len(triggers) - 1:
+            if deviation >= trigger[1]:
+                return trigger
+        else:
+            next_trigger = list(triggers.items())[index + 1]
+            if next_trigger[1] > 0:
+                if trigger[1] <= deviation < next_trigger[1]:
+                    return trigger
+            else:
+                if trigger[1] <= deviation:
+                    return trigger
+    return None
+
+
+# The calc_correlation_1_score, calc_correlation_2_score, ema and get_indicator_info functions
+# are assumed to be previously defined or imported as they were not included in the original code.
 
 
 def calc_pip_averages_and_correlation(values: list):
@@ -1505,7 +1675,7 @@ def calc_news_pip_metrics_for_multiple_indicators(haawks_id_strs_and_symbols: li
         symbol = haawks_id_str_and_symbol[1]
         news_data = read_news_data(haawks_id_str)
         triggers = read_triggers(haawks_id_str)
-        news_pip_data = load_news_pip_data(haawks_id_str, news_data, symbol)
+        news_pip_data = load_news_pip_data_at_timedeltas(haawks_id_str, news_data, symbol)
         news_pip_metrics = calc_news_pip_metrics(haawks_id_str, symbol, news_pip_data, triggers)
         result.setdefault(f"{haawks_id_str}_{symbol} {title}", news_pip_metrics)
 
@@ -1816,7 +1986,7 @@ triggers_vars = read_triggers("10290")
 # calc_all_indicator_deviations()
 # calc_and_save_all_trigger_levels()
 # read_news_pip_data("10000", "EURUSD")
-news_pip_data = load_news_pip_data("10290", news_data, "USDCAD")
+news_pip_data = load_news_pip_data_at_timedeltas("10290", news_data, "USDCAD")
 news_pip_metrics = calc_news_pip_metrics(news_pip_data, triggers_vars, higher_dev="bearish")
 news_pip_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
 """
