@@ -196,12 +196,14 @@ def generate_weekly_schedule(template_vars):
     week_no = "15"  # template_vars['week_no']
 
     """
-    file = open(f'docs/weekly-schedules/week-{week_no}-schedule.md', 'w')
+    file = open(f'new-schedule.md', 'w')
     file.write(output_markdown)
     file.close()
     """
-    with open(f'docs/weekly-schedules/week-{week_no}-schedule.md', 'w') as file:
+    print("Writing markdown file")
+    with open(f'new-schedule.md', 'w') as file:
         file.write(output_markdown)
+    print("Markdown file written")
 
     HTML(string=output_html).write_pdf("reports/weekly-schedules/test_2023-03-30.pdf",
                                        stylesheets=["reports/template/weekly-schedule-style.css"])

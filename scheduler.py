@@ -17,53 +17,53 @@ def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_
     if 75 <= lowest_c_3_val < 80:
         match symbol:
             case 'USDJPY':
-                lots_per_1000 = 1.5
+                lots_per_1000 = 1.6    # 10 pips  = €99.47
             case 'USDCAD':
-                lots_per_1000 = 1.53
+                lots_per_1000 = 1.6    # 10 pips  = €109.33
             case 'USDSEK':
-                lots_per_1000 = 0.77
+                lots_per_1000 = 0.84   # 150 pips = €110.88
             case 'USDNOK':
-                lots_per_1000 = 0.79
+                lots_per_1000 = 0.84   # 150 pips = €110.04
     elif 80 <= lowest_c_3_val < 85:
         match symbol:
             case 'USDJPY':
-                lots_per_1000 = 2.5
+                lots_per_1000 = 2.6    # 10 pips  = €161.64
             case 'USDCAD':
-                lots_per_1000 = 2.55
+                lots_per_1000 = 2.6    # 10 pips  = €177.66
             case 'USDSEK':
-                lots_per_1000 = 1.28
+                lots_per_1000 = 1.36   # 150 pips = €179.52
             case 'USDNOK':
-                lots_per_1000 = 1.31
+                lots_per_1000 = 1.36   # 150 pips = €178.16
     elif 85 <= lowest_c_3_val < 90:
         match symbol:
             case 'USDJPY':
-                lots_per_1000 = 3.5
+                lots_per_1000 = 3.6    # 10 pips  = €223.80
             case 'USDCAD':
-                lots_per_1000 = 3.57
+                lots_per_1000 = 3.6    # 10 pips  = €245.99
             case 'USDSEK':
-                lots_per_1000 = 1.79
+                lots_per_1000 = 1.9    # 150 pips = €250.80
             case 'USDNOK':
-                lots_per_1000 = 1.83
+                lots_per_1000 = 1.9    # 150 pips = €248.89
     elif 90 <= lowest_c_3_val < 95:
         match symbol:
             case 'USDJPY':
-                lots_per_1000 = 4
+                lots_per_1000 = 4.5    # 10 pips  = €279.75
             case 'USDCAD':
-                lots_per_1000 = 4.08
+                lots_per_1000 = 4.5    # 10 pips  = €307.48
             case 'USDSEK':
-                lots_per_1000 = 2.04
+                lots_per_1000 = 2.34   # 150 pips = €308.88
             case 'USDNOK':
-                lots_per_1000 = 2.08
+                lots_per_1000 = 2.34   # 150 pips = €306.53
     elif lowest_c_3_val >= 95:
         match symbol:
             case 'USDJPY':
-                lots_per_1000 = 4.5
+                lots_per_1000 = 5.4    # 10 pips  = €335.46
             case 'USDCAD':
-                lots_per_1000 = 4.59
+                lots_per_1000 = 5.4    # 10 pips  = €369.38
             case 'USDSEK':
-                lots_per_1000 = 2.3
+                lots_per_1000 = 2.8    # 150 pips = €369.60
             case 'USDNOK':
-                lots_per_1000 = 2.35
+                lots_per_1000 = 2.8    # 150 pips = €366.79
 
     lots = (account_balance / 1000) * lots_per_1000
 
@@ -209,7 +209,7 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=3000):
 
 
 
-def create_schedule(next_week=False, custom_date=False, update_news_and_tick_data=True):
+def create_schedule(next_week=False, custom_date=True, update_news_and_tick_data=True):
     top_indicators = pd.read_excel("reports/top_indicators.xlsx")
     indicators = []
 
@@ -279,3 +279,4 @@ def create_schedule(next_week=False, custom_date=False, update_news_and_tick_dat
 
     generate_weekly_schedule(template_vars)
 
+create_schedule()

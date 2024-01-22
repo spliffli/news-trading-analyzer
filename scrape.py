@@ -1,6 +1,7 @@
 import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,13 +14,14 @@ from utils import haawks_id_to_str, str_to_datetime, get_indicator_info, save_ne
 from selenium.webdriver.remote.webelement import WebElement
 import time
 import pandas as pd
-import chromedriver_autoinstaller
+import chromedriver_autoinstaller_fix
 import os
 import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
-chromedriver_autoinstaller.install()
-options = Options()
+chromedriver_autoinstaller_fix.install()
+service = Service()
+options = webdriver.ChromeOptions()
 options.add_argument("--no-sandbox")
 # options.add_argument("--headless")  # hide GUI
 # options.add_argument("--window-size=1920,1080")  # set window size to native GUI size
@@ -29,7 +31,7 @@ options.add_argument("start-maximized")
 options.add_argument("disable-infobars")
 options.add_argument("--disable-extensions")
 options.add_argument("--disable-dev-shm-usage")
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(service=service, options=options)
 
 
 def scrape_indicator(event_id):
