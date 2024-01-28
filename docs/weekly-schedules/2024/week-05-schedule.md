@@ -1,6 +1,11 @@
 # 2024 Week 05 Schedule
 
-### This was generated on 2024/01/28 and has events from **2024/01/29** to **2024/01/29**
+### This was generated on 2024/01/28 and has events from **2024/01/29** to **2024/02/02**
+
+--------
+
+<label>Account Balance (For calculating lot sizes): €</label>
+<input type="number" id="account-balance" value="5000">
 
 --------
 
