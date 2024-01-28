@@ -46,12 +46,15 @@ nav:
   - (DE) News Trading System erklärt: index.md
   - (EN) News Trading System Explained: index-en.md
   - Weekly Schedules:
-    - Week 14: weekly-schedules/week-14-schedule.md
-    - Week 15 (+€592.40 DEMO): weekly-schedules/week-15-schedule.md
-    - Week 16 (0 pips | +0% | +€0.00): weekly-schedules/week-16-schedule.md
-    - Week 17 (current): weekly-schedules/week-17-schedule.md
-    - Week 18: weekly-schedules/week-18-schedule.md
-    - Week 19: weekly-schedules/week-19-schedule.md
+    - 2023
+      - Week 14: weekly-schedules/2023/week-14-schedule.md
+      - Week 15 (+€592.40 DEMO): weekly-schedules/2023/week-15-schedule.md
+      - Week 16 (0 pips | +0% | +€0.00): weekly-schedules/2023/week-16-schedule.md
+      - Week 17 (current): weekly-schedules/2023/week-17-schedule.md
+      - Week 18: weekly-schedules/2023/week-18-schedule.md
+      - Week 19: weekly-schedules/2023/week-19-schedule.md
+    - 2024
+      - Week 05: weekly-schedules/2024/week-05-schedule.md
   - Developer Docs:
     - Excavation: dev-docs/excavation.md
     - create_schedule:
