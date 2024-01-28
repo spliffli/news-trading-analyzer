@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "ProFont For Powerline";
+  src: "../docs/fonts/ProFont For Powerline.ttf";
+}
+
+:root {
+  --md-code-font: "ProFont For Powerline"; 
+  --md-header: "ProFont For Powerline"; 
+
+}

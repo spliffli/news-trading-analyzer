@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/analysis_data/10230_294_US_Initial_Jobless_Claims/pip_data/USDJPY__2017-01-05_2024-01-25.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-14-schedule.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-15-schedule.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-16-schedule.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-17-schedule.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-18-schedule.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-19-schedule.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-05-schedule.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tick_data/USDJPY__2024-01-25__13-25-00_13-45-00.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis_data/10230_294_US_Initial_Jobless_Claims/pip_data/USDJPY__2017-01-05_2024-01-18.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/week-14-schedule.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/week-15-schedule.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/week-16-schedule.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/week-17-schedule.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/week-18-schedule.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/week-19-schedule.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mkdocs.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_data/10230_294_US_Initial_Jobless_Claims.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/10230_294_US_Initial_Jobless_Claims.csv" afterDir="false" />
-    </list>
+    <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -1,0 +1,234 @@
+body {
+      font-family: 'Roboto', sans-serif;
+}
+
+.day {
+  margin: 20px 0;
+  text-align: center;
+}
+
+h1 {
+  margin: 0px;
+}
+
+.card-wrapper {
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline-block;
+  vertical-align: top; /* Added vertical-align to avoid any unexpected space */
+  width: 49.2%; /* Added width to leave some space between the card wrappers */
+}
+
+.card {
+  background-color: #f2f2f2;
+  border: 3px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #2b2b2b
+}
+
+.card h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 0px;
+}
+
+.card p {
+  display: inline-block;
+  font-size: 16px;
+  margin: 0px;
+}
+
+.with-results {
+  width: 100%;
+  max-width: 2000px;
+  margin-right: 0 !important;
+}
+
+.card.with-results {
+  display: flex;
+}
+
+.left {
+  flex: 1;
+  width: 50%; /* Set the width to 50% */
+  padding-right: 20px;
+  box-sizing: border-box; /* Include padding and border in the element's width */
+  border-right: 1px solid gray; /* Add a gray vertical line */
+}
+
+.right {
+  flex: 1;
+  width: 50%; /* Set the width to 50% */
+  padding-left: 20px;
+  box-sizing: border-box; /* Include padding and border in the element's width */
+}
+
+
+
+.right .news-figures, .right .pnl {
+  display: flex;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  border-color: gray;
+  margin-bottom: 2px;
+  justify-content: space-evenly;
+  
+}
+
+.right .news-figures h3, .right .pnl h3 {
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+.right .trigger-direction, .right .pips-eur {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+.triggers {
+  margin-top: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.triggers h4 {
+  font-size: 14px;
+  margin: 0;
+}
+
+
+.triggers h5 {
+  display: inline-block;
+  margin: 0;
+  font-size: 10px;
+}
+
+.triggers h5 {
+  display: block;
+  font-weight: normal;
+}
+
+.triggers h4 span {
+  font-weight: normal
+}
+
+.trigger {
+  text-align: right;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.trigger h5 {
+  font-weight: bold;
+}
+
+.trigger h5 span {
+  font-weight: normal;
+}
+
+.time-group {
+  border-style: solid;
+  border-color: white;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+
+.trigger .hit {
+  border-style: solid;
+  border-width: 2px;
+  border-color: gold;
+  border-radius: 10px;
+  background-color: gold;
+}
+
+.to-trade {
+  border-style: solid;
+  border-width: 3px;
+  border-color: blue;
+}
+
+.not-trading {
+  border-style: solid;
+  border-width: 3px;
+  border-color: #ccc;
+}
+
+.traded-won {
+  border-style: solid;
+  border-width: 3px;
+  border-color: green;
+}
+
+.traded-lost {
+  border-style: solid;
+  border-width: 3px;
+  border-color: red;
+}
+
+.no-trade {
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+}
+
+.white-text {
+  color: white;
+}
+
+.blue-text {
+  color: blue;
+}
+
+.green-text {
+  color: green;
+}
+
+.red-text {
+  color: red;
+}
+
+.gray-text {
+  color: #ccc
+}
+
+.dark-gray-text {
+  color: #777
+}
+
+.black-text {
+  color: black;
+}
+
+input[type="number"] {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 6px 12px;
+  margin-left: 5px;
+  width: 100px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
