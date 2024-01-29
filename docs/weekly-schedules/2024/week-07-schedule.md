@@ -1,5 +1,5 @@
 
-# 2024 Week  Schedule
+# 2024 Week 7 Schedule
 
 ### This was generated on 2024/01/29 and has events from **2024/02/13** to **2024/02/13**
 
