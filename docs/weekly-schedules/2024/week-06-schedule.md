@@ -1,28 +1,14 @@
 
     # 2024 Week  Schedule
     
-    ### This was generated on 2024/01/29 and has events from **2024/02/09** to **2024/02/09**
+    ### This was generated on 29/01/2024 and has events from **02/09/2024** to **02/09/2024**
     
-    --------
-    
-    ## Sunday
-    
-    
-    
-    ## Monday
-    
-    
-    
-    ## Tuesday
-    
-    
-    
-    ## Wednesday
-    
-    
-    
-    ## Thursday
-    
+  --------
+
+<label>Account Balance (For calculating lot sizes): €</label>
+<input type="number" id="account-balance" value="3000">
+
+--------
     
     
     ## Friday

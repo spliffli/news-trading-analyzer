@@ -5,8 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-06-schedule.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-03-10__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-04-06__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-05-05__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-06-09__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-07-07__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-08-04__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-09-08__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-10-06__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-11-03__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-12-01__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2024-01-05__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDNOK__2023-05-10__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDNOK__2023-06-09__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDNOK__2023-07-10__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDNOK__2023-08-10__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDNOK__2023-09-11__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDNOK__2023-10-10__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDNOK__2023-11-10__06-55-00_07-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDNOK__2023-12-11__06-55-00_07-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDNOK__2024-01-10__06-55-00_07-15-00.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/00041_637_Norway_Consumer_Price_Index_(CPI)_MoM/pip_data/USDNOK__2017-01-10_2023-04-11.json" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_data/00041_637_Norway_Consumer_Price_Index_(CPI)_MoM/pip_data/USDNOK__2017-01-10_2024-01-10.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/00042_1179_Norway_Consumer_Price_Index_(CPI)_YoY/pip_data/USDNOK__2017-01-10_2023-04-11.json" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_data/00042_1179_Norway_Consumer_Price_Index_(CPI)_YoY/pip_data/USDNOK__2017-01-10_2024-01-10.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/10290_95_Canada_Employment_Change/pip_data/USDCAD__2017-01-06_2023-03-10.json" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_data/10290_95_Canada_Employment_Change/pip_data/USDCAD__2017-01-06_2024-01-05.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/10291_301_Canada_Unemployment_Rate/pip_data/USDCAD__2017-01-06_2023-02-10.json" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_data/10291_301_Canada_Unemployment_Rate/pip_data/USDCAD__2017-01-06_2024-01-05.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-05-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-05-schedule.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mkdocs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/new-schedule.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00041_637_Norway_Consumer_Price_Index_(CPI)_MoM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00041_637_Norway_Consumer_Price_Index_(CPI)_MoM.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00042_1179_Norway_Consumer_Price_Index_(CPI)_YoY.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00042_1179_Norway_Consumer_Price_Index_(CPI)_YoY.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/10290_95_Canada_Employment_Change.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/10290_95_Canada_Employment_Change.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/10291_301_Canada_Unemployment_Rate.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/10291_301_Canada_Unemployment_Rate.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/weekly-schedules/test_2023-03-30.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/weekly-schedules/test_2023-03-30.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

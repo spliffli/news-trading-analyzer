@@ -54,7 +54,8 @@ nav:
       - Week 18: weekly-schedules/2023/week-18-schedule.md
       - Week 19: weekly-schedules/2023/week-19-schedule.md
     - 2024:
-      - Week 05: weekly-schedules/2024/week-05-schedule.md
+      - Week 5: weekly-schedules/2024/week-05-schedule.md
+      - Week 6: weekly-schedules/2024/week-06-schedule.md
   - Developer Docs:
     - Excavation: dev-docs/excavation.md
     - create_schedule:

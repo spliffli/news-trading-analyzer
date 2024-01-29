@@ -1,6 +1,6 @@
-# 2024 Week 05 Schedule
+# 2024 Week 5 Schedule
 
-### This was generated on 2024/01/28 and has events from **2024/01/29** to **2024/02/02**
+### This was generated on 28/01/2024 and has events from **29/01/2024** to **02/02/2024**
 
 --------
 
