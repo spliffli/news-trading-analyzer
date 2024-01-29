@@ -3,7 +3,7 @@
 
 ### This was generated on 29/01/2024 and has events from **02/09/2024** to **02/09/2024**
 
-  --------
+--------
 
 <label>Account Balance (For calculating lot sizes): €</label>
 <input type="number" id="account-balance" value="3000">
