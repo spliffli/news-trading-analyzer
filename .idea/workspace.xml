@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="" />
+    <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/analysis_data/00051_1185_Sweden_Consumer_Price_Index_(CPI)_MoM/pip_data/USDSEK__2017-01-12_2024-01-15.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/00052_425_Sweden_Consumer_Price_Index_(CPI)_YoY/pip_data/USDSEK__2017-01-12_2024-01-15.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/00053_1213_Sweden_Consumer_Price_Index_at_Constant_Interest_Rates_(CPIF)_MoM/pip_data/USDSEK__2017-01-12_2024-01-15.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-04-18__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-06-27__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-07-18__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-09-19__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-10-17__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-11-21__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-12-19__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2024-01-16__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2023-04-14__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2023-05-15__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2023-06-14__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2023-07-14__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2023-08-15__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2023-09-14__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2023-10-13__05-55-00_06-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2023-11-14__06-55-00_07-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2023-12-14__06-55-00_07-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2024-01-15__06-55-00_07-15-00.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/00051_1185_Sweden_Consumer_Price_Index_(CPI)_MoM/pip_data/USDSEK__2017-01-12_2023-03-15.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/00052_425_Sweden_Consumer_Price_Index_(CPI)_YoY/pip_data/USDSEK__2017-01-12_2023-03-15.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/00053_1213_Sweden_Consumer_Price_Index_at_Constant_Interest_Rates_(CPIF)_MoM/pip_data/USDSEK__2017-01-12_2023-03-15.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00051_1185_Sweden_Consumer_Price_Index_(CPI)_MoM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00051_1185_Sweden_Consumer_Price_Index_(CPI)_MoM.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00052_425_Sweden_Consumer_Price_Index_(CPI)_YoY.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00052_425_Sweden_Consumer_Price_Index_(CPI)_YoY.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00053_1213_Sweden_Consumer_Price_Index_at_Constant_Interest_Rates_(CPIF)_MoM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00053_1213_Sweden_Consumer_Price_Index_at_Constant_Interest_Rates_(CPIF)_MoM.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00054_1214_Sweden_Consumer_Price_Index_at_Constant_Interest_Rates_(CPIF)_YoY.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00054_1214_Sweden_Consumer_Price_Index_at_Constant_Interest_Rates_(CPIF)_YoY.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/10250_70_Canada_Consumer_Price_Index_(CPI)_MoM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/10250_70_Canada_Consumer_Price_Index_(CPI)_MoM.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/10251_741_Canada_Consumer_Price_Index_(CPI)_YoY.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/10251_741_Canada_Consumer_Price_Index_(CPI)_YoY.csv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
