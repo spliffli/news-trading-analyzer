@@ -43,8 +43,9 @@ plugins:
 - mkdocstrings
 
 nav:
-  - (DE) News Trading System erklärt: index.md
-  - (EN) News Trading System Explained: index-en.md
+  - Intro: index.md
+  - (EN) News Trading System Explained: system-explained-en.md
+  - (DE) News Trading System erklärt: system-explained-de.md
   - Weekly Schedules:
     - 2023:
       - Week 14: weekly-schedules/2023/week-14-schedule.md

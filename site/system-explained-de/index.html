@@ -1,0 +1,1409 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../system-explained-en/">
+      
+      
+        <link rel="next" href="../weekly-schedules/2023/week-14-schedule/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
+    
+    
+      
+        <title>(DE) News Trading System erklärt - News Trading System</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7bf56d0a.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13.274 9.537v-.001l-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75Z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.484 4.484 0 0 1-.563-1.191 3.835 3.835 0 0 1-.05-2.063 4.647 4.647 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .748.748 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.425 2.425 0 0 1-.507-.441 3.075 3.075 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.884.884 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.737 3.737 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75Z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.488 3.488 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.036 5.036 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.677 1.677 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06Zm.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.172.172 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173Z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>');}</style>
+
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../css/dark_theme.css">
+    
+      <link rel="stylesheet" href="../css/codehilite.css">
+    
+      <link rel="stylesheet" href="../css/profont.css">
+    
+      <link rel="stylesheet" href="../css/youtube-videos.css">
+    
+      <link rel="stylesheet" href="../css/nta-weekly-schedule-cards.css">
+    
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+<meta name="theme-color" content="#212121">
+
+<link rel='icon' href='/img/favicon.ico'>
+
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='mobile-web-app-capable' content='yes'>
+<link rel="manifest" href="/manifest.json">
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#news-trading-system-erklart" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="News Trading System" class="md-header__button md-logo" aria-label="News Trading System" data-md-component="logo">
+      
+  <img src="../img/logo-96px.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            News Trading System
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              (DE) News Trading System erklärt
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="News Trading System" class="md-nav__button md-logo" aria-label="News Trading System" data-md-component="logo">
+      
+  <img src="../img/logo-96px.png" alt="logo">
+
+    </a>
+    News Trading System
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Intro
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-explained-en/" class="md-nav__link">
+        (EN) News Trading System Explained
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          (DE) News Trading System erklärt
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        (DE) News Trading System erklärt
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-intro" class="md-nav__link">
+    1. Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-was-dieses-system-nicht-ist" class="md-nav__link">
+    2. Was dieses System nicht ist
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-wie-ich-von-dieser-strategie-erfahren-habe" class="md-nav__link">
+    3. Wie ich von dieser Strategie erfahren habe
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Wie ich von dieser Strategie erfahren habe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warum-bewegt-sich-der-kurspreis-immer-noch-wenn-alle-sagen-dass-sie-ihre-handelsroboter-trading-bots-wahrend-dieser-nachrichtenereignisse-abschalten-sollen" class="md-nav__link">
+    Warum bewegt sich der Kurs/Preis immer noch, wenn alle sagen, dass sie ihre Handelsroboter (Trading Bots) während dieser Nachrichtenereignisse abschalten sollen?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-welche-art-von-nachrichten-bewegt-den-markt" class="md-nav__link">
+    4. Welche Art von Nachrichten bewegt den Markt?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-was-der-preis-ist-und-warum-er-sich-bewegt" class="md-nav__link">
+    5. Was der Preis ist und warum er sich bewegt
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-auftragsarten-order-types" class="md-nav__link">
+    6. Auftragsarten (Order Types)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-wie-der-preis-gemessen-wird" class="md-nav__link">
+    7. Wie der Preis gemessen wird
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-lots" class="md-nav__link">
+    8. Lots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-spread-spanne" class="md-nav__link">
+    9. Spread (Spanne)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-liquidity-liquiditat" class="md-nav__link">
+    10. Liquidity (Liquidität)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-stoploss-sl" class="md-nav__link">
+    11. Stoploss (SL)
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Stoploss (SL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trailing-stoploss-tsl" class="md-nav__link">
+    Trailing Stoploss (TSL)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-volatility-volatilitat" class="md-nav__link">
+    12. Volatility (Volatilität)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-latenzgeschwindigkeit-latencyspeed" class="md-nav__link">
+    13. Latenz/Geschwindigkeit (Latency/Speed)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-slippage" class="md-nav__link">
+    14. Slippage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-forex-brokers" class="md-nav__link">
+    15. Forex Brokers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-trading-software-handelssoftware" class="md-nav__link">
+    16. Trading Software (Handelssoftware)
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Trading Software (Handelssoftware)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metatrader-4" class="md-nav__link">
+    MetaTrader 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haawks-news-trader" class="md-nav__link">
+    Haawks News Trader
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-historische-datenanalyse-historic-data-analysis" class="md-nav__link">
+    17. Historische Datenanalyse (Historic Data Analysis)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-ordnen-sie-jeden-indikator-ein-ranking-every-indicator" class="md-nav__link">
+    18. Ordnen Sie jeden Indikator ein (Ranking every indicator)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-handelsplane-erstellen-generating-trading-plans" class="md-nav__link">
+    19. Handelspläne erstellen (Generating trading plans)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Weekly Schedules
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Weekly Schedules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+          2023
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          2023
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2023/week-14-schedule/" class="md-nav__link">
+        Week 14
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2023/week-15-schedule/" class="md-nav__link">
+        Week 15 (+€592.40 DEMO)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2023/week-16-schedule/" class="md-nav__link">
+        Week 16 (0 pips | +0% | +€0.00)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2023/week-17-schedule/" class="md-nav__link">
+        Week 17 (current)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2023/week-18-schedule/" class="md-nav__link">
+        Week 18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2023/week-19-schedule/" class="md-nav__link">
+        Week 19
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          2024
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          2024
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2024/week-05-schedule/" class="md-nav__link">
+        Week 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2024/week-06-schedule/" class="md-nav__link">
+        Week 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2024/week-07-schedule/" class="md-nav__link">
+        Week 7
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-schedules/2024/week-08-schedule/" class="md-nav__link">
+        Week 8
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Developer Docs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Developer Docs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-docs/excavation/" class="md-nav__link">
+        Excavation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+          create_schedule
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          create_schedule
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-docs/generate_report/" class="md-nav__link">
+        generate_report()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-docs/create_schedule/" class="md-nav__link">
+        create_schedule()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev-docs/ranker.py/" class="md-nav__link">
+        ranker.py
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-intro" class="md-nav__link">
+    1. Intro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-was-dieses-system-nicht-ist" class="md-nav__link">
+    2. Was dieses System nicht ist
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-wie-ich-von-dieser-strategie-erfahren-habe" class="md-nav__link">
+    3. Wie ich von dieser Strategie erfahren habe
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Wie ich von dieser Strategie erfahren habe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warum-bewegt-sich-der-kurspreis-immer-noch-wenn-alle-sagen-dass-sie-ihre-handelsroboter-trading-bots-wahrend-dieser-nachrichtenereignisse-abschalten-sollen" class="md-nav__link">
+    Warum bewegt sich der Kurs/Preis immer noch, wenn alle sagen, dass sie ihre Handelsroboter (Trading Bots) während dieser Nachrichtenereignisse abschalten sollen?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-welche-art-von-nachrichten-bewegt-den-markt" class="md-nav__link">
+    4. Welche Art von Nachrichten bewegt den Markt?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-was-der-preis-ist-und-warum-er-sich-bewegt" class="md-nav__link">
+    5. Was der Preis ist und warum er sich bewegt
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-auftragsarten-order-types" class="md-nav__link">
+    6. Auftragsarten (Order Types)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-wie-der-preis-gemessen-wird" class="md-nav__link">
+    7. Wie der Preis gemessen wird
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-lots" class="md-nav__link">
+    8. Lots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-spread-spanne" class="md-nav__link">
+    9. Spread (Spanne)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-liquidity-liquiditat" class="md-nav__link">
+    10. Liquidity (Liquidität)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-stoploss-sl" class="md-nav__link">
+    11. Stoploss (SL)
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Stoploss (SL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trailing-stoploss-tsl" class="md-nav__link">
+    Trailing Stoploss (TSL)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-volatility-volatilitat" class="md-nav__link">
+    12. Volatility (Volatilität)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-latenzgeschwindigkeit-latencyspeed" class="md-nav__link">
+    13. Latenz/Geschwindigkeit (Latency/Speed)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-slippage" class="md-nav__link">
+    14. Slippage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-forex-brokers" class="md-nav__link">
+    15. Forex Brokers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-trading-software-handelssoftware" class="md-nav__link">
+    16. Trading Software (Handelssoftware)
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Trading Software (Handelssoftware)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metatrader-4" class="md-nav__link">
+    MetaTrader 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haawks-news-trader" class="md-nav__link">
+    Haawks News Trader
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-historische-datenanalyse-historic-data-analysis" class="md-nav__link">
+    17. Historische Datenanalyse (Historic Data Analysis)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-ordnen-sie-jeden-indikator-ein-ranking-every-indicator" class="md-nav__link">
+    18. Ordnen Sie jeden Indikator ein (Ranking every indicator)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-handelsplane-erstellen-generating-trading-plans" class="md-nav__link">
+    19. Handelspläne erstellen (Generating trading plans)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="news-trading-system-erklart"><strong>News Trading System erklärt</strong></h1>
+<h2 id="1-intro"><strong>1. Intro</strong></h2>
+<p>In diesem Dokument werde ich das System erläutern, das ich für den Handel mit Wirtschaftsnachrichtenindikatoren auf dem Forexmarkt entwickle. Das Hauptprinzip besteht darin, dass es verschiedene geplante Wirtschaftsstatistiken gibt, die regelmäßig veröffentlicht werden und die sich auf die Kurse des Marktes auswirken. Wenn Sie die veröffentlichten Zahlen kennen, können Sie fundierte Vorhersagen darüber machen, in welche Richtung sich der Preis bewegen wird. Da der Kurs sehr schnell reagiert, ist es wichtig, so schnell wie möglich in den Handel einzusteigen, um die Bewegung zu erfassen.</p>
+<h2 id="2-was-dieses-system-nicht-ist"><strong>2. Was dieses System nicht ist</strong></h2>
+<p>Es ist erwähnenswert, dass die große Mehrheit der Handelsstrategien die technische Analyse (TA) beinhaltet. Das bedeutet im Wesentlichen, dass man sich die Kurscharts ansieht und Indikatoren wie RSI, MACD und andere hinzufügt, um vorherzusagen, in welche Richtung sich der Preis bewegen wird. Die meisten Händler, die sich ausschließlich auf die technische Analyse stützen, verlieren auf lange Sicht. Wahrscheinlich verwenden etwa 95 % der Händler die technische Analyse und etwa 95 % der Händler verlieren. Langfristig kann man auf dem Markt nur gewinnen, wenn man einen Vorteil hat, und das ist mit der technischen Analyse allein unmöglich.</p>
+<h2 id="3-wie-ich-von-dieser-strategie-erfahren-habe"><strong>3. Wie ich von dieser Strategie erfahren habe</strong></h2>
+<p>Wenn Sie auf youtube oder google nach Videos über algorithmische Handelsempfehlungen suchen, geht es praktisch immer um die technische Analyse. Nicht nur das, sondern der allgemeine Ratschlag lautet, den Handelsalgorithmus während Nachrichtenereignissen abzuschalten, weil er "unvorhersehbare" Kursbewegungen verursacht. Unvorhersehbar sind sie jedoch nur durch das Paradigma der technischen Analyse. Nachdem ich das schon oft gesehen habe, hat mich das zum Nachdenken gebracht:</p>
+<h3 id="warum-bewegt-sich-der-kurspreis-immer-noch-wenn-alle-sagen-dass-sie-ihre-handelsroboter-trading-bots-wahrend-dieser-nachrichtenereignisse-abschalten-sollen"><strong>Warum bewegt sich der Kurs/Preis immer noch, wenn alle sagen, dass sie ihre Handelsroboter (Trading Bots) während dieser Nachrichtenereignisse abschalten sollen?</strong></h3>
+<p>Der Kurs kann sich nur bewegen, wenn gehandelt wird, also gibt es eindeutig einige, die mit den Nachrichten handeln. Aber wer? Wenn Sie versuchen, dies herauszufinden, werden Sie im Internet nicht viele Informationen finden. Daraus lässt sich ableiten, dass es sich bei den Personen, die während der Nachrichten handeln und somit die Kursbewegungen verursachen, höchstwahrscheinlich um institutionelle Händler und nicht um Kleinanleger (retail traders) handelt.</p>
+<h2 id="4-welche-art-von-nachrichten-bewegt-den-markt"><strong>4. Welche Art von Nachrichten bewegt den Markt?</strong></h2>
+<p>Marktbewegende Nachrichten bestehen in der Regel aus Wirtschaftsindikatoren, die auf Websites wie <code>investing.com/economic-calendar/</code> zu finden sind.</p>
+<p><img alt="" src="../images/economic-calendar.png" /></p>
+<p>Die wichtigsten Zahlen sind die tatsächlichen (Actual) und die prognostizierten (Forecast) Zahlen, wobei es zu Marktbewegungen kommt, wenn die tatsächliche Zahl von der prognostizierten abweicht. Bei den monatlichen GDP (BIP)-Zahlen Kanadas beispielsweise ist eine höher als erwartete Ist-Zahl positiv für den Kanadischen Dollar (CAD) und führt zu einem Kursanstieg, während eine niedriger als erwartete Zahl negativ ist und zu einem Kursrückgang führt. Bei Währungspaaren wie USD/CAD reagieren die Basiswährung (USD) und die Kurswährung (CAD) unterschiedlich auf Nachrichten: Positive Nachrichten für die Basiswährung führen zu einem Kursanstieg, während negative Nachrichten zu einem Kursrückgang führen; positive Nachrichten für die Kurswährung führen zu einem Kursrückgang, während negative Nachrichten zu einem Kursanstieg führen. </p>
+<p><img alt="" src="../images/canada-gdp-mom.png" /></p>
+<p>Beim Handel mit Währungspaaren wird auf die Richtung des Wechselkurses spekuliert, wobei Gewinn oder Verlust durch die Differenz zwischen Einstiegs- und Ausstiegskurs und den Umfang der Position (ein offener Handel) bestimmt werden.</p>
+<h2 id="5-was-der-preis-ist-und-warum-er-sich-bewegt"><strong>5. Was der Preis ist und warum er sich bewegt</strong></h2>
+<p>Auf dem Forex-Markt wird der aktuelle Kurs eines Währungspaares durch die Bids (Gebote) und Asks (Anfragen) im Orderbuch bestimmt. Das Orderbuch ist eine Echtzeit-Anzeige aller Kauf- und Verkaufsaufträge für ein bestimmtes Währungspaar zu verschiedenen Kursniveaus.</p>
+<ul>
+<li>Wenn ein Händler eine <strong>sell</strong> limit order (Verkauf-Limit-Order) platziert, erstellt er eine <strong>'ask' (Nachfrage)</strong> im Orderbuch, die den niedrigsten Preis darstellt, den er für das Währungspaar zu akzeptieren bereit ist.</li>
+<li>Wenn ein Händler einen <strong>buy</strong> limit order (Kauf-Limit-Order) erteilt, erstellt er ein <strong>'bid' (Gebot)</strong> im Orderbuch (orderbook), das den höchsten Preis darstellt, den er für das Währungspaar zu zahlen bereit ist.</li>
+</ul>
+<p>Das Orderbuch enthält alle 'bids' und 'asks' in Echtzeit, geordnet nach Preisniveau. Das beste bid ist der höchste Preis, zu dem ein Käufer bereit ist, das Währungspaar zu kaufen, während die beste ask der niedrigste Preis ist, zu dem ein Verkäufer bereit ist, das Währungspaar zu verkaufen.</p>
+<p><img alt="" src="../images/orderbook.png" /></p>
+<p>Der aktuelle Kurs des Währungspaares basiert immer auf zwei Kursen: dem besten ask und dem besten bid. Der aktuelle Marktpreis, der auf einem Preisticker angezeigt wird, ist in der Regel der Mittelpunkt (mid-point) zwischen dem besten Ask- und dem besten Bidkurs. Dies ist jedoch nicht der Preis, zu dem Ihre Aufträge ausgeführt (filled) werden. Das beste bid stellt den höchsten Preis dar, zu dem jemand bereit ist, das Währungspaar zu kaufen, während die beste ask den niedrigsten Preis darstellt, zu dem jemand bereit ist, das Währungspaar zu verkaufen. Der aktuelle Marktpreis für die tatsächliche Ausführung eines Handels ist also der höchste Preis, den jemand zu zahlen bereit ist (bestes bid), und der niedrigste Preis, den jemand zu einem bestimmten Zeitpunkt zu verkaufen bereit ist (beste ask). Zwischen dem besten ask und dem besten bid klafft in der Regel eine Lücke, die als "Spread" bezeichnet wird.</p>
+<h2 id="6-auftragsarten-order-types"><strong>6. Auftragsarten (Order Types)</strong></h2>
+<ul>
+<li><strong>Market Orders (Marktaufträge)</strong> werden sofort zum besten verfügbaren Preis ausgeführt, entweder zum besten ask für einen Market Buy Order (Marktkaufauftrag) oder zum besten bid für einen Market Sell Order (Marktverkaufsauftrag).<ul>
+<li>Wenn ein Händler einen Marktauftrag zum <strong>Kauf/Buy</strong> des Währungspaares erteilt (<strong><em>Market Buy Order</em></strong>), wird sein Auftrag zum aktuell besten <strong>ask</strong> preis ausgeführt.</li>
+<li>Bei einem <strong><em>Market Sell Order</em></strong> (Marktauftrag zum <strong>Verkauf/Sell</strong>) wird der Auftrag zum aktuell besten <strong>bid</strong> preis ausgeführt.</li>
+</ul>
+</li>
+<li><strong>Limit Orders (Limitaufträge)</strong> werden ausgeführt, wenn der Marktpreis ein bestimmtes Preisniveau erreicht.</li>
+</ul>
+<p>Wenn es auf einem bestimmten Kursniveau mehr Käufer als Verkäufer gibt, kann der Kurs des Währungspaares steigen, da die Käufer um den Kauf der Währung konkurrieren. Umgekehrt kann der Preis des Währungspaares fallen, wenn es auf einem bestimmten Preisniveau mehr Verkäufer als Käufer gibt, da die Verkäufer um den Verkauf der Währung konkurrieren.</p>
+<p>Zusammenfassend lässt sich sagen, dass der aktuelle Kurs/Preis eines Forex Paar/Symbol durch die bids und der asks im Orderbuch bestimmt wird. Im Orderbuch werden alle Kauf- und Verkaufsaufträge (Buy &amp; Sell orders) für das Währungspaar zu verschiedenen Kursniveaus angezeigt, und das beste bid und die beste ask bestimmen den aktuellen Marktpreis, d. h. den höchsten Preis, den jemand zu zahlen bereit ist (bestes bid), und den niedrigsten Preis, den jemand zu einem bestimmten Zeitpunkt zu verkaufen bereit ist (beste ask).</p>
+<h2 id="7-wie-der-preis-gemessen-wird"><strong>7. Wie der Preis gemessen wird</strong></h2>
+<p>Ein Pip (kurz für "percentage in point" oder "price interest point") ist angeblich die kleinste Einheit der Kursbewegung eines Währungspaares. Er entspricht bei den meisten Währungspaaren der vierten Dezimalstelle, außer bei einigen Währungspaaren, die eine andere Dezimalstelle haben.</p>
+<p>Wenn das Währungspaar EUR/USD beispielsweise bei 1.2000 gehandelt wird und dann auf 1.2001 steigt, ist dies eine Bewegung von einem Pip. Ähnlich verhält es sich mit dem Währungspaar USD/JPY, das bei 108.00 gehandelt wird und dann auf 107.99 fällt: eine Bewegung von einem Pip.</p>
+<p>Pips werden verwendet, um den Gewinn oder Verlust eines Forexhandels zu berechnen. Der Umfang des Handels (Lot size), die Anzahl der gewonnenen oder verlorenen Pips und das gehandelte Währungspaar bestimmen die Höhe des Gewinns oder Verlusts. Daher ist es für Forexhändler wichtig, das Konzept der Pips zu verstehen, um potenzielle Gewinne und Verluste genau zu berechnen.</p>
+<p>Es ist jedoch erwähnenswert, dass viele Forex-Broker "Fraktionierte Pips" oder "Pipettes" (auch "Points" ("Punkte") genannt) verwenden, die eine fünfte Dezimalstelle darstellen, um genauere Preise für Währungspaare zu liefern. In diesem Fall ist die wirklich kleinste Einheit der Kursbewegung 1 Point. Zehn Points entsprechen einem Pip.</p>
+<h2 id="8-lots"><strong>8. Lots</strong></h2>
+<p>Die Lot Size (Lotgröße) bzw. Position Size (Positionsgröße) muss für jeden Kauf- oder Verkaufsauftrag im Forex-Handel angegeben werden. Die Lot Size wirkt sich direkt auf den potenziellen Gewinn oder Verlust aus, da sie die Positionsgröße und den Wert jedes Pips bestimmt. Für EUR/USD hat 1 Lot einen Pip-Wert von $10 (Dieser Betrag variiert je nach Währungspaar). Eine Bewegung von 20 Pips bei einem EUR/USD-Handel mit 1 Lot führt also zu einem Gewinn von $200, während die gleiche Bewegung bei einem Handel mit 0.1 Lot (1 Pip = $1) zu einem Gewinn von $20 führen würde. Händler müssen ihre Lotgröße sorgfältig im Verhältnis zu ihrer Strategie und Risikotoleranz abwägen.</p>
+<h2 id="9-spread-spanne"><strong>9. Spread (Spanne)</strong></h2>
+<p>Der Spread im Forex-Handel stellt die Differenz zwischen dem Bid und Ask (Geld- und dem Briefkurs) eines Währungspaares dar und dient im Wesentlichen als Kosten für den Handel. Beeinflusst von Faktoren wie Marktvolatilität, Liquidität sowie Angebot und Nachfrage, wird die Spread in der Regel in Pips gemessen und von Liquiditätsanbietern wie Banken und Finanzinstituten festgelegt. Während wirtschaftlicher Nachrichtenereignisse kann sich die Bid-Ask-Spread (Geld-Brief-Spanne) ausweiten und die Liquidität abnehmen, was zu erhöhter Volatilität und Slippage führt, was es für Händler schwierig machen kann, schnell und effizient in Positionen ein- oder auszusteigen, was das Risiko von Verlusten erhöht. Daher kann eine Strategie wie ein 5-Pip-Trailing-Stop-Loss helfen, diese Risiken zu mindern.</p>
+<h2 id="10-liquidity-liquiditat"><strong>10. Liquidity (Liquidität)</strong></h2>
+<p>Liquidität im Devisenhandel bezieht sich auf die Fülle und Verfügbarkeit von Buy- und Sell-Orders für ein bestimmtes Währungspaar, was effiziente Transaktionen mit minimalen Preisauswirkungen und reduzierten Kosten ermöglicht. Der Devisenmarkt ist mit einem täglichen Handelsvolumen von mehr als 6 Billionen Dollar sehr liquide, was zu einem robusten Auftragsbuch und günstigen Handelsbedingungen führt. Die hohe Liquidität führt zu engen Geld-Brief-Spannen, niedrigeren Transaktionskosten und minimalen Kursbewegungen beim Eingehen oder Verlassen von Positionen. Zu den Faktoren, die die Liquidität beeinflussen, gehören geopolitische Ereignisse, die Veröffentlichung von Wirtschaftsdaten, die Marktstimmung und die Handelszeiten. Wichtige Währungspaare wie EUR/USD, USD/JPY und GBP/USD weisen eine höhere Liquidität auf, die Händlern bessere Handelsmöglichkeiten, eine schnellere Ausführung und geringere Preisauswirkungen bietet.</p>
+<h2 id="11-stoploss-sl"><strong>11. Stoploss (SL)</strong></h2>
+<p>Ein Stop-Loss ist ein Parameter in einem Auftrag, der dazu dient, mögliche Verluste bei einer offenen Position zu begrenzen. Er kann jederzeit festgelegt und aktualisiert werden, wenn der Auftrag offen ist. Er legt ein bestimmtes Kursniveau fest, bei dem der Handel automatisch geschlossen wird, wenn sich der Markt gegen die Position bewegt, und hilft so, Verluste zu minimieren. Es ist ein gängiges Instrument des Risikomanagements, das von Händlern eingesetzt wird, um ihr Kapital zu schützen und das Risiko zu steuern.</p>
+<h3 id="trailing-stoploss-tsl"><strong>Trailing Stoploss (TSL)</strong></h3>
+<p>Ein Trailing-Stop-Loss ist eine Art von Stop-Loss, der der Kursbewegung eines Vermögenswerts in eine bestimmte Richtung folgt und es Händlern ermöglicht, Gewinne zu sichern und gleichzeitig mögliche Verluste zu begrenzen. Er funktioniert, indem er einen bestimmten Abstand zum aktuellen Marktpreis einhält. Wenn der Preis beginnt, sich gegen die Position zu bewegen, wird der Auftrag ausgelöst und die Position geschlossen. Dies ist ein nützliches Instrument auf schnelllebigen Märkten, auf denen die Kursbewegungen volatil und unvorhersehbar sein können.</p>
+<p>Wenn sich der Kurs beispielsweise um 10 Pips bewegt und Sie einen Trailing-Stoploss von 5 Pips haben, dann würde der Stoploss bei 5 Pips vom Einstiegskurs des Handels gesetzt werden. Wenn sich der Kurs um 20 Pips bewegt und Sie einen TSL von 5 Pips haben, dann würde der Stoploss bei 15 Pips vom Einstiegskurs des Handels angesetzt werden.</p>
+<p>Der Trailing-Stoploss wird ständig aktualisiert, wenn sich der Kurs weiter vom Einstiegskurs entfernt, bis er sich schließlich umkehrt und der Stoploss nicht mehr aktualisiert wird, und schließlich wird der Auftrag zu dem Kurs geschlossen, auf den der Stoploss gesetzt wurde.</p>
+<h2 id="12-volatility-volatilitat"><strong>12. Volatility (Volatilität)</strong></h2>
+<p>Beim Forexhandel bezieht sich die Volatilität auf das Ausmaß der Kursschwankungen eines Währungspaares innerhalb eines bestimmten Zeitraums. Eine hohe Volatilität kann Chancen für größere Gewinne bieten, erhöht aber auch das Verlustrisiko. Eine niedrige Volatilität begrenzt die Handelsmöglichkeiten, verringert aber auch das Verlustrisiko.</p>
+<p>Im Vergleich zu Forex ist die Volatilität bei Bitcoin und anderen Kryptowährungen im Allgemeinen höher und unvorhersehbarer. Dies liegt daran, dass der Kryptomarkt noch relativ neu ist und eine geringere Marktkapitalisierung hat, was bedeutet, dass er leichter durch Ereignisse wie regulatorische Änderungen oder die Marktstimmung beeinflusst werden kann.</p>
+<h2 id="13-latenzgeschwindigkeit-latencyspeed"><strong>13. Latenz/Geschwindigkeit (Latency/Speed)</strong></h2>
+<ul>
+<li>Da sich der Kurs in der Regel in weniger als einer Sekunde nach der Bekanntgabe dieser Ereignisse bewegt, muss man so schnell wie möglich sein, um in den Handel einzusteigen, bevor sich der Kurs bewegt. Dies kann nur erreicht werden, indem ein Computerprogramm auf einem Server ausgeführt wird, der mit dem Broker, bei dem Sie handeln, 'co-located' ist.</li>
+<li>
+<p>Von <strong>Co-Location</strong> spricht man, wenn sich Ihr Server physisch im selben Gebäude befindet wie der Server des Brokers. Dies bedeutet, dass die Latenzzeit, d. h. die Zeit, die die Daten für die Übertragung von einem Punkt zum anderen im Internet benötigen, geringer ist.</p>
+</li>
+<li>
+<p>Stellen Sie sich das so vor, als würden Sie einen Brief mit der Post verschicken. Wenn Sie weit entfernt von der Person wohnen, an die Sie den Brief schicken, dauert es länger, bis der Brief ankommt, als wenn die Person nur die Straße runter wohnt. Ähnlich verhält es sich, wenn Sie Daten über das Internet verschicken und der Server, an den Sie die Daten senden, weit entfernt ist: Es dauert länger, bis die Daten ankommen, als wenn der Server in der Nähe steht.</p>
+</li>
+<li>Diese Verzögerung bei der Datenübertragung wird als Ping/Latenz bezeichnet. Sie wird in Millisekunden (ms) gemessen und kann durch eine Vielzahl von Faktoren beeinflusst werden, z. B. Entfernung, Netzüberlastung und Qualität der Internetverbindung.</li>
+<li>Im Zusammenhang mit dem Forexhandel ist eine niedrige Latenzzeit wichtig, da sie es den Händlern ermöglicht, Geschäfte schneller auszuführen und Marktchancen zu nutzen, bevor es andere tun.</li>
+<li>Die meisten Forex-Broker haben ihre Server in einem der Equinix-Rechenzentren auf der ganzen Welt untergebracht. Die beiden wichtigsten befinden sich in London (Equinix LD4) und New York (Equinix NY4)</li>
+<li>
+<p>Ein schneller Nachrichten-Feed (news feed) mit niedriger Latenzzeit ist ebenfalls erforderlich, um die Nachrichten schneller zu erhalten, als sich die Kurse bewegen. Ein Dienstleister hierfür ist Haawks, der Abonnements mit niedriger Latenz bei vielen der Institutionen hat, die die Nachrichten in den USA, Kanada und einigen anderen Ländern veröffentlichen, z. B. das US Bureau of Labor Statistics (BLS), Bureau of Economic Analysis (BEA), US Department of Commerce, US Census Bureau, Statistics Canada, Bank of Canada, Statistics Norway, Norges Bank, SCB - Statistics Sweden, und mehr</p>
+</li>
+<li>
+<p>Haawks News-Feed ist auf beiden Equinix-Rechenzentren LD4 und NY4 verfügbar</p>
+</li>
+</ul>
+<h2 id="14-slippage"><strong>14. Slippage</strong></h2>
+<p>Slippage tritt auf, wenn es eine Differenz zwischen dem erwarteten Preis eines Geschäfts und dem Preis, zu dem es ausgeführt wird, gibt, was oft durch schnelle Marktveränderungen oder hohe Volatilität bei Ereignissen wie Nachrichtenmeldungen verursacht wird. Beim Handel mit geringer Latenz können Verzögerungen zwischen Handelsbeginn und Ausführung dazu führen, dass sich die Marktpreise vom erwarteten Niveau entfernen. Um Slippage zu minimieren, können Händler eine Verbindung mit niedriger Latenz zum Server ihres Brokers durch Co-Location nutzen und eine schnelle Handelsausführung sicherstellen. Für den Nachrichtenhandel ist ein Nachrichten-Feed mit niedriger Latenz, wie er von haawks bereitgestellt wird, von entscheidender Bedeutung für die schnelle Ausführung von Geschäften und die Reduzierung von Slippage.</p>
+<h2 id="15-forex-brokers"><strong>15. Forex Brokers</strong></h2>
+<p>Forex Brokers (Forex-makler) dienen als Vermittler zwischen Händlern und dem Forex-Markt, indem sie Zugang gewähren, Geschäfte ausführen und Leverage anbieten. Sie sind für einzelne Händler notwendig, um Zugang zum Markt zu erhalten und an ihm teilzunehmen. Es gibt drei Haupttypen von Forex-Brokern: Straight Through Processing (STP), Electronic Communication Network (ECN) und Market Maker. STP- und ECN-Broker bieten einen direkten Marktzugang, der es den Kunden ermöglicht, miteinander zu handeln und Aufträge an Liquiditätsanbieter weiterzuleiten. Sie erzielen Gewinne durch Provisionen oder Aufschläge auf die Spreads und sorgen so für eine transparentere und weniger konfliktreiche Beziehung zu den Kunden. Market Maker schaffen einen Markt für die Kunden, indem sie die Gegenseite ihrer Geschäfte übernehmen und vom Spread profitieren. Dieses Modell kann im Vergleich zu STP- und ECN-Brokern zu potenziellen Interessenkonflikten und weniger Transparenz führen.</p>
+<h2 id="16-trading-software-handelssoftware"><strong>16. Trading Software (Handelssoftware)</strong></h2>
+<h3 id="metatrader-4"><strong>MetaTrader 4</strong></h3>
+<p><img alt="" src="../images/MT4.png" />
+MetaTrader 4 (MT4) ist eine beliebte Handelsplattform, die von Händlern für den Zugang zu und den Handel mit Finanzmärkten verwendet wird. Es wurde von MetaQuotes Software entwickelt und 2005 veröffentlicht.</p>
+<p>MT4 bietet Händlern eine Reihe von Tools und Funktionen, die ihnen helfen, die Märkte zu analysieren, Handelsstrategien zu entwickeln und auszuführen und ihre Trades zu verwalten. Einige der wichtigsten Funktionen von MT4 sind:</p>
+<ul>
+<li><strong>Charting- und technische Analysetools:</strong> MT4 bietet Händlern eine Reihe von Charttools und Indikatoren, die ihnen bei der Analyse von Markttrends helfen.</li>
+<li><strong>Automatisierter Handel:</strong> MT4 ermöglicht es Händlern, ihre Handelsstrategien mithilfe von Expert Advisors (EAs) zu entwickeln und zu automatisieren, bei denen es sich um Computerprogramme handelt, die in der Lage sind, Trades auf der Grundlage vordefinierter Regeln und Bedingungen auszuführen.</li>
+<li><strong>Mobiler Handel</strong>: MT4 ist als mobile App verfügbar, die es Händlern ermöglicht, auf ihre Konten zuzugreifen und unterwegs zu handeln.</li>
+</ul>
+<h3 id="haawks-news-trader"><strong>Haawks News Trader</strong></h3>
+<div class="video-wrapper">
+  <iframe width="1265" height="496" src="https://www.youtube.com/embed/ZevwBfZjp6g" title="US Consumer Price Index (CPI) 10 November 2022 - Haawks G4A Low-Latency News Trading Data Feed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+<p><img alt="" src="../images/haawks-news-trader.png" /></p>
+<p>Die Haawks News Trader-Software wird mit dem Haawks-Abonnement geliefert. Es stellt eine Verbindung zum Hawks-Newsfeed her und gibt Trades (Market Orders) in MetaTrader 4 ein, wenn bestimmte Bedingungen erfüllt sind, die vom Benutzer festgelegt werden.</p>
+<p>Für jedes Ereignis gibt es 6 Triggerpegel, die konfiguriert werden können:</p>
+<ul>
+<li><strong>-LT1</strong></li>
+<li><strong>-LT2</strong></li>
+<li><strong>-LT3</strong></li>
+<li><strong>+UT1</strong></li>
+<li><strong>+UT2</strong></li>
+<li><strong>+UT3</strong></li>
+<li>'<strong>LT</strong>' steht für '<strong>Lower Trigger</strong>' und wird ausgelöst, wenn die tatsächliche (Actual) Zahl niedriger ist als die prognostizierte (Forecast) Zahl.</li>
+<li>'<strong>UT</strong>' steht für '<strong>Upper Trigger</strong>' und wird ausgelöst, wenn die tatsächliche (Actual) Zahl höher ist als die prognostizierte (Forecast) Zahl.</li>
+<li>
+<p>Es gibt auch '<strong>LTA</strong>' und '<strong>UTA</strong>', was für '<strong>Lower Trigger Action</strong>' und '<strong>Upper Trigger Action</strong>' steht. Diese können entweder auf '<strong>Buy</strong>' oder '<strong>Sell</strong>' eingestellt werden, je nachdem, ob eine höhere Abweichung bullish oder bearish ist.</p>
+</li>
+<li>
+<p>Beispielsweise ist für US Nonfarm Payrolls eine höhere Nachrichtenabweichung (news deviation) bullish (positiv) für USDJPY und eine niedrigere Nachrichtenabweichung bearish (negativ) für USDJPY. Daher würden Sie 'LTA' auf 'Sell' und 'UTA' auf 'Buy' setzen.</p>
+</li>
+<li>Für das Canadian GDP (kanadische BIP) ist eine höhere Nachrichtenabweichung für USDCAD rückläufig (negativ) und eine niedrigere Nachrichtenabweichung für USDCAD zinsbullisch (positiv). Daher würden Sie 'LTA' auf 'Buy' und 'UTA' auf 'Sell' setzen.</li>
+<li>
+<p>'-LT1', '-LT2', '-LT3', '+UT1', '+UT2' &amp; '+UT3' haben jeweils ihre eigenen Abweichungsstufen (Deviation levels) und Lot Sizes, die eingestellt werden können. Das bedeutet, dass der Haawks-News-Trader die Abweichung berechnet, wenn der tatsächliche Preis bekannt wird, indem er die prognostizierte (Forecast) Zahl von der tatsächlichen (Actual) Zahl subtrahiert. Dann überprüft es alle Ihre Trigger, um zu sehen, mit welchem es übereinstimmt. Wenn es mit einem Ihrer Auslöser übereinstimmt, wird ein neuer Trade in MetaTrader 4 in der durch 'LTA' und 'UTA' angegebenen Richtung eröffnet, wobei die für diesen Auslöser angegebene Lot Size verwendet wird.</p>
+</li>
+<li>
+<p>Für den Handel mit Canada GDP MoM (kanadische BIP monatlich) könnten die Trigger beispielsweise wie folgt festgelegt werden:</p>
+<ul>
+<li>-LT1: -0.1  |  0.5 lots</li>
+<li>-LT2: -0.2  |  1 lot</li>
+<li>-LT3: -0.3  |  1.5 lots</li>
+<li>+UT1: +0.1  |  0.5 lots</li>
+<li>+UT2: +0.2  |  1 lot</li>
+<li>+UT3: +0.3  |  1.5 lots</li>
+<li>Nehmen wir dann an, die Prognose ist 0.1 und die tatsächliche Zahl ist -0.1. Dies würde zu einer Abweichung von -0.2 führen, sodass '-LT2' ausgelöst und ein Handel von 1 Lot in Kaufrichtung eröffnet würde, da 'LTA' für das  Canadian GDP auf 'Buy' eingestellt ist</li>
+</ul>
+</li>
+<li>In einem anderen Beispiel für den Handel mit US Nonfarm Payrolls könnten die Trigger wie folgt gesetzt werden:</li>
+<li>-LT1: -25  |  0.5 lots</li>
+<li>-LT2: -50  |  1 lot</li>
+<li>-LT3: -90  |  1.5 lots</li>
+<li>+UT1: +25  |  0.5 lots</li>
+<li>+UT2: +50  |  1 lot</li>
+<li>+UT3: +90  |  1.5 lots</li>
+<li>Nehmen wir dann an, die Prognose ist 205 und die tatsächliche Zahl ist 311. Das würde eine Abweichung von +106 ergeben, also würde '+UT3' ausgelöst und es würde einen Handel von 1.5 Lots in Kaufrichtung eröffnen, weil 'UTA' gesetzt ist zum 'Buy' für US Nonfarm Payrolls.</li>
+</ul>
+<h2 id="17-historische-datenanalyse-historic-data-analysis"><strong>17. Historische Datenanalyse (Historic Data Analysis)</strong></h2>
+<p>Um einen fundierteren und robusteren Handelsplan zu haben, habe ich ein Datenanalyseprogramm erstellt, das die historischen Nachrichtenzahlen von investing.com erhält und dann die historischen Preisdaten (Ticks) für das relevante Handelspaar zum genauen Zeitpunkt jeder Nachricht erhält Veröffentlichung bis zu 15 Minuten nach jeder Veröffentlichung und generiert dann Metriken/Statistiken wie:</p>
+<ul>
+<li>die mittleren durchschnittlichen (mean average) Pip-Bewegungen</li>
+<li>die Median durchschnittlichen (median average) Pip-Bewegungen</li>
+<li>der Bereich (range) der Pip-Bewegungen</li>
+<li>Drei Korrelationswerte (Correlation scores: c_1, c_2 &amp; c_3)</li>
+</ul>
+<p>Es generiert dann einen PDF-Bericht für diesen Indikator (z. B. Nonfarm Payrolls oder Canada GDP) und das Handelssymbol (z. B. USDJPY oder USDCAD).</p>
+<p>Hier sind Screenshots des PDF-Berichts, der für das kanadische BIP MoM (Monat über Monat / Month over Month) erstellt wurde:</p>
+<p><img alt="" src="../images/canada-gdp-page1.png" /></p>
+<p><img alt="" src="../images/canada-gdp-trigger1.png" /></p>
+<p><img alt="" src="../images/canada-gdp-trigger2.png" /></p>
+<p><img alt="" src="../images/canada-gdp-trigger3.png" /></p>
+<p><img alt="" src="../images/canada-gdp-trigger4.png" /></p>
+<p>Normalerweise wird der Korrelationswert (Correlation Score) höher, wenn die Abweichung (Deviation) größer wird. Die Berechnungen für jeden Trigger funktionieren wie folgt:</p>
+<ol>
+<li>Das Programm erhält die historischen Nachrichtendaten von investing.com ab Januar 2017 und danach</li>
+<li>Für jedes Veröffentlichungsdatum und jede Veröffentlichungszeit (Release date &amp; time) lädt es dann historische Preisdaten (Tick-Daten) von 5 Minuten vor der Veröffentlichung bis 15 Minuten nach der Veröffentlichung herunter. Tick-Daten kosten normalerweise Geld, aber es gibt einen Forex-Broker namens Dukascopy, der sie kostenlos zur Verfügung stellt, woher dieses Programm die Daten bezieht. Es zeigt die Ask- und Bid-Preise zu Zeitstempeln für jede Preisbewegung an, die normalerweise mehrmals pro Sekunde erfolgt. Dies kommt als .csv-Datei, die eine Tabelle ist:
+   <img alt="" src="../images/usdcad-tick-data.png" /></li>
+<li>
+<p>Für bestimmte Zeiten nach jeder Freigabe (Zeitdeltas/time deltas), d. h.</p>
+<ul>
+<li>1 Sekunde</li>
+<li>2 Sekunden</li>
+<li>3 Sekunden</li>
+<li>4 Sekunden</li>
+<li>5 Sekunden</li>
+<li>10 Sekunden</li>
+<li>15 Sekunden</li>
+<li>20 Sekunden</li>
+<li>25 Sekunden</li>
+<li>30 Sekunden</li>
+<li>45 Sekunden</li>
+<li>1 Minute</li>
+<li>2 Minuten</li>
+<li>3 Minuten</li>
+<li>4 Minuten</li>
+<li>5 Minuten</li>
+<li>10 Minuten</li>
+<li>15 Minuten   </li>
+<li>Das Programm ruft die Ask &amp; Bid-Preise zu diesen Zeiten nach jeder Veröffentlichung ab und berechnet dann die Pip-Bewegungen relativ zum Preis zum Zeitpunkt der Veröffentlichung.</li>
+</ul>
+</li>
+<li>
+<p>Für jede Freigabe (Release) prüft es, zu welchem Triggerlevel es passt.</p>
+<ul>
+<li>Wenn die Abweichung (Deviation) über einem vordefinierten Wert liegt (z. B. trigger_1: +-0,1 %) und unter dem darüber liegenden Trigger (z. B. trigger_2: +-0,2 %), wird sie zu den Eingabedaten für diesen Trigger (trigger_1) hinzugefügt.</li>
+<li>Wenn es der letzte Trigger z.B. trigger_4, dann werden alle darüber liegenden Daten zu den Eingabedaten für diesen Trigger hinzugefügt</li>
+</ul>
+</li>
+<li>
+<p>Für jedes Zeitdelta/time_delta (z. B. 1s, 2s, 3s usw.) wird Folgendes berechnet:</p>
+<ul>
+<li>Der <strong>Bereich (Range)</strong> aller Pip-Bewegungen zu diesem Zeitpunkt (z. B. von -5 Pips bis +45 Pips)</li>
+<li>Der <strong>mittlere (Mean)</strong> Durchschnitt aller Pip-Bewegungen zu diesem Zeitpunkt (z. B. 15 Pips). Berechnet, indem alle Pip-Bewegungen für jede Freigabe im aktuellen Trigger addiert und dann durch deren Anzahl dividiert werden.</li>
+<li>Der <strong>Median</strong>-Durchschnitt. Berechnet, indem alle Pip-Bewegungen von der niedrigsten zur höchsten sortiert werden und dann genau diejenige in der Mitte gefunden wird.</li>
+<li><strong>Korrelation 1 Score (c_1)</strong><ul>
+<li>Der Prozentsatz der Male, in denen sich der Preis in die erwartete Richtung bewegt hat.</li>
+<li><code>Positiv_Zählung</code> = Wie oft die Preisbewegung (Pip) größer oder gleich Null ist.</li>
+<li><code>Negativ_Zählung</code> = Wie oft die Preisbewegung kleiner als Null ist</li>
+<li>Jeder Indikator hat eine erwartete Richtung basierend darauf, ob es bullische (positive) oder bearishe (negative) Nachrichten gibt. Diese Informationen wurden zuvor von investing.com gespeichert.<ul>
+<li>Wenn erwartet wird, dass die Preisbewegung <strong>positiv</strong> ist, dann:
+  <code>c_1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)</code></li>
+<li>Wenn die Preisbewegung voraussichtlich <strong>negativ</strong> sein wird:
+  <code>c_1 = Negativ_Zählung ÷ (Nositiv_Zählung + Negativ_Zählung)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Korrelation 2 Score (c_2)</strong><ul>
+<li>Der Prozentsatz der Pips, die sich in die erwartete Richtung bewegt haben.</li>
+<li><code>Positiv_Summe</code> = Alle Pips, die sich in eine positive Richtung bewegen, werden zusammengezählt</li>
+<li><code>Negativ_Summe</code> = Alle Pips, die sich in eine negative Richtung bewegt haben, werden zusammengezählt. Da diese Zahl negativ ist, wird sie mit -1 multipliziert, um eine positive Zahl zu werden, sodass sie mit der folgenden Gleichung funktioniert.<ul>
+<li>Wenn der Preis voraussichtlich <strong>positiv</strong> ist, dann:
+  <code>c_2 = Positiv_Summe ÷ (Positiv_Summe + Negativ_Summe )</code></li>
+<li>Wenn der Preis voraussichtlich <strong>negativ</strong> sein wird:
+  <code>c_2 = Negativ_Summe ÷ (Positiv_Summe + Negativ_Summe)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Korrelation 3 Score (c_3)</strong><ul>
+<li>Dies ist der mittlere Durchschnitt (mean average) von c_1 &amp; c_2</li>
+<li><code>c_3 = (c_1 + c_2) ÷ 2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Die Summe/Durchschnittswerte werden dann für jeden Trigger berechnet:</p>
+<ul>
+<li><strong>Bereich (Range):</strong> die niedrigste Zahl für eines der Zeitdeltas bis zur höchsten Zahl für eines der Zeitdeltas</li>
+<li><strong>Mittelwert (Mean):</strong> Addiere die Mittelwerte für jedes Zeitdelta und dividiere dann durch die Anzahl der Zeitdeltas (18)</li>
+<li><strong>Median:</strong> Addiere die Medianwerte für jedes Zeitdelta und dividiere dann durch 18</li>
+<li><strong>c_1:</strong> Addiere die c_1-Werte für jedes Zeitdelta und dividiere dann durch 18</li>
+<li><strong>c_2:</strong> Addieren Sie die c_2-Werte für jedes Zeitdelta und dividieren Sie sie dann durch 18</li>
+<li><strong>c_3:</strong> Addiere die c_3-Werte für jedes Zeitdelta und dividiere dann durch 18</li>
+</ul>
+</li>
+</ol>
+<h2 id="18-ordnen-sie-jeden-indikator-ein-ranking-every-indicator"><strong>18. Ordnen Sie jeden Indikator ein (Ranking every indicator)</strong></h2>
+<p>Nachdem ich in der Lage war, diese Analyse für einzelne Indikatoren zu erstellen, entschied ich mich, sie für jeden Indikator von Haawks auszuführen, der Nachrichtendaten auf investing.com und Tick-Daten von Dukascopy zur Verfügung stellt. Das sind insgesamt 95 Indikatoren, was nicht alle sind, aber immer noch eine ganze Menge.</p>
+<p>Ich habe ein Skript/Programm in Python namens <code>ranker.py</code> geschrieben, das die Analyse für jeden Indikator durchführt und dann den besten Trigger für jeden von ihnen findet, d Ergebnisse in eine Excel-Datei namens <code>ranker_results.xlsx</code>.</p>
+<p>Dann habe ich sie vom höchsten c_3 zum niedrigsten c_3 geordnet. Es gibt:</p>
+<ul>
+<li>15 Indikatoren mit einem c_3 über 90</li>
+<li>23 Indikatoren mit einem c_3 zwischen 80-90</li>
+<li>23 Indikatoren mit einem c_3 zwischen 70-80</li>
+<li>30 Indikatoren mit einem c_3 unter 70</li>
+</ul>
+<p>Die Korrelationswerte (c_3) können als Darstellungen dafür angesehen werden, wie vorhersagbar jede Abweichung für jeden Indikator historisch war (basierend auf Daten von Januar 2017 bis Februar 2023). Dies impliziert, dass der Indikator eine höhere Wahrscheinlichkeit hat, sich in die erwartete Richtung zu bewegen, wenn der c_3-Wert höher ist. Das ist sowieso die Hypothese, die aber nur durch das Testen der Strategie bestätigt werden kann.</p>
+<p><img alt="" src="../images/ranker-results-1.png" />
+<img alt="" src="../images/ranker-results-2.png" />
+<img alt="" src="../images/ranker-results-3.png" /></p>
+<h2 id="19-handelsplane-erstellen-generating-trading-plans"><strong>19. Handelspläne erstellen (Generating trading plans)</strong></h2>
+<p>Da der c_3-Wert wie ein Vorhersagbarkeitswert ist, ist es sinnvoll, größere Trades zu platzieren, wenn größere Lot Sizes verwendet werden, wenn der c_3-Wert höher ist. Ich habe die folgenden Lot Sizes für jede c_3-Punktzahl ermittelt:</p>
+<ul>
+<li>zwischen <strong>80</strong> und <strong>85</strong>: <strong>0.5</strong> Lots pro $1000 Kontostand</li>
+<li>zwischen <strong>85</strong> und <strong>90</strong>: <strong>0.75</strong> Lots pro $1000</li>
+<li>zwischen <strong>90</strong> und <strong>95</strong>: <strong>1</strong> Lot pro $1000</li>
+<li>über <strong>90</strong>: <strong>1.5</strong> Lots pro $1000</li>
+</ul>
+<p>Ich habe ein weiteres Skript geschrieben, das die Ranking-Ergebnisse für alle Indikatoren mit einem c_3-Wert über 80 betrachtet und dann den Wirtschaftskalender von investing.com überprüft, um zu sehen, ob einer davon in der nächsten Woche veröffentlicht werden soll.</p>
+<p>Dann generiert es für jeden Indikator, der in der nächsten Woche veröffentlicht wird, empfohlene Triggerabweichungen und Lot Sizes als Eingaben für das Haawks-News-Trader-Programm wie folgt:</p>
+<p><img alt="" src="../images/us-core-ppi-mom-triggers.png" /></p>
+<p>Der Wochenplan besteht also aus einer Reihe von Trigger-Empfehlungen wie der obigen:</p>
+<p><img alt="" src="../images/triggers-output.png" /></p>
+<p>Im obigen Beispiel sind '<strong>lots/$1k</strong>' und '<strong>lots</strong>' identisch, da ein Kontostand von $1000 angenommen wurde. Wenn der Kontostand $2000 beträgt, sind die '<strong>lots</strong>' doppelt so hoch wie '<strong>lots/$1k</strong>'.</p>
+<h1 id="20-abschluss"><strong>20. Abschluss</strong></h1>
+<p>Das ist im Wesentlichen der Stand der Entwicklung dieses Projekts (Stand: 19/03/2023). Ich glaube, dass der Handel mit diesen Ereignissen mit Losgrößen, die proportional zum Korrelationswert sind, Gewinn bringen sollte.</p>
+<p>Es gibt jedoch noch einige Dinge, die verbessert werden können. Ich habe zum Beispiel den Erfinder des Haawks News Trader Programms angeschrieben, der seit Jahren mit Nachrichten handelt. Er war an meiner Arbeit interessiert, aber er sagte, dass sich die Zuverlässigkeit/Vorhersagbarkeit von Indikatoren im Laufe der Zeit ändern kann. Als Beispiel nannte er den schwedischen Verbraucherpreisindex, der seiner Meinung nach vor etwa 3 Jahren gut zu handeln war, jetzt aber unzuverlässig ist.</p>
+<p>Um dieses Problem zu lösen, plane ich, einen anderen Korrelationswert zu erstellen, der stärker nach den jüngsten Ereignissen gewichtet ist als der jetzige, bei dem alle Ereignisse von 2017 bis 2023 gleich gewichtet sind. Das würde bedeuten, dass, wenn der Allzeit-Korrelationswert (den ich derzeit habe) hoch ist, aber für neuere Ereignisse der Korrelationswert niedriger ist, dann würde eine kleinere Lotgröße verwendet.</p>
+<p>Dies kann durch die Verwendung eines EMA (exponentieller gleitender Durchschnitt) erreicht werden. Gleitende Durchschnitte, einschließlich des einfachen gleitenden Durchschnitts (Simple Moving Average - SMA) und des exponentiellen gleitenden Durchschnitts (Exponential Moving Average - EMA), sind häufig verwendete technische Indikatoren im Devisenhandel. 
+- Sie berechnen den Durchschnittspreis eines Vermögenswerts über einen bestimmten Zeitraum, wobei der SMA jedem Datenpunkt das gleiche Gewicht gibt und der EMA den jüngsten Preisdatenpunkten mehr Gewicht verleiht. 
+- Aufgrund dieses Unterschieds reagiert der EMA empfindlicher auf jüngste Kursänderungen und wird häufig für kurzfristige Handelsstrategien verwendet, während der SMA in der Regel für längerfristige Analysen eingesetzt wird.
+- Beide Typen haben eine Eingabe, die als "Periode" bezeichnet wird und die Anzahl der vorherigen Datenpunkte angibt, die für ihre Berechnungen verwendet werden, wie z. B. die letzten 10 Kursniveaus für die technische Analyse oder die c_3-Bewertungen für die letzten 10 Veröffentlichungen für jeden Auslöser.</p>
+<p>Obwohl EMAs üblicherweise für die Preisanalyse verwendet werden (wie im Video oben), werde ich sie stattdessen auf die Korrelationswerte für jeden Auslöser anwenden. Dadurch wird der Korrelationswert empfindlicher auf die jüngsten Ereignisse reagieren und sollte besser widerspiegeln, wie sich der Indikator in letzter Zeit entwickelt hat.</p>
+<div class="admonition update">
+<p class="admonition-title">Update</p>
+<p><strong>[31.03.2023]</strong> Jetzt wird der niedrigste Wert aus dem regulären <strong>c_3</strong> und auch <strong>c_3_ema5</strong>, <strong>c_3_ema10</strong> und <strong>c_3ema15</strong> verwendet, und die Lotgröße wird auf dieser Grundlage berechnet, wobei höhere Lots verwendet werden, wenn ein höherer Korrelationswert vorliegt.</p>
+</div>
+<p>Der Ersteller des Haawks News Trader-Programms kann das Programm so modifizieren, dass es Trigger aus einer Datenbank akzeptiert, was eine vollständige Automatisierung ermöglicht. Anstatt einen wöchentlichen PDF-Bericht mit empfohlenen Auslösern zu erstellen und diese manuell in das Programm einzugeben, könnte eine Datenbank dies automatisch übernehmen. Allerdings weisen die aktuellen Empfehlungen manchmal höhere Abweichungen mit niedrigeren Korrelationswerten auf, und in diesem Fall wäre es besser, diese Auslöser wegzulassen.</p>
+<p>Um diese Inkonsistenz zu beheben, könnte das haawks news trader Programm so modifiziert werden, dass die Abweichungen zwischen zwei Werten liegen können und nicht nur über oder unter einem Wert. Auf diese Weise könnten Geschäfte nur dann getätigt werden, wenn die Abweichungen innerhalb einer bestimmten Spanne liegen. Die Anwendung eines Exponential Moving Average (EMA) auf Korrelationswerte könnte die Handelsstrategie weiter verbessern. Es ist wichtig, die Leistung dieses Ansatzes zu beobachten und bei Bedarf im Laufe der Zeit Anpassungen vorzunehmen.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fc8c2696.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+      
+        <script src="../js/tablesort.js"></script>
+      
+        <script src="../js/lot-size-calc.js"></script>
+      
+        <script src="../js/filter-events.js"></script>
+      
+    
+  </body>
+</html>
