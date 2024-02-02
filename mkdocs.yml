@@ -60,8 +60,8 @@ nav:
       - Week 7: weekly-schedules/2024/week-07-schedule.md
       - Week 8: weekly-schedules/2024/week-08-schedule.md
   - Blog:
-    - (EN) News Trading System Explained: system-explained-en.md
-    - (DE) News Trading System erklärt: system-explained-de.md
+    - EN - News Trading System Explained: system-explained-en.md
+    - DE - News Trading System erklärt: system-explained-de.md
 
 edit_uri: '#docs/'
 

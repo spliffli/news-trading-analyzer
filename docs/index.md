@@ -8,7 +8,7 @@ It's been a while since I looked at this project because of personal circumstanc
 
 The system I've developed is quite unique among trading strategies. Very few people in the world are doing this type of trading, and nobody else has publicly released an analysis tool like mine ([Available on Github](https://github.com/spliffli/news-trading-analyzer)).
 
-### TA vs Fundamental & low-latency paradigms
+### **TA vs Fundamental & low-latency paradigms**
 
 99.99% of trading advice online is about technical analysis or TA, which pretty much always involves something working in the short term but not in the long term because market behaviours change over time and the strategy breaks. The current price is always an after-effect, not a cause. The same is true for technical indicators like RSI, MACD, moving averages, etc. TA is a fallacy and that's why most people lose, since most people use only TA. Smart money always has an edge and they leave basic TA to the masses to provide their liquidity in the market.
 
@@ -25,7 +25,7 @@ However, latency arbitrage is against basically every broker's rules since it ha
 
 News trading isn't banned by brokers and is another way of having a quasi-glimpse into the future by knowing the cause before the effect i.e. the reactions of the price to news events depending on how bullish or bearish the news is compared to its forecast number.Higher deviations/triggers generally mean higher correlation scores like would be common sense but that is not always true from what I measured. 
 
-### Weekly Trading Plans/Schedule
+### **Weekly Trading Plans/Schedule**
 
 My program generates trading plans by first having calculated the all-time correlation scores in advance, then scraping investing.com for new events and updating the correlation scores, as well as generates ema5, ema10 & ema15 values and taking the lowest value to become the final c3 score. Where an ema was the lowest scores it is marked like in 2023 week 15 for US PPI, although usually the regular non-weighted c3 score is the lowest value.
 
@@ -129,11 +129,13 @@ These schedules include various triggers which are used as inputs for the [haawk
 
 ![us-ppi-trade-2023](./images/us-ppi-trade-2023.png)
 
+### **Haawks News Trader Program**
+
 In the haawks news trader program, there are 6 inputs:
 
-- <span class="red-text">+LT1</span> / <span class="green-text">+UT1</span>
-- <span class="red-text">+LT2</span> / <span class="green-text">+UT2</span>
-- <span class="red-text">+LT3</span> / <span class="green-text">+UT3</span>
+- <span class="red-text">-LT1</span> / <span class="green-text">+UT1</span>
+- <span class="red-text">-LT2</span> / <span class="green-text">+UT2</span>
+- <span class="red-text">-LT3</span> / <span class="green-text">+UT3</span>
 
 **'UT'** stands for upper trigger and has 3 triggers. When the calculated deviation between the public forecast figure and the actual news figure, then positive deviations are the upper triggers, and when it's a lower deviation it's the lower triggers or **'LT'**
 

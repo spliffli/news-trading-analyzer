@@ -17,7 +17,7 @@
     
     
       
-        <title>(DE) News Trading System erklärt - News Trading System</title>
+        <title>DE - News Trading System erklärt - News Trading System</title>
       
     
     
@@ -76,8 +76,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Orbitron";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -162,7 +162,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              (DE) News Trading System erklärt
+              DE - News Trading System erklärt
             
           </span>
         </div>
@@ -359,7 +359,7 @@
   
     <li class="md-nav__item">
       <a href="../weekly-schedules/2023/week-17-schedule/" class="md-nav__link">
-        Week 17 (current)
+        Week 17
       </a>
     </li>
   
@@ -435,7 +435,7 @@
   
     <li class="md-nav__item">
       <a href="../weekly-schedules/2024/week-05-schedule/" class="md-nav__link">
-        Week 5
+        Week 5 (current)
       </a>
     </li>
   
@@ -535,7 +535,7 @@
   
     <li class="md-nav__item">
       <a href="../system-explained-en/" class="md-nav__link">
-        (EN) News Trading System Explained
+        EN - News Trading System Explained
       </a>
     </li>
   
@@ -558,12 +558,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          (DE) News Trading System erklärt
+          DE - News Trading System erklärt
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        (DE) News Trading System erklärt
+        DE - News Trading System erklärt
       </a>
       
         
@@ -1140,7 +1140,7 @@ MetaTrader 4 (MT4) ist eine beliebte Handelsplattform, die von Händlern für de
 <li>die mittleren durchschnittlichen (mean average) Pip-Bewegungen</li>
 <li>die Median durchschnittlichen (median average) Pip-Bewegungen</li>
 <li>der Bereich (range) der Pip-Bewegungen</li>
-<li>Drei Korrelationswerte (Correlation scores: c_1, c_2 &amp; c_3)</li>
+<li>Drei Korrelationswerte (Correlation scores: c1, c2 &amp; c3)</li>
 </ul>
 <p>Es generiert dann einen PDF-Bericht für diesen Indikator (z. B. Nonfarm Payrolls oder Canada GDP) und das Handelssymbol (z. B. USDJPY oder USDCAD).</p>
 <p>Hier sind Screenshots des PDF-Berichts, der für das kanadische BIP MoM (Monat über Monat / Month over Month) erstellt wurde:</p>
@@ -1191,34 +1191,34 @@ MetaTrader 4 (MT4) ist eine beliebte Handelsplattform, die von Händlern für de
 <li>Der <strong>Bereich (Range)</strong> aller Pip-Bewegungen zu diesem Zeitpunkt (z. B. von -5 Pips bis +45 Pips)</li>
 <li>Der <strong>mittlere (Mean)</strong> Durchschnitt aller Pip-Bewegungen zu diesem Zeitpunkt (z. B. 15 Pips). Berechnet, indem alle Pip-Bewegungen für jede Freigabe im aktuellen Trigger addiert und dann durch deren Anzahl dividiert werden.</li>
 <li>Der <strong>Median</strong>-Durchschnitt. Berechnet, indem alle Pip-Bewegungen von der niedrigsten zur höchsten sortiert werden und dann genau diejenige in der Mitte gefunden wird.</li>
-<li><strong>Korrelation 1 Score (c_1)</strong><ul>
+<li><strong>Korrelation 1 Score (c1)</strong><ul>
 <li>Der Prozentsatz der Male, in denen sich der Preis in die erwartete Richtung bewegt hat.</li>
 <li><code>Positiv_Zählung</code> = Wie oft die Preisbewegung (Pip) größer oder gleich Null ist.</li>
 <li><code>Negativ_Zählung</code> = Wie oft die Preisbewegung kleiner als Null ist</li>
 <li>Jeder Indikator hat eine erwartete Richtung basierend darauf, ob es bullische (positive) oder bearishe (negative) Nachrichten gibt. Diese Informationen wurden zuvor von investing.com gespeichert.<ul>
 <li>Wenn erwartet wird, dass die Preisbewegung <strong>positiv</strong> ist, dann:
-  <code>c_1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)</code></li>
+  <code>c1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)</code></li>
 <li>Wenn die Preisbewegung voraussichtlich <strong>negativ</strong> sein wird:
-  <code>c_1 = Negativ_Zählung ÷ (Nositiv_Zählung + Negativ_Zählung)</code></li>
+  <code>c1 = Negativ_Zählung ÷ (Nositiv_Zählung + Negativ_Zählung)</code></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>Korrelation 2 Score (c_2)</strong><ul>
+<li><strong>Korrelation 2 Score (c2)</strong><ul>
 <li>Der Prozentsatz der Pips, die sich in die erwartete Richtung bewegt haben.</li>
 <li><code>Positiv_Summe</code> = Alle Pips, die sich in eine positive Richtung bewegen, werden zusammengezählt</li>
 <li><code>Negativ_Summe</code> = Alle Pips, die sich in eine negative Richtung bewegt haben, werden zusammengezählt. Da diese Zahl negativ ist, wird sie mit -1 multipliziert, um eine positive Zahl zu werden, sodass sie mit der folgenden Gleichung funktioniert.<ul>
 <li>Wenn der Preis voraussichtlich <strong>positiv</strong> ist, dann:
-  <code>c_2 = Positiv_Summe ÷ (Positiv_Summe + Negativ_Summe )</code></li>
+  <code>c2 = Positiv_Summe ÷ (Positiv_Summe + Negativ_Summe )</code></li>
 <li>Wenn der Preis voraussichtlich <strong>negativ</strong> sein wird:
-  <code>c_2 = Negativ_Summe ÷ (Positiv_Summe + Negativ_Summe)</code></li>
+  <code>c2 = Negativ_Summe ÷ (Positiv_Summe + Negativ_Summe)</code></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>Korrelation 3 Score (c_3)</strong><ul>
-<li>Dies ist der mittlere Durchschnitt (mean average) von c_1 &amp; c_2</li>
-<li><code>c_3 = (c_1 + c_2) ÷ 2</code></li>
+<li><strong>Korrelation 3 Score (c3)</strong><ul>
+<li>Dies ist der mittlere Durchschnitt (mean average) von c1 &amp; c2</li>
+<li><code>c3 = (c1 + c2) ÷ 2</code></li>
 </ul>
 </li>
 </ul>
@@ -1229,35 +1229,35 @@ MetaTrader 4 (MT4) ist eine beliebte Handelsplattform, die von Händlern für de
 <li><strong>Bereich (Range):</strong> die niedrigste Zahl für eines der Zeitdeltas bis zur höchsten Zahl für eines der Zeitdeltas</li>
 <li><strong>Mittelwert (Mean):</strong> Addiere die Mittelwerte für jedes Zeitdelta und dividiere dann durch die Anzahl der Zeitdeltas (18)</li>
 <li><strong>Median:</strong> Addiere die Medianwerte für jedes Zeitdelta und dividiere dann durch 18</li>
-<li><strong>c_1:</strong> Addiere die c_1-Werte für jedes Zeitdelta und dividiere dann durch 18</li>
-<li><strong>c_2:</strong> Addieren Sie die c_2-Werte für jedes Zeitdelta und dividieren Sie sie dann durch 18</li>
-<li><strong>c_3:</strong> Addiere die c_3-Werte für jedes Zeitdelta und dividiere dann durch 18</li>
+<li><strong>c1:</strong> Addiere die c1-Werte für jedes Zeitdelta und dividiere dann durch 18</li>
+<li><strong>c2:</strong> Addieren Sie die c2-Werte für jedes Zeitdelta und dividieren Sie sie dann durch 18</li>
+<li><strong>c3:</strong> Addiere die c3-Werte für jedes Zeitdelta und dividiere dann durch 18</li>
 </ul>
 </li>
 </ol>
 <h2 id="18-ordnen-sie-jeden-indikator-ein-ranking-every-indicator"><strong>18. Ordnen Sie jeden Indikator ein (Ranking every indicator)</strong></h2>
 <p>Nachdem ich in der Lage war, diese Analyse für einzelne Indikatoren zu erstellen, entschied ich mich, sie für jeden Indikator von Haawks auszuführen, der Nachrichtendaten auf investing.com und Tick-Daten von Dukascopy zur Verfügung stellt. Das sind insgesamt 95 Indikatoren, was nicht alle sind, aber immer noch eine ganze Menge.</p>
 <p>Ich habe ein Skript/Programm in Python namens <code>ranker.py</code> geschrieben, das die Analyse für jeden Indikator durchführt und dann den besten Trigger für jeden von ihnen findet, d Ergebnisse in eine Excel-Datei namens <code>ranker_results.xlsx</code>.</p>
-<p>Dann habe ich sie vom höchsten c_3 zum niedrigsten c_3 geordnet. Es gibt:</p>
+<p>Dann habe ich sie vom höchsten c3 zum niedrigsten c3 geordnet. Es gibt:</p>
 <ul>
-<li>15 Indikatoren mit einem c_3 über 90</li>
-<li>23 Indikatoren mit einem c_3 zwischen 80-90</li>
-<li>23 Indikatoren mit einem c_3 zwischen 70-80</li>
-<li>30 Indikatoren mit einem c_3 unter 70</li>
+<li>15 Indikatoren mit einem c3 über 90</li>
+<li>23 Indikatoren mit einem c3 zwischen 80-90</li>
+<li>23 Indikatoren mit einem c3 zwischen 70-80</li>
+<li>30 Indikatoren mit einem c3 unter 70</li>
 </ul>
-<p>Die Korrelationswerte (c_3) können als Darstellungen dafür angesehen werden, wie vorhersagbar jede Abweichung für jeden Indikator historisch war (basierend auf Daten von Januar 2017 bis Februar 2023). Dies impliziert, dass der Indikator eine höhere Wahrscheinlichkeit hat, sich in die erwartete Richtung zu bewegen, wenn der c_3-Wert höher ist. Das ist sowieso die Hypothese, die aber nur durch das Testen der Strategie bestätigt werden kann.</p>
+<p>Die Korrelationswerte (c3) können als Darstellungen dafür angesehen werden, wie vorhersagbar jede Abweichung für jeden Indikator historisch war (basierend auf Daten von Januar 2017 bis Februar 2023). Dies impliziert, dass der Indikator eine höhere Wahrscheinlichkeit hat, sich in die erwartete Richtung zu bewegen, wenn der c3-Wert höher ist. Das ist sowieso die Hypothese, die aber nur durch das Testen der Strategie bestätigt werden kann.</p>
 <p><img alt="" src="../images/ranker-results-1.png" />
 <img alt="" src="../images/ranker-results-2.png" />
 <img alt="" src="../images/ranker-results-3.png" /></p>
 <h2 id="19-handelsplane-erstellen-generating-trading-plans"><strong>19. Handelspläne erstellen (Generating trading plans)</strong></h2>
-<p>Da der c_3-Wert wie ein Vorhersagbarkeitswert ist, ist es sinnvoll, größere Trades zu platzieren, wenn größere Lot Sizes verwendet werden, wenn der c_3-Wert höher ist. Ich habe die folgenden Lot Sizes für jede c_3-Punktzahl ermittelt:</p>
+<p>Da der c3-Wert wie ein Vorhersagbarkeitswert ist, ist es sinnvoll, größere Trades zu platzieren, wenn größere Lot Sizes verwendet werden, wenn der c3-Wert höher ist. Ich habe die folgenden Lot Sizes für jede c3-Punktzahl ermittelt:</p>
 <ul>
 <li>zwischen <strong>80</strong> und <strong>85</strong>: <strong>0.5</strong> Lots pro $1000 Kontostand</li>
 <li>zwischen <strong>85</strong> und <strong>90</strong>: <strong>0.75</strong> Lots pro $1000</li>
 <li>zwischen <strong>90</strong> und <strong>95</strong>: <strong>1</strong> Lot pro $1000</li>
 <li>über <strong>90</strong>: <strong>1.5</strong> Lots pro $1000</li>
 </ul>
-<p>Ich habe ein weiteres Skript geschrieben, das die Ranking-Ergebnisse für alle Indikatoren mit einem c_3-Wert über 80 betrachtet und dann den Wirtschaftskalender von investing.com überprüft, um zu sehen, ob einer davon in der nächsten Woche veröffentlicht werden soll.</p>
+<p>Ich habe ein weiteres Skript geschrieben, das die Ranking-Ergebnisse für alle Indikatoren mit einem c3-Wert über 80 betrachtet und dann den Wirtschaftskalender von investing.com überprüft, um zu sehen, ob einer davon in der nächsten Woche veröffentlicht werden soll.</p>
 <p>Dann generiert es für jeden Indikator, der in der nächsten Woche veröffentlicht wird, empfohlene Triggerabweichungen und Lot Sizes als Eingaben für das Haawks-News-Trader-Programm wie folgt:</p>
 <p><img alt="" src="../images/us-core-ppi-mom-triggers.png" /></p>
 <p>Der Wochenplan besteht also aus einer Reihe von Trigger-Empfehlungen wie der obigen:</p>
@@ -1270,11 +1270,11 @@ MetaTrader 4 (MT4) ist eine beliebte Handelsplattform, die von Händlern für de
 <p>Dies kann durch die Verwendung eines EMA (exponentieller gleitender Durchschnitt) erreicht werden. Gleitende Durchschnitte, einschließlich des einfachen gleitenden Durchschnitts (Simple Moving Average - SMA) und des exponentiellen gleitenden Durchschnitts (Exponential Moving Average - EMA), sind häufig verwendete technische Indikatoren im Devisenhandel. 
 - Sie berechnen den Durchschnittspreis eines Vermögenswerts über einen bestimmten Zeitraum, wobei der SMA jedem Datenpunkt das gleiche Gewicht gibt und der EMA den jüngsten Preisdatenpunkten mehr Gewicht verleiht. 
 - Aufgrund dieses Unterschieds reagiert der EMA empfindlicher auf jüngste Kursänderungen und wird häufig für kurzfristige Handelsstrategien verwendet, während der SMA in der Regel für längerfristige Analysen eingesetzt wird.
-- Beide Typen haben eine Eingabe, die als "Periode" bezeichnet wird und die Anzahl der vorherigen Datenpunkte angibt, die für ihre Berechnungen verwendet werden, wie z. B. die letzten 10 Kursniveaus für die technische Analyse oder die c_3-Bewertungen für die letzten 10 Veröffentlichungen für jeden Auslöser.</p>
+- Beide Typen haben eine Eingabe, die als "Periode" bezeichnet wird und die Anzahl der vorherigen Datenpunkte angibt, die für ihre Berechnungen verwendet werden, wie z. B. die letzten 10 Kursniveaus für die technische Analyse oder die c3-Bewertungen für die letzten 10 Veröffentlichungen für jeden Auslöser.</p>
 <p>Obwohl EMAs üblicherweise für die Preisanalyse verwendet werden (wie im Video oben), werde ich sie stattdessen auf die Korrelationswerte für jeden Auslöser anwenden. Dadurch wird der Korrelationswert empfindlicher auf die jüngsten Ereignisse reagieren und sollte besser widerspiegeln, wie sich der Indikator in letzter Zeit entwickelt hat.</p>
 <div class="admonition update">
 <p class="admonition-title">Update</p>
-<p><strong>[31.03.2023]</strong> Jetzt wird der niedrigste Wert aus dem regulären <strong>c_3</strong> und auch <strong>c_3_ema5</strong>, <strong>c_3_ema10</strong> und <strong>c_3ema15</strong> verwendet, und die Lotgröße wird auf dieser Grundlage berechnet, wobei höhere Lots verwendet werden, wenn ein höherer Korrelationswert vorliegt.</p>
+<p><strong>[31.03.2023]</strong> Jetzt wird der niedrigste Wert aus dem regulären <strong>c3</strong> und auch <strong>c3_ema5</strong>, <strong>c3_ema10</strong> und <strong>c3ema15</strong> verwendet, und die Lotgröße wird auf dieser Grundlage berechnet, wobei höhere Lots verwendet werden, wenn ein höherer Korrelationswert vorliegt.</p>
 </div>
 <p>Der Ersteller des Haawks News Trader-Programms kann das Programm so modifizieren, dass es Trigger aus einer Datenbank akzeptiert, was eine vollständige Automatisierung ermöglicht. Anstatt einen wöchentlichen PDF-Bericht mit empfohlenen Auslösern zu erstellen und diese manuell in das Programm einzugeben, könnte eine Datenbank dies automatisch übernehmen. Allerdings weisen die aktuellen Empfehlungen manchmal höhere Abweichungen mit niedrigeren Korrelationswerten auf, und in diesem Fall wäre es besser, diese Auslöser wegzulassen.</p>
 <p>Um diese Inkonsistenz zu beheben, könnte das haawks news trader Programm so modifiziert werden, dass die Abweichungen zwischen zwei Werten liegen können und nicht nur über oder unter einem Wert. Auf diese Weise könnten Geschäfte nur dann getätigt werden, wenn die Abweichungen innerhalb einer bestimmten Spanne liegen. Die Anwendung eines Exponential Moving Average (EMA) auf Korrelationswerte könnte die Handelsstrategie weiter verbessern. Es ist wichtig, die Leistung dieses Ansatzes zu beobachten und bei Bedarf im Laufe der Zeit Anpassungen vorzunehmen.</p>

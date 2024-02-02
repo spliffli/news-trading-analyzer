@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/images/bull-vs-bear.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/images/flower-of-life-gold-blue-modified.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/site/img/fol-gold-blue-96px.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mkdocs.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -19,7 +19,7 @@
     
     
       
-        <title>(EN) News Trading System Explained - News Trading System</title>
+        <title>EN - News Trading System Explained - News Trading System</title>
       
     
     
@@ -78,8 +78,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Orbitron";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -164,7 +164,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              (EN) News Trading System Explained
+              EN - News Trading System Explained
             
           </span>
         </div>
@@ -361,7 +361,7 @@
   
     <li class="md-nav__item">
       <a href="../weekly-schedules/2023/week-17-schedule/" class="md-nav__link">
-        Week 17 (current)
+        Week 17
       </a>
     </li>
   
@@ -437,7 +437,7 @@
   
     <li class="md-nav__item">
       <a href="../weekly-schedules/2024/week-05-schedule/" class="md-nav__link">
-        Week 5
+        Week 5 (current)
       </a>
     </li>
   
@@ -546,12 +546,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          (EN) News Trading System Explained
+          EN - News Trading System Explained
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        (EN) News Trading System Explained
+        EN - News Trading System Explained
       </a>
       
         
@@ -764,7 +764,7 @@
   
     <li class="md-nav__item">
       <a href="../system-explained-de/" class="md-nav__link">
-        (DE) News Trading System erklärt
+        DE - News Trading System erklärt
       </a>
     </li>
   
@@ -1139,7 +1139,7 @@ MetaTrader 4 (MT4) is a popular trading platform used by traders to access and t
 <li>the mean average pip movements</li>
 <li>the median pip movements</li>
 <li>the range of pip movements</li>
-<li>Three correlation scores (c_1, c_2 &amp; c_3)</li>
+<li>Three correlation scores (c1, c2 &amp; c3)</li>
 </ul>
 <p>It then generates a pdf report for that indicator (e.g. Nonfarm Payrolls or Canada GDP) and trading symbol (e.g. USDJPY or USDCAD).</p>
 <p>Here are screenshots of the pdf report generated for Canada GDP MoM (Month over month):</p>
@@ -1194,32 +1194,32 @@ MetaTrader 4 (MT4) is a popular trading platform used by traders to access and t
 <li>The <strong>range</strong> of all pip movements at that time (e.g. from -5 pips to +45 pips)</li>
 <li>The <strong>mean</strong> average of all pip movements at that time (e.g. 15 pips). Calculated by adding up all of pip movements for each release in the current trigger, then dividing by the amount of them.</li>
 <li>The <strong>median</strong> average. Calculated by sorting all the pip movements from lowest to highest, then finding the one exactly in the middle.</li>
-<li><strong>Correlation 1 Score (c_1)</strong><ul>
+<li><strong>Correlation 1 Score (c1)</strong><ul>
 <li>The percentage of times the price moved in the expected direction.</li>
 <li><code>positive_count</code> = How many times the price (pip) movement is more than or equal to zero.</li>
 <li><code>negative_count</code> = How many times the price movement is less than zero</li>
 <li>Every indicator has an expected direction based on whether there's bullish (positive) or bearish (negative) news. This information was saved earlier from investing.com.<ul>
 <li>If the price movement is expected to be <strong>positive</strong> then:
-  <code>c_1 = positive_count ÷ (positive_count + negative_count)</code></li>
+  <code>c1 = positive_count ÷ (positive_count + negative_count)</code></li>
 <li>If the price movement is expected to be <strong>negative</strong> then:
-  <code>c_1 = negative_count ÷ (positive_count + negative_count)</code></li>
+  <code>c1 = negative_count ÷ (positive_count + negative_count)</code></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>Correlation 2 Score (c_2)</strong></li>
+<li><strong>Correlation 2 Score (c2)</strong></li>
 <li>The percentage of pips which moved in the expected direction.</li>
 <li><code>positive_sum</code> = All pips which moved in a positive direction added up</li>
 <li><code>negative_sum</code> = All pips which moved in a negative direction added up. Because this number is negative, it is multiplied by -1 to become a positive number so that it works with the formula below:<ul>
 <li>If the price is expected to be <strong>positive</strong> then:
-   <code>c_2 = positive_sum ÷ (positive_sum + negative_sum )</code></li>
+   <code>c2 = positive_sum ÷ (positive_sum + negative_sum )</code></li>
 <li>If the price is expected to be <strong>negative</strong> then:
-   <code>c_2 = negative_sum ÷ (positive_sum + negative_sum)</code></li>
+   <code>c2 = negative_sum ÷ (positive_sum + negative_sum)</code></li>
 </ul>
 </li>
-<li><strong>Correlation 3 Score (c_3)</strong></li>
-<li>This is the mean average of c_1 &amp; c_2</li>
-<li><code>c_3 = (c_1 + c_2) ÷ 2</code></li>
+<li><strong>Correlation 3 Score (c3)</strong></li>
+<li>This is the mean average of c1 &amp; c2</li>
+<li><code>c3 = (c1 + c2) ÷ 2</code></li>
 </ul>
 </li>
 <li>
@@ -1228,35 +1228,35 @@ MetaTrader 4 (MT4) is a popular trading platform used by traders to access and t
 <li><strong>range:</strong> the lowest number for any of the time deltas to the highest number for any of the time deltas</li>
 <li><strong>mean:</strong> Add up the mean values for every time delta then divide by the number of time deltas (18)</li>
 <li><strong>median:</strong> Add up the median values for every time delta then divide by 18</li>
-<li><strong>c_1:</strong> Add up the c_1 values for every time delta then divide by 18</li>
-<li><strong>c_2:</strong> Add up the c_2 values for every time delta then divide by 18</li>
-<li><strong>c_3:</strong> Add up the c_3 values for every time delta then divide by 18</li>
+<li><strong>c1:</strong> Add up the c1 values for every time delta then divide by 18</li>
+<li><strong>c2:</strong> Add up the c2 values for every time delta then divide by 18</li>
+<li><strong>c3:</strong> Add up the c3 values for every time delta then divide by 18</li>
 </ul>
 </li>
 </ol>
 <h2 id="18-ranking-every-indicator"><strong>18. Ranking every indicator</strong></h2>
 <p>Once I was able to create this analysis for individual indicators, then I decided to run the it on every indicator from haawks which has news data on investing.com and tick data from dukascopy available. That totals to 95 indicators which isn't all of them but it's still quite a lot.</p>
-<p>I wrote a script in python called <code>ranker.py</code> which runs the analysis on each indicator and then finds the best trigger for each of them i.e. the trigger with the highest total/average c_3 score, then adds that to a list and outputs the results to an excel file called <code>ranker_results.xlsx</code>.</p>
-<p>Then, I ordered them from highest c_3 to lowest c_3. There are:</p>
+<p>I wrote a script in python called <code>ranker.py</code> which runs the analysis on each indicator and then finds the best trigger for each of them i.e. the trigger with the highest total/average c3 score, then adds that to a list and outputs the results to an excel file called <code>ranker_results.xlsx</code>.</p>
+<p>Then, I ordered them from highest c3 to lowest c3. There are:</p>
 <ul>
-<li>15 indicators with a c_3 above 90</li>
-<li>23 indicators with a c_3 between 80-90</li>
-<li>23 indicators with a c_3 between 70-80</li>
-<li>30 indicators with a c_3 below 70</li>
+<li>15 indicators with a c3 above 90</li>
+<li>23 indicators with a c3 between 80-90</li>
+<li>23 indicators with a c3 between 70-80</li>
+<li>30 indicators with a c3 below 70</li>
 </ul>
-<p>The correlation (c_3) score can be thought of as a representation of how predictable each indicator has been historically (Based on data from January 2017 to February 2023). This implies that the indicator has a higher probability of moving in the expected direction when the c_3 score is higher. That is the hypothesis anyway, but this can only be confirmed by testing the strategy.</p>
+<p>The correlation (c3) score can be thought of as a representation of how predictable each indicator has been historically (Based on data from January 2017 to February 2023). This implies that the indicator has a higher probability of moving in the expected direction when the c3 score is higher. That is the hypothesis anyway, but this can only be confirmed by testing the strategy.</p>
 <p><img alt="" src="../images/ranker-results-1.png" />
 <img alt="" src="../images/ranker-results-2.png" />
 <img alt="" src="../images/ranker-results-3.png" /></p>
 <h2 id="19-generating-trading-plans"><strong>19. Generating trading plans</strong></h2>
-<p>Utilizing the c_3 score as a predictability measure, it is reasonable to place larger trades with bigger lot sizes when the c_3 score is higher. The following lot sizes are suggested for different c_3 score ranges:</p>
+<p>Utilizing the c3 score as a predictability measure, it is reasonable to place larger trades with bigger lot sizes when the c3 score is higher. The following lot sizes are suggested for different c3 score ranges:</p>
 <ul>
 <li><strong>80-85</strong>: 0.5 lots per $1000 account balance</li>
 <li><strong>85-90</strong>: 0.75 lots per $1000</li>
 <li><strong>90-95</strong>: 1 lot per $1000</li>
 <li>Above <strong>90</strong>: 1.5 lots per $1000</li>
 </ul>
-<p>A script examines the ranker results for indicators with a c_3 score above 80, cross-references the investing.com economic calendar to identify upcoming news releases within the week, and generates recommended trigger deviations and lot sizes as inputs for the haawks news trader program.</p>
+<p>A script examines the ranker results for indicators with a c3 score above 80, cross-references the investing.com economic calendar to identify upcoming news releases within the week, and generates recommended trigger deviations and lot sizes as inputs for the haawks news trader program.</p>
 <p><img alt="" src="../images/us-core-ppi-mom-triggers.png" /></p>
 <p>These recommendations create a weekly schedule of trigger recommendations for various indicators. The 'lots/$1k' and 'lots' values are the same when assuming an account balance of $1000. If the account balance were $2000, the 'lots' would be double the amount of 'lots/$1k'. This trading plan generation process helps traders make informed decisions based on the predictability of news releases and their potential impact on the market.</p>
 <p><img alt="" src="../images/triggers-output.png" /></p>
@@ -1267,11 +1267,11 @@ MetaTrader 4 (MT4) is a popular trading platform used by traders to access and t
 <p>This can be achieved by using an EMA (exponential moving average). Moving averages, including the Simple Moving Average (SMA) and the Exponential Moving Average (EMA), are commonly used technical indicators in forex trading. 
 - They calculate the average price of an asset over a specific period of time, with the SMA giving equal weight to each data point and the EMA giving more weight to recent price data points. 
 - This difference makes the EMA more sensitive to recent price changes and often used for shorter-term trading strategies, while the SMA is typically used for longer-term analysis.
-- Both types have an input called the 'period,' which specifies the number of previous data points used in their calculations, such as the last 10 price levels for technical analysis or the c_3 scores for the last 10 releases for each trigger.</p>
+- Both types have an input called the 'period,' which specifies the number of previous data points used in their calculations, such as the last 10 price levels for technical analysis or the c3 scores for the last 10 releases for each trigger.</p>
 <p>Although EMAs are commonly used for price analysis (Like in the video above), I will instead be applying it to the correlation scores for each trigger. This will make the correlation score more sensitive to recent events and should better reflect how the indicator has performed recently.</p>
 <div class="admonition update">
 <p class="admonition-title">Update</p>
-<p><strong>[31/03/2023]</strong> Now it uses the lowest score out of the regular <strong>c_3</strong>, and also the <strong>c_3_ema5</strong>, <strong>c_3_ema10</strong> &amp; <strong>c_3ema15</strong>, then bases the lot size calculation on that with higher lots used when there's a higher correlation score.</p>
+<p><strong>[31/03/2023]</strong> Now it uses the lowest score out of the regular <strong>c3</strong>, and also the <strong>c3_ema5</strong>, <strong>c3_ema10</strong> &amp; <strong>c3ema15</strong>, then bases the lot size calculation on that with higher lots used when there's a higher correlation score.</p>
 </div>
 <p>The creator of the haawks news trader program can modify the program to accept triggers from a database, allowing for full automation. Instead of generating a weekly PDF report with recommended triggers and manually inputting them into the program, a database could handle this automatically. However, the current recommendations sometimes have higher deviations with lower correlation scores, and when this occurs, it would be preferable to omit those triggers.</p>
 <p>To address this inconsistency, the haawks news trader program could be modified to allow deviations to fall between two values, rather than just above or below one value. This would enable trades to be made only when deviations fall within a specific range. Applying an Exponential Moving Average (EMA) to correlation scores could further enhance the trading strategy. It's essential to observe the performance of this approach, making adjustments as needed over time.</p>
