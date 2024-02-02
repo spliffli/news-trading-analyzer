@@ -5,6 +5,8 @@ theme:
   name: "material"
   custom_dir: "docs/n2_custom_theme"
   logo: "img/logo-96px.png"
+  font: 
+    text: Orbitron
   palette:
     primary: 'blue'
     accent: 'blue'
