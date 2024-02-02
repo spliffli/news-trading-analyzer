@@ -62,6 +62,7 @@ nav:
   - Blog:
     - EN - News Trading System Explained: system-explained-en.md
     - DE - News Trading System erklärt: system-explained-de.md
+  - Contact/Kontakt: contact.md
 
 edit_uri: '#docs/'
 
