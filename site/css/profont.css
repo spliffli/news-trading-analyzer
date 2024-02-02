@@ -1,11 +1,14 @@
-/*@font-face {
+@font-face {
   font-family: "ProFont For Powerline";
-  src: "../docs/fonts/ProFont For Powerline.ttf";
+  src: url("../fonts/ProFont_For_Powerline.ttf");
 }
 
 :root {
-  --md-code-font: "ProFont For Powerline"; 
-  --md-header: "ProFont For Powerline"; 
-
+  --md-code-font: "ProFont For Powerline" !important;
+  --md-header: "ProFont For Powerline" !important; 
+  --md-typeset: "ProFont For Powerline" !important
 }
-*/
+
+p {
+  font-family: "ProFont For Powerline" !important;
+}
