@@ -2,6 +2,8 @@
 
 ## **01.02.2024**
 
+![bull-vs-bear](./images/bull-vs-bear.png)
+
 It's been a while since I looked at this project because of personal circumstances but I want to give a more concise outline of my system that's quicker to read than the [in-depth explanation](system-explained-en.md) that I wrote last year ([Deutsche Version](system-explained-de.md)).
 
 The system I've developed is quite unique among trading strategies. Very few people in the world are doing this type of trading, and nobody else has publicly released an analysis tool like mine ([Available on Github](https://github.com/spliffli/news-trading-analyzer)).
