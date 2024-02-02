@@ -5,27 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyze_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyze_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/debug_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/images/bull-vs-bear.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/system-explained-de.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/system-explained-de.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/system-explained-en.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/system-explained-en.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-14-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-14-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-15-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-15-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-16-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-16-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-17-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-17-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-18-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-18-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-19-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2023/week-19-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-05-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-05-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-06-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-06-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-07-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-07-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-08-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-08-schedule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/results-template.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/results-template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/weekly-schedules/temp.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/weekly-schedules/temp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generate_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ranker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ranker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduler.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

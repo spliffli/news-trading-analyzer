@@ -17,6 +17,8 @@ With macroeconomic news indicators like [GDP](https://www.investing.com/economic
 
 I only trade events which have triggers with 75% probability/correlation or more, with 75% being the smallest trade size and 95% being the biggest trades. This means there is a mathematical edge and the main challenge isn't predicting the correct direction since that is relatively easy. The main challenge is instead being fast to enter the trade which requires a low latency news feed such as the one provided by [haawks](https://haawks.com).
 
+![low-latency](./images/low-latency.jpg)
+
 The only other succesful low-latency strategy with a mathematical edge that I know of is [latency arbitrage](https://iticsoftware.com/en/blog-posts/ultimate-guide-arbitrage-trading/) i.e. taking advantage of a slow price feed from a broker and being able to glimpse into the future slightly by connecting to a faster price feed like from [Rithmic](https://yyy3.rithmic.com/?page_id=9). 
 
 However, latency arbitrage is against basically every broker's rules since it happens so fast that they often can't send an order to their liquidity providers/ECNs and get filled at the same price which they fill you at. It basically causes slippage on their end and that makes them lose money so they don't like it and it's banned, even if the broker is on a commission model and would otherwise profit no matter if you win or lose like most brokers. This is a similar situation to how counting cards is against a casino's rules despite being legal, although arbitrage & news trading have much higher odds than counting cards. 
