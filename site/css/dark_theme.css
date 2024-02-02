@@ -12,7 +12,8 @@ and background color
   color: #F5F5F5 !important;
   /*background-color: #2e303e !important;*/
   /*background-color: #212121 !important;*/
-  background-color: #252525 !important;
+  /*background-color: #1a2033 !important;*/
+  background-color: #1a2033 !important;
 }
 
 /*
@@ -64,7 +65,7 @@ Left and right toc scrollbar
 .md-nav {
   color: #F5F5F5 !important;
   /*background-color: #212121 !important;*/
-  background-color: #252525 !important;
+  background-color: #1a2033 !important;
 }
 
 /*
@@ -76,13 +77,13 @@ html .md-nav--primary .md-nav__title:before {
 
 .md-typeset__table {
   /*color: #212121;*/
-  color: #252525;
+  color: #1a2033;
 }
 
 .md-nav__title {
   color: rgba(255,255,255,1) !important;
   /*background-color: #212121 !important;*/
-  background-color: #252525 !important;
+  background-color: #1a2033 !important;
 }
 
 /*
@@ -95,13 +96,13 @@ Arrow Right Icon
 .md-nav__list {
   color: rgba(255,255,255,1) !important;
   /*background-color: #212121 !important;*/
-  background-color: #252525 !important;
+  background-color: #1a2033 !important;
 }
 
 .md-nav__item {
   color: rgba(255,255,255,1) !important;
   /*background-color: #212121 !important;*/
-  background-color: #252525 !important;
+  background-color: #1a2033 !important;
 }
 
 .md-nav__link[data-md-state=blur] {
@@ -144,7 +145,7 @@ result list background
 .md-search-result__list {
   color: #EEEEEE !important;
   /*background-color: #212121 !important;*/
-  background-color: #252525 !important;
+  background-color: #1a2033 !important;
 }
 
 /*
@@ -176,5 +177,5 @@ article preview text color
 }
 
 .md-header {
-    background-color: #3e72d3;
+    background-color: #30700d;
 }
