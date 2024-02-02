@@ -12,9 +12,9 @@ from generate_report import render_event_html, generate_weekly_schedule
 import numpy
 
 
-def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_balance, dev_direction, symbol):
+def get_trigger_vars(data_points, lowest_c3_type, lowest_c3_val, dev, account_balance, dev_direction, symbol):
 
-    if 75 <= lowest_c_3_val < 80:
+    if 75 <= lowest_c3_val < 80:
         match symbol:
             case 'USDJPY':
                 lots_per_1000 = 1.6    # 10 pips  = €99.47
@@ -24,7 +24,7 @@ def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_
                 lots_per_1000 = 0.84   # 150 pips = €110.88
             case 'USDNOK':
                 lots_per_1000 = 0.84   # 150 pips = €110.04
-    elif 80 <= lowest_c_3_val < 85:
+    elif 80 <= lowest_c3_val < 85:
         match symbol:
             case 'USDJPY':
                 lots_per_1000 = 2.6    # 10 pips  = €161.64
@@ -34,7 +34,7 @@ def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_
                 lots_per_1000 = 1.36   # 150 pips = €179.52
             case 'USDNOK':
                 lots_per_1000 = 1.36   # 150 pips = €178.16
-    elif 85 <= lowest_c_3_val < 90:
+    elif 85 <= lowest_c3_val < 90:
         match symbol:
             case 'USDJPY':
                 lots_per_1000 = 3.6    # 10 pips  = €223.80
@@ -44,7 +44,7 @@ def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_
                 lots_per_1000 = 1.9    # 150 pips = €250.80
             case 'USDNOK':
                 lots_per_1000 = 1.9    # 150 pips = €248.89
-    elif 90 <= lowest_c_3_val < 95:
+    elif 90 <= lowest_c3_val < 95:
         match symbol:
             case 'USDJPY':
                 lots_per_1000 = 4.5    # 10 pips  = €279.75
@@ -54,7 +54,7 @@ def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_
                 lots_per_1000 = 2.34   # 150 pips = €308.88
             case 'USDNOK':
                 lots_per_1000 = 2.34   # 150 pips = €306.53
-    elif lowest_c_3_val >= 95:
+    elif lowest_c3_val >= 95:
         match symbol:
             case 'USDJPY':
                 lots_per_1000 = 5.4    # 10 pips  = €335.46
@@ -69,8 +69,8 @@ def get_trigger_vars(data_points, lowest_c_3_type, lowest_c_3_val, dev, account_
 
     trigger_vars = {}
     trigger_vars["data_points"] = str(data_points)
-    trigger_vars["lowest_c_3_type"] = str(lowest_c_3_type)
-    trigger_vars["lowest_c_3_val"] = str(lowest_c_3_val)
+    trigger_vars["lowest_c3_type"] = str(lowest_c3_type)
+    trigger_vars["lowest_c3_val"] = str(lowest_c3_val)
     if dev_direction == "positive":
         trigger_vars["dev"] = str(dev)
     elif dev_direction == 'negative':
@@ -103,7 +103,7 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=3000):
         trigger_vars['lta'] = 'Buy'
         trigger_vars['uta'] = 'Sell'
 
-    all_c_3_scores = {}
+    all_c3_scores = {}
 
     for trigger in news_pip_metrics_dfs:
         last_row = news_pip_metrics_dfs[trigger].iloc[-1]
@@ -111,99 +111,99 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=3000):
         if data_points < 15:
             continue
 
-        c_3_scores = {
+        c3_scores = {
             'data_points': data_points,
-            'lowest_c_3_type': last_row['lowest_c_3_type'],
-            'lowest_c_3_val': last_row['lowest_c_3_val'],
-            'c_3': last_row['c_3'],
-            'c_3_ema5': last_row['c_3_ema5'],
-            'c_3_ema10': last_row['c_3_ema10'],
-            'c_3_ema15': last_row['c_3_ema15'],
+            'lowest_c3_type': last_row['lowest_c3_type'],
+            'lowest_c3_val': last_row['lowest_c3_val'],
+            'c3': last_row['c3'],
+            'c3_ema5': last_row['c3_ema5'],
+            'c3_ema10': last_row['c3_ema10'],
+            'c3_ema15': last_row['c3_ema15'],
         }
 
-        all_c_3_scores[f"{trigger}"] = c_3_scores
+        all_c3_scores[f"{trigger}"] = c3_scores
 
-        print(f"c_3_scores ({trigger}):\n  ", c_3_scores)
+        print(f"c3_scores ({trigger}):\n  ", c3_scores)
 
-    if len(all_c_3_scores) == 0:
+    if len(all_c3_scores) == 0:
         return "Not enough data"
 
-    # Create a list of the keys in the c_3_scores dictionary (trigger names)
-    triggers_c_3_keys = list(all_c_3_scores.keys())
+    # Create a list of the keys in the c3_scores dictionary (trigger names)
+    triggers_c3_keys = list(all_c3_scores.keys())
 
-    # Create a list of the values in the c_3_scores dictionary (trigger scores)
-    triggers_c_3_values = list(all_c_3_scores.values())
+    # Create a list of the values in the c3_scores dictionary (trigger scores)
+    triggers_c3_values = list(all_c3_scores.values())
 
-    # Find the index of the key (trigger name) with the highest 'lowest_c_3_val' in the
-    # triggers_c_3_keys list by first finding the trigger/key with the highest 'lowest_c_3_val' using
-    # the max() function with a custom key function that looks up the 'lowest_c_3_val' for each key.
-    # Then, find the index of that key in the triggers_c_3_keys list and assign it to
+    # Find the index of the key (trigger name) with the highest 'lowest_c3_val' in the
+    # triggers_c3_keys list by first finding the trigger/key with the highest 'lowest_c3_val' using
+    # the max() function with a custom key function that looks up the 'lowest_c3_val' for each key.
+    # Then, find the index of that key in the triggers_c3_keys list and assign it to
     # the best_trigger_index variable.
-    best_trigger_index = triggers_c_3_keys.index(
-        max(triggers_c_3_keys, key=lambda x: all_c_3_scores[x]['lowest_c_3_val'])
+    best_trigger_index = triggers_c3_keys.index(
+        max(triggers_c3_keys, key=lambda x: all_c3_scores[x]['lowest_c3_val'])
     )
 
-    if len(triggers_c_3_values) == 4 and best_trigger_index == 3:
-        triggers_c_3_keys = triggers_c_3_keys.pop(0)
-        triggers_c_3_values = triggers_c_3_values.pop(0)
+    if len(triggers_c3_values) == 4 and best_trigger_index == 3:
+        triggers_c3_keys = triggers_c3_keys.pop(0)
+        triggers_c3_values = triggers_c3_values.pop(0)
 
     over_75_count = 0
 
-    if type(triggers_c_3_values) == numpy.float64 or type(triggers_c_3_values) == float:
-        if len(c_3_scores) == 0:  # Check if there are no valid triggers
+    if type(triggers_c3_values) == numpy.float64 or type(triggers_c3_values) == float:
+        if len(c3_scores) == 0:  # Check if there are no valid triggers
             triggers_vars = "Not enough data"
         else:
-            if triggers_c_3_values[0]['lowest_c_3_val'] >= 75:
+            if triggers_c3_values[0]['lowest_c3_val'] >= 75:
                 trigger_vars["upper_triggers"].setdefault(f"ut1", "")
                 trigger_vars["lower_triggers"].setdefault(f"lt1", "")
-                trigger_vars["upper_triggers"][f"ut1"] = get_trigger_vars(data_points=triggers_c_3_values[0]['data_points'],
-                                                                      lowest_c_3_type=triggers_c_3_values[0]['lowest_c_3_type'],
-                                                                       lowest_c_3_val=triggers_c_3_values[0]['lowest_c_3_val'],
-                                                                                  dev=triggers[triggers_c_3_keys[0]],
+                trigger_vars["upper_triggers"][f"ut1"] = get_trigger_vars(data_points=triggers_c3_values[0]['data_points'],
+                                                                      lowest_c3_type=triggers_c3_values[0]['lowest_c3_type'],
+                                                                       lowest_c3_val=triggers_c3_values[0]['lowest_c3_val'],
+                                                                                  dev=triggers[triggers_c3_keys[0]],
                                                                       account_balance=account_balance,
                                                                         dev_direction="positive",
                                                                                symbol=symbol)
-                trigger_vars["lower_triggers"][f"lt1"] = get_trigger_vars(data_points=triggers_c_3_values[0]['data_points'],
-                                                                      lowest_c_3_type=triggers_c_3_values[0]['lowest_c_3_type'],
-                                                                       lowest_c_3_val=triggers_c_3_values[0]['lowest_c_3_val'],
-                                                                                  dev=triggers[triggers_c_3_keys[0]],
+                trigger_vars["lower_triggers"][f"lt1"] = get_trigger_vars(data_points=triggers_c3_values[0]['data_points'],
+                                                                      lowest_c3_type=triggers_c3_values[0]['lowest_c3_type'],
+                                                                       lowest_c3_val=triggers_c3_values[0]['lowest_c3_val'],
+                                                                                  dev=triggers[triggers_c3_keys[0]],
                                                                       account_balance=account_balance,
                                                                         dev_direction="negative",
                                                                                symbol=symbol)
             else:
-                trigger_vars = "lowest_c_3_val too low"
+                trigger_vars = "lowest_c3_val too low"
 
         return trigger_vars
     else:
-        for index, trigger in enumerate(triggers_c_3_values):
-            if trigger['lowest_c_3_val'] >= 75:
+        for index, trigger in enumerate(triggers_c3_values):
+            if trigger['lowest_c3_val'] >= 75:
                 over_75_count += 1
                 trigger_vars["upper_triggers"].setdefault(f"ut{over_75_count}", "")
                 trigger_vars["lower_triggers"].setdefault(f"lt{over_75_count}", "")
 
                 trigger_vars["upper_triggers"][f"ut{over_75_count}"] = get_trigger_vars(data_points=trigger['data_points'],
-                                                                                    lowest_c_3_type=trigger['lowest_c_3_type'],
-                                                                                     lowest_c_3_val=trigger['lowest_c_3_val'],
-                                                                                                dev=triggers[triggers_c_3_keys[index]],
+                                                                                    lowest_c3_type=trigger['lowest_c3_type'],
+                                                                                     lowest_c3_val=trigger['lowest_c3_val'],
+                                                                                                dev=triggers[triggers_c3_keys[index]],
                                                                                     account_balance=account_balance,
                                                                                       dev_direction="positive",
                                                                                              symbol=symbol)
                 trigger_vars["lower_triggers"][f"lt{over_75_count}"] = get_trigger_vars(data_points=trigger['data_points'],
-                                                                                    lowest_c_3_type=trigger['lowest_c_3_type'],
-                                                                                     lowest_c_3_val=trigger['lowest_c_3_val'],
-                                                                                                dev=triggers[triggers_c_3_keys[index]],
+                                                                                    lowest_c3_type=trigger['lowest_c3_type'],
+                                                                                     lowest_c3_val=trigger['lowest_c3_val'],
+                                                                                                dev=triggers[triggers_c3_keys[index]],
                                                                                     account_balance=account_balance,
                                                                                       dev_direction="negative",
                                                                                              symbol=symbol)
 
-                # Add the c_3_ema and c_3_ema_val to the trigger_vars dictionary for rendering
-                trigger_vars["upper_triggers"][f"ut{over_75_count}"]["c_3_ema"] = trigger['lowest_c_3_type']
-                trigger_vars["upper_triggers"][f"ut{over_75_count}"]["c_3_ema_val"] = trigger['lowest_c_3_val']
-                trigger_vars["lower_triggers"][f"lt{over_75_count}"]["c_3_ema"] = trigger['lowest_c_3_type']
-                trigger_vars["lower_triggers"][f"lt{over_75_count}"]["c_3_ema_val"] = trigger['lowest_c_3_val']
+                # Add the c3_ema and c3_ema_val to the trigger_vars dictionary for rendering
+                trigger_vars["upper_triggers"][f"ut{over_75_count}"]["c3_ema"] = trigger['lowest_c3_type']
+                trigger_vars["upper_triggers"][f"ut{over_75_count}"]["c3_ema_val"] = trigger['lowest_c3_val']
+                trigger_vars["lower_triggers"][f"lt{over_75_count}"]["c3_ema"] = trigger['lowest_c3_type']
+                trigger_vars["lower_triggers"][f"lt{over_75_count}"]["c3_ema_val"] = trigger['lowest_c3_val']
 
         if len(trigger_vars['lower_triggers']) == 0 or len(trigger_vars['upper_triggers']) == 0:
-            return "lowest_c_3_val too low"
+            return "lowest_c3_val too low"
         else:
             return trigger_vars
 
@@ -256,8 +256,8 @@ def create_schedule(next_week=False, custom_date=True, update_news_and_tick_data
         triggers_vars = get_triggers_vars(haawks_id_str, symbol, higher_dev)
         day = get_day(dt=dt_gmt)
 
-        # Check if triggers_vars has "Not enough data" of "lowest_c_3_val too low"
-        if triggers_vars in ["Not enough data", "lowest_c_3_val too low"]:
+        # Check if triggers_vars has "Not enough data" of "lowest_c3_val too low"
+        if triggers_vars in ["Not enough data", "lowest_c3_val too low"]:
             event_html = ""
         else:
             event_html = render_event_html(title, datetime_str, datetime_et_str, symbol, triggers_vars)

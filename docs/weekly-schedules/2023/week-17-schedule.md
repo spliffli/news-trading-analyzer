@@ -8,7 +8,7 @@
 
 --------
 
-#### For events which are at the same time, it's only possible to trade one of them, so in those cases the ones with the highest c_3 scores were chosen.
+#### For events which are at the same time, it's only possible to trade one of them, so in those cases the ones with the highest c3 scores were chosen.
 
 --------
 
@@ -50,7 +50,7 @@
         <div class="lower-triggers">
         <div class="trigger">
           <h4>-LT1:</h4>
-          <h5>c_3: <span>79.0</span></h5>
+          <h5>c3: <span>79.0</span></h5>
           <h5>data pts: <span>24</span></h5>
           <h5>dev: <span>-0.1</span></h5>
           <h5>lots/$1k: <span>1.53</span></h5>
@@ -58,7 +58,7 @@
         </div>
         <div class="trigger">
           <h4>-LT2:</h4>
-          <h5>c_3: <span>86.7</span></h5>
+          <h5>c3: <span>86.7</span></h5>
           <h5>data pts: <span>18</span></h5>
           <h5>dev: <span>-0.2</span></h5>
           <h5>lots/$1k: <span>3.57</span></h5>
@@ -69,7 +69,7 @@
       <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-          <h5>c_3: <span>79.0</span></h5>
+          <h5>c3: <span>79.0</span></h5>
           <h5>data pts: <span>24</span></h5>
           <h5>dev: <span>0.1</span></h5>
           <h5>lots/$1k: <span>1.53</span></h5>
@@ -77,7 +77,7 @@
         </div>
         <div class="trigger">
         <h4>+UT2:</h4>
-          <h5>c_3: <span>86.7</span></h5>
+          <h5>c3: <span>86.7</span></h5>
           <h5>data pts: <span>18</span></h5>
           <h5>dev: <span>0.2</span></h5>
           <h5>lots/$1k: <span>3.57</span></h5>

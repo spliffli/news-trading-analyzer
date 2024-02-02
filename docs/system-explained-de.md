@@ -176,7 +176,7 @@ Um einen fundierteren und robusteren Handelsplan zu haben, habe ich ein Datenana
 - die mittleren durchschnittlichen (mean average) Pip-Bewegungen
 - die Median durchschnittlichen (median average) Pip-Bewegungen
 - der Bereich (range) der Pip-Bewegungen
-- Drei Korrelationswerte (Correlation scores: c_1, c_2 & c_3)
+- Drei Korrelationswerte (Correlation scores: c1, c2 & c3)
 
 Es generiert dann einen PDF-Bericht für diesen Indikator (z. B. Nonfarm Payrolls oder Canada GDP) und das Handelssymbol (z. B. USDJPY oder USDCAD).
 
@@ -226,34 +226,34 @@ Normalerweise wird der Korrelationswert (Correlation Score) höher, wenn die Abw
     - Der **Bereich (Range)** aller Pip-Bewegungen zu diesem Zeitpunkt (z. B. von -5 Pips bis +45 Pips)
     - Der **mittlere (Mean)** Durchschnitt aller Pip-Bewegungen zu diesem Zeitpunkt (z. B. 15 Pips). Berechnet, indem alle Pip-Bewegungen für jede Freigabe im aktuellen Trigger addiert und dann durch deren Anzahl dividiert werden.
     - Der **Median**-Durchschnitt. Berechnet, indem alle Pip-Bewegungen von der niedrigsten zur höchsten sortiert werden und dann genau diejenige in der Mitte gefunden wird.
-    - **Korrelation 1 Score (c_1)**
+    - **Korrelation 1 Score (c1)**
         - Der Prozentsatz der Male, in denen sich der Preis in die erwartete Richtung bewegt hat.
         - `Positiv_Zählung` = Wie oft die Preisbewegung (Pip) größer oder gleich Null ist.
         - `Negativ_Zählung` = Wie oft die Preisbewegung kleiner als Null ist
         - Jeder Indikator hat eine erwartete Richtung basierend darauf, ob es bullische (positive) oder bearishe (negative) Nachrichten gibt. Diese Informationen wurden zuvor von investing.com gespeichert.
             - Wenn erwartet wird, dass die Preisbewegung **positiv** ist, dann:
-              `c_1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)`
+              `c1 = Positiv_Zählung ÷ (Positiv_Zählung + Negativ_Zählung)`
             - Wenn die Preisbewegung voraussichtlich **negativ** sein wird:
-              `c_1 = Negativ_Zählung ÷ (Nositiv_Zählung + Negativ_Zählung)`
-    - **Korrelation 2 Score (c_2)**
+              `c1 = Negativ_Zählung ÷ (Nositiv_Zählung + Negativ_Zählung)`
+    - **Korrelation 2 Score (c2)**
         - Der Prozentsatz der Pips, die sich in die erwartete Richtung bewegt haben.
         - `Positiv_Summe` = Alle Pips, die sich in eine positive Richtung bewegen, werden zusammengezählt
         - `Negativ_Summe` = Alle Pips, die sich in eine negative Richtung bewegt haben, werden zusammengezählt. Da diese Zahl negativ ist, wird sie mit -1 multipliziert, um eine positive Zahl zu werden, sodass sie mit der folgenden Gleichung funktioniert.
             - Wenn der Preis voraussichtlich **positiv** ist, dann:
-              `c_2 = Positiv_Summe ÷ (Positiv_Summe + Negativ_Summe )`
+              `c2 = Positiv_Summe ÷ (Positiv_Summe + Negativ_Summe )`
             - Wenn der Preis voraussichtlich **negativ** sein wird:
-              `c_2 = Negativ_Summe ÷ (Positiv_Summe + Negativ_Summe)`
-    - **Korrelation 3 Score (c_3)**
-        - Dies ist der mittlere Durchschnitt (mean average) von c_1 & c_2
-        - `c_3 = (c_1 + c_2) ÷ 2`
+              `c2 = Negativ_Summe ÷ (Positiv_Summe + Negativ_Summe)`
+    - **Korrelation 3 Score (c3)**
+        - Dies ist der mittlere Durchschnitt (mean average) von c1 & c2
+        - `c3 = (c1 + c2) ÷ 2`
 
 6. Die Summe/Durchschnittswerte werden dann für jeden Trigger berechnet:
     - **Bereich (Range):** die niedrigste Zahl für eines der Zeitdeltas bis zur höchsten Zahl für eines der Zeitdeltas
     - **Mittelwert (Mean):** Addiere die Mittelwerte für jedes Zeitdelta und dividiere dann durch die Anzahl der Zeitdeltas (18)
     - **Median:** Addiere die Medianwerte für jedes Zeitdelta und dividiere dann durch 18
-    - **c_1:** Addiere die c_1-Werte für jedes Zeitdelta und dividiere dann durch 18
-    - **c_2:** Addieren Sie die c_2-Werte für jedes Zeitdelta und dividieren Sie sie dann durch 18
-    - **c_3:** Addiere die c_3-Werte für jedes Zeitdelta und dividiere dann durch 18
+    - **c1:** Addiere die c1-Werte für jedes Zeitdelta und dividiere dann durch 18
+    - **c2:** Addieren Sie die c2-Werte für jedes Zeitdelta und dividieren Sie sie dann durch 18
+    - **c3:** Addiere die c3-Werte für jedes Zeitdelta und dividiere dann durch 18
 
 ## **18. Ordnen Sie jeden Indikator ein (Ranking every indicator)**
 
@@ -261,14 +261,14 @@ Nachdem ich in der Lage war, diese Analyse für einzelne Indikatoren zu erstelle
 
 Ich habe ein Skript/Programm in Python namens `ranker.py` geschrieben, das die Analyse für jeden Indikator durchführt und dann den besten Trigger für jeden von ihnen findet, d Ergebnisse in eine Excel-Datei namens `ranker_results.xlsx`.
 
-Dann habe ich sie vom höchsten c_3 zum niedrigsten c_3 geordnet. Es gibt:
+Dann habe ich sie vom höchsten c3 zum niedrigsten c3 geordnet. Es gibt:
 
-- 15 Indikatoren mit einem c_3 über 90
-- 23 Indikatoren mit einem c_3 zwischen 80-90
-- 23 Indikatoren mit einem c_3 zwischen 70-80
-- 30 Indikatoren mit einem c_3 unter 70
+- 15 Indikatoren mit einem c3 über 90
+- 23 Indikatoren mit einem c3 zwischen 80-90
+- 23 Indikatoren mit einem c3 zwischen 70-80
+- 30 Indikatoren mit einem c3 unter 70
 
-Die Korrelationswerte (c_3) können als Darstellungen dafür angesehen werden, wie vorhersagbar jede Abweichung für jeden Indikator historisch war (basierend auf Daten von Januar 2017 bis Februar 2023). Dies impliziert, dass der Indikator eine höhere Wahrscheinlichkeit hat, sich in die erwartete Richtung zu bewegen, wenn der c_3-Wert höher ist. Das ist sowieso die Hypothese, die aber nur durch das Testen der Strategie bestätigt werden kann.
+Die Korrelationswerte (c3) können als Darstellungen dafür angesehen werden, wie vorhersagbar jede Abweichung für jeden Indikator historisch war (basierend auf Daten von Januar 2017 bis Februar 2023). Dies impliziert, dass der Indikator eine höhere Wahrscheinlichkeit hat, sich in die erwartete Richtung zu bewegen, wenn der c3-Wert höher ist. Das ist sowieso die Hypothese, die aber nur durch das Testen der Strategie bestätigt werden kann.
 
 ![](images/ranker-results-1.png)
 ![](images/ranker-results-2.png)
@@ -276,14 +276,14 @@ Die Korrelationswerte (c_3) können als Darstellungen dafür angesehen werden, w
 
 ## **19. Handelspläne erstellen (Generating trading plans)**
 
-Da der c_3-Wert wie ein Vorhersagbarkeitswert ist, ist es sinnvoll, größere Trades zu platzieren, wenn größere Lot Sizes verwendet werden, wenn der c_3-Wert höher ist. Ich habe die folgenden Lot Sizes für jede c_3-Punktzahl ermittelt:
+Da der c3-Wert wie ein Vorhersagbarkeitswert ist, ist es sinnvoll, größere Trades zu platzieren, wenn größere Lot Sizes verwendet werden, wenn der c3-Wert höher ist. Ich habe die folgenden Lot Sizes für jede c3-Punktzahl ermittelt:
 
 - zwischen **80** und **85**: **0.5** Lots pro $1000 Kontostand
 - zwischen **85** und **90**: **0.75** Lots pro $1000
 - zwischen **90** und **95**: **1** Lot pro $1000
 - über **90**: **1.5** Lots pro $1000
 
-Ich habe ein weiteres Skript geschrieben, das die Ranking-Ergebnisse für alle Indikatoren mit einem c_3-Wert über 80 betrachtet und dann den Wirtschaftskalender von investing.com überprüft, um zu sehen, ob einer davon in der nächsten Woche veröffentlicht werden soll.
+Ich habe ein weiteres Skript geschrieben, das die Ranking-Ergebnisse für alle Indikatoren mit einem c3-Wert über 80 betrachtet und dann den Wirtschaftskalender von investing.com überprüft, um zu sehen, ob einer davon in der nächsten Woche veröffentlicht werden soll.
 
 Dann generiert es für jeden Indikator, der in der nächsten Woche veröffentlicht wird, empfohlene Triggerabweichungen und Lot Sizes als Eingaben für das Haawks-News-Trader-Programm wie folgt:
 
@@ -306,12 +306,12 @@ Um dieses Problem zu lösen, plane ich, einen anderen Korrelationswert zu erstel
 Dies kann durch die Verwendung eines EMA (exponentieller gleitender Durchschnitt) erreicht werden. Gleitende Durchschnitte, einschließlich des einfachen gleitenden Durchschnitts (Simple Moving Average - SMA) und des exponentiellen gleitenden Durchschnitts (Exponential Moving Average - EMA), sind häufig verwendete technische Indikatoren im Devisenhandel. 
 - Sie berechnen den Durchschnittspreis eines Vermögenswerts über einen bestimmten Zeitraum, wobei der SMA jedem Datenpunkt das gleiche Gewicht gibt und der EMA den jüngsten Preisdatenpunkten mehr Gewicht verleiht. 
 - Aufgrund dieses Unterschieds reagiert der EMA empfindlicher auf jüngste Kursänderungen und wird häufig für kurzfristige Handelsstrategien verwendet, während der SMA in der Regel für längerfristige Analysen eingesetzt wird.
-- Beide Typen haben eine Eingabe, die als "Periode" bezeichnet wird und die Anzahl der vorherigen Datenpunkte angibt, die für ihre Berechnungen verwendet werden, wie z. B. die letzten 10 Kursniveaus für die technische Analyse oder die c_3-Bewertungen für die letzten 10 Veröffentlichungen für jeden Auslöser.
+- Beide Typen haben eine Eingabe, die als "Periode" bezeichnet wird und die Anzahl der vorherigen Datenpunkte angibt, die für ihre Berechnungen verwendet werden, wie z. B. die letzten 10 Kursniveaus für die technische Analyse oder die c3-Bewertungen für die letzten 10 Veröffentlichungen für jeden Auslöser.
 
 Obwohl EMAs üblicherweise für die Preisanalyse verwendet werden (wie im Video oben), werde ich sie stattdessen auf die Korrelationswerte für jeden Auslöser anwenden. Dadurch wird der Korrelationswert empfindlicher auf die jüngsten Ereignisse reagieren und sollte besser widerspiegeln, wie sich der Indikator in letzter Zeit entwickelt hat.
 
 !!! update
-    **[31.03.2023]** Jetzt wird der niedrigste Wert aus dem regulären **c_3** und auch **c_3_ema5**, **c_3_ema10** und **c_3ema15** verwendet, und die Lotgröße wird auf dieser Grundlage berechnet, wobei höhere Lots verwendet werden, wenn ein höherer Korrelationswert vorliegt.
+    **[31.03.2023]** Jetzt wird der niedrigste Wert aus dem regulären **c3** und auch **c3_ema5**, **c3_ema10** und **c3ema15** verwendet, und die Lotgröße wird auf dieser Grundlage berechnet, wobei höhere Lots verwendet werden, wenn ein höherer Korrelationswert vorliegt.
 
 Der Ersteller des Haawks News Trader-Programms kann das Programm so modifizieren, dass es Trigger aus einer Datenbank akzeptiert, was eine vollständige Automatisierung ermöglicht. Anstatt einen wöchentlichen PDF-Bericht mit empfohlenen Auslösern zu erstellen und diese manuell in das Programm einzugeben, könnte eine Datenbank dies automatisch übernehmen. Allerdings weisen die aktuellen Empfehlungen manchmal höhere Abweichungen mit niedrigeren Korrelationswerten auf, und in diesem Fall wäre es besser, diese Auslöser wegzulassen.
 

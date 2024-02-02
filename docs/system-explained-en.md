@@ -179,7 +179,7 @@ In order to have a more informed and robust trading plan, I created a data analy
 - the mean average pip movements
 - the median pip movements
 - the range of pip movements
-- Three correlation scores (c_1, c_2 & c_3)
+- Three correlation scores (c1, c2 & c3)
 
 It then generates a pdf report for that indicator (e.g. Nonfarm Payrolls or Canada GDP) and trading symbol (e.g. USDJPY or USDCAD).
 
@@ -234,35 +234,35 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
     - The **range** of all pip movements at that time (e.g. from -5 pips to +45 pips)
     - The **mean** average of all pip movements at that time (e.g. 15 pips). Calculated by adding up all of pip movements for each release in the current trigger, then dividing by the amount of them.
     - The **median** average. Calculated by sorting all the pip movements from lowest to highest, then finding the one exactly in the middle.
-    - **Correlation 1 Score (c_1)**
+    - **Correlation 1 Score (c1)**
         - The percentage of times the price moved in the expected direction.
         - `positive_count` = How many times the price (pip) movement is more than or equal to zero.
         - `negative_count` = How many times the price movement is less than zero
         - Every indicator has an expected direction based on whether there's bullish (positive) or bearish (negative) news. This information was saved earlier from investing.com.
             - If the price movement is expected to be **positive** then:
-              `c_1 = positive_count ÷ (positive_count + negative_count)`
+              `c1 = positive_count ÷ (positive_count + negative_count)`
             - If the price movement is expected to be **negative** then:
-              `c_1 = negative_count ÷ (positive_count + negative_count)`
-   - **Correlation 2 Score (c_2)**
+              `c1 = negative_count ÷ (positive_count + negative_count)`
+   - **Correlation 2 Score (c2)**
        - The percentage of pips which moved in the expected direction.
        - `positive_sum` = All pips which moved in a positive direction added up
        - `negative_sum` = All pips which moved in a negative direction added up. Because this number is negative, it is multiplied by -1 to become a positive number so that it works with the formula below:
            - If the price is expected to be **positive** then:
-           `c_2 = positive_sum ÷ (positive_sum + negative_sum )`
+           `c2 = positive_sum ÷ (positive_sum + negative_sum )`
            - If the price is expected to be **negative** then:
-           `c_2 = negative_sum ÷ (positive_sum + negative_sum)`
-   - **Correlation 3 Score (c_3)**
-       - This is the mean average of c_1 & c_2
-       - `c_3 = (c_1 + c_2) ÷ 2`
+           `c2 = negative_sum ÷ (positive_sum + negative_sum)`
+   - **Correlation 3 Score (c3)**
+       - This is the mean average of c1 & c2
+       - `c3 = (c1 + c2) ÷ 2`
         
 6. The total/averages are then calculated for each trigger:
 
       - **range:** the lowest number for any of the time deltas to the highest number for any of the time deltas
       - **mean:** Add up the mean values for every time delta then divide by the number of time deltas (18)
       - **median:** Add up the median values for every time delta then divide by 18
-      - **c_1:** Add up the c_1 values for every time delta then divide by 18
-      - **c_2:** Add up the c_2 values for every time delta then divide by 18
-      - **c_3:** Add up the c_3 values for every time delta then divide by 18
+      - **c1:** Add up the c1 values for every time delta then divide by 18
+      - **c2:** Add up the c2 values for every time delta then divide by 18
+      - **c3:** Add up the c3 values for every time delta then divide by 18
 
 
 
@@ -270,16 +270,16 @@ Normally the correlation score gets higher as the deviation gets higher. The cal
 
 Once I was able to create this analysis for individual indicators, then I decided to run the it on every indicator from haawks which has news data on investing.com and tick data from dukascopy available. That totals to 95 indicators which isn't all of them but it's still quite a lot.
 
-I wrote a script in python called `ranker.py` which runs the analysis on each indicator and then finds the best trigger for each of them i.e. the trigger with the highest total/average c_3 score, then adds that to a list and outputs the results to an excel file called `ranker_results.xlsx`.
+I wrote a script in python called `ranker.py` which runs the analysis on each indicator and then finds the best trigger for each of them i.e. the trigger with the highest total/average c3 score, then adds that to a list and outputs the results to an excel file called `ranker_results.xlsx`.
 
-Then, I ordered them from highest c_3 to lowest c_3. There are:
+Then, I ordered them from highest c3 to lowest c3. There are:
 
-- 15 indicators with a c_3 above 90
-- 23 indicators with a c_3 between 80-90
-- 23 indicators with a c_3 between 70-80
-- 30 indicators with a c_3 below 70
+- 15 indicators with a c3 above 90
+- 23 indicators with a c3 between 80-90
+- 23 indicators with a c3 between 70-80
+- 30 indicators with a c3 below 70
 
-The correlation (c_3) score can be thought of as a representation of how predictable each indicator has been historically (Based on data from January 2017 to February 2023). This implies that the indicator has a higher probability of moving in the expected direction when the c_3 score is higher. That is the hypothesis anyway, but this can only be confirmed by testing the strategy.
+The correlation (c3) score can be thought of as a representation of how predictable each indicator has been historically (Based on data from January 2017 to February 2023). This implies that the indicator has a higher probability of moving in the expected direction when the c3 score is higher. That is the hypothesis anyway, but this can only be confirmed by testing the strategy.
 
 ![](images/ranker-results-1.png)
 ![](images/ranker-results-2.png)
@@ -287,14 +287,14 @@ The correlation (c_3) score can be thought of as a representation of how predict
 
 ## **19. Generating trading plans**
 
-Utilizing the c_3 score as a predictability measure, it is reasonable to place larger trades with bigger lot sizes when the c_3 score is higher. The following lot sizes are suggested for different c_3 score ranges:
+Utilizing the c3 score as a predictability measure, it is reasonable to place larger trades with bigger lot sizes when the c3 score is higher. The following lot sizes are suggested for different c3 score ranges:
 
 - **80-85**: 0.5 lots per $1000 account balance
 - **85-90**: 0.75 lots per $1000
 - **90-95**: 1 lot per $1000
 - Above **90**: 1.5 lots per $1000
 
-A script examines the ranker results for indicators with a c_3 score above 80, cross-references the investing.com economic calendar to identify upcoming news releases within the week, and generates recommended trigger deviations and lot sizes as inputs for the haawks news trader program.
+A script examines the ranker results for indicators with a c3 score above 80, cross-references the investing.com economic calendar to identify upcoming news releases within the week, and generates recommended trigger deviations and lot sizes as inputs for the haawks news trader program.
 
 ![](images/us-core-ppi-mom-triggers.png)
 
@@ -314,12 +314,12 @@ To solve this problem, I am planning to create another correlation score which i
 This can be achieved by using an EMA (exponential moving average). Moving averages, including the Simple Moving Average (SMA) and the Exponential Moving Average (EMA), are commonly used technical indicators in forex trading. 
 - They calculate the average price of an asset over a specific period of time, with the SMA giving equal weight to each data point and the EMA giving more weight to recent price data points. 
 - This difference makes the EMA more sensitive to recent price changes and often used for shorter-term trading strategies, while the SMA is typically used for longer-term analysis.
-- Both types have an input called the 'period,' which specifies the number of previous data points used in their calculations, such as the last 10 price levels for technical analysis or the c_3 scores for the last 10 releases for each trigger.
+- Both types have an input called the 'period,' which specifies the number of previous data points used in their calculations, such as the last 10 price levels for technical analysis or the c3 scores for the last 10 releases for each trigger.
 
 Although EMAs are commonly used for price analysis (Like in the video above), I will instead be applying it to the correlation scores for each trigger. This will make the correlation score more sensitive to recent events and should better reflect how the indicator has performed recently.
 
 !!! update
-    **[31/03/2023]** Now it uses the lowest score out of the regular **c_3**, and also the **c_3_ema5**, **c_3_ema10** & **c_3ema15**, then bases the lot size calculation on that with higher lots used when there's a higher correlation score.
+    **[31/03/2023]** Now it uses the lowest score out of the regular **c3**, and also the **c3_ema5**, **c3_ema10** & **c3ema15**, then bases the lot size calculation on that with higher lots used when there's a higher correlation score.
 
 The creator of the haawks news trader program can modify the program to accept triggers from a database, allowing for full automation. Instead of generating a weekly PDF report with recommended triggers and manually inputting them into the program, a database could handle this automatically. However, the current recommendations sometimes have higher deviations with lower correlation scores, and when this occurs, it would be preferable to omit those triggers.
 

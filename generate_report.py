@@ -74,7 +74,7 @@ def render_pdf_report(haawks_id_str, symbol, news_data, news_pip_metrics_dfs, tr
 
 
 def render_trigger_html(trigger):
-    output_html = (f"            <h5>{trigger['lowest_c_3_type']}: <span>{trigger['lowest_c_3_val']}</span></h5>\n"
+    output_html = (f"            <h5>{trigger['lowest_c3_type']}: <span>{trigger['lowest_c3_val']}</span></h5>\n"
                    + f"            <h5>data pts: <span>{trigger['data_points']}</span></h5>\n"
                    + f"            <h5>dev: <span>{trigger['dev']}</span></h5>\n"
                    + f"            <h5>lots/€1k: <span>{trigger['lots_per_1000']}</span></h5>\n"

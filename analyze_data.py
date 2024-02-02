@@ -1692,8 +1692,8 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
 
     Args:
         pip_metrics_df (pd.DataFrame): A DataFrame containing pip metrics data with columns including
-                                       'range', 'mean', 'median', various correlation scores (e.g., 'c_1', 'c_2', 'c_3'),
-                                       and various EMAs (e.g., 'c_1_ema5', 'c_2_ema5', 'c_3_ema5').
+                                       'range', 'mean', 'median', various correlation scores (e.g., 'c1', 'c2', 'c3'),
+                                       and various EMAs (e.g., 'c1_ema5', 'c2_ema5', 'c3_ema5').
         trigger_name (str): A string representing the name of the trigger for which the pip metrics
                             are calculated.
 
@@ -1724,15 +1724,15 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
     c1_scores = []
     c2_scores = []
     c3_scores = []
-    c_1_ema5_scores = []
-    c_2_ema5_scores = []
-    c_3_ema5_scores = []
-    c_1_ema10_scores = []
-    c_2_ema10_scores = []
-    c_3_ema10_scores = []
-    c_1_ema15_scores = []
-    c_2_ema15_scores = []
-    c_3_ema15_scores = []
+    c1_ema5_scores = []
+    c2_ema5_scores = []
+    c3_ema5_scores = []
+    c1_ema10_scores = []
+    c2_ema10_scores = []
+    c3_ema10_scores = []
+    c1_ema15_scores = []
+    c2_ema15_scores = []
+    c3_ema15_scores = []
     for index, row in pip_metrics_df.iterrows():
         if row['range'][0] < total_range[0]:
             total_range[0] = row['range'][0]
@@ -1741,18 +1741,18 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
 
         means.append(row['mean'])
         medians.append(row['median'])
-        c1_scores.append(row['c_1'])
-        c2_scores.append(row['c_2'])
-        c3_scores.append(row['c_3'])
-        c_1_ema5_scores.append(row['c_1_ema5'])
-        c_2_ema5_scores.append(row['c_2_ema5'])
-        c_3_ema5_scores.append(row['c_3_ema5'])
-        c_1_ema10_scores.append(row['c_1_ema10'])
-        c_2_ema10_scores.append(row['c_2_ema10'])
-        c_3_ema10_scores.append(row['c_3_ema10'])
-        c_1_ema15_scores.append(row['c_1_ema15'])
-        c_2_ema15_scores.append(row['c_2_ema15'])
-        c_3_ema15_scores.append(row['c_3_ema15'])
+        c1_scores.append(row['c1'])
+        c2_scores.append(row['c2'])
+        c3_scores.append(row['c3'])
+        c1_ema5_scores.append(row['c1_ema5'])
+        c2_ema5_scores.append(row['c2_ema5'])
+        c3_ema5_scores.append(row['c3_ema5'])
+        c1_ema10_scores.append(row['c1_ema10'])
+        c2_ema10_scores.append(row['c2_ema10'])
+        c3_ema10_scores.append(row['c3_ema10'])
+        c1_ema15_scores.append(row['c1_ema15'])
+        c2_ema15_scores.append(row['c2_ema15'])
+        c3_ema15_scores.append(row['c3_ema15'])
 
     total_range = tuple(total_range)
     mean_mean = round(sum(means) / len(means), 1)
@@ -1760,22 +1760,22 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
     mean_c1 = round(sum(c1_scores) / len(c1_scores), 1)
     mean_c2 = round(sum(c2_scores) / len(c2_scores), 1)
     mean_c3 = round(sum(c3_scores) / len(c3_scores), 1)
-    mean_c_1_ema5 = round(sum(c_1_ema5_scores) / len(c_1_ema5_scores), 1)
-    mean_c_2_ema5 = round(sum(c_2_ema5_scores) / len(c_2_ema5_scores), 1)
-    mean_c_3_ema5 = round(sum(c_3_ema5_scores) / len(c_3_ema5_scores), 1)
-    mean_c_1_ema10 = round(sum(c_1_ema10_scores) / len(c_1_ema10_scores), 1)
-    mean_c_2_ema10 = round(sum(c_2_ema10_scores) / len(c_2_ema10_scores), 1)
-    mean_c_3_ema10 = round(sum(c_3_ema10_scores) / len(c_3_ema10_scores), 1)
-    mean_c_1_ema15 = round(sum(c_1_ema15_scores) / len(c_1_ema15_scores), 1)
-    mean_c_2_ema15 = round(sum(c_2_ema15_scores) / len(c_2_ema15_scores), 1)
-    mean_c_3_ema15 = round(sum(c_3_ema15_scores) / len(c_3_ema15_scores), 1)
+    mean_c1_ema5 = round(sum(c1_ema5_scores) / len(c1_ema5_scores), 1)
+    mean_c2_ema5 = round(sum(c2_ema5_scores) / len(c2_ema5_scores), 1)
+    mean_c3_ema5 = round(sum(c3_ema5_scores) / len(c3_ema5_scores), 1)
+    mean_c1_ema10 = round(sum(c1_ema10_scores) / len(c1_ema10_scores), 1)
+    mean_c2_ema10 = round(sum(c2_ema10_scores) / len(c2_ema10_scores), 1)
+    mean_c3_ema10 = round(sum(c3_ema10_scores) / len(c3_ema10_scores), 1)
+    mean_c1_ema15 = round(sum(c1_ema15_scores) / len(c1_ema15_scores), 1)
+    mean_c2_ema15 = round(sum(c2_ema15_scores) / len(c2_ema15_scores), 1)
+    mean_c3_ema15 = round(sum(c3_ema15_scores) / len(c3_ema15_scores), 1)
 
     data_points = pip_metrics_df.iloc[0]['data_points']
 
     """
-    return ['Total/Averages', total_range, mean_mean, mean_median, mean_c1, mean_c2, mean_c3, mean_c_1_ema5,
-            mean_c_2_ema5, mean_c_3_ema5, mean_c_1_ema10, mean_c_2_ema10, mean_c_3_ema10, mean_c_1_ema15,
-            mean_c_2_ema15, mean_c_3_ema15,  data_points]
+    return ['Total/Averages', total_range, mean_mean, mean_median, mean_c1, mean_c2, mean_c3, mean_c1_ema5,
+            mean_c2_ema5, mean_c3_ema5, mean_c1_ema10, mean_c2_ema10, mean_c3_ema10, mean_c1_ema15,
+            mean_c2_ema15, mean_c3_ema15,  data_points]
     """
 
     total_averages = pd.Series(data={
@@ -1783,72 +1783,72 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
                                     'range': total_range,
                                     'mean': mean_mean,
                                     'median': mean_median,
-                                    'c_1': mean_c1,
-                                    'c_2': mean_c2,
-                                    'c_3': mean_c3,
-                                    'c_1_ema5': mean_c_1_ema5,
-                                    'c_2_ema5': mean_c_2_ema5,
-                                    'c_3_ema5': mean_c_3_ema5,
-                                    'c_1_ema10': mean_c_1_ema10,
-                                    'c_2_ema10': mean_c_2_ema10,
-                                    'c_3_ema10': mean_c_3_ema10,
-                                    'c_1_ema15': mean_c_1_ema15,
-                                    'c_2_ema15': mean_c_2_ema15,
-                                    'c_3_ema15': mean_c_3_ema15,
+                                    'c1': mean_c1,
+                                    'c2': mean_c2,
+                                    'c3': mean_c3,
+                                    'c1_ema5': mean_c1_ema5,
+                                    'c2_ema5': mean_c2_ema5,
+                                    'c3_ema5': mean_c3_ema5,
+                                    'c1_ema10': mean_c1_ema10,
+                                    'c2_ema10': mean_c2_ema10,
+                                    'c3_ema10': mean_c3_ema10,
+                                    'c1_ema15': mean_c1_ema15,
+                                    'c2_ema15': mean_c2_ema15,
+                                    'c3_ema15': mean_c3_ema15,
                                     'data_points': data_points
                                },
                                index=[
                                     'time_delta', 'range', 'mean', 'median',
-                                    'c_1', 'c_2', 'c_3',
-                                    'c_1_ema5', 'c_2_ema5', 'c_3_ema5',
-                                    'c_1_ema10', 'c_2_ema10', 'c_3_ema10',
-                                    'c_1_ema15', 'c_2_ema15', 'c_3_ema15', 'data_points'
+                                    'c1', 'c2', 'c3',
+                                    'c1_ema5', 'c2_ema5', 'c3_ema5',
+                                    'c1_ema10', 'c2_ema10', 'c3_ema10',
+                                    'c1_ema15', 'c2_ema15', 'c3_ema15', 'data_points'
                                ])
 
     print(f"{trigger_name} total_averages:\n {total_averages}")
     return total_averages
 
 
-def calc_lowest_ema_c_3(total_averages):
+def calc_lowest_ema_c3(total_averages):
     """
-    Calculate the lowest EMA (Exponential Moving Average) among c_3 related metrics.
+    Calculate the lowest EMA (Exponential Moving Average) among c3 related metrics.
 
-    This function takes in a pandas Series of total averages and various EMAs of the c_3 metric.
-    It finds the lowest EMA among c_3 related metrics (c_3, c_3_ema5, c_3_ema10, c_3_ema15) and
-    appends this information to the input Series as 'lowest_c_3_type' and 'lowest_c_3_val'.
+    This function takes in a pandas Series of total averages and various EMAs of the c3 metric.
+    It finds the lowest EMA among c3 related metrics (c3, c3_ema5, c3_ema10, c3_ema15) and
+    appends this information to the input Series as 'lowest_c3_type' and 'lowest_c3_val'.
 
     Args:
         total_averages (pd.Series): A pandas Series containing total averages and various EMAs of
-                                    the c_3 metric.
-                                    Example: ['c_3', 'c_3_ema5', 'c_3_ema10', 'c_3_ema15']
+                                    the c3 metric.
+                                    Example: ['c3', 'c3_ema5', 'c3_ema10', 'c3_ema15']
 
     Returns:
         pd.Series: The updated pandas Series containing the input total averages along with the
-                   'lowest_c_3_type' and 'lowest_c_3_val'.
+                   'lowest_c3_type' and 'lowest_c3_val'.
 
     Prints:
-        The type and value of the lowest EMA c_3 metric, and the updated total averages with the
-        lowest EMA c_3 information.
+        The type and value of the lowest EMA c3 metric, and the updated total averages with the
+        lowest EMA c3 information.
     """
-    c_3 = total_averages['c_3']
-    c_3_ema5 = total_averages['c_3_ema5']
-    c_3_ema10 = total_averages['c_3_ema10']
-    c_3_ema15 = total_averages['c_3_ema5']
+    c3 = total_averages['c3']
+    c3_ema5 = total_averages['c3_ema5']
+    c3_ema10 = total_averages['c3_ema10']
+    c3_ema15 = total_averages['c3_ema5']
 
-    c_3_keys = ["c_3", "c_3_ema5", "c_3_ema10", "c_3_ema15"]
-    c_3_vals = [c_3, c_3_ema5, c_3_ema10, c_3_ema15]
+    c3_keys = ["c3", "c3_ema5", "c3_ema10", "c3_ema15"]
+    c3_vals = [c3, c3_ema5, c3_ema10, c3_ema15]
 
-    lowest_c_3_index = c_3_vals.index(min(c_3_vals))
-    lowest_c_3_type = c_3_keys[lowest_c_3_index]
-    lowest_c_3_val = c_3_vals[lowest_c_3_index]
+    lowest_c3_index = c3_vals.index(min(c3_vals))
+    lowest_c3_type = c3_keys[lowest_c3_index]
+    lowest_c3_val = c3_vals[lowest_c3_index]
 
-    total_averages_and_lowest_ema_c_3 = total_averages.append(pd.Series([lowest_c_3_type, lowest_c_3_val],
-                                    index=['lowest_c_3_type', 'lowest_c_3_val']))
+    total_averages_and_lowest_ema_c3 = total_averages.append(pd.Series([lowest_c3_type, lowest_c3_val],
+                                    index=['lowest_c3_type', 'lowest_c3_val']))
 
-    print(f"lowest_ema_c_3:\n [{lowest_c_3_type}: {lowest_c_3_val}]")
-    print(f"total_averages_and_lowest_ema_c_3:\n {total_averages_and_lowest_ema_c_3}")
+    print(f"lowest_ema_c3:\n [{lowest_c3_type}: {lowest_c3_val}]")
+    print(f"total_averages_and_lowest_ema_c3:\n {total_averages_and_lowest_ema_c3}")
 
-    return total_averages_and_lowest_ema_c_3
+    return total_averages_and_lowest_ema_c3
 
 
 def news_pip_trigger_data_to_df(trigger_data, trigger_name):
@@ -1858,7 +1858,7 @@ def news_pip_trigger_data_to_df(trigger_data, trigger_name):
     This function takes a raw data structure containing pip trigger data related to news and
     transforms it into a structured pandas DataFrame. The DataFrame includes various metrics
     and their EMAs (Exponential Moving Averages) for each time_delta in the trigger data.
-    It also appends a row for the total averages and the lowest EMA c_3 metric.
+    It also appends a row for the total averages and the lowest EMA c3 metric.
 
     Args:
         trigger_data (dict): A dictionary containing pip trigger data for various time_delta.
@@ -1870,8 +1870,8 @@ def news_pip_trigger_data_to_df(trigger_data, trigger_name):
 
     Returns:
         pd.DataFrame: A pandas DataFrame structured with columns representing time_delta, range, mean,
-                      median, various correlation scores (e.g., 'c_1', 'c_2', 'c_3'), various EMAs,
-                      data points, lowest_c_3_type, and lowest_c_3_val.
+                      median, various correlation scores (e.g., 'c1', 'c2', 'c3'), various EMAs,
+                      data points, lowest_c3_type, and lowest_c3_val.
 
     Example:
         >>> trigger_data = {'1s': {'range': (1,5), 'mean': 2, 'median': 2.5, ...}, ...}
@@ -1882,43 +1882,43 @@ def news_pip_trigger_data_to_df(trigger_data, trigger_name):
         range         (1, 5)
         mean            2
         ...
-        lowest_c_3_type  c_3
-        lowest_c_3_val   0.5
+        lowest_c3_type  c3
+        lowest_c3_val   0.5
         Name: 0, dtype: object
     """
     df = pd.DataFrame(
         columns=['time_delta', 'range', 'mean', 'median',
-                 'c_1', 'c_2', 'c_3',
-                 'c_1_ema5', 'c_2_ema5', 'c_3_ema5',
-                 'c_1_ema10', 'c_2_ema10', 'c_3_ema10',
-                 'c_1_ema15', 'c_2_ema15', 'c_3_ema15',
-                 'data_points', 'lowest_c_3_type', 'lowest_c_3_val'])
+                 'c1', 'c2', 'c3',
+                 'c1_ema5', 'c2_ema5', 'c3_ema5',
+                 'c1_ema10', 'c2_ema10', 'c3_ema10',
+                 'c1_ema15', 'c2_ema15', 'c3_ema15',
+                 'data_points', 'lowest_c3_type', 'lowest_c3_val'])
     data_points = len(trigger_data['1s']['values'])
 
     for time_delta in trigger_data:
         range = trigger_data[time_delta]['range']
         mean = trigger_data[time_delta]['mean']
         median = trigger_data[time_delta]['median']
-        c_1 = trigger_data[time_delta]['correlation_1']
-        c_2 = trigger_data[time_delta]['correlation_2']
-        c_3 = trigger_data[time_delta]['correlation_3']
-        c_1_ema5 = trigger_data[time_delta]['correlation_1_ema5']
-        c_2_ema5 = trigger_data[time_delta]['correlation_2_ema5']
-        c_3_ema5 = trigger_data[time_delta]['correlation_3_ema5']
-        c_1_ema10 = trigger_data[time_delta]['correlation_1_ema10']
-        c_2_ema10 = trigger_data[time_delta]['correlation_2_ema10']
-        c_3_ema10 = trigger_data[time_delta]['correlation_3_ema10']
-        c_1_ema15 = trigger_data[time_delta]['correlation_1_ema15']
-        c_2_ema15 = trigger_data[time_delta]['correlation_2_ema15']
-        c_3_ema15 = trigger_data[time_delta]['correlation_3_ema15']
+        c1 = trigger_data[time_delta]['correlation_1']
+        c2 = trigger_data[time_delta]['correlation_2']
+        c3 = trigger_data[time_delta]['correlation_3']
+        c1_ema5 = trigger_data[time_delta]['correlation_1_ema5']
+        c2_ema5 = trigger_data[time_delta]['correlation_2_ema5']
+        c3_ema5 = trigger_data[time_delta]['correlation_3_ema5']
+        c1_ema10 = trigger_data[time_delta]['correlation_1_ema10']
+        c2_ema10 = trigger_data[time_delta]['correlation_2_ema10']
+        c3_ema10 = trigger_data[time_delta]['correlation_3_ema10']
+        c1_ema15 = trigger_data[time_delta]['correlation_1_ema15']
+        c2_ema15 = trigger_data[time_delta]['correlation_2_ema15']
+        c3_ema15 = trigger_data[time_delta]['correlation_3_ema15']
 
-        df.loc[len(df.index)] = [time_delta, range, mean, median, c_1, c_2, c_3, c_1_ema5, c_2_ema5, c_3_ema5,
-                                 c_1_ema10, c_2_ema10, c_3_ema10, c_1_ema15, c_2_ema15, c_3_ema15,  data_points, None, None]
+        df.loc[len(df.index)] = [time_delta, range, mean, median, c1, c2, c3, c1_ema5, c2_ema5, c3_ema5,
+                                 c1_ema10, c2_ema10, c3_ema10, c1_ema15, c2_ema15, c3_ema15,  data_points, None, None]
 
     total_averages = calc_pip_metrics_df_total_averages(df, trigger_name)
 
-    total_averages_and_lowest_ema_c_3 = calc_lowest_ema_c_3(total_averages)
-    df.loc[len(df.index)] = total_averages_and_lowest_ema_c_3
+    total_averages_and_lowest_ema_c3 = calc_lowest_ema_c3(total_averages)
+    df.loc[len(df.index)] = total_averages_and_lowest_ema_c3
     return df
 
 

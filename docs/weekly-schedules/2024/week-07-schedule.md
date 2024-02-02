@@ -28,7 +28,7 @@
         <div class="lower-triggers">
         <div class="trigger">
         <h4>-LT1:</h4>
-        <h5>c_3: <span>89.8</span></h5>
+        <h5>c3: <span>89.8</span></h5>
         <h5>data pts: <span>37</span></h5>
         <h5>dev: <span>-0.1</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -36,7 +36,7 @@
         </div>
         <div class="trigger">
         <h4>-LT2:</h4>
-        <h5>c_3: <span>90.7</span></h5>
+        <h5>c3: <span>90.7</span></h5>
         <h5>data pts: <span>17</span></h5>
         <h5>dev: <span>-0.2</span></h5>
         <h5>lots/€1k: <span>4.5</span></h5>
@@ -47,7 +47,7 @@
     <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-        <h5>c_3: <span>89.8</span></h5>
+        <h5>c3: <span>89.8</span></h5>
         <h5>data pts: <span>37</span></h5>
         <h5>dev: <span>0.1</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -55,7 +55,7 @@
         </div>
         <div class="trigger">
         <h4>+UT2:</h4>
-        <h5>c_3: <span>90.7</span></h5>
+        <h5>c3: <span>90.7</span></h5>
         <h5>data pts: <span>17</span></h5>
         <h5>dev: <span>0.2</span></h5>
         <h5>lots/€1k: <span>4.5</span></h5>
@@ -80,7 +80,7 @@
         <div class="lower-triggers">
         <div class="trigger">
         <h4>-LT1:</h4>
-        <h5>c_3: <span>89.2</span></h5>
+        <h5>c3: <span>89.2</span></h5>
         <h5>data pts: <span>39</span></h5>
         <h5>dev: <span>-0.1</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -88,7 +88,7 @@
         </div>
         <div class="trigger">
         <h4>-LT2:</h4>
-        <h5>c_3: <span>91.1</span></h5>
+        <h5>c3: <span>91.1</span></h5>
         <h5>data pts: <span>20</span></h5>
         <h5>dev: <span>-0.2</span></h5>
         <h5>lots/€1k: <span>4.5</span></h5>
@@ -99,7 +99,7 @@
     <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-        <h5>c_3: <span>89.2</span></h5>
+        <h5>c3: <span>89.2</span></h5>
         <h5>data pts: <span>39</span></h5>
         <h5>dev: <span>0.1</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -107,7 +107,7 @@
         </div>
         <div class="trigger">
         <h4>+UT2:</h4>
-        <h5>c_3: <span>91.1</span></h5>
+        <h5>c3: <span>91.1</span></h5>
         <h5>data pts: <span>20</span></h5>
         <h5>dev: <span>0.2</span></h5>
         <h5>lots/€1k: <span>4.5</span></h5>
@@ -133,7 +133,7 @@
         <div class="lower-triggers">
         <div class="trigger">
         <h4>-LT1:</h4>
-        <h5>c_3: <span>85.5</span></h5>
+        <h5>c3: <span>85.5</span></h5>
         <h5>data pts: <span>29</span></h5>
         <h5>dev: <span>-0.1</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -141,7 +141,7 @@
         </div>
         <div class="trigger">
         <h4>-LT2:</h4>
-        <h5>c_3: <span>93.8</span></h5>
+        <h5>c3: <span>93.8</span></h5>
         <h5>data pts: <span>18</span></h5>
         <h5>dev: <span>-0.4</span></h5>
         <h5>lots/€1k: <span>4.5</span></h5>
@@ -152,7 +152,7 @@
     <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-        <h5>c_3: <span>85.5</span></h5>
+        <h5>c3: <span>85.5</span></h5>
         <h5>data pts: <span>29</span></h5>
         <h5>dev: <span>0.1</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -160,7 +160,7 @@
         </div>
         <div class="trigger">
         <h4>+UT2:</h4>
-        <h5>c_3: <span>93.8</span></h5>
+        <h5>c3: <span>93.8</span></h5>
         <h5>data pts: <span>18</span></h5>
         <h5>dev: <span>0.4</span></h5>
         <h5>lots/€1k: <span>4.5</span></h5>
@@ -190,7 +190,7 @@
         <div class="lower-triggers">
         <div class="trigger">
         <h4>-LT1:</h4>
-        <h5>c_3: <span>88.1</span></h5>
+        <h5>c3: <span>88.1</span></h5>
         <h5>data pts: <span>19</span></h5>
         <h5>dev: <span>-0.3</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -198,7 +198,7 @@
         </div>
         <div class="trigger">
         <h4>-LT2:</h4>
-        <h5>c_3: <span>84.4</span></h5>
+        <h5>c3: <span>84.4</span></h5>
         <h5>data pts: <span>17</span></h5>
         <h5>dev: <span>-1.0</span></h5>
         <h5>lots/€1k: <span>2.6</span></h5>
@@ -209,7 +209,7 @@
     <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-        <h5>c_3: <span>88.1</span></h5>
+        <h5>c3: <span>88.1</span></h5>
         <h5>data pts: <span>19</span></h5>
         <h5>dev: <span>0.3</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -217,7 +217,7 @@
         </div>
         <div class="trigger">
         <h4>+UT2:</h4>
-        <h5>c_3: <span>84.4</span></h5>
+        <h5>c3: <span>84.4</span></h5>
         <h5>data pts: <span>17</span></h5>
         <h5>dev: <span>1.0</span></h5>
         <h5>lots/€1k: <span>2.6</span></h5>
@@ -242,7 +242,7 @@
         <div class="lower-triggers">
         <div class="trigger">
         <h4>-LT1:</h4>
-        <h5>c_3: <span>91.2</span></h5>
+        <h5>c3: <span>91.2</span></h5>
         <h5>data pts: <span>22</span></h5>
         <h5>dev: <span>-0.3</span></h5>
         <h5>lots/€1k: <span>4.5</span></h5>
@@ -250,7 +250,7 @@
         </div>
         <div class="trigger">
         <h4>-LT2:</h4>
-        <h5>c_3: <span>84.3</span></h5>
+        <h5>c3: <span>84.3</span></h5>
         <h5>data pts: <span>16</span></h5>
         <h5>dev: <span>-0.9</span></h5>
         <h5>lots/€1k: <span>2.6</span></h5>
@@ -261,7 +261,7 @@
     <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-        <h5>c_3: <span>91.2</span></h5>
+        <h5>c3: <span>91.2</span></h5>
         <h5>data pts: <span>22</span></h5>
         <h5>dev: <span>0.3</span></h5>
         <h5>lots/€1k: <span>4.5</span></h5>
@@ -269,7 +269,7 @@
         </div>
         <div class="trigger">
         <h4>+UT2:</h4>
-        <h5>c_3: <span>84.3</span></h5>
+        <h5>c3: <span>84.3</span></h5>
         <h5>data pts: <span>16</span></h5>
         <h5>dev: <span>0.9</span></h5>
         <h5>lots/€1k: <span>2.6</span></h5>
@@ -300,7 +300,7 @@
         <div class="lower-triggers">
         <div class="trigger">
         <h4>-LT1:</h4>
-        <h5>c_3_ema5: <span>78.9</span></h5>
+        <h5>c3_ema5: <span>78.9</span></h5>
         <h5>data pts: <span>31</span></h5>
         <h5>dev: <span>-0.3</span></h5>
         <h5>lots/€1k: <span>1.6</span></h5>
@@ -311,7 +311,7 @@
     <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-        <h5>c_3_ema5: <span>78.9</span></h5>
+        <h5>c3_ema5: <span>78.9</span></h5>
         <h5>data pts: <span>31</span></h5>
         <h5>dev: <span>0.3</span></h5>
         <h5>lots/€1k: <span>1.6</span></h5>
@@ -336,7 +336,7 @@
         <div class="lower-triggers">
         <div class="trigger">
         <h4>-LT1:</h4>
-        <h5>c_3: <span>80.4</span></h5>
+        <h5>c3: <span>80.4</span></h5>
         <h5>data pts: <span>17</span></h5>
         <h5>dev: <span>-0.2</span></h5>
         <h5>lots/€1k: <span>2.6</span></h5>
@@ -344,7 +344,7 @@
         </div>
         <div class="trigger">
         <h4>-LT2:</h4>
-        <h5>c_3: <span>79.5</span></h5>
+        <h5>c3: <span>79.5</span></h5>
         <h5>data pts: <span>27</span></h5>
         <h5>dev: <span>-0.3</span></h5>
         <h5>lots/€1k: <span>1.6</span></h5>
@@ -355,7 +355,7 @@
     <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-        <h5>c_3: <span>80.4</span></h5>
+        <h5>c3: <span>80.4</span></h5>
         <h5>data pts: <span>17</span></h5>
         <h5>dev: <span>0.2</span></h5>
         <h5>lots/€1k: <span>2.6</span></h5>
@@ -363,7 +363,7 @@
         </div>
         <div class="trigger">
         <h4>+UT2:</h4>
-        <h5>c_3: <span>79.5</span></h5>
+        <h5>c3: <span>79.5</span></h5>
         <h5>data pts: <span>27</span></h5>
         <h5>dev: <span>0.3</span></h5>
         <h5>lots/€1k: <span>1.6</span></h5>
@@ -389,7 +389,7 @@
         <div class="lower-triggers">
         <div class="trigger">
         <h4>-LT1:</h4>
-        <h5>c_3: <span>83.3</span></h5>
+        <h5>c3: <span>83.3</span></h5>
         <h5>data pts: <span>21</span></h5>
         <h5>dev: <span>-0.1</span></h5>
         <h5>lots/€1k: <span>2.6</span></h5>
@@ -400,7 +400,7 @@
     <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-        <h5>c_3: <span>83.3</span></h5>
+        <h5>c3: <span>83.3</span></h5>
         <h5>data pts: <span>21</span></h5>
         <h5>dev: <span>0.1</span></h5>
         <h5>lots/€1k: <span>2.6</span></h5>
@@ -425,7 +425,7 @@
         <div class="lower-triggers">
         <div class="trigger">
         <h4>-LT1:</h4>
-        <h5>c_3: <span>87.3</span></h5>
+        <h5>c3: <span>87.3</span></h5>
         <h5>data pts: <span>17</span></h5>
         <h5>dev: <span>-0.2</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -433,7 +433,7 @@
         </div>
         <div class="trigger">
         <h4>-LT2:</h4>
-        <h5>c_3: <span>76.7</span></h5>
+        <h5>c3: <span>76.7</span></h5>
         <h5>data pts: <span>31</span></h5>
         <h5>dev: <span>-0.3</span></h5>
         <h5>lots/€1k: <span>1.6</span></h5>
@@ -444,7 +444,7 @@
     <div class="upper-triggers">
         <div class="trigger">
         <h4>+UT1:</h4>
-        <h5>c_3: <span>87.3</span></h5>
+        <h5>c3: <span>87.3</span></h5>
         <h5>data pts: <span>17</span></h5>
         <h5>dev: <span>0.2</span></h5>
         <h5>lots/€1k: <span>3.6</span></h5>
@@ -452,7 +452,7 @@
         </div>
         <div class="trigger">
         <h4>+UT2:</h4>
-        <h5>c_3: <span>76.7</span></h5>
+        <h5>c3: <span>76.7</span></h5>
         <h5>data pts: <span>31</span></h5>
         <h5>dev: <span>0.3</span></h5>
         <h5>lots/€1k: <span>1.6</span></h5>

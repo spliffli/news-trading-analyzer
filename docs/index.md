@@ -40,7 +40,7 @@ My program generates trading plans by first having calculated the all-time corre
             <div class="lower-triggers">
             <div class="trigger">
                 <h4>-LT1:</h4>
-                <h5>c_3: <span>96.2</span></h5>
+                <h5>c3: <span>96.2</span></h5>
                 <h5>data pts: <span>15</span></h5>
                 <h5>dev: <span>-0.3</span></h5>
                 <h5>lots/€1k: <span>4.5</span></h5>
@@ -48,7 +48,7 @@ My program generates trading plans by first having calculated the all-time corre
             </div>
             <div class="trigger">
                 <h4>-LT2:</h4>
-                <h5>c_3: <span>77.4</span></h5>
+                <h5>c3: <span>77.4</span></h5>
                 <h5>data pts: <span>17</span></h5>
                 <h5>dev: <span>-0.5</span></h5>
                 <h5>lots/€1k: <span>1</span></h5>
@@ -56,7 +56,7 @@ My program generates trading plans by first having calculated the all-time corre
             </div>
             <div class="trigger">
                 <h4>-LT3:</h4>
-                <h5>c_3: <span>83.5</span></h5>
+                <h5>c3: <span>83.5</span></h5>
                 <h5>data pts: <span>22</span></h5>
                 <h5>dev: <span>-0.9</span></h5>
                 <h5>lots/€1k: <span>2</span></h5>
@@ -67,7 +67,7 @@ My program generates trading plans by first having calculated the all-time corre
             <div class="upper-triggers">
             <div class="trigger">
             <h4>+UT1:</h4>
-                <h5>c_3: <span>96.2</span></h5>
+                <h5>c3: <span>96.2</span></h5>
                 <h5>data pts: <span>15</span></h5>
                 <h5>dev: <span>0.3</span></h5>
                 <h5>lots/€1k: <span>4.5</span></h5>
@@ -75,7 +75,7 @@ My program generates trading plans by first having calculated the all-time corre
             </div>
             <div class="trigger">
             <h4>+UT2:</h4>
-                <h5>c_3: <span>77.4</span></h5>
+                <h5>c3: <span>77.4</span></h5>
                 <h5>data pts: <span>17</span></h5>
                 <h5>dev: <span>0.5</span></h5>
                 <h5>lots/€1k: <span>1</span></h5>
@@ -83,7 +83,7 @@ My program generates trading plans by first having calculated the all-time corre
             </div>
             <div class="trigger">
             <h4>+UT3:</h4>
-                <h5>c_3: <span>83.5</span></h5>
+                <h5>c3: <span>83.5</span></h5>
                 <h5>data pts: <span>22</span></h5>
                 <h5>dev: <span>0.9</span></h5>
                 <h5>lots/€1k: <span>2</span></h5>

@@ -18,12 +18,12 @@ indicators = indicators.loc[results_length:].reset_index()
 
 def get_best_trigger(news_pip_metrics_dfs):
     triggers = []
-    total_c_3_scores = []
+    total_c3_scores = []
     for trigger in news_pip_metrics_dfs:
         triggers.append(trigger)
-        total_c_3_scores.append(news_pip_metrics_dfs[trigger].iloc[-1]['lowest_ema_val'])
+        total_c3_scores.append(news_pip_metrics_dfs[trigger].iloc[-1]['lowest_ema_val'])
 
-    best_trigger = triggers[total_c_3_scores.index(max(total_c_3_scores))]
+    best_trigger = triggers[total_c3_scores.index(max(total_c3_scores))]
 
     return best_trigger
 
@@ -63,7 +63,7 @@ for index, row in indicators.iterrows():
             break
 
     if not results_file_exists:
-        results = pd.DataFrame(columns=['haawks_id_str', 'haawks_title', 'inv_title', 'symbol', 'higher_dev', 'best_trigger', 'range (pips)', 'mean (pips)', 'median (pips)', 'c_1', 'c_2', 'lowest_ema_val'])
+        results = pd.DataFrame(columns=['haawks_id_str', 'haawks_title', 'inv_title', 'symbol', 'higher_dev', 'best_trigger', 'range (pips)', 'mean (pips)', 'median (pips)', 'c1', 'c2', 'lowest_ema_val'])
 
     results = results.append({
         'haawks_id': haawks_id_str,
@@ -75,8 +75,8 @@ for index, row in indicators.iterrows():
         'range (pips)': news_pip_metrics_dfs[best_trigger].iloc[-1]['range'],
         'mean (pips)': news_pip_metrics_dfs[best_trigger].iloc[-1]['mean'],
         'median (pips)': news_pip_metrics_dfs[best_trigger].iloc[-1]['median'],
-        'c_1': news_pip_metrics_dfs[best_trigger].iloc[-1]['c_1'],
-        'c_2': news_pip_metrics_dfs[best_trigger].iloc[-1]['c_2'],
+        'c1': news_pip_metrics_dfs[best_trigger].iloc[-1]['c1'],
+        'c2': news_pip_metrics_dfs[best_trigger].iloc[-1]['c2'],
         'lowest_ema_val': news_pip_metrics_dfs[best_trigger].iloc[-1]['lowest_ema_val']
     }, ignore_index=True)
 
