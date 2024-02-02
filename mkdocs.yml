@@ -44,8 +44,6 @@ plugins:
 
 nav:
   - Intro: index.md
-  - (EN) News Trading System Explained: system-explained-en.md
-  - (DE) News Trading System erklärt: system-explained-de.md
   - Weekly Schedules:
     - 2023:
       - Week 14: weekly-schedules/2023/week-14-schedule.md
@@ -59,13 +57,9 @@ nav:
       - Week 6: weekly-schedules/2024/week-06-schedule.md
       - Week 7: weekly-schedules/2024/week-07-schedule.md
       - Week 8: weekly-schedules/2024/week-08-schedule.md
-
-  - Developer Docs:
-    - Excavation: dev-docs/excavation.md
-    - create_schedule:
-      - generate_report(): dev-docs/generate_report.md
-      - create_schedule(): dev-docs/create_schedule.md
-      - ranker.py: dev-docs/ranker.py.md
+  - Blog:
+    - (EN) News Trading System Explained: system-explained-en.md
+    - (DE) News Trading System erklärt: system-explained-de.md
 
 edit_uri: '#docs/'
 
