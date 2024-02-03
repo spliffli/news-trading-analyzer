@@ -9,7 +9,7 @@
   --md-typeset: "ProFont For Powerline" !important
 }
 
-p, li {
+p, li .md-typeset{
   /*font-family: "ProFont For Powerline" !important;*/
   font-family: "JetBrains Mono, Regular";
 }
