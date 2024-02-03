@@ -23,7 +23,7 @@ The only other succesful low-latency strategy with a mathematical edge that I kn
 
 However, latency arbitrage is against basically every broker's rules since it happens so fast that they often can't send an order to their liquidity providers/ECNs and get filled at the same price which they fill you at. It basically causes slippage on their end and that makes them lose money so they don't like it and it's banned, even if the broker is on a commission model and would otherwise profit no matter if you win or lose like most brokers. This is a similar situation to how counting cards is against a casino's rules despite being legal, although arbitrage & news trading have much higher odds than counting cards. 
 
-News trading isn't banned by brokers and is another way of having a quasi-glimpse into the future by knowing the cause before the effect i.e. the reactions of the price to news events depending on how bullish or bearish the news is compared to its forecast number.Higher deviations/triggers generally mean higher correlation scores like would be common sense but that is not always true from what I measured. 
+News trading isn't banned by brokers and is another way of having a quasi-glimpse into the future by knowing the cause before the effect i.e. the reactions of the price to news events depending on how bullish or bearish the news is compared to its forecast number. Higher deviations/triggers generally mean higher correlation scores like would be common sense but that is not always true from what I measured. 
 
 ### **Weekly Trading Plans/Schedule**
 
