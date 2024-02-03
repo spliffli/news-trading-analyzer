@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/docs/css/nta-weekly-schedule-cards.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/css/nta-weekly-schedule-cards.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/css/profont.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/css/profont.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/fonts/ProFont For Powerline.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/fonts/ProFont_For_Powerline.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/css/nta-weekly-schedule-cards.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/css/nta-weekly-schedule-cards.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/css/profont.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/css/profont.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/fonts/ProFont For Powerline.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/site/fonts/ProFont_For_Powerline.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/sitemap.xml.gz" beforeDir="false" afterPath="$PROJECT_DIR$/site/sitemap.xml.gz" afterDir="false" />
-    </list>
+    <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

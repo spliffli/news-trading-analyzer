@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "ProFont For Powerline";
-  src: url("../fonts/ProFont_For_Powerline.ttf");
+  font-family: "JetBrains Mono, Regular";
+  src: url("../fonts/JetBrainsMono-Regular.ttf");
 }
 
 :root {
@@ -8,7 +8,8 @@
   --md-header: "ProFont For Powerline" !important; 
   --md-typeset: "ProFont For Powerline" !important
 }
-/*
+
 p {
-  font-family: "ProFont For Powerline" !important;
-}*/
+  /*font-family: "ProFont For Powerline" !important;*/
+  font-family: "JetBrains Mono, Regular";
+}
