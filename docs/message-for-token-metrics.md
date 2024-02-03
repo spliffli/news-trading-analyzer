@@ -32,6 +32,10 @@ You can trade the price of some cryptos like BTC & ETH through forex brokers in 
 
 I've been working on my own so far, but I've had enough of just working on my own and I'd love to work with other people.
 
+The only type of trading I know is succescul with crypto is arbitrage & there's a great tool for that available [here](https://bjftradinggroup.com/product/sharptrader-forex-crypto-arbitrage/) from BJF Trading.
+
+If I were to trade for you I'd like to use this arbitrage strategy for crypto and possibly if you're interested in exploring forex, I think I have an even better system. Either you can pay me a salary or we can work with a profit-sharing model or a combination of both.
+
 Kind regards,
 
 Jonathon Quick
