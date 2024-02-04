@@ -67,11 +67,6 @@ def get_decimal_places_from_tick_data(tick_data):
 
     Returns:
         int: Maximum number of decimal places found in the sample of 'ask' column.
-
-    Example:
-        >>> df = pd.DataFrame({"ask": [1.235, 1.2365, 1.2378]})
-        >>> get_decimal_places_from_tick_data(df)
-        4
     """
     # To avoid rounding issues, we take the first 20 rows of tick data as a sample
     df = tick_data.loc[1:20]
@@ -434,7 +429,22 @@ def read_news_pip_data(haawks_id, symbol):
     }
 
 
-def mine_pip_data_from_ticks(news_data, symbol, release_datetime):
+def calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places):
+    # keep track of the furthest it goes
+    # in a loop, check how much it retraces backwards and count how many times it hits the stoploss
+    # in the first 30s, 1 min, 2 mins, 5 mins, 10 mins & 15 mins
+    pass
+
+
+def calc_continuation_score(tick_data, release_datetime, release_price, decimal_places):
+    breakpoint()
+    # calculate initial spike variables e.g.
+    #   maximum pips in the expected direction in the first 5 seconds
+    # calculate how many pips it continues after that without reversing far enough to hit the stoploss
+    pass
+
+
+def mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, release_datetime):
     """
     Extract and calculate pip movements based on tick data, symbol, and a release datetime.
 
@@ -454,7 +464,7 @@ def mine_pip_data_from_ticks(news_data, symbol, release_datetime):
     Example:
         >>> news_data = pd.DataFrame(...)
         >>> release_datetime = datetime(2023, 8, 14, 12, 0)
-        >>> mine_pip_data_from_ticks(news_data, "EURUSD", release_datetime)
+        >>> mine_pip_movements_at_timedeltas_from_ticks(news_data, "EURUSD", release_datetime)
         {"1m": (0.5, 0.5), "5m": (1.0, 1.0), ...}
     """
     row_count = news_data.shape[0]
@@ -465,10 +475,14 @@ def mine_pip_data_from_ticks(news_data, symbol, release_datetime):
     if tick_data.shape[0] == 0:
         raise ValueError("Tick data is empty")
 
-    prices = get_prices_at_time_deltas(release_datetime, tick_data)
+    prices_at_timedeltas = get_prices_at_time_deltas(release_datetime, tick_data)
     release_price = get_release_time_price(release_datetime, tick_data)
     decimal_places = get_decimal_places_from_tick_data(tick_data)
-    relative_price_movements = get_relative_price_movements(prices, release_price, decimal_places)
+
+    # stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places)
+    continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places)
+
+    relative_price_movements = get_relative_price_movements(prices_at_timedeltas, release_price, decimal_places)
     pip_movements = get_pip_movements(relative_price_movements, decimal_places)
 
     return pip_movements
@@ -497,7 +511,75 @@ def sort_news_pip_data_by_timestamp(news_pip_data):
     return sorted_dict
 
 
-def load_news_pip_data_at_timedeltas(haawks_id_str, news_data, symbol):
+def load_local_news_pip_data(haawks_id_str, symbol, timestamps_to_mine, news_data):
+    """
+    Load locally available news pip data for a given haawks_id and trading symbol.
+
+    Args:
+        haawks_id_str (str): The identifier of the haawks event as a string.
+        symbol (str): The trading symbol (e.g., 'EURUSD') for which the data should be retrieved.
+        timestamps_to_mine (list): List of timestamps to mine from raw tick data.
+        news_data (pd.DataFrame): DataFrame containing news data with relevant columns.
+
+    Returns:
+        dict: A dictionary containing the pip data information for each timestamp in the local data.
+    """
+    local_data = read_news_pip_data(haawks_id_str, symbol)
+
+    if local_data['data_exists']:
+        local_data_start = local_data['start']
+        local_data_end = local_data['end']
+
+        # Calculate the total number of rows in the news_data DataFrame.
+        row_count = news_data.shape[0]
+
+        # For each timestamp in local data, remove it from the timestamps_to_mine list.
+        for timestamp in local_data['data']:
+            timestamp = str_to_datetime(timestamp)
+            if timestamp in timestamps_to_mine:
+                timestamps_to_mine.remove(timestamp)
+
+        # If all required timestamps are in the local data, use it directly.
+        if not timestamps_to_mine:
+            print(
+                f"Local data exists for {len(local_data['data'].keys())}/{row_count} releases. Reading data from file...")
+            return local_data['data']
+
+    return {}
+
+
+
+def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data):
+    """
+    Mine pip data from raw tick data for a specific timestamp and save it to the news_pip_data dictionary.
+
+    Args:
+        news_data (pd.DataFrame): DataFrame containing news data with relevant columns.
+        symbol (str): The trading symbol (e.g., 'EURUSD') for which the data should be mined.
+        timestamp (datetime): The timestamp for which pip data should be mined.
+        news_pip_data (dict): Dictionary to store pip data information for each timestamp.
+
+    Returns:
+        None
+    """
+    timestamp_str = datetime_to_str(timestamp)
+
+    try:
+        # Extract pip data from raw tick data.
+        pip_movements_at_timedeltas = mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, timestamp)
+        news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', pip_movements_at_timedeltas)
+
+        # Retrieve and set the 'deviation' value for the current timestamp.
+        for _, row in news_data.iterrows():
+            if row['Timestamp'] == timestamp_str:
+                news_pip_data[timestamp_str]['deviation'] = row.get('Deviation', None)
+                break
+    except ValueError:
+        # Handle any ValueErrors, e.g., when tick data might be empty.
+        return
+
+
+def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
     """
     Load news pip data for a given haawks_id, news data, and trading symbol.
     If local data exists, it uses that; otherwise, it mines data from raw tick data.
@@ -509,29 +591,7 @@ def load_news_pip_data_at_timedeltas(haawks_id_str, news_data, symbol):
 
     Returns:
         dict: A dictionary containing the pip data information for each timestamp in the news_data DataFrame.
-
-    Notes:
-        - Prints the status of the data loading process.
-        - Saves the mined data to a file after completion.
-
-    Example:
-        >>> news_data = pd.DataFrame(...)
-        >>> load_news_pip_data_at_timedeltas("12345", news_data, "EURUSD")
-        {
-            "2023-08-14 12:30": {
-                'pips': {...},
-                'deviation': 2.5
-            },
-            "2023-08-14 12:00": {
-                'pips': {...},
-                'deviation': 1.5
-            },
-            ...
-        }
     """
-    # For testing purposes, the below line is used to shorten the DataFrame for faster execution.
-    # news_data = news_data.iloc[:7]
-
     # Fetches the details about the specific haawks event using its ID.
     indicator_info = get_indicator_info(haawks_id_str)
 
@@ -549,54 +609,18 @@ def load_news_pip_data_at_timedeltas(haawks_id_str, news_data, symbol):
     # Provide feedback about the process.
     print(f"Loading news pip data for {indicator_info['inv_title']}: {start_datetime} - {end_datetime}")
 
-    # Check if the pip data for the specified haawks ID and trading symbol is locally available.
-    local_data = read_news_pip_data(haawks_id_str, symbol)
-
-    if local_data['data_exists']:
-        local_data_start = local_data['start']
-        local_data_end = local_data['end']
-
-        # For each timestamp in local data, remove it from the timestamps_to_mine list.
-        for timestamp in local_data['data']:
-            timestamp = str_to_datetime(timestamp)
-            if timestamp in timestamps_to_mine:
-                timestamps_to_mine.remove(timestamp)
-
-        # Update the news_pip_data dictionary with locally available data.
-        news_pip_data = local_data['data']
-
-        # If all required timestamps are in the local data, use it directly.
-        if not timestamps_to_mine:
-            print(
-                f"Local data exists for {len(local_data['data'].keys())}/{row_count} releases. Reading data from file...")
-            return news_pip_data
-
-        else:
-            print(
-                f"Local data exists for {len(local_data['data'].keys())}/{row_count} releases. The remaining {row_count - len(local_data['data'])} will be mined from raw tick data")
+    # Load locally available news pip data
+    local_data = load_local_news_pip_data(haawks_id_str, symbol, timestamps_to_mine, news_data)
+    news_pip_data.update(local_data)
 
     # If no local data is available, provide a message indicating data will be mined.
-    else:
+    if not local_data:
         print("No local data exists, so it will be mined...")
 
-    # For each timestamp in timestamps_to_mine, extract pip data from raw tick data.
+    # For each timestamp in timestamps_to_mine, mine pip data from raw tick data.
     for index, timestamp in enumerate(timestamps_to_mine):
         print(f"\rMining pip data from {timestamp} ({index + 1}/{len(timestamps_to_mine)})", end="", flush=True)
-        timestamp_str = datetime_to_str(timestamp)
-
-        try:
-            # Extract pip data from raw tick data.
-            data = mine_pip_data_from_ticks(news_data, symbol, timestamp)
-            news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', data)
-
-            # Retrieve and set the 'deviation' value for the current timestamp.
-            for _, row in news_data.iterrows():
-                if row['Timestamp'] == timestamp_str:
-                    news_pip_data[timestamp_str]['deviation'] = row.get('Deviation', None)
-                    break
-        except ValueError:
-            # Handle any ValueErrors, e.g., when tick data might be empty.
-            continue
+        mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data)
 
     # Sort the news pip data by timestamp.
     news_pip_data = sort_news_pip_data_by_timestamp(news_pip_data)
@@ -1324,28 +1348,50 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
     """
     Calculate news pip metrics for each trigger.
 
-    Refer to the initial function's documentation for argument and return value descriptions.
+    Parameters:
+    - haawks_id_str (str): Haawks ID as a string.
+    - news_pip_data (dict): Dictionary containing news pip data for different timestamps.
+    - triggers (list): List of triggers to consider.
+    - symbol_higher_dev (str): Expected direction of the trading symbol.
+
+    Returns:
+    - news_pip_metrics (dict): Dictionary containing calculated news pip metrics for each trigger and time delta.
     """
+    # Print a message indicating the start of news pip metrics calculation
     print("Calculating news pip metrics...")
+
+    # Initialize an empty dictionary to store news pip metrics for each trigger
     news_pip_metrics = {trigger: {} for trigger in triggers}
+
+    # Get information about the indicator using its Haawks ID
     indicator_info = get_indicator_info(haawks_id_str)
 
+    # Iterate through each timestamp in the news pip data
     for timestamp in news_pip_data:
+        # Preprocess deviation and find the trigger for the current timestamp
         deviation, negative_dev = preprocess_deviation(news_pip_data, timestamp)
         trigger = find_trigger(deviation, triggers)
 
+        # Iterate through each time delta and calculate relative pips
         for time_delta in news_pip_data[timestamp]['pips']:
             ask, bid = news_pip_data[timestamp]['pips'][time_delta]
             pips = calculate_relative_pips(ask, bid, negative_dev)
 
+            # If a trigger is found, store the calculated pips in the corresponding trigger's dictionary
             if trigger:
                 news_pip_metrics[trigger[0]].setdefault(time_delta, []).append(pips)
 
+    # Iterate through each trigger in the news_pip_metrics dictionary
     for trigger in news_pip_metrics:
+        # Iterate through each time delta and its associated pips values
         for time_delta, values in news_pip_metrics[trigger].items():
+            # Calculate basic metrics (median, mean, range) for the pips values
             median, mean, range_of_values = calculate_basic_metrics(values)
+
+            # Get correlation scores for the pips values with respect to the expected symbol direction
             correlation_1, correlation_2, correlation_3 = get_correlation_scores(values, symbol_higher_dev)
 
+            # Store the calculated metrics in the news_pip_metrics dictionary
             news_pip_metrics[trigger][time_delta] = {
                 "median": median,
                 "mean": mean,
@@ -1363,10 +1409,15 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                 (ema(values, 15), 'ema15')
             ]
 
+            # Iterate through the calculated EMA values and their corresponding suffixes
             for ema_values, ema_suffix in ema_values_list:
+                # Get correlation scores for the EMA values with respect to the expected symbol direction
                 ema_correlation_scores = get_ema_correlation_scores(ema_values, ema_suffix, symbol_higher_dev)
+
+                # Update the news_pip_metrics dictionary with the EMA correlation scores
                 news_pip_metrics[trigger][time_delta].update(ema_correlation_scores)
 
+    # Return the final news_pip_metrics dictionary
     return news_pip_metrics
 
 
@@ -1675,7 +1726,7 @@ def calc_news_pip_metrics_for_multiple_indicators(haawks_id_strs_and_symbols: li
         symbol = haawks_id_str_and_symbol[1]
         news_data = read_news_data(haawks_id_str)
         triggers = read_triggers(haawks_id_str)
-        news_pip_data = load_news_pip_data_at_timedeltas(haawks_id_str, news_data, symbol)
+        news_pip_data = load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol)
         news_pip_metrics = calc_news_pip_metrics(haawks_id_str, symbol, news_pip_data, triggers)
         result.setdefault(f"{haawks_id_str}_{symbol} {title}", news_pip_metrics)
 

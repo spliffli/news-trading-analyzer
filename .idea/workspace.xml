@@ -6,7 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/30000_75_US_Crude_Oil_Inventories/pip_data/EURUSD__2017-01-05_2023-02-15.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/30000_75_US_Crude_Oil_Inventories/pip_data/USDJPY__2017-01-05_2023-02-23.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyze_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyze_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/debug_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/message-for-token-metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/message-for-token-metrics.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ranker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ranker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/30000_USDJPY_US_Crude_Oil_Inventories__2017-01-05_2023-02-23.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/30000_USDJPY_US_Crude_Oil_Inventories__2017-01-05_2023-02-23.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduler.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,17 +37,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jonathon/Developer/news-trading-analyzer/scheduler.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "dev",
+    "last_opened_file_path": "/home/jonathon/Developer/news-trading-analyzer/ranker.py",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="Python.ranker">
+    <configuration name="ranker" type="PythonConfigurationType" factoryName="Python">
+      <module name="news-trading-analyzer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="SDK_NAME" value="Python 3.11 (news-trading-analyzer)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ranker.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="scheduler" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="news-trading-analyzer" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -60,6 +92,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.scheduler" />
+      <item itemvalue="Python.ranker" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -79,14 +115,49 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/generate_report.py</url>
-          <line>203</line>
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>482</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/generate_report.py</url>
-          <line>205</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>612</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>568</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>622</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>547</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>545</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>573</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>575</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>578</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

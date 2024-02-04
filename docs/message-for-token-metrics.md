@@ -26,7 +26,7 @@ It is a forex project, which is not directly what you're working on, but I also 
 
 I do believe the forex idea has more potential, but I'm still interested in crypto trading. 
 
-I know some FIX API which is used for forex and also crypto exchanges, although my experience with it has only been with forex. Still, there is a lot of overlap and trading is trading, regardless of the asset class.
+I know some [FIX API](https://fxcm-api.readthedocs.io/en/latest/fixdocs/fixapi.html) which is used for forex and also crypto exchanges, although my experience with it has only been with forex. Still, there is a lot of overlap and trading is trading, regardless of the asset class.
 
 You can trade the price of some cryptos like BTC & ETH through forex brokers in the form of CFDs. This allows higher leverage than by using a crypto exchange.
 
