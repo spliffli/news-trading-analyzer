@@ -429,19 +429,125 @@ def read_news_pip_data(haawks_id, symbol):
     }
 
 
-def calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places):
-    # keep track of the furthest it goes
-    # in a loop, check how much it retraces backwards and count how many times it hits the stoploss
-    # in the first 30s, 1 min, 2 mins, 5 mins, 10 mins & 15 mins
-    pass
+from datetime import timedelta
+
+from datetime import timedelta
 
 
-def calc_continuation_score(tick_data, release_datetime, release_price, decimal_places):
+def get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
+    # Initialize variables to track the first retracement instance and time delta
+    first_retracement_timestamp = None
+    first_retracement_price = None
+    first_retracement_price_movement_in_pips = None
+    time_delta_at_first_retracement = None
+
+    # Iterate through tick data
+    for index, row in tick_data.iterrows():
+        timestamp = row['time']
+
+        # Determine which price (bid or ask) to use based on expected_direction
+        if expected_direction == 'bullish':
+            current_price = row['bid']  # Use bid price for bullish (buy) trade
+        elif expected_direction == 'bearish':
+            current_price = row['ask']  # Use ask price for bearish (sell) trade
+        else:
+            raise ValueError("Invalid expected_direction. Use 'bullish' or 'bearish'.")
+
+        # Calculate the price movement from the release price to the current price
+        price_movement = current_price - release_price
+
+        # Convert the price movement to pips using the helper function
+        price_movement_in_pips = price_movement_to_pips(price_movement, decimal_places)
+
+        # Check if the stoploss is hit in the contrary direction
+        if (expected_direction == 'bullish' and price_movement_in_pips >= stoploss) or \
+                (expected_direction == 'bearish' and price_movement_in_pips <= -stoploss):
+            # Record the first retracement instance
+            if first_retracement_timestamp is None:
+                first_retracement_timestamp = timestamp
+                first_retracement_price = current_price
+                first_retracement_price_movement_in_pips = price_movement_in_pips
+                time_delta_at_first_retracement = timestamp - release_datetime
+
+    # Return the timestamp, time delta, and price movement in pips of the first retracement instance
+    return (
+        first_retracement_timestamp,
+        time_delta_at_first_retracement,
+        first_retracement_price_movement_in_pips
+    )
+
+
+# Example usage:
+# (
+#   retracement_timestamp,
+#   time_delta_at_first_retracement,
+#   first_retracement_price_movement_in_pips
+# ) = get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+
+
+def calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
+    # Initialize variables to track stoploss hits and reset stoploss
+    stoploss_hits = 0
+    reset_stoploss = False
+
+    # Iterate through tick data
+    for index, row in tick_data.iterrows():
+        timestamp = row['time']
+        bid_price = row['bid']
+
+        # Calculate the price movement from the release price to the current bid price
+        price_movement = bid_price - release_price
+
+        # Convert the price movement to pips using the helper function
+        price_movement_in_pips = price_movement_to_pips(price_movement, decimal_places)
+
+        # Check if the stoploss is hit in the contrary direction
+        if (expected_direction == 'up' and price_movement_in_pips >= stoploss) or \
+           (expected_direction == 'down' and price_movement_in_pips <= -stoploss):
+            # Count stoploss hits
+            stoploss_hits += 1
+
+            # Reset the stoploss 5 pips behind the hit price
+            release_price = bid_price + price_movement_to_pips(5, decimal_places)
+            reset_stoploss = True
+
+        # Check if the stoploss is reset and the timestamp is within 15 mins after release_datetime
+        if reset_stoploss and timestamp <= release_datetime + timedelta(minutes=15):
+            # Continue calculating retracements with the reset stoploss
+            retracement_timestamp, _ = get_first_stoploss_hit(tick_data[index:], release_datetime, release_price,
+                                                              decimal_places, stoploss, expected_direction)
+            # Update stoploss reset status based on retracement results
+            reset_stoploss = retracement_timestamp is not None
+
+    return stoploss_hits
+
+
+
+def calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss):
     breakpoint()
+    #
     # calculate initial spike variables e.g.
     #   maximum pips in the expected direction in the first 5 seconds
     # calculate how many pips it continues after that without reversing far enough to hit the stoploss
     pass
+
+
+def fetch_stoploss(symbol):
+    match symbol:
+        case "USDJPY":
+            return 5
+        case "USDCAD":
+            return 5
+        case "USDSEK":
+            return 75
+        case "USDNOK":
+            return 75
+        case "USDTRY":
+            return 75
+        case "USDPLN":
+            return 75
+        case "USDRUB":
+            return 75
 
 
 def mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, release_datetime):
@@ -479,8 +585,11 @@ def mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, release_datet
     release_price = get_release_time_price(release_datetime, tick_data)
     decimal_places = get_decimal_places_from_tick_data(tick_data)
 
-    # stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places)
-    continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places)
+    stoploss = fetch_stoploss(symbol)
+
+    first_stoploss_hit = get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss)
+    stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss)
+    continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss)
 
     relative_price_movements = get_relative_price_movements(prices_at_timedeltas, release_price, decimal_places)
     pip_movements = get_pip_movements(relative_price_movements, decimal_places)
@@ -1319,17 +1428,21 @@ def get_correlation_scores(values, symbol_higher_dev):
     correlation_3_score = round((correlation_1_score + correlation_2_score) / 2, 1)
     return correlation_1_score, correlation_2_score, correlation_3_score
 
-
-def get_ema_correlation_scores(ema_values, ema_suffix, symbol_higher_dev):
-    """
-    Calculate EMA-based correlation scores and label them with a suffix indicating the EMA period.
-    """
+def get_expected_direction(symbol_higher_dev):
     if symbol_higher_dev == "bullish":
         expected_direction = "positive"
     elif symbol_higher_dev == "bearish":
         expected_direction = "negative"
     else:
         raise ValueError("higher_dev must be 'bullish' or 'bearish'")
+
+
+def get_ema_correlation_scores(ema_values, ema_suffix, symbol_higher_dev):
+    """
+    Calculate EMA-based correlation scores and label them with a suffix indicating the EMA period.
+    """
+
+    expected_direction = get_expected_direction(symbol_higher_dev)
 
     correlation_1_ema = calc_correlation_1_score(ema_values, expected_direction)
     correlation_2_ema = calc_correlation_2_score(ema_values, expected_direction)
