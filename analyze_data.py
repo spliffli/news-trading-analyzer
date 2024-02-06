@@ -434,7 +434,7 @@ from datetime import timedelta
 from datetime import timedelta
 
 
-def get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
+def get_first_stoploss_hit_timedelta(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
     # Initialize variables to track the first retracement instance and time delta
     first_retracement_timestamp = None
     first_retracement_price = None
@@ -514,8 +514,8 @@ def calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_place
         # Check if the stoploss is reset and the timestamp is within 15 mins after release_datetime
         if reset_stoploss and timestamp <= release_datetime + timedelta(minutes=15):
             # Continue calculating retracements with the reset stoploss
-            retracement_timestamp, _ = get_first_stoploss_hit(tick_data[index:], release_datetime, release_price,
-                                                              decimal_places, stoploss, expected_direction)
+            retracement_timestamp, _ = get_first_stoploss_hit_timedelta(tick_data[index:], release_datetime, release_price,
+                                                                        decimal_places, stoploss, expected_direction)
             # Update stoploss reset status based on retracement results
             reset_stoploss = retracement_timestamp is not None
 
@@ -550,7 +550,7 @@ def fetch_stoploss(symbol):
             return 75
 
 
-def mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, release_datetime):
+def mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, release_datetime, expected_direction):
     """
     Extract and calculate pip movements based on tick data, symbol, and a release datetime.
 
@@ -587,7 +587,7 @@ def mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, release_datet
 
     stoploss = fetch_stoploss(symbol)
 
-    first_stoploss_hit = get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss)
+    first_stoploss_hit = get_first_stoploss_hit_timedelta(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
     stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss)
     continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss)
 
@@ -658,7 +658,7 @@ def load_local_news_pip_data(haawks_id_str, symbol, timestamps_to_mine, news_dat
 
 
 
-def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data):
+def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data, expected_direction):
     """
     Mine pip data from raw tick data for a specific timestamp and save it to the news_pip_data dictionary.
 
@@ -675,7 +675,7 @@ def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data):
 
     try:
         # Extract pip data from raw tick data.
-        pip_movements_at_timedeltas = mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, timestamp)
+        pip_movements_at_timedeltas = mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, timestamp, expected_direction)
         news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', pip_movements_at_timedeltas)
 
         # Retrieve and set the 'deviation' value for the current timestamp.
@@ -704,6 +704,8 @@ def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
     # Fetches the details about the specific haawks event using its ID.
     indicator_info = get_indicator_info(haawks_id_str)
 
+    expected_direction = get_expected_direction()
+
     # Initialize an empty dictionary to store pip data for each timestamp.
     news_pip_data = {}
     row_count = news_data.shape[0]  # Calculate the total number of rows in the news_data DataFrame.
@@ -729,7 +731,7 @@ def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
     # For each timestamp in timestamps_to_mine, mine pip data from raw tick data.
     for index, timestamp in enumerate(timestamps_to_mine):
         print(f"\rMining pip data from {timestamp} ({index + 1}/{len(timestamps_to_mine)})", end="", flush=True)
-        mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data)
+        mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data, expected_direction)
 
     # Sort the news pip data by timestamp.
     news_pip_data = sort_news_pip_data_by_timestamp(news_pip_data)
@@ -1437,7 +1439,7 @@ def get_expected_direction(symbol_higher_dev):
         raise ValueError("higher_dev must be 'bullish' or 'bearish'")
 
 
-def get_ema_correlation_scores(ema_values, ema_suffix, symbol_higher_dev):
+def get_c3_ema_scores(ema_values, ema_suffix, symbol_higher_dev):
     """
     Calculate EMA-based correlation scores and label them with a suffix indicating the EMA period.
     """
@@ -1473,6 +1475,8 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
     # Print a message indicating the start of news pip metrics calculation
     print("Calculating news pip metrics...")
 
+    expected_direction = get_expected_direction(symbol_higher_dev)
+
     # Initialize an empty dictionary to store news pip metrics for each trigger
     news_pip_metrics = {trigger: {} for trigger in triggers}
 
@@ -1504,6 +1508,8 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
             # Get correlation scores for the pips values with respect to the expected symbol direction
             correlation_1, correlation_2, correlation_3 = get_correlation_scores(values, symbol_higher_dev)
 
+            #first_stoploss_hit_timedelta = get_first_stoploss_hit_timedelta()
+
             # Store the calculated metrics in the news_pip_metrics dictionary
             news_pip_metrics[trigger][time_delta] = {
                 "median": median,
@@ -1516,19 +1522,22 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
             }
 
             # Compute EMA values for various periods and their corresponding correlation scores
-            ema_values_list = [
+            c3_ema_values_list = [
                 (ema(values, 5), 'ema5'),
                 (ema(values, 10), 'ema10'),
                 (ema(values, 15), 'ema15')
             ]
 
             # Iterate through the calculated EMA values and their corresponding suffixes
-            for ema_values, ema_suffix in ema_values_list:
+            for c3_ema_values, ema_suffix in c3_ema_values_list:
                 # Get correlation scores for the EMA values with respect to the expected symbol direction
-                ema_correlation_scores = get_ema_correlation_scores(ema_values, ema_suffix, symbol_higher_dev)
+                c3_ema_scores = get_c3_ema_scores(c3_ema_values, ema_suffix, symbol_higher_dev)
+
 
                 # Update the news_pip_metrics dictionary with the EMA correlation scores
-                news_pip_metrics[trigger][time_delta].update(ema_correlation_scores)
+                news_pip_metrics[trigger][time_delta].update(c3_ema_scores)
+
+
 
     # Return the final news_pip_metrics dictionary
     return news_pip_metrics
