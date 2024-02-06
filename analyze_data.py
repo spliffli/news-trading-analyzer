@@ -4,7 +4,7 @@ import os
 import math
 import json
 import warnings
-from utils import str_to_datetime, datetime_to_str, haawks_id_to_str, read_news_data, save_news_data, get_indicator_info, convert_news_data_to_float, get_deviation
+from utils import str_to_datetime, datetime_to_str, haawks_id_to_str, read_news_data, save_news_data, get_indicator_info, convert_news_data_to_float, get_deviation,  get_higher_dev_expected_direction
 import numpy as np
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -434,7 +434,7 @@ from datetime import timedelta
 from datetime import timedelta
 
 
-def get_first_stoploss_hit_timedelta(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
+def get_first_stoploss_hit_timedelta(tick_data, release_datetime, release_price, decimal_places, stoploss, higher_dev_expected_direction):
     # Initialize variables to track the first retracement instance and time delta
     first_retracement_timestamp = None
     first_retracement_price = None
@@ -550,7 +550,19 @@ def fetch_stoploss(symbol):
             return 75
 
 
-def mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, release_datetime, expected_direction):
+def get_expected_direction_2(higher_dev, deviation):
+
+    if higher_dev == "bullish":
+        if deviation >= 0:
+            return "positive"
+    elif higher_dev == "bearish":
+        if deviation >= 0:
+            return "negative"
+    else:
+        raise ValueError("higher_dev must be 'bearish' or 'bullish'")
+
+
+def mine_data_from_ticks(news_data, symbol, release_datetime, indicator_info):
     """
     Extract and calculate pip movements based on tick data, symbol, and a release datetime.
 
@@ -570,11 +582,21 @@ def mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, release_datet
     Example:
         >>> news_data = pd.DataFrame(...)
         >>> release_datetime = datetime(2023, 8, 14, 12, 0)
-        >>> mine_pip_movements_at_timedeltas_from_ticks(news_data, "EURUSD", release_datetime)
+        >>> mine_data_from_ticks(news_data, "EURUSD", release_datetime)
         {"1m": (0.5, 0.5), "5m": (1.0, 1.0), ...}
     """
     row_count = news_data.shape[0]
     pip_data = {}
+
+    expected_directions = []
+
+    for value in news_data['Deviation']:
+        if value >= 0:
+            expected_directions.append("up")
+        else:
+            expected_directions.append("down")
+
+    news_data['expected_direction'] = expected_directions
 
     tick_data = read_tick_data(symbol, release_datetime)
 
@@ -587,7 +609,7 @@ def mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, release_datet
 
     stoploss = fetch_stoploss(symbol)
 
-    first_stoploss_hit = get_first_stoploss_hit_timedelta(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+    first_stoploss_hit = get_first_stoploss_hit_timedelta(tick_data, release_datetime, release_price, decimal_places, stoploss, higher_dev_expected_direction)
     stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss)
     continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss)
 
@@ -658,7 +680,7 @@ def load_local_news_pip_data(haawks_id_str, symbol, timestamps_to_mine, news_dat
 
 
 
-def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data, expected_direction):
+def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data, higher_dev_expected_direction):
     """
     Mine pip data from raw tick data for a specific timestamp and save it to the news_pip_data dictionary.
 
@@ -675,7 +697,7 @@ def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data, expected
 
     try:
         # Extract pip data from raw tick data.
-        pip_movements_at_timedeltas = mine_pip_movements_at_timedeltas_from_ticks(news_data, symbol, timestamp, expected_direction)
+        pip_movements_at_timedeltas = mine_data_from_ticks(news_data, symbol, timestamp, higher_dev_expected_direction)
         news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', pip_movements_at_timedeltas)
 
         # Retrieve and set the 'deviation' value for the current timestamp.
@@ -704,7 +726,7 @@ def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
     # Fetches the details about the specific haawks event using its ID.
     indicator_info = get_indicator_info(haawks_id_str)
 
-    expected_direction = get_expected_direction()
+    higher_dev_expected_direction = get_higher_dev_expected_direction(symbol, indicator_info['inv_currency'], indicator_info['higher_dev'])
 
     # Initialize an empty dictionary to store pip data for each timestamp.
     news_pip_data = {}
@@ -731,7 +753,7 @@ def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
     # For each timestamp in timestamps_to_mine, mine pip data from raw tick data.
     for index, timestamp in enumerate(timestamps_to_mine):
         print(f"\rMining pip data from {timestamp} ({index + 1}/{len(timestamps_to_mine)})", end="", flush=True)
-        mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data, expected_direction)
+        mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data, higher_dev_expected_direction)
 
     # Sort the news pip data by timestamp.
     news_pip_data = sort_news_pip_data_by_timestamp(news_pip_data)
@@ -1430,7 +1452,7 @@ def get_correlation_scores(values, symbol_higher_dev):
     correlation_3_score = round((correlation_1_score + correlation_2_score) / 2, 1)
     return correlation_1_score, correlation_2_score, correlation_3_score
 
-def get_expected_direction(symbol_higher_dev):
+def get_expected_direction(symbol_higher_dev, deviation):
     if symbol_higher_dev == "bullish":
         expected_direction = "positive"
     elif symbol_higher_dev == "bearish":
@@ -1474,8 +1496,6 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
     """
     # Print a message indicating the start of news pip metrics calculation
     print("Calculating news pip metrics...")
-
-    expected_direction = get_expected_direction(symbol_higher_dev)
 
     # Initialize an empty dictionary to store news pip metrics for each trigger
     news_pip_metrics = {trigger: {} for trigger in triggers}
@@ -1844,12 +1864,17 @@ def calc_news_pip_metrics_for_multiple_indicators(haawks_id_strs_and_symbols: li
 
     for haawks_id_str_and_symbol in haawks_id_strs_and_symbols:
         haawks_id_str = haawks_id_str_and_symbol[0]
-        title = get_indicator_info(haawks_id_str)['inv_title']
-        symbol = haawks_id_str_and_symbol[1]
+        indicator_info = get_indicator_info(haawks_id_str)
+        title = indicator_info['inv_title']
+        symbol = indicator_info['symbol']
+        higher_dev = indicator_info['higher_dev']
         news_data = read_news_data(haawks_id_str)
         triggers = read_triggers(haawks_id_str)
+
+
+
         news_pip_data = load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol)
-        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, symbol, news_pip_data, triggers)
+        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, symbol, news_pip_data, triggers, higher_dev)
         result.setdefault(f"{haawks_id_str}_{symbol} {title}", news_pip_metrics)
 
     return result
