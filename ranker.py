@@ -56,6 +56,17 @@ def run():
 
         # Read news data, import ticks, and read triggers for the indicator
         news_data = read_news_data(haawks_id_str)
+
+        expected_directions = []
+
+        for value in news_data['Deviation']:
+            if value >= 0:
+                expected_directions.append("up")
+            else:
+                expected_directions.append("down")
+
+        news_data['expected_direction'] = expected_directions
+
         import_ticks_for_indicator(haawks_id_str, trading_symbol)
         triggers = read_triggers(haawks_id_str)
 
