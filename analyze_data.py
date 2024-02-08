@@ -457,10 +457,11 @@ def get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_p
         ValueError: If the expected_direction is neither 'up' nor 'down'.
     """
     # Initialize variables to track the first retracement instance and time delta
-    first_retracement_timestamp = None
+    first_sl_hit_timestamp = None
     pip_movement_relative_to_expected_direction = None
-    time_delta_at_first_retracement = None
-    release_price_ask, release_price_bid = release_price
+    time_delta_at_first_sl_hit = None
+    if type(release_price) == tuple:
+        release_price_ask, release_price_bid = release_price
 
     # Iterate through tick data
     for index, row in tick_data.iterrows():
@@ -486,15 +487,15 @@ def get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_p
         if (expected_direction == 'up' and pip_movement_relative_to_expected_direction >= stoploss) or \
                 (expected_direction == 'down' and pip_movement_relative_to_expected_direction <= -stoploss):
             # Record the timestamp and time delta of the first retracement instance
-            first_retracement_timestamp = timestamp
-            time_delta_at_first_retracement = str_to_datetime(timestamp) - release_datetime
+            first_sl_hit_timestamp = timestamp
+            time_delta_at_first_sl_hit = str_to_datetime(timestamp) - release_datetime
             break  # Exit loop once the first retracement is found
 
     # Return the timestamp, pip movement relative to the expected direction, and time delta
     return (
-        first_retracement_timestamp,
+        first_sl_hit_timestamp,
         pip_movement_relative_to_expected_direction,
-        time_delta_at_first_retracement
+        time_delta_at_first_sl_hit
     )
 
 
@@ -566,13 +567,43 @@ def calc_stoploss_hits(tick_data, release_datetime, relative_price, decimal_plac
 
 
 
-def calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss):
-    breakpoint()
-    #
-    # calculate initial spike variables e.g.
-    #   maximum pips in the expected direction in the first 5 seconds
-    # calculate how many pips it continues after that without reversing far enough to hit the stoploss
-    pass
+def calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
+    """
+    Calculate the continuation score, which measures how many pips the price continues after the news release.
+
+    Args:
+        tick_data (DataFrame): Raw forex tick data with columns: 'time', 'ask', and 'bid'.
+        release_datetime (datetime): Timestamp of the news release.
+        release_price (tuple): Tuple containing the ask and bid prices at the time of the news release.
+        decimal_places (int): Number of decimal places in the bid & ask prices.
+        stoploss (float): Virtual stoploss value in pips.
+        expected_direction (str): Expected direction of the price movement ('up' or 'down').
+
+    Returns:
+        float: Continuation score in pips.
+    """
+    if type(release_price) == tuple:
+        release_price_ask = release_price[0]
+        release_price_bid = release_price[1]
+
+    # Determine which price (bid or ask) to use based on expected_direction
+    if expected_direction == 'up':
+        relative_price = release_price_ask
+    elif expected_direction == 'down':
+        relative_price = release_price_bid
+    else:
+        raise ValueError("Invalid expected_direction. Use 'up' or 'down'.")
+
+    # Calculate the timestamp after 5 seconds
+    virtual_entry_timestamp = release_datetime + timedelta(seconds=5)
+
+    # Find the maximum price between the release and 5 seconds later
+    max_price = max(row['ask'] if expected_direction == 'up' else row['bid'] for index, row in tick_data.iterrows() if str_to_datetime(row['time']) <= virtual_entry_timestamp)
+
+    # Get the continuation timestamp, price, and time delta
+    virtual_entry_timestamp, continuation_pip_movement, time_delta_after_virtual_entry = get_first_stoploss_hit(tick_data, virtual_entry_timestamp, max_price, decimal_places, stoploss, expected_direction)
+
+    return virtual_entry_timestamp, continuation_pip_movement, time_delta_after_virtual_entry
 
 
 def fetch_stoploss(symbol):
@@ -651,7 +682,7 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
 
     first_stoploss_hit = get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
     stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
-    # continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+    continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
 
     relative_price_movements = get_relative_price_movements(prices_at_timedeltas, release_price, decimal_places)
     pip_movements = get_pip_movements(relative_price_movements, decimal_places)
