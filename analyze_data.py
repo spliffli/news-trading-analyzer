@@ -499,8 +499,70 @@ def get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_p
 
 
 
-def calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
-    pass
+def calc_stoploss_hits(tick_data, release_datetime, relative_price, decimal_places, stoploss, expected_direction):
+    """
+    Calculate the number of times the stoploss is hit, resetting it each time it's hit.
+
+    Args:
+        tick_data (DataFrame): Raw forex tick data with columns: 'time', 'ask', and 'bid'.
+        release_datetime (datetime): Timestamp of the news release.
+        relative_price (tuple): Tuple containing the ask and bid prices at the time of the news release.
+        decimal_places (int): Number of decimal places in the bid & ask prices.
+        stoploss (float): Virtual stoploss value in pips.
+        expected_direction (str): Expected direction of the price movement ('up' or 'down').
+
+    Returns:
+        int: Number of times the stoploss is hit.
+
+    Raises:
+        ValueError: If the expected_direction is neither 'up' nor 'down'.
+    """
+    # Initialize variables to track stoploss hits and reset stoploss
+    stoploss_hits = 0
+    reset_stoploss = False
+    release_price_ask, release_price_bid = relative_price
+
+    # Iterate through tick data
+    for index, row in tick_data.iterrows():
+        timestamp = row['time']
+
+        # Determine which price (bid or ask) to use based on expected_direction
+        if expected_direction == 'up':
+            current_price = row['ask']
+            relative_price = release_price_ask
+        elif expected_direction == 'down':
+            current_price = row['bid']
+            relative_price = release_price_bid
+        else:
+            raise ValueError("Invalid expected_direction. Use 'up' or 'down'.")
+
+        # Calculate the price movement from the release price to the current price
+        price_movement = current_price - relative_price
+
+        # Check if the stoploss is hit in the contrary direction
+        if (expected_direction == 'up' and price_movement >= stoploss) or \
+                (expected_direction == 'down' and price_movement <= -stoploss):
+            # Count stoploss hits
+            stoploss_hits += 1
+
+            # Reset the stoploss a given amount of pips behind the hit price
+            relative_price = current_price + (stoploss if expected_direction == 'up' else -stoploss)
+            reset_stoploss = True
+
+        # Check if the stoploss is reset and the timestamp is within 15 mins after release_datetime
+        if reset_stoploss and timestamp <= release_datetime + timedelta(minutes=15):
+            # Continue calculating retracements with the reset stoploss
+            retracement_timestamp, pip_movement, time_delta = get_first_stoploss_hit(tick_data[index:],
+                                                                                     release_datetime, (
+                                                                                     release_price_ask,
+                                                                                     release_price_bid), decimal_places,
+                                                                                     stoploss, expected_direction)
+
+            # Update stoploss reset status based on retracement results
+            reset_stoploss = False
+
+    return stoploss_hits
+
 
 
 
@@ -589,7 +651,7 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
 
     first_stoploss_hit = get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
     stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
-    continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+    # continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
 
     relative_price_movements = get_relative_price_movements(prices_at_timedeltas, release_price, decimal_places)
     pip_movements = get_pip_movements(relative_price_movements, decimal_places)
