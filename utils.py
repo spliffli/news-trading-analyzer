@@ -15,7 +15,10 @@ def str_to_datetime(dt_str: str):
     try:
         return datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S")
     except:
-        return datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S:%f")
+        try:
+            return datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S:%f")
+        except:
+            return pd.to_datetime(dt_str, infer_datetime_format=True)
 
 
 def haawks_id_to_str(haawks_id: float):

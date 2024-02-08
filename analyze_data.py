@@ -434,95 +434,73 @@ from datetime import timedelta
 from datetime import timedelta
 
 
-def get_first_stoploss_hit_timedelta(tick_data, release_datetime, release_price, decimal_places, stoploss):
+from datetime import timedelta
 
+def get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
+    """
+    Find the timestamp of the first instance when the stoploss is hit and calculate the pip movement relative
+    to the expected direction and the time delta.
 
+    Args:
+        tick_data (DataFrame): Raw forex tick data with columns: 'time', 'ask', and 'bid'.
+        release_datetime (datetime): Timestamp of the news release.
+        release_price (tuple): Tuple containing the ask and bid prices at the time of the news release.
+        decimal_places (int): Number of decimal places in the bid & ask prices.
+        stoploss (float): Virtual stoploss value in pips.
+        expected_direction (str): Expected direction of the price movement ('up' or 'down').
 
+    Returns:
+        tuple: A tuple containing the timestamp of the first retracement, the pip movement relative to
+               the expected direction, and the time delta between the release time and the first retracement.
+
+    Raises:
+        ValueError: If the expected_direction is neither 'up' nor 'down'.
+    """
     # Initialize variables to track the first retracement instance and time delta
     first_retracement_timestamp = None
-    first_retracement_price = None
-    first_retracement_price_movement_in_pips = None
+    pip_movement_relative_to_expected_direction = None
     time_delta_at_first_retracement = None
+    release_price_ask, release_price_bid = release_price
 
     # Iterate through tick data
     for index, row in tick_data.iterrows():
         timestamp = row['time']
 
         # Determine which price (bid or ask) to use based on expected_direction
-        if expected_direction == 'bullish':
-            current_price = row['bid']  # Use bid price for bullish (buy) trade
-        elif expected_direction == 'bearish':
-            current_price = row['ask']  # Use ask price for bearish (sell) trade
+        if expected_direction == 'up':
+            current_price = row['ask']
+            release_price = release_price_ask
+        elif expected_direction == 'down':
+            current_price = row['bid']
+            release_price = release_price_bid
         else:
-            raise ValueError("Invalid expected_direction. Use 'bullish' or 'bearish'.")
+            raise ValueError("Invalid expected_direction. Use 'up' or 'down'.")
 
         # Calculate the price movement from the release price to the current price
         price_movement = current_price - release_price
 
-        # Convert the price movement to pips using the helper function
-        price_movement_in_pips = price_movement_to_pips(price_movement, decimal_places)
+        # Calculate the pip movement relative to the expected direction using the helper function
+        pip_movement_relative_to_expected_direction = price_movement_to_pips(price_movement, decimal_places)
 
         # Check if the stoploss is hit in the contrary direction
-        if (expected_direction == 'bullish' and price_movement_in_pips >= stoploss) or \
-                (expected_direction == 'bearish' and price_movement_in_pips <= -stoploss):
-            # Record the first retracement instance
-            if first_retracement_timestamp is None:
-                first_retracement_timestamp = timestamp
-                first_retracement_price = current_price
-                first_retracement_price_movement_in_pips = price_movement_in_pips
-                time_delta_at_first_retracement = timestamp - release_datetime
+        if (expected_direction == 'up' and pip_movement_relative_to_expected_direction >= stoploss) or \
+                (expected_direction == 'down' and pip_movement_relative_to_expected_direction <= -stoploss):
+            # Record the timestamp and time delta of the first retracement instance
+            first_retracement_timestamp = timestamp
+            time_delta_at_first_retracement = str_to_datetime(timestamp) - release_datetime
+            break  # Exit loop once the first retracement is found
 
-    # Return the timestamp, time delta, and price movement in pips of the first retracement instance
+    # Return the timestamp, pip movement relative to the expected direction, and time delta
     return (
         first_retracement_timestamp,
-        time_delta_at_first_retracement,
-        first_retracement_price_movement_in_pips
+        pip_movement_relative_to_expected_direction,
+        time_delta_at_first_retracement
     )
 
 
-# Example usage:
-# (
-#   retracement_timestamp,
-#   time_delta_at_first_retracement,
-#   first_retracement_price_movement_in_pips
-# ) = get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
-
 
 def calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
-    # Initialize variables to track stoploss hits and reset stoploss
-    stoploss_hits = 0
-    reset_stoploss = False
-
-    # Iterate through tick data
-    for index, row in tick_data.iterrows():
-        timestamp = row['time']
-        bid_price = row['bid']
-
-        # Calculate the price movement from the release price to the current bid price
-        price_movement = bid_price - release_price
-
-        # Convert the price movement to pips using the helper function
-        price_movement_in_pips = price_movement_to_pips(price_movement, decimal_places)
-
-        # Check if the stoploss is hit in the contrary direction
-        if (expected_direction == 'up' and price_movement_in_pips >= stoploss) or \
-           (expected_direction == 'down' and price_movement_in_pips <= -stoploss):
-            # Count stoploss hits
-            stoploss_hits += 1
-
-            # Reset the stoploss 5 pips behind the hit price
-            release_price = bid_price + price_movement_to_pips(5, decimal_places)
-            reset_stoploss = True
-
-        # Check if the stoploss is reset and the timestamp is within 15 mins after release_datetime
-        if reset_stoploss and timestamp <= release_datetime + timedelta(minutes=15):
-            # Continue calculating retracements with the reset stoploss
-            retracement_timestamp, _ = get_first_stoploss_hit_timedelta(tick_data[index:], release_datetime, release_price,
-                                                                        decimal_places, stoploss, expected_direction)
-            # Update stoploss reset status based on retracement results
-            reset_stoploss = retracement_timestamp is not None
-
-    return stoploss_hits
+    pass
 
 
 
@@ -609,7 +587,7 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
 
     stoploss = fetch_stoploss(symbol)
 
-    first_stoploss_hit = get_first_stoploss_hit_timedelta(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+    first_stoploss_hit = get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
     stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
     continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
 
