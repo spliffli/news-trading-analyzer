@@ -469,11 +469,13 @@ def get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_p
 
         # Determine which price (bid or ask) to use based on expected_direction
         if expected_direction == 'up':
-            current_price = row['ask']
-            release_price = release_price_ask
-        elif expected_direction == 'down':
             current_price = row['bid']
-            release_price = release_price_bid
+            if type(release_price) == tuple:
+                release_price = release_price_bid
+        elif expected_direction == 'down':
+            current_price = row['ask']
+            if type(release_price) == tuple:
+                release_price = release_price_ask
         else:
             raise ValueError("Invalid expected_direction. Use 'up' or 'down'.")
 
@@ -588,9 +590,9 @@ def calc_continuation_score(tick_data, release_datetime, release_price, decimal_
 
     # Determine which price (bid or ask) to use based on expected_direction
     if expected_direction == 'up':
-        relative_price = release_price_ask
+        entry_price = release_price_ask
     elif expected_direction == 'down':
-        relative_price = release_price_bid
+        entry_price = release_price_bid
     else:
         raise ValueError("Invalid expected_direction. Use 'up' or 'down'.")
 
@@ -598,10 +600,10 @@ def calc_continuation_score(tick_data, release_datetime, release_price, decimal_
     virtual_entry_timestamp = release_datetime + timedelta(seconds=5)
 
     # Find the maximum price between the release and 5 seconds later
-    max_price = max(row['ask'] if expected_direction == 'up' else row['bid'] for index, row in tick_data.iterrows() if str_to_datetime(row['time']) <= virtual_entry_timestamp)
+    entry_price = max(row['ask'] if expected_direction == 'up' else row['bid'] for index, row in tick_data.iterrows() if str_to_datetime(row['time']) <= virtual_entry_timestamp)
 
     # Get the continuation timestamp, price, and time delta
-    virtual_entry_timestamp, continuation_pip_movement, time_delta_after_virtual_entry = get_first_stoploss_hit(tick_data, virtual_entry_timestamp, max_price, decimal_places, stoploss, expected_direction)
+    virtual_entry_timestamp, continuation_pip_movement, time_delta_after_virtual_entry = get_first_stoploss_hit(tick_data, virtual_entry_timestamp, entry_price, decimal_places, stoploss, expected_direction)
 
     return virtual_entry_timestamp, continuation_pip_movement, time_delta_after_virtual_entry
 
