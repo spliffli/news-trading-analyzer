@@ -590,22 +590,23 @@ def calc_continuation_score(tick_data, release_datetime, release_price, decimal_
 
     # Determine which price (bid or ask) to use based on expected_direction
     if expected_direction == 'up':
-        entry_price = release_price_ask
+        virtual_entry_price = release_price_ask
     elif expected_direction == 'down':
-        entry_price = release_price_bid
+        virtual_entry_price = release_price_bid
     else:
         raise ValueError("Invalid expected_direction. Use 'up' or 'down'.")
 
     # Calculate the timestamp after 5 seconds
-    virtual_entry_timestamp = release_datetime + timedelta(seconds=5)
+    initial_peak_range_timestamp = release_datetime + timedelta(seconds=5)
 
     # Find the maximum price between the release and 5 seconds later
-    entry_price = max(row['ask'] if expected_direction == 'up' else row['bid'] for index, row in tick_data.iterrows() if str_to_datetime(row['time']) <= virtual_entry_timestamp)
+    virtual_entry_price = max(row['ask'] if expected_direction == 'up' else row['bid'] for index, row in tick_data.iterrows() if str_to_datetime(row['time']) <= initial_peak_range_timestamp)
 
     # Get the continuation timestamp, price, and time delta
-    virtual_entry_timestamp, continuation_pip_movement, time_delta_after_virtual_entry = get_first_stoploss_hit(tick_data, virtual_entry_timestamp, entry_price, decimal_places, stoploss, expected_direction)
+    initial_peak_range_timestamp, continuation_pip_movement, time_delta_after_virtual_entry = get_first_stoploss_hit(tick_data, initial_peak_range_timestamp, virtual_entry_price, decimal_places, stoploss, expected_direction)
 
-    return virtual_entry_timestamp, continuation_pip_movement, time_delta_after_virtual_entry
+    # return initial_peak_range_timestamp, continuation_pip_movement, time_delta_after_virtual_entry
+    return continuation_pip_movement
 
 
 def fetch_stoploss(symbol):
@@ -689,7 +690,12 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
     relative_price_movements = get_relative_price_movements(prices_at_timedeltas, release_price, decimal_places)
     pip_movements = get_pip_movements(relative_price_movements, decimal_places)
 
-    return pip_movements
+    return {
+        "first_sl_hit" : first_stoploss_hit,
+        "sl_hits": stoploss_hits,
+        "cont_score" : continuation_score,
+        "pip_movements": pip_movements
+    }
 
 
 def sort_news_pip_data_by_timestamp(news_pip_data):
@@ -771,7 +777,7 @@ def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data):
     try:
         # Extract pip data from raw tick data.
         pip_movements_at_timedeltas = mine_data_from_ticks(news_data, symbol, timestamp)
-        news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', pip_movements_at_timedeltas)
+        news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', pip_movements_at_timedeltas['pip_movements'])
 
         # Retrieve and set the 'deviation' value for the current timestamp.
         for _, row in news_data.iterrows():
@@ -1525,13 +1531,15 @@ def get_correlation_scores(values, symbol_higher_dev):
     correlation_3_score = round((correlation_1_score + correlation_2_score) / 2, 1)
     return correlation_1_score, correlation_2_score, correlation_3_score
 
-def get_expected_direction(symbol_higher_dev, deviation):
+def get_expected_direction(symbol_higher_dev):
     if symbol_higher_dev == "bullish":
         expected_direction = "positive"
     elif symbol_higher_dev == "bearish":
         expected_direction = "negative"
     else:
         raise ValueError("higher_dev must be 'bullish' or 'bearish'")
+
+    return expected_direction
 
 
 def get_c3_ema_scores(ema_values, ema_suffix, symbol_higher_dev):
