@@ -759,7 +759,7 @@ def load_local_news_pip_data(haawks_id_str, symbol, timestamps_to_mine, news_dat
 
 
 
-def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data):
+def mine_and_save_pip_data(news_data, symbol, timestamp, news_tick_data):
     """
     Mine pip data from raw tick data for a specific timestamp and save it to the news_pip_data dictionary.
 
@@ -767,7 +767,7 @@ def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data):
         news_data (pd.DataFrame): DataFrame containing news data with relevant columns.
         symbol (str): The trading symbol (e.g., 'EURUSD') for which the data should be mined.
         timestamp (datetime): The timestamp for which pip data should be mined.
-        news_pip_data (dict): Dictionary to store pip data information for each timestamp.
+        news_tick_data (dict): Dictionary to store pip data information for each timestamp.
 
     Returns:
         None
@@ -776,17 +776,25 @@ def mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data):
 
     try:
         # Extract pip data from raw tick data.
-        pip_movements_at_timedeltas = mine_data_from_ticks(news_data, symbol, timestamp)
-        news_pip_data.setdefault(timestamp_str, {}).setdefault('pips', pip_movements_at_timedeltas['pip_movements'])
+        data_from_ticks = mine_data_from_ticks(news_data, symbol, timestamp)
+        news_tick_data.setdefault(timestamp_str, {}).setdefault('cont_score', data_from_ticks['cont_score'])
+        news_tick_data.setdefault(timestamp_str, {}).setdefault('first_sl_hit', data_from_ticks['first_sl_hit'])
+        news_tick_data.setdefault(timestamp_str, {}).setdefault('pips', data_from_ticks['pip_movements'])
 
         # Retrieve and set the 'deviation' value for the current timestamp.
         for _, row in news_data.iterrows():
             if row['Timestamp'] == timestamp_str:
-                news_pip_data[timestamp_str]['deviation'] = row.get('Deviation', None)
+                news_tick_data[timestamp_str]['deviation'] = row.get('Deviation', None)
                 break
     except ValueError:
         # Handle any ValueErrors, e.g., when tick data might be empty.
         return
+
+
+def convert_news_pip_data_timestamps_to_strs(news_pip_data):
+
+    breakpoint()
+    pass
 
 
 def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
@@ -836,6 +844,8 @@ def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
 
     # Sort the news pip data by timestamp.
     news_pip_data = sort_news_pip_data_by_timestamp(news_pip_data)
+
+    news_pip_data = convert_news_pip_data_timestamps_to_strs(news_pip_data)
 
     # Once all data is extracted, save it locally for future use.
     print("\nsaving mined data to file")
