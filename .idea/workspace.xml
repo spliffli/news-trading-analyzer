@@ -5,8 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/analysis_data/00057_626_Sweden_Retail_Sales_MoM/pip_data/USDSEK__2017-01-27_2024-01-29.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/00058_1189_Sweden_Retail_Sales_YoY/pip_data/USDSEK__2017-01-27_2024-01-29.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/00071_426_Sweden_Gross_Domestic_Product_(GDP)_QoQ/pip_data/USDSEK__2017-02-28_2024-01-29.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/00072_1186_Sweden_Gross_Domestic_Product_(GDP)_YoY/pip_data/USDSEK__2017-02-28_2024-01-29.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/10160_896_US_New_Home_Sales_MoM/pip_data/USDJPY__2017-01-26_2024-01-25.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/10270_123_Canada_Gross_Domestic_Product_(GDP)_MoM/pip_data/USDCAD__2017-01-31_2024-01-31.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/10272_1758_Canada_Gross_Domestic_Product_(GDP)_YoY/pip_data/USDCAD__2017-10-31_2023-11-30.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/10350_79_Canada_Current_Account/pip_data/USDCAD__2017-03-01_2023-11-29.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/weekly-schedules/2024/week-09-schedule.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-02-27__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-02-28__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-05-30__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-08-31__12-25-00_12-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2023-11-29__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2024-01-31__13-25-00_13-45-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDCAD__2024-01-31__13-26-00_13-46-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDJPY__2024-01-25__14-55-00_15-15-00.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick_data/USDSEK__2024-01-29__06-55-00_07-15-00.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/00057_626_Sweden_Retail_Sales_MoM/pip_data/USDSEK__2017-01-27_2024-01-10.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/00058_1189_Sweden_Retail_Sales_YoY/pip_data/USDSEK__2017-01-27_2024-01-10.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/00071_426_Sweden_Gross_Domestic_Product_(GDP)_QoQ/pip_data/USDSEK__2017-02-28_2023-11-29.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/00072_1186_Sweden_Gross_Domestic_Product_(GDP)_YoY/pip_data/USDSEK__2017-02-28_2023-11-29.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/10160_896_US_New_Home_Sales_MoM/pip_data/USDJPY__2017-01-26_2023-12-22.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/10270_123_Canada_Gross_Domestic_Product_(GDP)_MoM/pip_data/USDCAD__2017-01-31_2023-12-22.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/10272_1758_Canada_Gross_Domestic_Product_(GDP)_YoY/pip_data/USDCAD__2017-10-31_2023-01-31.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_data/10350_79_Canada_Current_Account/pip_data/USDCAD__2017-03-01_2022-11-28.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mkdocs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/new-schedule.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00057_626_Sweden_Retail_Sales_MoM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00057_626_Sweden_Retail_Sales_MoM.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00058_1189_Sweden_Retail_Sales_YoY.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00058_1189_Sweden_Retail_Sales_YoY.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00071_426_Sweden_Gross_Domestic_Product_(GDP)_QoQ.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00071_426_Sweden_Gross_Domestic_Product_(GDP)_QoQ.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/00072_1186_Sweden_Gross_Domestic_Product_(GDP)_YoY.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/00072_1186_Sweden_Gross_Domestic_Product_(GDP)_YoY.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/10160_896_US_New_Home_Sales_MoM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/10160_896_US_New_Home_Sales_MoM.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/10270_123_Canada_Gross_Domestic_Product_(GDP)_MoM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/10270_123_Canada_Gross_Domestic_Product_(GDP)_MoM.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/10272_1758_Canada_Gross_Domestic_Product_(GDP)_YoY.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/10272_1758_Canada_Gross_Domestic_Product_(GDP)_YoY.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_data/10350_79_Canada_Current_Account.csv" beforeDir="false" afterPath="$PROJECT_DIR$/news_data/10350_79_Canada_Current_Account.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/weekly-schedules/test_2023-03-30.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/weekly-schedules/test_2023-03-30.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,5 +133,11 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="first_stoploss_hit" />
+        <watch expression="stoploss_hits" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
