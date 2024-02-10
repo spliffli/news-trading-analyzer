@@ -29,9 +29,11 @@ def get_best_trigger_c3(news_pip_metrics_dfs):
         triggers.append(trigger)
         total_c3_scores.append(news_pip_metrics_dfs[trigger].iloc[-1]['lowest_c3_val'])
 
-    best_trigger = triggers[total_c3_scores.index(max(total_c3_scores))]
-
-    return best_trigger
+    try:
+        best_trigger = triggers[total_c3_scores.index(max(total_c3_scores))]
+        return best_trigger
+    except:
+        return None
 
 
 # Main function to run the analysis for each indicator
@@ -100,27 +102,30 @@ def run():
                                             'best_trigger', 'range (pips)', 'mean (pips)', 'median (pips)', 'c1', 'c2',
                                             'lowest_ema_val', 'mean_cont_score', 'median_cont_score', 'lowest_avg_cont_score'])
 
-        # Append the results for the current indicator to the DataFrame
-        results = results.append({
-            'haawks_id': haawks_id_str,
-            'haawks_title': indicator_info['Indicator'],
-            'inv_title': indicator_info['inv_title'],
-            'symbol': trading_symbol,
-            'higher_dev': symbol_higher_dev,
-            'best_trigger': f"{best_trigger}: +-{triggers[best_trigger]}{indicator_info['suffix']}",
-            'range (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['range'],
-            'mean (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['mean'],
-            'median (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['median'],
-            'c1': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['c1'],
-            'c2': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['c2'],
-            'lowest_c3_val': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['lowest_c3_val'],
-            'mean_cont_score': news_pip_metrics['avg_cont_scores']['mean'],
-            'median_cont_score': news_pip_metrics['avg_cont_scores']['median'],
-            'lowest_avg_cont_score': news_pip_metrics['lowest_avg_cont_score']
-        }, ignore_index=True)
+        try:
+            # Append the results for the current indicator to the DataFrame
+            results = results.append({
+                'haawks_id': haawks_id_str,
+                'haawks_title': indicator_info['Indicator'],
+                'inv_title': indicator_info['inv_title'],
+                'symbol': trading_symbol,
+                'higher_dev': symbol_higher_dev,
+                'best_trigger': f"{best_trigger}: +-{triggers[best_trigger]}{indicator_info['suffix']}",
+                'range (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['range'],
+                'mean (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['mean'],
+                'median (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['median'],
+                'c1': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['c1'],
+                'c2': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['c2'],
+                'lowest_c3_val': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['lowest_c3_val'],
+                'mean_cont_score': news_pip_metrics['avg_cont_scores']['mean'],
+                'median_cont_score': news_pip_metrics['avg_cont_scores']['median'],
+                'lowest_avg_cont_score': news_pip_metrics['lowest_avg_cont_score']
+            }, ignore_index=True)
 
-        # Write the updated results DataFrame to the results file
-        results.to_excel('reports/ranker_results.xls', index=False)
+            # Write the updated results DataFrame to the results file
+            results.to_excel('reports/ranker_results.xls', index=False)
+        except:
+            continue
 
 
 # Run the analysis for all indicators

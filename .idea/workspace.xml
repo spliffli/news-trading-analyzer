@@ -5,78 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/analysis_data/10000_227_US_Nonfarm_Payrolls/pip_data/USDJPY__2017-01-06_2024-01-05.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10005_300_US_Unemployment_Rate/pip_data/USDJPY__2017-01-06_2023-02-03.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10010_238_US_Producer_Price_Index_(PPI)_MoM/pip_data/USDJPY__2017-01-13_2024-01-12.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10011_734_US_Producer_Price_Index_(PPI)_YoY/pip_data/USDJPY__2017-01-13_2023-02-16.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10012_62_US_Core_Producer_Price_Index_(PPI)_MoM/pip_data/USDJPY__2017-01-13_2024-01-12.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10013_735_US_Core_Producer_Price_Index_(PPI)_YoY/pip_data/USDJPY__2017-01-13_2024-01-12.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10020_153_US_Import_Price_Index_MoM/pip_data/USDJPY__2017-01-12_2023-02-17.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10022_892_US_Export_Price_Index_MoM/pip_data/USDJPY__2017-01-12_2023-02-17.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10030_69_US_Consumer_Price_Index_(CPI)_MoM/pip_data/USDJPY__2017-01-18_2023-02-14.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10031_733_US_Consumer_Price_Index_(CPI)_YoY/pip_data/USDJPY__2017-01-18_2023-02-14.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10032_56_US_Core_Consumer_Price_Index_(CPI)_MoM/pip_data/USDJPY__2017-01-18_2024-01-11.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10033_736_US_Core_Consumer_Price_Index_(CPI)_YoY/pip_data/USDJPY__2017-01-18_2024-01-11.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10034_1549_US_Consumer_Price_Index_(CPI)_Index,_nsa/pip_data/USDJPY__2017-01-18_2024-01-11.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10037_1226_US_Core_Consumer_Price_Index_(CPI)_Index/pip_data/USDJPY__2017-01-18_2024-01-11.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10040_161_US_Industrial_Production_MoM/pip_data/USDJPY__2017-01-18_2023-02-15.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10042_31_US_Capacity_Utilization_Rate/pip_data/USDJPY__2017-01-18_2023-02-15.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10044_1307_US_Manufacturing_Production_MoM/pip_data/USDJPY__2017-01-18_2023-02-15.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10060_375_US_Gross_Domestic_Product_(GDP)_QoQ/pip_data/USDJPY__2017-01-27_2023-02-23.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10061_343_US_Gross_Domestic_Product_(GDP)_Price_Index_QoQ/pip_data/USDJPY__2017-01-27_2023-02-23.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10070_235_US_Personal_Spending_MoM/pip_data/USDJPY__2017-01-30_2023-02-24.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10071_61_US_Core_PCE_Price_Index_MoM/pip_data/USDJPY__2017-01-30_2023-02-24.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10072_905_US_Core_PCE_Price_Index_YoY/pip_data/USDJPY__2017-01-30_2023-02-24.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10075_234_US_Personal_Income_MoM/pip_data/USDJPY__2017-01-30_2023-02-24.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10076_895_US_Real_Personal_Consumption_MoM/pip_data/USDJPY__2017-01-30_2023-02-24.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10080_1057_US_JOLTs_Job_Openings/pip_data/USDJPY__2017-01-10_2023-02-01.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10090_320_US_Michigan_Consumer_Sentiment/pip_data/USDJPY__2017-01-13_2023-02-24.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10091_389_US_Michigan_Inflation_Expectations/pip_data/USDJPY__2017-01-13_2023-02-24.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10092_901_US_Michigan_Current_Conditions/pip_data/USDJPY__2017-01-13_2023-02-24.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10100_286_US_Trade_Balance/pip_data/USDJPY__2017-01-06_2023-02-07.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10110_100_US_Factory_Orders_MoM/pip_data/USDJPY__2017-01-06_2023-02-02.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10120_305_US_Wholesale_Inventories_MoM/pip_data/USDJPY__2017-01-10_2023-02-08.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10130_256_US_Retail_Sales_MoM/pip_data/USDJPY__2017-01-13_2024-01-17.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/10132_63_US_Core_Retail_Sales_MoM/pip_data/USDJPY__2017-01-13_2024-01-17.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/30008_1657_US_Cushing_Crude_Oil_Inventories/pip_data/USDJPY__2017-01-05_2023-02-23.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis_data/30010_386_US_Natural_Gas_Storage/pip_data/USDJPY__2017-01-05_2023-02-23.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10000_USDJPY_US_Nonfarm_Payrolls__2017-01-06_2024-01-05.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10010_USDJPY_US_Producer_Price_Index_(PPI)_MoM__2017-01-13_2024-01-12.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10012_USDJPY_US_Core_Producer_Price_Index_(PPI)_MoM__2017-01-13_2024-01-12.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10013_USDJPY_US_Core_Producer_Price_Index_(PPI)_YoY__2017-01-13_2024-01-12.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10032_USDJPY_US_Core_Consumer_Price_Index_(CPI)_MoM__2017-01-18_2024-01-11.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10033_USDJPY_US_Core_Consumer_Price_Index_(CPI)_YoY__2017-01-18_2024-01-11.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10034_USDJPY_US_Consumer_Price_Index_(CPI)_Index_nsa__2017-01-18_2024-01-11.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10037_USDJPY_US_Core_Consumer_Price_Index_(CPI)_Index__2017-01-18_2024-01-11.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10130_USDJPY_US_Retail_Sales_MoM__2017-01-13_2024-01-17.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/10132_USDJPY_US_Core_Retail_Sales_MoM__2017-01-13_2024-01-17.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/10260_65_Canada_Core_Retail_Sales_MoM/pip_data/USDCAD__2017-01-20_2023-03-24.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/10261_260_Canada_Retail_Sales_MoM/pip_data/USDCAD__2017-01-20_2023-03-24.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/10270_123_Canada_Gross_Domestic_Product_(GDP)_MoM/pip_data/USDCAD__2022-10-28_2022-10-28.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reports/10260_USDCAD_Canada_Core_Retail_Sales_MoM__2017-01-20_2023-03-24.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reports/10261_USDCAD_Canada_Retail_Sales_MoM__2017-01-20_2023-03-24.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reports/10270_USDCAD_Canada_Gross_Domestic_Product_(GDP)_MoM__2017-01-31_2023-12-22.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/.~lock.ranker_results.xls#" beforeDir="false" afterPath="$PROJECT_DIR$/reports/.~lock.ranker_results.xls#" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10005_USDJPY_US_Unemployment_Rate__2017-01-06_2023-02-03.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10005_USDJPY_US_Unemployment_Rate__2017-01-06_2023-02-03.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10011_USDJPY_US_Producer_Price_Index_(PPI)_YoY__2017-01-13_2023-02-16.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10011_USDJPY_US_Producer_Price_Index_(PPI)_YoY__2017-01-13_2023-02-16.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10020_USDJPY_US_Import_Price_Index_MoM__2017-01-12_2023-02-17.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10020_USDJPY_US_Import_Price_Index_MoM__2017-01-12_2023-02-17.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10022_USDJPY_US_Export_Price_Index_MoM__2017-01-12_2023-02-17.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10022_USDJPY_US_Export_Price_Index_MoM__2017-01-12_2023-02-17.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10030_USDJPY_US_Consumer_Price_Index_(CPI)_MoM__2017-01-18_2023-02-14.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10030_USDJPY_US_Consumer_Price_Index_(CPI)_MoM__2017-01-18_2023-02-14.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10031_USDJPY_US_Consumer_Price_Index_(CPI)_YoY__2017-01-18_2023-02-14.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10031_USDJPY_US_Consumer_Price_Index_(CPI)_YoY__2017-01-18_2023-02-14.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10040_USDJPY_US_Industrial_Production_MoM__2017-01-18_2023-02-15.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10040_USDJPY_US_Industrial_Production_MoM__2017-01-18_2023-02-15.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10042_USDJPY_US_Capacity_Utilization_Rate__2017-01-18_2023-02-15.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10042_USDJPY_US_Capacity_Utilization_Rate__2017-01-18_2023-02-15.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10044_USDJPY_US_Manufacturing_Production_MoM__2017-01-18_2023-02-15.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10044_USDJPY_US_Manufacturing_Production_MoM__2017-01-18_2023-02-15.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10060_USDJPY_US_Gross_Domestic_Product_(GDP)_QoQ__2017-01-27_2023-02-23.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10060_USDJPY_US_Gross_Domestic_Product_(GDP)_QoQ__2017-01-27_2023-02-23.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10061_USDJPY_US_Gross_Domestic_Product_(GDP)_Price_Index_QoQ__2017-01-27_2023-02-23.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10061_USDJPY_US_Gross_Domestic_Product_(GDP)_Price_Index_QoQ__2017-01-27_2023-02-23.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10070_USDJPY_US_Personal_Spending_MoM__2017-01-30_2023-02-24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10070_USDJPY_US_Personal_Spending_MoM__2017-01-30_2023-02-24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10071_USDJPY_US_Core_PCE_Price_Index_MoM__2017-01-30_2023-02-24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10071_USDJPY_US_Core_PCE_Price_Index_MoM__2017-01-30_2023-02-24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10072_USDJPY_US_Core_PCE_Price_Index_YoY__2017-01-30_2023-02-24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10072_USDJPY_US_Core_PCE_Price_Index_YoY__2017-01-30_2023-02-24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10075_USDJPY_US_Personal_Income_MoM__2017-01-30_2023-02-24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10075_USDJPY_US_Personal_Income_MoM__2017-01-30_2023-02-24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10076_USDJPY_US_Real_Personal_Consumption_MoM__2017-01-30_2023-02-24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10076_USDJPY_US_Real_Personal_Consumption_MoM__2017-01-30_2023-02-24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10080_USDJPY_US_JOLTs_Job_Openings__2017-01-10_2023-02-01.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10080_USDJPY_US_JOLTs_Job_Openings__2017-01-10_2023-02-01.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10090_USDJPY_US_Michigan_Consumer_Sentiment__2017-01-13_2023-02-24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10090_USDJPY_US_Michigan_Consumer_Sentiment__2017-01-13_2023-02-24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10091_USDJPY_US_Michigan_Inflation_Expectations__2017-01-13_2023-02-24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10091_USDJPY_US_Michigan_Inflation_Expectations__2017-01-13_2023-02-24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10092_USDJPY_US_Michigan_Current_Conditions__2017-01-13_2023-02-24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10092_USDJPY_US_Michigan_Current_Conditions__2017-01-13_2023-02-24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10100_USDJPY_US_Trade_Balance__2017-01-06_2023-02-07.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10100_USDJPY_US_Trade_Balance__2017-01-06_2023-02-07.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10110_USDJPY_US_Factory_Orders_MoM__2017-01-06_2023-02-02.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10110_USDJPY_US_Factory_Orders_MoM__2017-01-06_2023-02-02.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10120_USDJPY_US_Wholesale_Inventories_MoM__2017-01-10_2023-02-08.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10120_USDJPY_US_Wholesale_Inventories_MoM__2017-01-10_2023-02-08.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/30008_USDJPY_US_Cushing_Crude_Oil_Inventories__2017-01-05_2023-02-23.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/30008_USDJPY_US_Cushing_Crude_Oil_Inventories__2017-01-05_2023-02-23.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/30010_USDJPY_US_Natural_Gas_Storage__2017-01-05_2023-02-23.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/30010_USDJPY_US_Natural_Gas_Storage__2017-01-05_2023-02-23.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyze_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyze_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ranker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ranker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/.~lock.ranker_results.xls#" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/reports/ranker_results.xls" beforeDir="false" afterPath="$PROJECT_DIR$/reports/ranker_results.xls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,17 +128,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2013</line>
+          <line>2038</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2002</line>
+          <line>2027</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2012</line>
+          <line>2037</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -220,23 +158,118 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1595</line>
+          <line>1597</line>
           <option name="timeStamp" value="173" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1600</line>
+          <line>1602</line>
           <option name="timeStamp" value="174" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1604</line>
+          <line>1606</line>
           <option name="timeStamp" value="175" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/generate_report.py</url>
           <line>76</line>
           <option name="timeStamp" value="193" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ranker.py</url>
+          <line>77</line>
+          <option name="timeStamp" value="198" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1627</line>
+          <option name="timeStamp" value="199" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1668</line>
+          <option name="timeStamp" value="207" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1713</line>
+          <option name="timeStamp" value="208" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1526</line>
+          <option name="timeStamp" value="210" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ranker.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ranker.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="213" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ranker.py</url>
+          <line>79</line>
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ranker.py</url>
+          <line>88</line>
+          <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1658</line>
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1704</line>
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1663</line>
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1666</line>
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1661</line>
+          <option name="timeStamp" value="224" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>843</line>
+          <option name="timeStamp" value="230" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>830</line>
+          <option name="timeStamp" value="233" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>852</line>
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1654</line>
+          <option name="timeStamp" value="236" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1690</line>
+          <option name="timeStamp" value="238" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -247,5 +280,10 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="news_pip_data" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

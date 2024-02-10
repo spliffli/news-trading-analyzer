@@ -1522,6 +1522,8 @@ def calculate_basic_metrics(values):
     """
     Calculate the median, mean, and range of a list of 'pips' values.
     """
+    if type(values) == float:
+        values = [values]
     values.sort()
     median = values[math.floor((len(values) - 1) / 2)]
     mean = round(sum(values) / len(values), 1)
@@ -1630,55 +1632,78 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
 
     # Iterate through each timestamp in the news pip data
     for timestamp in news_pip_data:
-        # Preprocess deviation and find the trigger for the current timestamp
-        cont_scores.append(news_pip_data[timestamp]['cont_score'])
-        deviation, negative_dev = preprocess_deviation(news_pip_data, timestamp)
-        trigger = find_trigger(deviation, triggers)
+        try:
+            # Preprocess deviation and find the trigger for the current timestamp
+            cont_score = news_pip_data[timestamp]['cont_score']
+            cont_scores.append(cont_score)
+            deviation, negative_dev = preprocess_deviation(news_pip_data, timestamp)
+            if math.isnan(deviation):
+                continue
+            trigger = find_trigger(deviation, triggers)
 
-        # Iterate through each time delta and calculate relative pips
-        for time_delta in news_pip_data[timestamp]['pips']:
-            ask, bid = news_pip_data[timestamp]['pips'][time_delta]
-            pips = calculate_relative_pips(ask, bid, negative_dev)
 
-            # If a trigger is found, store the calculated pips in the corresponding trigger's dictionary
-            if trigger:
-                news_pip_trigger_metrics[trigger[0]].setdefault(time_delta, []).append(pips)
+            # Iterate through each time delta and calculate relative pips
+            for time_delta in news_pip_data[timestamp]['pips']:
+                ask, bid = news_pip_data[timestamp]['pips'][time_delta]
+                pips = calculate_relative_pips(ask, bid, negative_dev)
+
+                # If a trigger is found, store the calculated pips in the corresponding trigger's dictionary
+                if trigger:
+                    news_pip_trigger_metrics[trigger[0]].setdefault('cont_score', cont_score)
+                    news_pip_trigger_metrics[trigger[0]].setdefault('time_deltas', {}).setdefault(time_delta, []).append(pips)
+        except:
+            print(ValueError("Invalid data, skipping to next timestamp..."))
+            continue
 
     # Iterate through each trigger in the news_pip_trigger_metrics dictionary
     for trigger in news_pip_trigger_metrics:
-        # Iterate through each time delta and its associated pips values
-        for time_delta, values in news_pip_trigger_metrics[trigger].items():
-            # Calculate basic metrics (median, mean, range) for the pips values
-            median, mean, range_of_values = calculate_basic_metrics(values)
+        try:
+            # Iterate through each time delta and its associated pips values
+            for time_delta, values in news_pip_trigger_metrics[trigger]['time_deltas'].items():
+                # Calculate basic metrics (median, mean, range) for the pips values
+                median, mean, range_of_values = calculate_basic_metrics(values)
 
-            # Get correlation scores for the pips values with respect to the expected symbol direction
-            correlation_1, correlation_2, correlation_3 = get_correlation_scores(values, symbol_higher_dev)
+                # Get correlation scores for the pips values with respect to the expected symbol direction
+                correlation_1, correlation_2, correlation_3 = get_correlation_scores(values, symbol_higher_dev)
 
-            # Store the calculated metrics in the news_pip_trigger_metrics dictionary
-            news_pip_trigger_metrics[trigger][time_delta] = {
-                "median": median,
-                "mean": mean,
-                "range": range_of_values,
-                "correlation_1": correlation_1,
-                "correlation_2": correlation_2,
-                "correlation_3": correlation_3,
-                "values": values
-            }
+                probability = correlation_3
 
-            # Compute EMA values for various periods and their corresponding correlation scores
-            c3_ema_values_list = [
-                (ema(values, 5), 'ema5'),
-                (ema(values, 10), 'ema10'),
-                (ema(values, 15), 'ema15')
-            ]
+                for timestamp in news_pip_data:
+                    cont_score = news_pip_data[timestamp]['cont_score']
+                    if cont_score < 0:
+                        multiplier = ((100 + (cont_score * 5)) / 100)
+                        probability = correlation_3 * multiplier
 
-            # Iterate through the calculated EMA values and their corresponding suffixes
-            for c3_ema_values, ema_suffix in c3_ema_values_list:
-                # Get correlation scores for the EMA values with respect to the expected symbol direction
-                c3_ema_scores = get_c3_ema_scores(c3_ema_values, ema_suffix, symbol_higher_dev)
+                # Store the calculated metrics in the news_pip_trigger_metrics dictionary
+                news_pip_trigger_metrics[trigger][time_delta] = {
+                    "median": median,
+                    "mean": mean,
+                    "range": range_of_values,
+                    "correlation_1": correlation_1,
+                    "correlation_2": correlation_2,
+                    "correlation_3": correlation_3,
+                    "values": values,
+                    "cont_score": cont_score,
+                    "probability": probability
+                }
 
-                # Update the news_pip_trigger_metrics dictionary with the EMA correlation scores
-                news_pip_trigger_metrics[trigger][time_delta].update(c3_ema_scores)
+                # Compute EMA values for various periods and their corresponding correlation scores
+                c3_ema_values_list = [
+                    (ema(values, 5), 'ema5'),
+                    (ema(values, 10), 'ema10'),
+                    (ema(values, 15), 'ema15')
+                ]
+
+                # Iterate through the calculated EMA values and their corresponding suffixes
+                for c3_ema_values, ema_suffix in c3_ema_values_list:
+                    # Get correlation scores for the EMA values with respect to the expected symbol direction
+                    c3_ema_scores = get_c3_ema_scores(c3_ema_values, ema_suffix, symbol_higher_dev)
+
+                    # Update the news_pip_trigger_metrics dictionary with the EMA correlation scores
+                    news_pip_trigger_metrics[trigger][time_delta].update(c3_ema_scores)
+        except:
+            print(ValueError("Invalid data, skipping to next timestamp..."))
+            continue
 
     all_cont_score_averages = calc_cont_score_averages(cont_scores)
 
@@ -2231,7 +2256,7 @@ def news_pip_trigger_data_to_df(trigger_data, trigger_name):
                  'data_points', 'lowest_c3_type', 'lowest_c3_val'])
     data_points = len(trigger_data['1s']['values'])
 
-    for time_delta in trigger_data:
+    for time_delta in trigger_data['time_deltas']:
         range = trigger_data[time_delta]['range']
         mean = trigger_data[time_delta]['mean']
         median = trigger_data[time_delta]['median']
