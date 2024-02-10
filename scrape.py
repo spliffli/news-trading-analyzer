@@ -64,7 +64,7 @@ def scrape_indicator(event_id):
 
 
 def scrape_all_indicator_info():
-    df = pd.read_excel("haawks-indicator-shortlist.xlsx")
+    df = pd.read_excel("haawks-indicator-shortlist-1.xlsx")
     # print(df)
 
     for index, row in df.iterrows():
@@ -87,11 +87,11 @@ def scrape_all_indicator_info():
         df.at[index, 'inv_description'] = info['description']
 
     print("Finished scraping. Saving to excel file")
-    df.to_excel("haawks-indicator-shortlist.xlsx")
+    df.to_excel("haawks-indicator-shortlist-1.xlsx")
 
 
 def scrape_suffixes():
-    indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
+    indicators = pd.read_excel("haawks-indicator-shortlist-1.xlsx")
 
     for index, row in indicators.iterrows():
         haawks_id_str = haawks_id_to_str(row['Id'])
@@ -114,11 +114,11 @@ def scrape_suffixes():
                 break
 
     print(indicators)
-    indicators.to_excel("haawks-indicator-shortlist.xlsx", index=False)
+    indicators.to_excel("haawks-indicator-shortlist-1.xlsx", index=False)
 
 
 def scrape_bullish_or_bearish():
-    indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
+    indicators = pd.read_excel("haawks-indicator-shortlist-1.xlsx")
 
     for index, row in indicators.iterrows():
         description = row['inv_description']
@@ -130,7 +130,7 @@ def scrape_bullish_or_bearish():
             indicators.loc[index, "higher_dev"] = "unknown"
 
     print(indicators)
-    indicators.to_excel("haawks-indicator-shortlist.xlsx", index=False)
+    indicators.to_excel("haawks-indicator-shortlist-1.xlsx", index=False)
 
 
 def get_datetime(release_date: str, release_time: str):
@@ -207,7 +207,7 @@ def scrape(event_id: str, start_date: datetime.date):
     return df
 
 def scrape_all_indicator_history(start_date: datetime.date):
-    df = pd.read_excel("haawks-indicator-shortlist.xlsx")
+    df = pd.read_excel("haawks-indicator-shortlist-1.xlsx")
     # df = df.iloc[11:]  # shortens the df for testing. remove this line when the script works
     df = df.reset_index()
     df_row_count = df.shape[0]

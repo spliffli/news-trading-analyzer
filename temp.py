@@ -2,7 +2,7 @@ import pandas as pd
 from utils import haawks_id_to_str, get_indicator_info
 from scrape import update_indicator_history
 """
-indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
+indicators = pd.read_excel("haawks-indicator-shortlist-1.xlsx")
 indicators = indicators.iloc[16:].reset_index()
 row_count = indicators.shape[0]
 

@@ -795,7 +795,7 @@ def convert_news_pip_data_timestamps_to_strs(news_pip_data):
 
     return news_pip_data
 
-def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
+def load_news_pip_data(haawks_id_str, news_data, symbol):
     """
     Load news pip data for a given haawks_id, news data, and trading symbol.
     If local data exists, it uses that; otherwise, it mines data from raw tick data.
@@ -1570,6 +1570,41 @@ def get_c3_ema_scores(ema_values, ema_suffix, symbol_higher_dev):
 # TODO: Write get_tsl_hits here
 
 
+def calc_cont_score_averages(cont_scores):
+    total = 0
+    count = 0
+    non_none_vals = []
+
+    for score in cont_scores:
+        if score is not None:
+            total += score
+            count += 1
+            non_none_vals.append(score)
+
+    mean = round(total / count, 1)
+    median = non_none_vals[int(math.floor((len(non_none_vals) / 2)))]
+    range = (min(non_none_vals), max(non_none_vals))
+
+    return {
+        "mean" : mean,
+        "median" : median,
+        "range" : range
+    }
+
+
+def calc_mean_mean_cont_score(all_cont_score_averages):
+    pass
+
+
+
+def calc_mean_median_cont_score(all_cont_score_averages):
+    pass
+
+
+def calc_total_cont_score_range(all_cont_score_averages):
+    pass
+
+
 def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_dev):
     """
     Calculate news pip metrics for each trigger.
@@ -1581,13 +1616,14 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
     - symbol_higher_dev (str): Expected direction of the trading symbol.
 
     Returns:
-    - news_pip_metrics (dict): Dictionary containing calculated news pip metrics for each trigger and time delta.
+    - news_pip_trigger_metrics (dict): Dictionary containing calculated news pip metrics for each trigger and time delta.
     """
     # Print a message indicating the start of news pip metrics calculation
     print("Calculating news pip metrics...")
 
     # Initialize an empty dictionary to store news pip metrics for each trigger
-    news_pip_metrics = {trigger: {} for trigger in triggers}
+    cont_scores = []
+    news_pip_trigger_metrics = {trigger: {} for trigger in triggers}
 
     # Get information about the indicator using its Haawks ID
     indicator_info = get_indicator_info(haawks_id_str)
@@ -1595,6 +1631,7 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
     # Iterate through each timestamp in the news pip data
     for timestamp in news_pip_data:
         # Preprocess deviation and find the trigger for the current timestamp
+        cont_scores.append(news_pip_data[timestamp]['cont_score'])
         deviation, negative_dev = preprocess_deviation(news_pip_data, timestamp)
         trigger = find_trigger(deviation, triggers)
 
@@ -1605,22 +1642,20 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
 
             # If a trigger is found, store the calculated pips in the corresponding trigger's dictionary
             if trigger:
-                news_pip_metrics[trigger[0]].setdefault(time_delta, []).append(pips)
+                news_pip_trigger_metrics[trigger[0]].setdefault(time_delta, []).append(pips)
 
-    # Iterate through each trigger in the news_pip_metrics dictionary
-    for trigger in news_pip_metrics:
+    # Iterate through each trigger in the news_pip_trigger_metrics dictionary
+    for trigger in news_pip_trigger_metrics:
         # Iterate through each time delta and its associated pips values
-        for time_delta, values in news_pip_metrics[trigger].items():
+        for time_delta, values in news_pip_trigger_metrics[trigger].items():
             # Calculate basic metrics (median, mean, range) for the pips values
             median, mean, range_of_values = calculate_basic_metrics(values)
 
             # Get correlation scores for the pips values with respect to the expected symbol direction
             correlation_1, correlation_2, correlation_3 = get_correlation_scores(values, symbol_higher_dev)
 
-            #first_stoploss_hit_timedelta = get_first_stoploss_hit_timedelta()
-
-            # Store the calculated metrics in the news_pip_metrics dictionary
-            news_pip_metrics[trigger][time_delta] = {
+            # Store the calculated metrics in the news_pip_trigger_metrics dictionary
+            news_pip_trigger_metrics[trigger][time_delta] = {
                 "median": median,
                 "mean": mean,
                 "range": range_of_values,
@@ -1642,14 +1677,20 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                 # Get correlation scores for the EMA values with respect to the expected symbol direction
                 c3_ema_scores = get_c3_ema_scores(c3_ema_values, ema_suffix, symbol_higher_dev)
 
+                # Update the news_pip_trigger_metrics dictionary with the EMA correlation scores
+                news_pip_trigger_metrics[trigger][time_delta].update(c3_ema_scores)
 
-                # Update the news_pip_metrics dictionary with the EMA correlation scores
-                news_pip_metrics[trigger][time_delta].update(c3_ema_scores)
+    all_cont_score_averages = calc_cont_score_averages(cont_scores)
+
+    lowest_avg_cont_score = min([all_cont_score_averages['mean'], all_cont_score_averages['median']])
 
 
-
-    # Return the final news_pip_metrics dictionary
-    return news_pip_metrics
+    # Return the final news_pip_trigger_metrics dictionary
+    return {
+        "lowest_avg_cont_score": lowest_avg_cont_score,
+        "avg_cont_scores": all_cont_score_averages,
+        "trigger_metrics": news_pip_trigger_metrics
+    }
 
 
 # Helper function to preprocess deviation values
@@ -1970,7 +2011,7 @@ def calc_news_pip_metrics_for_multiple_indicators(haawks_id_strs_and_symbols: li
 
         news_data['expected_direction'] = expected_directions
 
-        news_pip_data = load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol)
+        news_pip_data = load_news_pip_data(haawks_id_str, news_data, symbol)
         news_pip_metrics = calc_news_pip_metrics(haawks_id_str, symbol, news_pip_data, triggers, higher_dev)
         result.setdefault(f"{haawks_id_str}_{symbol} {title}", news_pip_metrics)
 
@@ -2263,9 +2304,9 @@ def news_pip_metrics_to_dfs(news_pip_metrics):
         Name: 0, dtype: object
     """
     dfs = {}
-    for trigger in news_pip_metrics:
-        if len(news_pip_metrics[trigger]) > 0:
-            dfs[trigger] = news_pip_trigger_data_to_df(news_pip_metrics[trigger], trigger)
+    for trigger in news_pip_metrics['trigger_metrics']:
+        if len(news_pip_metrics['trigger_metrics'][trigger]) > 0:
+            dfs[trigger] = news_pip_trigger_data_to_df(news_pip_metrics['trigger_metrics'][trigger], trigger)
             print(str(trigger) + ": ")
             print(str(dfs[trigger]))
         else:

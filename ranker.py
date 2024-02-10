@@ -1,6 +1,6 @@
 # Import necessary libraries and modules
 from import_ticks import import_ticks_for_indicator
-from analyze_data import read_triggers, load_news_pip_movements_at_timedeltas, calc_news_pip_metrics, \
+from analyze_data import read_triggers, load_news_pip_data, calc_news_pip_metrics, \
     news_pip_metrics_to_dfs, read_news_data
 from utils import get_indicator_info, get_higher_dev_expected_direction, haawks_id_to_str
 # from scrape import update_indicator_history
@@ -16,7 +16,7 @@ results_length = results_file.shape[0]
 def read_indicators():
     # Read the list of indicators to be analyzed
     indicators = pd.read_excel("haawks-indicator-shortlist.xlsx")
-    # indicators = indicators.loc[results_length:].reset_index()
+    indicators = indicators.loc[results_length:].reset_index()
     
     return indicators
 
@@ -27,7 +27,7 @@ def get_best_trigger_c3(news_pip_metrics_dfs):
     total_c3_scores = []
     for trigger in news_pip_metrics_dfs:
         triggers.append(trigger)
-        total_c3_scores.append(news_pip_metrics_dfs[trigger].iloc[-1]['lowest_ema_val'])
+        total_c3_scores.append(news_pip_metrics_dfs[trigger].iloc[-1]['lowest_c3_val'])
 
     best_trigger = triggers[total_c3_scores.index(max(total_c3_scores))]
 
@@ -71,18 +71,20 @@ def run():
         triggers = read_triggers(haawks_id_str)
 
         # Load news pip data at timedeltas and calculate news pip metrics
-        news_pip_movements_at_timedeltas = load_news_pip_movements_at_timedeltas(haawks_id_str, news_data,
-                                                                                 trading_symbol)
-        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_movements_at_timedeltas, triggers,
+        news_pip_data = load_news_pip_data(haawks_id_str, news_data,
+                                           trading_symbol)
+        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers,
                                                  symbol_higher_dev)
-        news_pip_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
+        news_pip_trigger_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
+
+
 
         # Generate a PDF report for the current indicator
-        render_pdf_report(haawks_id_str, trading_symbol, news_data, news_pip_metrics_dfs, triggers, symbol_higher_dev,
+        render_pdf_report(haawks_id_str, trading_symbol, news_data, news_pip_trigger_metrics_dfs, triggers, symbol_higher_dev,
                           indicator_info)
 
         # Get the best trigger based on the calculated metrics
-        best_trigger = get_best_trigger_c3(news_pip_metrics_dfs)
+        best_trigger = get_best_trigger_c3(news_pip_trigger_metrics_dfs)
 
         # Check if the results file already exists
         results_file_exists = False
@@ -96,7 +98,7 @@ def run():
         if not results_file_exists:
             results = pd.DataFrame(columns=['haawks_id_str', 'haawks_title', 'inv_title', 'symbol', 'higher_dev',
                                             'best_trigger', 'range (pips)', 'mean (pips)', 'median (pips)', 'c1', 'c2',
-                                            'lowest_ema_val'])
+                                            'lowest_ema_val', 'mean_cont_score', 'median_cont_score', 'lowest_avg_cont_score'])
 
         # Append the results for the current indicator to the DataFrame
         results = results.append({
@@ -106,12 +108,15 @@ def run():
             'symbol': trading_symbol,
             'higher_dev': symbol_higher_dev,
             'best_trigger': f"{best_trigger}: +-{triggers[best_trigger]}{indicator_info['suffix']}",
-            'range (pips)': news_pip_metrics_dfs[best_trigger].iloc[-1]['range'],
-            'mean (pips)': news_pip_metrics_dfs[best_trigger].iloc[-1]['mean'],
-            'median (pips)': news_pip_metrics_dfs[best_trigger].iloc[-1]['median'],
-            'c1': news_pip_metrics_dfs[best_trigger].iloc[-1]['c1'],
-            'c2': news_pip_metrics_dfs[best_trigger].iloc[-1]['c2'],
-            'lowest_ema_val': news_pip_metrics_dfs[best_trigger].iloc[-1]['lowest_ema_val']
+            'range (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['range'],
+            'mean (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['mean'],
+            'median (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['median'],
+            'c1': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['c1'],
+            'c2': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['c2'],
+            'lowest_c3_val': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['lowest_c3_val'],
+            'mean_cont_score': news_pip_metrics['avg_cont_scores']['mean'],
+            'median_cont_score': news_pip_metrics['avg_cont_scores']['median'],
+            'lowest_avg_cont_score': news_pip_metrics['lowest_avg_cont_score']
         }, ignore_index=True)
 
         # Write the updated results DataFrame to the results file

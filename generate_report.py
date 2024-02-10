@@ -1,7 +1,7 @@
 import datetime
 import markdown
 
-from analyze_data import read_news_data, read_triggers, load_news_pip_movements_at_timedeltas, calc_news_pip_metrics, \
+from analyze_data import read_news_data, read_triggers, load_news_pip_data, calc_news_pip_metrics, \
     news_pip_metrics_to_dfs
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
