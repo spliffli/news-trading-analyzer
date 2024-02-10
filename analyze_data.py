@@ -477,7 +477,6 @@ def simulate_trade(tick_data, release_datetime, release_price, decimal_places, s
 
             # Calculate trailing stoploss value
             trailing_stoploss = current_trade_high - (stoploss * 0.0001) if expected_direction == 'up' else current_trade_low + (stoploss * 0.0001)
-            print(trailing_stoploss)
 
             # Check if price hits the trailing stoploss
             if (expected_direction == 'up' and current_price <= trailing_stoploss) or \
@@ -775,7 +774,7 @@ def mine_and_save_pip_data(news_data, symbol, timestamp, news_tick_data):
     try:
         # Extract pip data from raw tick data.
         data_from_ticks = mine_data_from_ticks(news_data, symbol, timestamp)
-        # news_tick_data.setdefault(timestamp_str, {}).setdefault('cont_score', data_from_ticks['cont_score'])
+        news_tick_data.setdefault(timestamp_str, {}).setdefault('cont_score', data_from_ticks['cont_score'])
         # news_tick_data.setdefault(timestamp_str, {}).setdefault('first_sl_hit', data_from_ticks['first_sl_hit'])
         news_tick_data.setdefault(timestamp_str, {}).setdefault('pips', data_from_ticks['pip_movements'])
 
