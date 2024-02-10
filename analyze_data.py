@@ -429,76 +429,71 @@ def read_news_pip_data(haawks_id, symbol):
     }
 
 
-from datetime import timedelta
-
-from datetime import timedelta
-
-
-from datetime import timedelta
-
-def get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
+def simulate_trade(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
     """
-    Find the timestamp of the first instance when the stoploss is hit and calculate the pip movement relative
-    to the expected direction and the time delta.
+    Simulate a trade entered at the release price with a trailing stoploss and calculate the profit/loss in pips.
 
     Args:
         tick_data (DataFrame): Raw forex tick data with columns: 'time', 'ask', and 'bid'.
         release_datetime (datetime): Timestamp of the news release.
         release_price (tuple): Tuple containing the ask and bid prices at the time of the news release.
         decimal_places (int): Number of decimal places in the bid & ask prices.
-        stoploss (float): Virtual stoploss value in pips.
+        stoploss (float): Virtual trailing stoploss value in pips.
         expected_direction (str): Expected direction of the price movement ('up' or 'down').
 
     Returns:
-        tuple: A tuple containing the timestamp of the first retracement, the pip movement relative to
-               the expected direction, and the time delta between the release time and the first retracement.
+        dict: Dictionary containing trade details including open price, close price, and pips.
 
     Raises:
-        ValueError: If the expected_direction is neither 'up' nor 'down'.
+        ValueError: If the provided decimal places is not 5, 4, 3, or 2.
     """
-    # Initialize variables to track the first retracement instance and time delta
-    first_sl_hit_timestamp = None
-    pip_movement_relative_to_expected_direction = None
-    time_delta_at_first_sl_hit = None
-    if type(release_price) == tuple:
-        release_price_ask, release_price_bid = release_price
+    # Unpack the release price tuple
+    if type(release_price) != tuple:
+        raise ValueError("release_price must be a tuple")
+    release_price_ask, release_price_bid = release_price
+
+
+    # Initialize variables
+    trade_entered = False
+    current_trade_high = release_price_bid  # Initialize current_trade_high at the bid price
+    current_trade_low = release_price_ask   # Initialize current_trade_low at the ask price
 
     # Iterate through tick data
     for index, row in tick_data.iterrows():
         timestamp = row['time']
+        current_price = row['bid'] if expected_direction == 'up' else row['ask']  # Use ask price for buy trade and bid price for sell trade
 
-        # Determine which price (bid or ask) to use based on expected_direction
-        if expected_direction == 'up':
-            current_price = row['bid']
-            if type(release_price) == tuple:
-                release_price = release_price_bid
-        elif expected_direction == 'down':
-            current_price = row['ask']
-            if type(release_price) == tuple:
-                release_price = release_price_ask
-        else:
-            raise ValueError("Invalid expected_direction. Use 'up' or 'down'.")
+        # Check if trade has not been entered and it's time to enter the trade
+        if not trade_entered and str_to_datetime(timestamp) >= release_datetime:
+            trade_entered = True
+            open_price = release_price_ask if expected_direction == 'up' else release_price_bid  # Record entry price
 
-        # Calculate the price movement from the release price to the current price
-        price_movement = current_price - release_price
+        # Once trade is entered, update trade high and low
+        if trade_entered:
+            if current_price > current_trade_high:
+                current_trade_high = current_price
+            elif current_price < current_trade_low:
+                current_trade_low = current_price
 
-        # Calculate the pip movement relative to the expected direction using the helper function
-        pip_movement_relative_to_expected_direction = price_movement_to_pips(price_movement, decimal_places)
+            # Calculate trailing stoploss value
+            trailing_stoploss = current_trade_high - (stoploss * 0.0001) if expected_direction == 'up' else current_trade_low + (stoploss * 0.0001)
+            print(trailing_stoploss)
 
-        # Check if the stoploss is hit in the contrary direction
-        if (expected_direction == 'up' and pip_movement_relative_to_expected_direction >= stoploss) or \
-                (expected_direction == 'down' and pip_movement_relative_to_expected_direction <= -stoploss):
-            # Record the timestamp and time delta of the first retracement instance
-            first_sl_hit_timestamp = timestamp
-            time_delta_at_first_sl_hit = str_to_datetime(timestamp) - release_datetime
-            break  # Exit loop once the first retracement is found
+            # Check if price hits the trailing stoploss
+            if (expected_direction == 'up' and current_price <= trailing_stoploss) or \
+               (expected_direction == 'down' and current_price >= trailing_stoploss):
+                close_price = current_price # release_price_bid if expected_direction == 'up' else release_price_ask  # Record close price
+                pips = price_movement_to_pips(close_price - open_price, decimal_places)  # Calculate profit/loss in pips
+                return {"open_price": open_price, "close_price": close_price, "pips": pips}
 
-    # Return the timestamp, pip movement relative to the expected direction, and time delta
-    return (
-        first_sl_hit_timestamp,
-        pip_movement_relative_to_expected_direction,
-        time_delta_at_first_sl_hit
-    )
+    # If the trade hasn't closed due to stoploss, assume it's still open
+    return {"open_price": open_price, "close_price": None, "pips": None}
+
+
+
+
+
+
 
 
 
@@ -555,7 +550,7 @@ def calc_stoploss_hits(tick_data, release_datetime, relative_price, decimal_plac
         # Check if the stoploss is reset and the timestamp is within 15 mins after release_datetime
         if reset_stoploss and timestamp <= release_datetime + timedelta(minutes=15):
             # Continue calculating retracements with the reset stoploss
-            retracement_timestamp, pip_movement, time_delta = get_first_stoploss_hit(tick_data[index:],
+            retracement_timestamp, pip_movement, time_delta = simulate_trade(tick_data[index:],
                                                                                      release_datetime, (
                                                                                      release_price_ask,
                                                                                      release_price_bid), decimal_places,
@@ -600,13 +595,16 @@ def calc_continuation_score(tick_data, release_datetime, release_price, decimal_
     initial_peak_range_timestamp = release_datetime + timedelta(seconds=5)
 
     # Find the maximum price between the release and 5 seconds later
-    virtual_entry_price = max(row['ask'] if expected_direction == 'up' else row['bid'] for index, row in tick_data.iterrows() if str_to_datetime(row['time']) <= initial_peak_range_timestamp)
+    for index, row in tick_data.iterrows():
+        if str_to_datetime(row['time']) <= initial_peak_range_timestamp:
+            virtual_entry_price = (row['ask'], row['bid'])
+            break
 
     # Get the continuation timestamp, price, and time delta
-    initial_peak_range_timestamp, continuation_pip_movement, time_delta_after_virtual_entry = get_first_stoploss_hit(tick_data, initial_peak_range_timestamp, virtual_entry_price, decimal_places, stoploss, expected_direction)
+    simulated_trade_results = simulate_trade(tick_data, initial_peak_range_timestamp, virtual_entry_price, decimal_places, stoploss, expected_direction)
 
     # return initial_peak_range_timestamp, continuation_pip_movement, time_delta_after_virtual_entry
-    return continuation_pip_movement
+    return simulated_trade_results['pips']
 
 
 def fetch_stoploss(symbol):
@@ -683,16 +681,16 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
 
     stoploss = fetch_stoploss(symbol)
 
-    first_stoploss_hit = get_first_stoploss_hit(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
-    stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+    simulated_trade_results = simulate_trade(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+    # stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
     continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
 
     relative_price_movements = get_relative_price_movements(prices_at_timedeltas, release_price, decimal_places)
     pip_movements = get_pip_movements(relative_price_movements, decimal_places)
 
     return {
-        "first_sl_hit" : first_stoploss_hit,
-        "sl_hits": stoploss_hits,
+        "first_sl_hit" : simulated_trade_results,
+        # "sl_hits": stoploss_hits,
         "cont_score" : continuation_score,
         "pip_movements": pip_movements
     }
@@ -777,8 +775,8 @@ def mine_and_save_pip_data(news_data, symbol, timestamp, news_tick_data):
     try:
         # Extract pip data from raw tick data.
         data_from_ticks = mine_data_from_ticks(news_data, symbol, timestamp)
-        news_tick_data.setdefault(timestamp_str, {}).setdefault('cont_score', data_from_ticks['cont_score'])
-        news_tick_data.setdefault(timestamp_str, {}).setdefault('first_sl_hit', data_from_ticks['first_sl_hit'])
+        # news_tick_data.setdefault(timestamp_str, {}).setdefault('cont_score', data_from_ticks['cont_score'])
+        # news_tick_data.setdefault(timestamp_str, {}).setdefault('first_sl_hit', data_from_ticks['first_sl_hit'])
         news_tick_data.setdefault(timestamp_str, {}).setdefault('pips', data_from_ticks['pip_movements'])
 
         # Retrieve and set the 'deviation' value for the current timestamp.
@@ -793,9 +791,10 @@ def mine_and_save_pip_data(news_data, symbol, timestamp, news_tick_data):
 
 def convert_news_pip_data_timestamps_to_strs(news_pip_data):
 
-    breakpoint()
-    pass
+    for release in news_pip_data:
+        news_pip_data[release]["first_sl_hit"][2] = str(news_pip_data[release]["first_sl_hit"][2])
 
+    return news_pip_data
 
 def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
     """
@@ -845,7 +844,7 @@ def load_news_pip_movements_at_timedeltas(haawks_id_str, news_data, symbol):
     # Sort the news pip data by timestamp.
     news_pip_data = sort_news_pip_data_by_timestamp(news_pip_data)
 
-    news_pip_data = convert_news_pip_data_timestamps_to_strs(news_pip_data)
+    # news_pip_data = convert_news_pip_data_timestamps_to_strs(news_pip_data)
 
     # Once all data is extracted, save it locally for future use.
     print("\nsaving mined data to file")
