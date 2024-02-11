@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="854891ea-ba11-430b-b6d8-7214a4542c30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/analysis_data/10270_123_Canada_Gross_Domestic_Product_(GDP)_MoM/pip_data/USDCAD__2022-10-28_2022-10-28.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/ranker_results (copy).xls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis_data/10272_1758_Canada_Gross_Domestic_Product_(GDP)_YoY/pip_data/USDCAD__2017-10-31_2023-01-31.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyze_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyze_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ranker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ranker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10270_USDCAD_Canada_Gross_Domestic_Product_(GDP)_MoM__2017-01-31_2023-12-22.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10270_USDCAD_Canada_Gross_Domestic_Product_(GDP)_MoM__2017-01-31_2023-12-22.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/10272_USDCAD_Canada_Gross_Domestic_Product_(GDP)_YoY__2017-10-31_2023-01-31.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/10272_USDCAD_Canada_Gross_Domestic_Product_(GDP)_YoY__2017-10-31_2023-01-31.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/ranker_results.xls" beforeDir="false" afterPath="$PROJECT_DIR$/reports/ranker_results.xls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,27 +120,27 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2045</line>
+          <line>2076</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2034</line>
+          <line>2065</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2044</line>
+          <line>2075</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>558</line>
+          <line>570</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>556</line>
+          <line>568</line>
           <option name="timeStamp" value="93" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -155,17 +150,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1597</line>
+          <line>1628</line>
           <option name="timeStamp" value="173" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1602</line>
+          <line>1633</line>
           <option name="timeStamp" value="174" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1606</line>
+          <line>1637</line>
           <option name="timeStamp" value="175" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -180,12 +175,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1627</line>
+          <line>1658</line>
           <option name="timeStamp" value="199" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1720</line>
+          <line>1751</line>
           <option name="timeStamp" value="208" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -210,78 +205,123 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>830</line>
+          <line>861</line>
           <option name="timeStamp" value="233" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>852</line>
+          <line>883</line>
           <option name="timeStamp" value="234" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1656</line>
+          <line>1687</line>
           <option name="timeStamp" value="236" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>1714</line>
+          <line>1745</line>
           <option name="timeStamp" value="239" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2338</line>
+          <line>2386</line>
           <option name="timeStamp" value="240" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2346</line>
+          <line>2394</line>
           <option name="timeStamp" value="241" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2263</line>
+          <line>2308</line>
           <option name="timeStamp" value="243" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2209</line>
+          <line>2252</line>
           <option name="timeStamp" value="259" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2287</line>
+          <line>2335</line>
           <option name="timeStamp" value="261" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2285</line>
+          <line>2333</line>
           <option name="timeStamp" value="262" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2176</line>
+          <line>2219</line>
           <option name="timeStamp" value="263" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2288</line>
+          <line>2336</line>
           <option name="timeStamp" value="264" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2218</line>
+          <line>2261</line>
           <option name="timeStamp" value="265" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2212</line>
+          <line>2255</line>
           <option name="timeStamp" value="266" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyze_data.py</url>
-          <line>2340</line>
+          <line>2388</line>
           <option name="timeStamp" value="267" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ranker.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="269" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>874</line>
+          <option name="timeStamp" value="276" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>507</line>
+          <option name="timeStamp" value="279" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>879</line>
+          <option name="timeStamp" value="281" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1747</line>
+          <option name="timeStamp" value="289" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ranker.py</url>
+          <line>86</line>
+          <option name="timeStamp" value="290" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>1705</line>
+          <option name="timeStamp" value="297" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>2337</line>
+          <option name="timeStamp" value="298" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyze_data.py</url>
+          <line>618</line>
+          <option name="timeStamp" value="304" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -296,6 +336,11 @@
       <configuration name="PythonConfigurationType">
         <watch expression="news_pip_data" />
         <watch expression="news_pip_trigger_metrics" />
+        <watch expression="news_pip_metrics" />
+        <watch expression="data_from_ticks['win_bool']" />
+        <watch expression="data_from_ticks['win_1_pip_bool']" />
+        <watch expression="data_from_ticks['win_5_pips_bool']" />
+        <watch expression="data_from_ticks['cont_score']" />
       </configuration>
     </watches-manager>
   </component>

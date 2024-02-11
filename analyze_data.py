@@ -429,6 +429,15 @@ def read_news_pip_data(haawks_id, symbol):
     }
 
 
+def get_pips_relative_to_expected_direction(pips, expected_direction):
+    if expected_direction == "up":
+        return pips
+    if expected_direction == "down":
+        return pips * -1
+    else:
+        raise ValueError("expected direction must be 'up' or 'down'")
+
+
 def simulate_trade(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
     """
     Simulate a trade entered at the release price with a trailing stoploss and calculate the profit/loss in pips.
@@ -452,16 +461,17 @@ def simulate_trade(tick_data, release_datetime, release_price, decimal_places, s
         raise ValueError("release_price must be a tuple")
     release_price_ask, release_price_bid = release_price
 
-
     # Initialize variables
     trade_entered = False
     current_trade_high = release_price_bid  # Initialize current_trade_high at the bid price
-    current_trade_low = release_price_ask   # Initialize current_trade_low at the ask price
+    current_trade_low = release_price_ask  # Initialize current_trade_low at the ask price
+    open_price = None
 
     # Iterate through tick data
     for index, row in tick_data.iterrows():
         timestamp = row['time']
-        current_price = row['bid'] if expected_direction == 'up' else row['ask']  # Use ask price for buy trade and bid price for sell trade
+        current_price = row['bid'] if expected_direction == 'up' else row[
+            'ask']  # Use ask price for buy trade and bid price for sell trade
 
         # Check if trade has not been entered and it's time to enter the trade
         if not trade_entered and str_to_datetime(timestamp) >= release_datetime:
@@ -476,24 +486,26 @@ def simulate_trade(tick_data, release_datetime, release_price, decimal_places, s
                 current_trade_low = current_price
 
             # Calculate trailing stoploss value
-            trailing_stoploss = current_trade_high - (stoploss * 0.0001) if expected_direction == 'up' else current_trade_low + (stoploss * 0.0001)
+            trailing_stoploss = current_trade_high - (
+                        stoploss * 0.0001) if expected_direction == 'up' else current_trade_low + (stoploss * 0.0001)
 
             # Check if price hits the trailing stoploss
             if (expected_direction == 'up' and current_price <= trailing_stoploss) or \
-               (expected_direction == 'down' and current_price >= trailing_stoploss):
-                close_price = current_price # release_price_bid if expected_direction == 'up' else release_price_ask  # Record close price
-                pips = price_movement_to_pips(close_price - open_price, decimal_places)  # Calculate profit/loss in pips
-                return {"open_price": open_price, "close_price": close_price, "pips": pips}
+                    (expected_direction == 'down' and current_price >= trailing_stoploss):
+                close_price = current_price  # release_price_bid if expected_direction == 'up' else release_price_ask  # Record close price
+                pips = price_movement_to_pips(close_price - open_price, decimal_places) # Calculate profit/loss in pips
+                profit_pips = get_pips_relative_to_expected_direction(pips, expected_direction)
+                return {"open_price": open_price, "close_price": close_price, "pips": pips, "profit_pips": profit_pips}
 
-    # If the trade hasn't closed due to stoploss, assume it's still open
-    return {"open_price": open_price, "close_price": None, "pips": None}
+    # If the trade hasn't closed due to stoploss, close the trade at the last price in the tick data
+    if open_price is not None:
+        last_price = tick_data.iloc[-1]['bid'] if expected_direction == 'up' else tick_data.iloc[-1]['ask']
+        pips = price_movement_to_pips(last_price - open_price, decimal_places)
+        profit_pips = get_pips_relative_to_expected_direction(pips, expected_direction)
+        return {"open_price": open_price, "close_price": last_price, "pips": pips, "profit_pips": profit_pips}
 
-
-
-
-
-
-
+    # If trade hasn't been entered, return None
+    return {"open_price": None, "close_price": None, "pips": None, "profit_pips": None}
 
 
 def calc_stoploss_hits(tick_data, release_datetime, relative_price, decimal_places, stoploss, expected_direction):
@@ -603,8 +615,8 @@ def calc_continuation_score(tick_data, release_datetime, release_price, decimal_
     simulated_trade_results = simulate_trade(tick_data, initial_peak_range_timestamp, virtual_entry_price, decimal_places, stoploss, expected_direction)
 
     # return initial_peak_range_timestamp, continuation_pip_movement, time_delta_after_virtual_entry
-    if simulated_trade_results['pips'] is not None:
-        return simulated_trade_results['pips']
+    if simulated_trade_results['profit_pips'] is not None:
+        return simulated_trade_results['profit_pips']
     else:
         breakpoint()
 
@@ -705,7 +717,7 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
     pip_movements = get_pip_movements(relative_price_movements, decimal_places)
 
     return {
-        "first_sl_hit" : simulated_trade_results,
+        "simulated_trade" : simulated_trade_results,
         "cont_score" : continuation_score,
         "win_bool": win_bool,
         "win_1_pip_bool": win_1_pip_bool,
@@ -1693,7 +1705,7 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                     if cont_score is None:
                         probability = None
                     elif cont_score < 0:
-                        multiplier = ((100 + (cont_score * 5)) / 100)
+                        multiplier = ((100 + cont_score) / 100)
                         probability = correlation_3 * multiplier
                     elif cont_score >= 0:
                         probability = correlation_3
@@ -1729,7 +1741,7 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                     news_pip_trigger_metrics[trigger]['time_deltas'][time_delta].update(c3_ema_scores)
 
         except KeyError:
-            breakpoint()
+            continue
 
     all_cont_score_averages = calc_cont_score_averages(cont_scores)
 
@@ -2120,6 +2132,8 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
     c1_ema15_scores = []
     c2_ema15_scores = []
     c3_ema15_scores = []
+    cont_scores = []
+    probabilities = []
     for index, row in pip_metrics_df.iterrows():
         if row['range'][0] < total_range[0]:
             total_range[0] = row['range'][0]
@@ -2140,6 +2154,8 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
         c1_ema15_scores.append(row['c1_ema15'])
         c2_ema15_scores.append(row['c2_ema15'])
         c3_ema15_scores.append(row['c3_ema15'])
+        cont_scores.append(row['cont_score'])
+        probabilities.append(row['probability'])
 
     total_range = tuple(total_range)
     mean_mean = round(sum(means) / len(means), 1)
@@ -2156,6 +2172,11 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
     mean_c1_ema15 = round(sum(c1_ema15_scores) / len(c1_ema15_scores), 1)
     mean_c2_ema15 = round(sum(c2_ema15_scores) / len(c2_ema15_scores), 1)
     mean_c3_ema15 = round(sum(c3_ema15_scores) / len(c3_ema15_scores), 1)
+    try:
+        mean_cont_score = round(sum(cont_scores) / len(cont_scores), 1)
+        mean_probability = round(sum(probabilities) / len(probabilities), 1)
+    except TypeError:
+        breakpoint()
 
     data_points = pip_metrics_df.iloc[0]['data_points']
 
@@ -2182,6 +2203,8 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
                                     'c1_ema15': mean_c1_ema15,
                                     'c2_ema15': mean_c2_ema15,
                                     'c3_ema15': mean_c3_ema15,
+                                    'cont_score': mean_cont_score,
+                                    'probability': mean_probability,
                                     'data_points': data_points
                                },
                                index=[
@@ -2189,7 +2212,8 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
                                     'c1', 'c2', 'c3',
                                     'c1_ema5', 'c2_ema5', 'c3_ema5',
                                     'c1_ema10', 'c2_ema10', 'c3_ema10',
-                                    'c1_ema15', 'c2_ema15', 'c3_ema15', 'data_points'
+                                    'c1_ema15', 'c2_ema15', 'c3_ema15',
+                                    'cont_score', 'probability', 'data_points'
                                ])
 
     print(f"{trigger_name} total_averages:\n {total_averages}")
@@ -2279,28 +2303,33 @@ def news_pip_trigger_data_to_df(trigger_data, trigger_name):
                  'c1_ema5', 'c2_ema5', 'c3_ema5',
                  'c1_ema10', 'c2_ema10', 'c3_ema10',
                  'c1_ema15', 'c2_ema15', 'c3_ema15',
-                 'data_points', 'lowest_c3_type', 'lowest_c3_val'])
-    data_points = len(trigger_data['time_deltas']['1s']['values'])
+                 'data_points', 'lowest_c3_type', 'lowest_c3_val',
+                 'cont_score', 'probability'])
 
-    for time_delta in trigger_data['time_deltas']:
-        range = trigger_data['time_deltas'][time_delta]['range']
-        mean = trigger_data['time_deltas'][time_delta]['mean']
-        median = trigger_data['time_deltas'][time_delta]['median']
-        c1 = trigger_data['time_deltas'][time_delta]['correlation_1']
-        c2 = trigger_data['time_deltas'][time_delta]['correlation_2']
-        c3 = trigger_data['time_deltas'][time_delta]['correlation_3']
-        c1_ema5 = trigger_data['time_deltas'][time_delta]['correlation_1_ema5']
-        c2_ema5 = trigger_data['time_deltas'][time_delta]['correlation_2_ema5']
-        c3_ema5 = trigger_data['time_deltas'][time_delta]['correlation_3_ema5']
-        c1_ema10 = trigger_data['time_deltas'][time_delta]['correlation_1_ema10']
-        c2_ema10 = trigger_data['time_deltas'][time_delta]['correlation_2_ema10']
-        c3_ema10 = trigger_data['time_deltas'][time_delta]['correlation_3_ema10']
-        c1_ema15 = trigger_data['time_deltas'][time_delta]['correlation_1_ema15']
-        c2_ema15 = trigger_data['time_deltas'][time_delta]['correlation_2_ema15']
-        c3_ema15 = trigger_data['time_deltas'][time_delta]['correlation_3_ema15']
+    data_points = len(trigger_data['1s']['values'])
 
+    for time_delta in trigger_data:
+        range = trigger_data[time_delta]['range']
+        mean = trigger_data[time_delta]['mean']
+        median = trigger_data[time_delta]['median']
+        c1 = trigger_data[time_delta]['correlation_1']
+        c2 = trigger_data[time_delta]['correlation_2']
+        c3 = trigger_data[time_delta]['correlation_3']
+        c1_ema5 = trigger_data[time_delta]['correlation_1_ema5']
+        c2_ema5 = trigger_data[time_delta]['correlation_2_ema5']
+        c3_ema5 = trigger_data[time_delta]['correlation_3_ema5']
+        c1_ema10 = trigger_data[time_delta]['correlation_1_ema10']
+        c2_ema10 = trigger_data[time_delta]['correlation_2_ema10']
+        c3_ema10 = trigger_data[time_delta]['correlation_3_ema10']
+        c1_ema15 = trigger_data[time_delta]['correlation_1_ema15']
+        c2_ema15 = trigger_data[time_delta]['correlation_2_ema15']
+        c3_ema15 = trigger_data[time_delta]['correlation_3_ema15']
+        cont_score = trigger_data[time_delta]['cont_score']
+        probability = trigger_data[time_delta]['probability']
+
+        # CRASHES HERE
         df.loc[len(df.index)] = [time_delta, range, mean, median, c1, c2, c3, c1_ema5, c2_ema5, c3_ema5,
-                                 c1_ema10, c2_ema10, c3_ema10, c1_ema15, c2_ema15, c3_ema15,  data_points, None, None]
+                                 c1_ema10, c2_ema10, c3_ema10, c1_ema15, c2_ema15, c3_ema15, data_points, None, None, cont_score, probability]
 
     total_averages = calc_pip_metrics_df_total_averages(df, trigger_name)
 
