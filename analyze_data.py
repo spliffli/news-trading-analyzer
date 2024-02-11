@@ -603,7 +603,10 @@ def calc_continuation_score(tick_data, release_datetime, release_price, decimal_
     simulated_trade_results = simulate_trade(tick_data, initial_peak_range_timestamp, virtual_entry_price, decimal_places, stoploss, expected_direction)
 
     # return initial_peak_range_timestamp, continuation_pip_movement, time_delta_after_virtual_entry
-    return simulated_trade_results['pips']
+    if simulated_trade_results['pips'] is not None:
+        return simulated_trade_results['pips']
+    else:
+        breakpoint()
 
 
 def fetch_stoploss(symbol):
@@ -634,6 +637,17 @@ def get_expected_direction_2(higher_dev, deviation):
             return "negative"
     else:
         raise ValueError("higher_dev must be 'bearish' or 'bullish'")
+
+
+def calc_win_bool(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction,
+                  minimum_pips):
+    pips = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+
+    if pips >= minimum_pips:
+        return True
+    else:
+        return False
+
 
 
 def mine_data_from_ticks(news_data, symbol, release_datetime):
@@ -668,7 +682,6 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
             expected_direction = row['expected_direction']
             break
 
-
     tick_data = read_tick_data(symbol, release_datetime)
 
     if tick_data.shape[0] == 0:
@@ -684,13 +697,19 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
     # stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
     continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
 
+    win_bool = calc_win_bool(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction, 0)
+    win_1_pip_bool = calc_win_bool(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction, 1)
+    win_5_pips_bool = calc_win_bool(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction, 5)
+
     relative_price_movements = get_relative_price_movements(prices_at_timedeltas, release_price, decimal_places)
     pip_movements = get_pip_movements(relative_price_movements, decimal_places)
 
     return {
         "first_sl_hit" : simulated_trade_results,
-        # "sl_hits": stoploss_hits,
         "cont_score" : continuation_score,
+        "win_bool": win_bool,
+        "win_1_pip_bool": win_1_pip_bool,
+        "win_5_pips_bool": win_5_pips_bool,
         "pip_movements": pip_movements
     }
 
