@@ -1635,6 +1635,8 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
         try:
             # Preprocess deviation and find the trigger for the current timestamp
             cont_score = news_pip_data[timestamp]['cont_score']
+            if cont_score is None:
+                continue
             cont_scores.append(cont_score)
             deviation, negative_dev = preprocess_deviation(news_pip_data, timestamp)
             if math.isnan(deviation):
@@ -1657,6 +1659,7 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
 
     # Iterate through each trigger in the news_pip_trigger_metrics dictionary
     for trigger in news_pip_trigger_metrics:
+
         try:
             # Iterate through each time delta and its associated pips values
             for time_delta, values in news_pip_trigger_metrics[trigger]['time_deltas'].items():
@@ -1666,16 +1669,20 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                 # Get correlation scores for the pips values with respect to the expected symbol direction
                 correlation_1, correlation_2, correlation_3 = get_correlation_scores(values, symbol_higher_dev)
 
-                probability = correlation_3
-
                 for timestamp in news_pip_data:
                     cont_score = news_pip_data[timestamp]['cont_score']
-                    if cont_score < 0:
+                    if cont_score is None:
+                        probability = None
+                    elif cont_score < 0:
                         multiplier = ((100 + (cont_score * 5)) / 100)
                         probability = correlation_3 * multiplier
+                    elif cont_score >= 0:
+                        probability = correlation_3
+
+                    news_pip_trigger_metrics[trigger]['probability'] = probability
 
                 # Store the calculated metrics in the news_pip_trigger_metrics dictionary
-                news_pip_trigger_metrics[trigger][time_delta] = {
+                news_pip_trigger_metrics[trigger]['time_deltas'][time_delta] = {
                     "median": median,
                     "mean": mean,
                     "range": range_of_values,
@@ -1699,11 +1706,11 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                     # Get correlation scores for the EMA values with respect to the expected symbol direction
                     c3_ema_scores = get_c3_ema_scores(c3_ema_values, ema_suffix, symbol_higher_dev)
 
-                    # Update the news_pip_trigger_metrics dictionary with the EMA correlation scores
-                    news_pip_trigger_metrics[trigger][time_delta].update(c3_ema_scores)
-        except:
-            print(ValueError("Invalid data, skipping to next timestamp..."))
-            continue
+                    # [!!!*CRASHES*!!!] Update the news_pip_trigger_metrics dictionary with the EMA correlation scores
+                    news_pip_trigger_metrics[trigger]['time_deltas'][time_delta].update(c3_ema_scores)
+
+        except KeyError:
+            breakpoint()
 
     all_cont_score_averages = calc_cont_score_averages(cont_scores)
 
@@ -2254,24 +2261,24 @@ def news_pip_trigger_data_to_df(trigger_data, trigger_name):
                  'c1_ema10', 'c2_ema10', 'c3_ema10',
                  'c1_ema15', 'c2_ema15', 'c3_ema15',
                  'data_points', 'lowest_c3_type', 'lowest_c3_val'])
-    data_points = len(trigger_data['1s']['values'])
+    data_points = len(trigger_data['time_deltas']['1s']['values'])
 
     for time_delta in trigger_data['time_deltas']:
-        range = trigger_data[time_delta]['range']
-        mean = trigger_data[time_delta]['mean']
-        median = trigger_data[time_delta]['median']
-        c1 = trigger_data[time_delta]['correlation_1']
-        c2 = trigger_data[time_delta]['correlation_2']
-        c3 = trigger_data[time_delta]['correlation_3']
-        c1_ema5 = trigger_data[time_delta]['correlation_1_ema5']
-        c2_ema5 = trigger_data[time_delta]['correlation_2_ema5']
-        c3_ema5 = trigger_data[time_delta]['correlation_3_ema5']
-        c1_ema10 = trigger_data[time_delta]['correlation_1_ema10']
-        c2_ema10 = trigger_data[time_delta]['correlation_2_ema10']
-        c3_ema10 = trigger_data[time_delta]['correlation_3_ema10']
-        c1_ema15 = trigger_data[time_delta]['correlation_1_ema15']
-        c2_ema15 = trigger_data[time_delta]['correlation_2_ema15']
-        c3_ema15 = trigger_data[time_delta]['correlation_3_ema15']
+        range = trigger_data['time_deltas'][time_delta]['range']
+        mean = trigger_data['time_deltas'][time_delta]['mean']
+        median = trigger_data['time_deltas'][time_delta]['median']
+        c1 = trigger_data['time_deltas'][time_delta]['correlation_1']
+        c2 = trigger_data['time_deltas'][time_delta]['correlation_2']
+        c3 = trigger_data['time_deltas'][time_delta]['correlation_3']
+        c1_ema5 = trigger_data['time_deltas'][time_delta]['correlation_1_ema5']
+        c2_ema5 = trigger_data['time_deltas'][time_delta]['correlation_2_ema5']
+        c3_ema5 = trigger_data['time_deltas'][time_delta]['correlation_3_ema5']
+        c1_ema10 = trigger_data['time_deltas'][time_delta]['correlation_1_ema10']
+        c2_ema10 = trigger_data['time_deltas'][time_delta]['correlation_2_ema10']
+        c3_ema10 = trigger_data['time_deltas'][time_delta]['correlation_3_ema10']
+        c1_ema15 = trigger_data['time_deltas'][time_delta]['correlation_1_ema15']
+        c2_ema15 = trigger_data['time_deltas'][time_delta]['correlation_2_ema15']
+        c3_ema15 = trigger_data['time_deltas'][time_delta]['correlation_3_ema15']
 
         df.loc[len(df.index)] = [time_delta, range, mean, median, c1, c2, c3, c1_ema5, c2_ema5, c3_ema5,
                                  c1_ema10, c2_ema10, c3_ema10, c1_ema15, c2_ema15, c3_ema15,  data_points, None, None]
@@ -2331,7 +2338,7 @@ def news_pip_metrics_to_dfs(news_pip_metrics):
     dfs = {}
     for trigger in news_pip_metrics['trigger_metrics']:
         if len(news_pip_metrics['trigger_metrics'][trigger]) > 0:
-            dfs[trigger] = news_pip_trigger_data_to_df(news_pip_metrics['trigger_metrics'][trigger], trigger)
+            dfs[trigger] = news_pip_trigger_data_to_df(news_pip_metrics['trigger_metrics'][trigger]['time_deltas'], trigger)
             print(str(trigger) + ": ")
             print(str(dfs[trigger]))
         else:

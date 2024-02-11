@@ -77,6 +77,8 @@ def run():
                                            trading_symbol)
         news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers,
                                                  symbol_higher_dev)
+
+        # [!!!*SANITY CHECK*!!!] does news_pip_metrics include lowest_c3_val?
         news_pip_trigger_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
 
 
