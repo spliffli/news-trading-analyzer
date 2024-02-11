@@ -573,11 +573,9 @@ def calc_stoploss_hits(tick_data, release_datetime, relative_price, decimal_plac
     return stoploss_hits
 
 
-
-
-def calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
+def calc_continuation_pips(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
     """
-    Calculate the continuation score, which measures how many pips the price continues after the news release.
+    Calculate the continuation pips, which measures how many pips the price continues after the news release.
 
     Args:
         tick_data (DataFrame): Raw forex tick data with columns: 'time', 'ask', and 'bid'.
@@ -653,7 +651,7 @@ def get_expected_direction_2(higher_dev, deviation):
 
 def calc_win_bool(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction,
                   minimum_pips):
-    pips = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+    pips = calc_continuation_pips(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
 
     if pips >= minimum_pips:
         return True
@@ -707,7 +705,8 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
 
     simulated_trade_results = simulate_trade(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
     # stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
-    continuation_score = calc_continuation_score(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+    continuation_pips = calc_continuation_pips(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+
 
     win_bool = calc_win_bool(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction, 0)
     win_1_pip_bool = calc_win_bool(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction, 1)
@@ -718,7 +717,7 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
 
     return {
         "simulated_trade" : simulated_trade_results,
-        "cont_score" : continuation_score,
+        "cont_pips" : continuation_pips,
         "win_bool": win_bool,
         "win_1_pip_bool": win_1_pip_bool,
         "win_5_pips_bool": win_5_pips_bool,
@@ -805,14 +804,17 @@ def mine_and_save_pip_data(news_data, symbol, timestamp, news_tick_data):
     try:
         # Extract pip data from raw tick data.
         data_from_ticks = mine_data_from_ticks(news_data, symbol, timestamp)
-        news_tick_data.setdefault(timestamp_str, {}).setdefault('cont_score', data_from_ticks['cont_score'])
-        # news_tick_data.setdefault(timestamp_str, {}).setdefault('first_sl_hit', data_from_ticks['first_sl_hit'])
+        news_tick_data.setdefault(timestamp_str, {}).setdefault('cont_pips', data_from_ticks['cont_pips'])
+        news_tick_data.setdefault(timestamp_str, {}).setdefault('win_bool', data_from_ticks['win_bool'])
+        news_tick_data.setdefault(timestamp_str, {}).setdefault('win_1_pip_bool', data_from_ticks['win_1_pip_bool'])
+        news_tick_data.setdefault(timestamp_str, {}).setdefault('win_5_pips_bool', data_from_ticks['win_5_pips_bool'])
         news_tick_data.setdefault(timestamp_str, {}).setdefault('pips', data_from_ticks['pip_movements'])
 
         # Retrieve and set the 'deviation' value for the current timestamp.
         for _, row in news_data.iterrows():
             if row['Timestamp'] == timestamp_str:
-                news_tick_data[timestamp_str]['deviation'] = row.get('Deviation', None)
+                deviation = row.get('Deviation', None)
+                news_tick_data[timestamp_str]['deviation'] = deviation
                 break
     except ValueError:
         # Handle any ValueErrors, e.g., when tick data might be empty.
@@ -1603,12 +1605,12 @@ def get_c3_ema_scores(ema_values, ema_suffix, symbol_higher_dev):
 # TODO: Write get_tsl_hits here
 
 
-def calc_cont_score_averages(cont_scores):
+def calc_cont_pips_averages(cont_pips):
     total = 0
     count = 0
     non_none_vals = []
 
-    for score in cont_scores:
+    for score in cont_pips:
         if score is not None:
             total += score
             count += 1
@@ -1625,17 +1627,26 @@ def calc_cont_score_averages(cont_scores):
     }
 
 
-def calc_mean_mean_cont_score(all_cont_score_averages):
+def calc_mean_mean_cont_pips(all_cont_pips_averages):
     pass
 
 
 
-def calc_mean_median_cont_score(all_cont_score_averages):
+def calc_mean_median_cont_pips(all_cont_pips_averages):
     pass
 
 
-def calc_total_cont_score_range(all_cont_score_averages):
+def calc_total_cont_pips_range(all_cont_pips_averages):
     pass
+
+
+def calc_win_rate(wins_losses):
+    wins = wins_losses[0]
+    losses = wins_losses[1]
+
+    win_rate = round(wins / (wins + losses), 2)
+
+    return win_rate
 
 
 def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_dev):
@@ -1655,7 +1666,7 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
     print("Calculating news pip metrics...")
 
     # Initialize an empty dictionary to store news pip metrics for each trigger
-    cont_scores = []
+    cont_pips = []
     news_pip_trigger_metrics = {trigger: {} for trigger in triggers}
 
     # Get information about the indicator using its Haawks ID
@@ -1665,28 +1676,40 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
     for timestamp in news_pip_data:
         try:
             # Preprocess deviation and find the trigger for the current timestamp
-            cont_score = news_pip_data[timestamp]['cont_score']
-            if cont_score is None:
+            cont_pips = news_pip_data[timestamp]['cont_pips']
+            win_bool = news_pip_data[timestamp]['win_bool']
+            win_1_pip_bool = news_pip_data[timestamp]['win_1_pip_bool']
+            win_5_pips_bool = news_pip_data[timestamp]['win_5_pips_bool']
+
+            if cont_pips is None:
                 continue
-            cont_scores.append(cont_score)
+            # cont_pips.append(cont_pips)
             deviation, negative_dev = preprocess_deviation(news_pip_data, timestamp)
             if math.isnan(deviation):
                 continue
             trigger = find_trigger(deviation, triggers)
 
 
-            # Iterate through each time delta and calculate relative pips
+            # Iterate through each time delta and calculate metrics
             for time_delta in news_pip_data[timestamp]['pips']:
                 ask, bid = news_pip_data[timestamp]['pips'][time_delta]
                 pips = calculate_relative_pips(ask, bid, negative_dev)
 
-                # If a trigger is found, store the calculated pips in the corresponding trigger's dictionary
+                # If a trigger is found, store the calculated meetrics in the corresponding trigger's dictionary
                 if trigger:
-                    news_pip_trigger_metrics[trigger[0]].setdefault('cont_score', cont_score)
+
+                    news_pip_trigger_metrics[trigger[0]].setdefault('cont_pips', cont_pips)
+                    news_pip_trigger_metrics[trigger[0]].setdefault('win_bool', win_bool)
+                    news_pip_trigger_metrics[trigger[0]].setdefault('win_1_pip_bool', win_1_pip_bool)
+                    news_pip_trigger_metrics[trigger[0]].setdefault('win_5_pips_bool', win_5_pips_bool)
                     news_pip_trigger_metrics[trigger[0]].setdefault('time_deltas', {}).setdefault(time_delta, []).append(pips)
         except:
             print(ValueError("Invalid data, skipping to next timestamp..."))
             continue
+
+    wins_losses_0_pips_min = [0, 0]
+    wins_losses_1_pip_min = [0, 0]
+    wins_losses_5_pips_min = [0, 0]
 
     # Iterate through each trigger in the news_pip_trigger_metrics dictionary
     for trigger in news_pip_trigger_metrics:
@@ -1701,16 +1724,15 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                 correlation_1, correlation_2, correlation_3 = get_correlation_scores(values, symbol_higher_dev)
 
                 for timestamp in news_pip_data:
-                    cont_score = news_pip_data[timestamp]['cont_score']
-                    if cont_score is None:
-                        probability = None
-                    elif cont_score < 0:
-                        multiplier = ((100 + cont_score) / 100)
-                        probability = correlation_3 * multiplier
-                    elif cont_score >= 0:
-                        probability = correlation_3
+                    cont_pips = news_pip_data[timestamp]['cont_pips']
+                    if cont_pips is None:
+                        cont_score = None
+                    elif cont_pips < 0:
+                        cont_score = (100 + cont_pips) / 100
+                    elif cont_pips >= 0:
+                        cont_score = 1
 
-                    news_pip_trigger_metrics[trigger]['probability'] = probability
+                    news_pip_trigger_metrics[trigger][cont_score] = cont_score
 
                 # Store the calculated metrics in the news_pip_trigger_metrics dictionary
                 news_pip_trigger_metrics[trigger]['time_deltas'][time_delta] = {
@@ -1721,8 +1743,8 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                     "correlation_2": correlation_2,
                     "correlation_3": correlation_3,
                     "values": values,
-                    "cont_score": cont_score,
-                    "probability": probability
+                    "cont_pips": cont_pips,
+                    "cont_score": cont_score
                 }
 
                 # Compute EMA values for various periods and their corresponding correlation scores
@@ -1740,18 +1762,39 @@ def calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, symbol_higher_
                     # [!!!*CRASHES*!!!] Update the news_pip_trigger_metrics dictionary with the EMA correlation scores
                     news_pip_trigger_metrics[trigger]['time_deltas'][time_delta].update(c3_ema_scores)
 
+            if news_pip_trigger_metrics[trigger]['win_bool']:
+                wins_losses_0_pips_min[0] += 1
+            else:
+                wins_losses_0_pips_min[1] += 1
+            
+            if news_pip_trigger_metrics[trigger]['win_1_pip_bool']:
+                wins_losses_1_pip_min[0] += 1
+            else:
+                wins_losses_1_pip_min[1] += 1
+            
+            if news_pip_trigger_metrics[trigger]['win_5_pips_bool']:
+                wins_losses_5_pips_min[0] += 1
+            else:
+                wins_losses_5_pips_min[1] += 1
         except KeyError:
             continue
 
-    all_cont_score_averages = calc_cont_score_averages(cont_scores)
+    # all_cont_pips_averages = calc_cont_pips_averages(cont_pips)
 
-    lowest_avg_cont_score = min([all_cont_score_averages['mean'], all_cont_score_averages['median']])
+    win_rate_0_pips = calc_win_rate(wins_losses_0_pips_min)
+    win_rate_1_pip = calc_win_rate(wins_losses_1_pip_min)
+    win_rate_5_pips = calc_win_rate(wins_losses_5_pips_min)
+
+    # lowest_avg_cont_pips = min([all_cont_pips_averages['mean'], all_cont_pips_averages['median']])
 
 
     # Return the final news_pip_trigger_metrics dictionary
     return {
-        "lowest_avg_cont_score": lowest_avg_cont_score,
-        "avg_cont_scores": all_cont_score_averages,
+        "cont_pips": cont_pips,
+        "cont_score": cont_score,
+        "win_rate_0_pips": win_rate_0_pips,
+        "win_rate_1_pip": win_rate_1_pip,
+        "win_rate_5_pips": win_rate_5_pips,
         "trigger_metrics": news_pip_trigger_metrics
     }
 
@@ -2132,7 +2175,7 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
     c1_ema15_scores = []
     c2_ema15_scores = []
     c3_ema15_scores = []
-    cont_scores = []
+    cont_pips = []
     probabilities = []
     for index, row in pip_metrics_df.iterrows():
         if row['range'][0] < total_range[0]:
@@ -2154,8 +2197,8 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
         c1_ema15_scores.append(row['c1_ema15'])
         c2_ema15_scores.append(row['c2_ema15'])
         c3_ema15_scores.append(row['c3_ema15'])
-        cont_scores.append(row['cont_score'])
-        probabilities.append(row['probability'])
+        cont_pips.append(row['cont_pips'])
+        probabilities.append(row['cont_score'])
 
     total_range = tuple(total_range)
     mean_mean = round(sum(means) / len(means), 1)
@@ -2173,7 +2216,7 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
     mean_c2_ema15 = round(sum(c2_ema15_scores) / len(c2_ema15_scores), 1)
     mean_c3_ema15 = round(sum(c3_ema15_scores) / len(c3_ema15_scores), 1)
     try:
-        mean_cont_score = round(sum(cont_scores) / len(cont_scores), 1)
+        mean_cont_pips = round(sum(cont_pips) / len(cont_pips), 1)
         mean_probability = round(sum(probabilities) / len(probabilities), 1)
     except TypeError:
         breakpoint()
@@ -2203,8 +2246,8 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
                                     'c1_ema15': mean_c1_ema15,
                                     'c2_ema15': mean_c2_ema15,
                                     'c3_ema15': mean_c3_ema15,
-                                    'cont_score': mean_cont_score,
-                                    'probability': mean_probability,
+                                    'cont_pips': mean_cont_pips,
+                                    'cont_score': mean_probability,
                                     'data_points': data_points
                                },
                                index=[
@@ -2213,7 +2256,7 @@ def calc_pip_metrics_df_total_averages(pip_metrics_df: pd.DataFrame, trigger_nam
                                     'c1_ema5', 'c2_ema5', 'c3_ema5',
                                     'c1_ema10', 'c2_ema10', 'c3_ema10',
                                     'c1_ema15', 'c2_ema15', 'c3_ema15',
-                                    'cont_score', 'probability', 'data_points'
+                                    'cont_pips', 'cont_score', 'data_points'
                                ])
 
     print(f"{trigger_name} total_averages:\n {total_averages}")
@@ -2304,7 +2347,7 @@ def news_pip_trigger_data_to_df(trigger_data, trigger_name):
                  'c1_ema10', 'c2_ema10', 'c3_ema10',
                  'c1_ema15', 'c2_ema15', 'c3_ema15',
                  'data_points', 'lowest_c3_type', 'lowest_c3_val',
-                 'cont_score', 'probability'])
+                 'cont_pips', 'cont_score'])
 
     data_points = len(trigger_data['1s']['values'])
 
@@ -2324,12 +2367,12 @@ def news_pip_trigger_data_to_df(trigger_data, trigger_name):
         c1_ema15 = trigger_data[time_delta]['correlation_1_ema15']
         c2_ema15 = trigger_data[time_delta]['correlation_2_ema15']
         c3_ema15 = trigger_data[time_delta]['correlation_3_ema15']
-        cont_score = trigger_data[time_delta]['cont_score']
-        probability = trigger_data[time_delta]['probability']
+        cont_pips = trigger_data[time_delta]['cont_pips']
+        probability = trigger_data[time_delta]['cont_score']
 
         # CRASHES HERE
         df.loc[len(df.index)] = [time_delta, range, mean, median, c1, c2, c3, c1_ema5, c2_ema5, c3_ema5,
-                                 c1_ema10, c2_ema10, c3_ema10, c1_ema15, c2_ema15, c3_ema15, data_points, None, None, cont_score, probability]
+                                 c1_ema10, c2_ema10, c3_ema10, c1_ema15, c2_ema15, c3_ema15, data_points, None, None, cont_pips, probability]
 
     total_averages = calc_pip_metrics_df_total_averages(df, trigger_name)
 

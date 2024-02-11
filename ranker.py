@@ -75,7 +75,7 @@ def run():
         # Load news pip data at timedeltas and calculate news pip metrics
         news_pip_data = load_news_pip_data(haawks_id_str, news_data,
                                            trading_symbol)
-        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers,
+mm        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers,
                                                  symbol_higher_dev)
 
         # [!!!*SANITY CHECK*!!!] does news_pip_metrics include lowest_c3_val?
@@ -88,7 +88,7 @@ def run():
                           indicator_info)
 
         # Get the best trigger based on the calculated metrics
-        best_trigger = get_best_trigger_c3(news_pip_trigger_metrics_dfs)
+        best_trigger_c3 = get_best_trigger_c3(news_pip_trigger_metrics_dfs)
 
         # Check if the results file already exists
         results_file_exists = False
@@ -101,8 +101,9 @@ def run():
         # If the results file does not exist, create an empty DataFrame
         if not results_file_exists:
             results = pd.DataFrame(columns=['haawks_id_str', 'haawks_title', 'inv_title', 'symbol', 'higher_dev',
-                                            'best_trigger', 'range (pips)', 'mean (pips)', 'median (pips)', 'c1', 'c2',
-                                            'lowest_ema_val', 'mean_cont_score', 'median_cont_score', 'lowest_avg_cont_score'])
+                                            'best_trigger_c3', 'range (pips)', 'mean (pips)', 'median (pips)', 'c1', 'c2',
+                                            'lowest_ema_val', 'mean_cont_score', 'median_cont_score', 'lowest_avg_cont_pips',
+                                            'cont_score', 'probability'])
 
         try:
             # Append the results for the current indicator to the DataFrame
@@ -112,16 +113,23 @@ def run():
                 'inv_title': indicator_info['inv_title'],
                 'symbol': trading_symbol,
                 'higher_dev': symbol_higher_dev,
-                'best_trigger': f"{best_trigger}: +-{triggers[best_trigger]}{indicator_info['suffix']}",
-                'range (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['range'],
-                'mean (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['mean'],
-                'median (pips)': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['median'],
-                'c1': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['c1'],
-                'c2': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['c2'],
-                'lowest_c3_val': news_pip_trigger_metrics_dfs[best_trigger].iloc[-1]['lowest_c3_val'],
-                'mean_cont_score': news_pip_metrics['avg_cont_scores']['mean'],
-                'median_cont_score': news_pip_metrics['avg_cont_scores']['median'],
-                'lowest_avg_cont_score': news_pip_metrics['lowest_avg_cont_score']
+                'best_trigger_c3': f"{best_trigger_c3}: +-{triggers[best_trigger_c3]}{indicator_info['suffix']}",
+                'range (pips)': news_pip_trigger_metrics_dfs[best_trigger_c3].iloc[-1]['range'],
+                'mean (pips)': news_pip_trigger_metrics_dfs[best_trigger_c3].iloc[-1]['mean'],
+                'median (pips)': news_pip_trigger_metrics_dfs[best_trigger_c3].iloc[-1]['median'],
+                'c1': news_pip_trigger_metrics_dfs[best_trigger_c3].iloc[-1]['c1'],
+                'c2': news_pip_trigger_metrics_dfs[best_trigger_c3].iloc[-1]['c2'],
+                'lowest_c3_val': news_pip_trigger_metrics_dfs[best_trigger_c3].iloc[-1]['lowest_c3_val'],
+                'mean_cont_pips': news_pip_metrics['avg_cont_pips']['mean'],
+                'median_cont_pips': news_pip_metrics['avg_cont_pips']['median'],
+                'lowest_avg_cont_pips': news_pip_metrics['lowest_avg_cont_pips'],
+                'cont_pips': news_pip_metrics['cont_pips'],
+                'cont_score': news_pip_metrics['cont_score'],
+                'win_rate': news_pip_metrics['win_rate'],
+                'win_rate_1_pip': news_pip_metrics['win_rate_1_pip'],
+                'win_rate_5_pips': news_pip_metrics['win_rate_5_pips'],
+                'probability': news_pip_metrics['probability']
+
             }, ignore_index=True)
 
             # Write the updated results DataFrame to the results file
