@@ -1,6 +1,6 @@
 # Import necessary libraries and modules
 from import_ticks import import_ticks_for_indicator
-from analyze_data import read_triggers, load_news_pip_data, calc_news_pip_metrics, \
+from analyze_data import read_triggers, load_news_tick_analysis_data, calc_news_pip_metrics, \
     news_pip_metrics_to_dfs, read_news_data
 from utils import get_indicator_info, get_higher_dev_expected_direction, haawks_id_to_str
 # from scrape import update_indicator_history
@@ -56,13 +56,13 @@ def run():
         symbol_higher_dev = get_higher_dev_expected_direction(trading_symbol, underlying_currency,
                                                               underlying_currency_higher_dev)
 
-        # Read news data, import ticks, and read triggers for the indicator
+        # Reads news data which was pre-scraped, imports ticks, and reads pre-calculated trigger levels for the current indicator
         news_data = read_news_data(haawks_id_str)
 
         expected_directions = []
 
         for value in news_data['Deviation']:
-            if value >= 0:
+            if value >= 0:  # TODO: Make the expected direction for 0 values 'neutral' and handle those cases better
                 expected_directions.append("up")
             else:
                 expected_directions.append("down")
@@ -72,11 +72,10 @@ def run():
         import_ticks_for_indicator(haawks_id_str, trading_symbol)
         triggers = read_triggers(haawks_id_str)
 
-        # Load news pip data at timedeltas and calculate news pip metrics
-        news_pip_data = load_news_pip_data(haawks_id_str, news_data,
-                                           trading_symbol)
-mm        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers,
-                                                 symbol_higher_dev)
+        # Checks if previous analysis data is saved then loads it and updates it by mining tick data & analyzing it
+        # If no data is found, it mines it all from scratch but saving previous analysis as json & updating it saves time
+        news_tick_analysis_data = load_news_tick_analysis_data(haawks_id_str, news_data, trading_symbol)
+        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_tick_analysis_data, triggers, symbol_higher_dev)
 
         # [!!!*SANITY CHECK*!!!] does news_pip_metrics include lowest_c3_val?
         news_pip_trigger_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
@@ -102,7 +101,7 @@ mm        news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data,
         if not results_file_exists:
             results = pd.DataFrame(columns=['haawks_id_str', 'haawks_title', 'inv_title', 'symbol', 'higher_dev',
                                             'best_trigger_c3', 'range (pips)', 'mean (pips)', 'median (pips)', 'c1', 'c2',
-                                            'lowest_ema_val', 'mean_cont_score', 'median_cont_score', 'lowest_avg_cont_pips',
+                                            'lowest_c3_val', 'mean_cont_score', 'median_cont_score', 'lowest_avg_cont_pips',
                                             'cont_score', 'probability'])
 
         try:

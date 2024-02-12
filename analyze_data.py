@@ -199,7 +199,7 @@ def get_prices_at_time_deltas(release_datetime, tick_df, time_deltas=DEFAULT_TIM
     return prices
 
 
-def get_relative_price_movements(prices_per_time_delta, release_time_price, decimal_places):
+def get_relative_price_movements_at_timedeltas(prices_per_time_delta, release_time_price, decimal_places):
     """
     Calculates the relative price movements based on the release time price and the prices at different time deltas.
 
@@ -214,7 +214,7 @@ def get_relative_price_movements(prices_per_time_delta, release_time_price, deci
         >>> prices_per_time_delta = {"1m": (1.2350, 1.2349), "2m": (1.2355, 1.2354)}
         >>> release_time_price = (1.2345, 1.2344)
         >>> decimal_places = 4
-        >>> get_relative_price_movements(prices_per_time_delta, release_time_price, decimal_places)
+        >>> get_relative_price_movements_at_timedeltas(prices_per_time_delta, release_time_price, decimal_places)
         {"1m": (0.0005, 0.0005), "2m": (0.0010, 0.0010)}
 
     """
@@ -438,20 +438,22 @@ def get_pips_relative_to_expected_direction(pips, expected_direction):
         raise ValueError("expected direction must be 'up' or 'down'")
 
 
-def simulate_trade(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction):
+def simulate_trade(tick_data, release_datetime, release_price, decimal_places, expected_direction, stoploss_pips=None,
+                   stoploss_percentage=None):
     """
-    Simulate a trade entered at the release price with a trailing stoploss and calculate the profit/loss in pips.
+    Simulate a trade entered at the release price with a trailing stoploss and calculate the profit/loss in pips and percentage.
 
     Args:
         tick_data (DataFrame): Raw forex tick data with columns: 'time', 'ask', and 'bid'.
         release_datetime (datetime): Timestamp of the news release.
         release_price (tuple): Tuple containing the ask and bid prices at the time of the news release.
         decimal_places (int): Number of decimal places in the bid & ask prices.
-        stoploss (float): Virtual trailing stoploss value in pips.
+        stoploss_pips (float): Virtual trailing stoploss value in pips.
+        stoploss_percentage (float): Trailing stoploss value as a percentage of the open price.
         expected_direction (str): Expected direction of the price movement ('up' or 'down').
 
     Returns:
-        dict: Dictionary containing trade details including open price, close price, and pips.
+        dict: Dictionary containing trade details including open price, close price, pips, profit pips, percentage change, and percentage change in profit direction.
 
     Raises:
         ValueError: If the provided decimal places is not 5, 4, 3, or 2.
@@ -470,8 +472,7 @@ def simulate_trade(tick_data, release_datetime, release_price, decimal_places, s
     # Iterate through tick data
     for index, row in tick_data.iterrows():
         timestamp = row['time']
-        current_price = row['bid'] if expected_direction == 'up' else row[
-            'ask']  # Use ask price for buy trade and bid price for sell trade
+        current_price = row['bid'] if expected_direction == 'up' else row['ask']  # Use ask price for buy trade and bid price for sell trade
 
         # Check if trade has not been entered and it's time to enter the trade
         if not trade_entered and str_to_datetime(timestamp) >= release_datetime:
@@ -485,27 +486,50 @@ def simulate_trade(tick_data, release_datetime, release_price, decimal_places, s
             elif current_price < current_trade_low:
                 current_trade_low = current_price
 
-            # Calculate trailing stoploss value
-            trailing_stoploss = current_trade_high - (
-                        stoploss * 0.0001) if expected_direction == 'up' else current_trade_low + (stoploss * 0.0001)
+            # Calculate trailing stoploss value based on stoploss in pips
+            if stoploss_pips is not None and stoploss_percentage is None:
+                # If stoploss is provided in pips, calculate the trailing stoploss based on the current trade high/low
+                # For a buy trade ('up' direction), trailing stoploss is calculated by subtracting the stoploss_pips from the current trade high
+                # For a sell trade ('down' direction), trailing stoploss is calculated by adding the stoploss_pips to the current trade low
+                trailing_stoploss = current_trade_high - (
+                            stoploss_pips * 0.0001) if expected_direction == 'up' else current_trade_low + (
+                            stoploss_pips * 0.0001)
+
+            elif stoploss_percentage is not None and stoploss_pips is None:
+                # If stoploss is provided as a percentage, calculate the trailing stoploss based on the open price
+                # For a buy trade ('up' direction), trailing stoploss is calculated by subtracting the percentage of the open price from the open price
+                # For a sell trade ('down' direction), trailing stoploss is calculated by adding the percentage of the open price to the open price
+                trailing_stoploss = open_price * (
+                            1 - stoploss_percentage / 100) if expected_direction == 'up' else open_price * (
+                            1 + stoploss_percentage / 100)
+
+            else:
+                # If both stoploss in pips and stoploss percentage are provided or both are None, raise a ValueError
+                raise ValueError("stoploss_pips and stoploss_percentage cannot both be provided or both be None.")
 
             # Check if price hits the trailing stoploss
             if (expected_direction == 'up' and current_price <= trailing_stoploss) or \
-                    (expected_direction == 'down' and current_price >= trailing_stoploss):
-                close_price = current_price  # release_price_bid if expected_direction == 'up' else release_price_ask  # Record close price
+               (expected_direction == 'down' and current_price >= trailing_stoploss):
+                close_price = current_price
                 pips = price_movement_to_pips(close_price - open_price, decimal_places) # Calculate profit/loss in pips
                 profit_pips = get_pips_relative_to_expected_direction(pips, expected_direction)
-                return {"open_price": open_price, "close_price": close_price, "pips": pips, "profit_pips": profit_pips}
+                percentage_change = ((close_price - open_price) / open_price) * 100
+                percentage_change_in_profit_direction = (percentage_change if expected_direction == 'up' else -percentage_change)
+                return {"open_price": open_price, "close_price": close_price, "pips": pips, "profit_pips": profit_pips, "percentage_change": percentage_change, "percentage_change_in_profit_direction": percentage_change_in_profit_direction}
 
     # If the trade hasn't closed due to stoploss, close the trade at the last price in the tick data
     if open_price is not None:
         last_price = tick_data.iloc[-1]['bid'] if expected_direction == 'up' else tick_data.iloc[-1]['ask']
         pips = price_movement_to_pips(last_price - open_price, decimal_places)
         profit_pips = get_pips_relative_to_expected_direction(pips, expected_direction)
-        return {"open_price": open_price, "close_price": last_price, "pips": pips, "profit_pips": profit_pips}
+        percentage_change = ((last_price - open_price) / open_price) * 100
+        percentage_change_in_profit_direction = (percentage_change if expected_direction == 'up' else -percentage_change)
+        return {"open_price": open_price, "close_price": last_price, "pips": pips, "profit_pips": profit_pips, "percentage_change": percentage_change, "percentage_change_in_profit_direction": percentage_change_in_profit_direction}
 
     # If trade hasn't been entered, return None
-    return {"open_price": None, "close_price": None, "pips": None, "profit_pips": None}
+    return {"open_price": None, "close_price": None, "pips": None, "profit_pips": None, "percentage_change": None, "percentage_change_in_profit_direction": None}
+
+
 
 
 def calc_stoploss_hits(tick_data, release_datetime, relative_price, decimal_places, stoploss, expected_direction):
@@ -561,11 +585,9 @@ def calc_stoploss_hits(tick_data, release_datetime, relative_price, decimal_plac
         # Check if the stoploss is reset and the timestamp is within 15 mins after release_datetime
         if reset_stoploss and timestamp <= release_datetime + timedelta(minutes=15):
             # Continue calculating retracements with the reset stoploss
-            retracement_timestamp, pip_movement, time_delta = simulate_trade(tick_data[index:],
-                                                                                     release_datetime, (
-                                                                                     release_price_ask,
-                                                                                     release_price_bid), decimal_places,
-                                                                                     stoploss, expected_direction)
+            retracement_timestamp, pip_movement, time_delta = simulate_trade(tick_data[index:], release_datetime, (
+                release_price_ask,
+                release_price_bid), decimal_places, expected_direction, stoploss)
 
             # Update stoploss reset status based on retracement results
             reset_stoploss = False
@@ -610,7 +632,8 @@ def calc_continuation_pips(tick_data, release_datetime, release_price, decimal_p
             break
 
     # Get the continuation timestamp, price, and time delta
-    simulated_trade_results = simulate_trade(tick_data, initial_peak_range_timestamp, virtual_entry_price, decimal_places, stoploss, expected_direction)
+    simulated_trade_results = simulate_trade(tick_data, initial_peak_range_timestamp, virtual_entry_price,
+                                             decimal_places, expected_direction, stoploss)
 
     # return initial_peak_range_timestamp, continuation_pip_movement, time_delta_after_virtual_entry
     if simulated_trade_results['profit_pips'] is not None:
@@ -703,7 +726,8 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
 
     stoploss = fetch_stoploss(symbol)
 
-    simulated_trade_results = simulate_trade(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
+    simulated_trade_results = simulate_trade(tick_data, release_datetime, release_price, decimal_places,
+                                             expected_direction, stoploss)
     # stoploss_hits = calc_stoploss_hits(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
     continuation_pips = calc_continuation_pips(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction)
 
@@ -712,8 +736,8 @@ def mine_data_from_ticks(news_data, symbol, release_datetime):
     win_1_pip_bool = calc_win_bool(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction, 1)
     win_5_pips_bool = calc_win_bool(tick_data, release_datetime, release_price, decimal_places, stoploss, expected_direction, 5)
 
-    relative_price_movements = get_relative_price_movements(prices_at_timedeltas, release_price, decimal_places)
-    pip_movements = get_pip_movements(relative_price_movements, decimal_places)
+    relative_price_movements_at_timedeltas = get_relative_price_movements_at_timedeltas(prices_at_timedeltas, release_price, decimal_places)
+    pip_movements = get_pip_movements(relative_price_movements_at_timedeltas, decimal_places)
 
     return {
         "simulated_trade" : simulated_trade_results,
@@ -748,7 +772,7 @@ def sort_news_pip_data_by_timestamp(news_pip_data):
     return sorted_dict
 
 
-def load_local_news_pip_data(haawks_id_str, symbol, timestamps_to_mine, news_data):
+def load_local_news_tick_analysis_data(haawks_id_str, symbol, timestamps_to_mine, news_data):
     """
     Load locally available news pip data for a given haawks_id and trading symbol.
 
@@ -786,7 +810,7 @@ def load_local_news_pip_data(haawks_id_str, symbol, timestamps_to_mine, news_dat
 
 
 
-def mine_and_save_pip_data(news_data, symbol, timestamp, news_tick_data):
+def mine_and_save_news_tick_analysis_data(news_data, symbol, timestamp, news_tick_data):
     """
     Mine pip data from raw tick data for a specific timestamp and save it to the news_pip_data dictionary.
 
@@ -828,7 +852,7 @@ def convert_news_pip_data_timestamps_to_strs(news_pip_data):
 
     return news_pip_data
 
-def load_news_pip_data(haawks_id_str, news_data, symbol):
+def load_news_tick_analysis_data(haawks_id_str, news_data, symbol):
     """
     Load news pip data for a given haawks_id, news data, and trading symbol.
     If local data exists, it uses that; otherwise, it mines data from raw tick data.
@@ -861,7 +885,7 @@ def load_news_pip_data(haawks_id_str, news_data, symbol):
     print(f"Loading news pip data for {indicator_info['inv_title']}: {start_datetime} - {end_datetime}")
 
     # Load locally available news pip data
-    local_data = load_local_news_pip_data(haawks_id_str, symbol, timestamps_to_mine, news_data)
+    local_data = load_local_news_tick_analysis_data(haawks_id_str, symbol, timestamps_to_mine, news_data)
     news_pip_data.update(local_data)
 
     # If no local data is available, provide a message indicating data will be mined.
@@ -871,7 +895,7 @@ def load_news_pip_data(haawks_id_str, news_data, symbol):
     # For each timestamp in timestamps_to_mine, mine pip data from raw tick data.
     for index, timestamp in enumerate(timestamps_to_mine):
         print(f"\rMining pip data from {timestamp} ({index + 1}/{len(timestamps_to_mine)})", end="", flush=True)
-        mine_and_save_pip_data(news_data, symbol, timestamp, news_pip_data)
+        mine_and_save_news_tick_analysis_data(news_data, symbol, timestamp, news_pip_data)
 
     # Sort the news pip data by timestamp.
     news_pip_data = sort_news_pip_data_by_timestamp(news_pip_data)
@@ -2117,7 +2141,7 @@ def calc_news_pip_metrics_for_multiple_indicators(haawks_id_strs_and_symbols: li
 
         news_data['expected_direction'] = expected_directions
 
-        news_pip_data = load_news_pip_data(haawks_id_str, news_data, symbol)
+        news_pip_data = load_news_tick_analysis_data(haawks_id_str, news_data, symbol)
         news_pip_metrics = calc_news_pip_metrics(haawks_id_str, symbol, news_pip_data, triggers, higher_dev)
         result.setdefault(f"{haawks_id_str}_{symbol} {title}", news_pip_metrics)
 

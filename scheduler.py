@@ -6,7 +6,7 @@ from utils import get_indicator_info, haawks_id_to_str
 from datetime import date
 from scrape import update_indicator_history
 from import_ticks import import_ticks_for_indicator
-from analyze_data import read_triggers, load_news_pip_data, calc_news_pip_metrics, news_pip_metrics_to_dfs
+from analyze_data import read_triggers, load_news_tick_analysis_data, calc_news_pip_metrics, news_pip_metrics_to_dfs
 from utils import read_news_data, get_day
 from generate_report import render_event_html, generate_weekly_schedule
 import numpy
@@ -85,7 +85,7 @@ def get_triggers_vars(haawks_id_str, symbol, higher_dev, account_balance=3000):
     news_data = read_news_data(haawks_id_str)  # read_news_data(haawks_id_str)
     # import_ticks_for_indicator(haawks_id_str, symbol)
     triggers = read_triggers(haawks_id_str)
-    news_pip_data = load_news_pip_data(haawks_id_str, news_data, symbol)
+    news_pip_data = load_news_tick_analysis_data(haawks_id_str, news_data, symbol)
     news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_pip_data, triggers, higher_dev)
     news_pip_metrics_dfs = news_pip_metrics_to_dfs(news_pip_metrics)
 
