@@ -73,7 +73,7 @@ def run():
         triggers = read_triggers(haawks_id_str)
 
         # Checks if previous analysis data is saved then loads it and updates it by mining tick data & analyzing it
-        # If no data is found, it mines it all from scratch but saving previous analysis as json & updating it saves time
+        # If no data is found, it mines it all from scratch but saving previous analysis data as json & updating it saves time
         news_tick_analysis_data = load_news_tick_analysis_data(haawks_id_str, news_data, trading_symbol)
         news_pip_metrics = calc_news_pip_metrics(haawks_id_str, news_tick_analysis_data, triggers, symbol_higher_dev)
 
